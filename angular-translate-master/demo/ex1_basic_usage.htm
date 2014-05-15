@@ -1,4 +1,58 @@
-//i18n
+<!DOCTYPE html>
+<html ng-app='app'>
+
+<head>
+  <meta charset="utf-8">
+  <title translate="TITLE">Basic usage</title>
+  <style>body { text-align: center; }</style>
+</head>
+
+<body ng-controller="ctrl">
+
+  <!-- An example of changing language in runtime -->
+  <p>
+    <a href="#" ng-click="setLang('en_US')">English</a>
+    |
+    <a href="#" ng-click="setLang('ru_RU')">Русский</a>
+  </p>
+
+  <!-- Translation by a filter -->
+  <h1>{{'HEADER' | translate}}</h1>
+
+  <!-- Translation by a directive -->
+  <h2 translate="SUBHEADER">Subheader</h2>
+
+  <!-- Using inner HTML as a key for translation -->
+  <p translate>HTML_KEYS</p>
+
+  <hr>
+
+  <!-- Passing a data object to the translation by the filter -->
+  <p>{{'DATA_TO_FILTER' | translate: tlData}}</p>
+
+  <!-- Passing a data object to the translation by the directive -->
+  <p translate="DATA_TO_DIRECTIVE" translate-values="{{tlData}}"></p>
+
+  <hr>
+
+  <!-- Passing a raw data to the filter -->
+  <p>{{'RAW_TO_FILTER' | translate:'{ type: "raw" }' }}</p>
+
+  <!-- Passing a raw data to the filter -->
+  <p translate="RAW_TO_DIRECTIVE" translate-values="{ type: 'directives' }"></p>
+
+  <hr>
+
+  <!-- Using a $translate service -->
+  <p>{{jsTrSimple}}</p>
+
+  <!-- Passing a data to the $translate service -->
+  <p>{{jsTrParams}}</p>
+
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../dist/angular-translate.js"></script>
+
+<script>
 angular.module('app', ['pascalprecht.translate'])
 
 .config(['$translateProvider', function($translateProvider){
@@ -36,7 +90,7 @@ angular.module('app', ['pascalprecht.translate'])
 
 }])
 
-.controller('InvoiceController', ['$scope', '$translate', function($scope, $translate) {
+.controller('ctrl', ['$scope', '$translate', function($scope, $translate) {
 
   $scope.tlData = {
     staticValue : 42,
@@ -56,79 +110,7 @@ angular.module('app', ['pascalprecht.translate'])
   };
 
 }]);
+</script>
 
-
-
-
-
-
-// format Address Google Address Autofill and merge Inputs document-inputs-googlesearch of Google Search Result to one Textarea
-function Country() {
-	var gStreetNo = $('textarea#street_number').val();
-	var gStreet = $('textarea#route').val();
-	var gCity = $('textarea#locality').val();
-	var gArea1 = $('textarea#administrative_area_level_1').val();
-	var gZip = $('textarea#postal_code').val();
-	var gCountry = $('textarea#country').val();
-	// USA Format
-	if (gCountry == "Deutschland") {
-
-		$("#document-to").val(gStreet + " " + gStreetNo + "\n" + gZip + " " + gCity);
-	} else {
-		// others for e.g. Germany
-		$("#document-to").val(gStreetNo + " " + gStreet + "\n" + gCity + "\n" + gArea1 + " " + gZip + "\n" + gCountry);
-	}
-}
-
-// calculation USA
-
-$("#document-table tbody input, #discount, #tax, .shipping-total").on("change", function() {
-	
-	// replace comma with dot if user inputs comma
-	
-	$("#document-table tbody input, #discount, #tax, .shipping-total").each(function() {
-    $(this).val($(this).val().replace(/,/g, "."));
-  });
-
-	// calculate rows
-	$('#document-table tbody tr').each(function() {
-		var quantity = $(this).find('input.quantity').val();
-		var unitprice = $(this).find('input.unitprice').val();
-		var amountTotal = (quantity * unitprice);
-		$(this).find('input.grossprice').val(amountTotal);
-		$('input.grossprice').val(amountTotal.toFixed(2));
-	});
-	//END .each
-
-	// calculate subtotals
-
-	var subTotal = 0;
-	var amountRows = $(".grossprice");
-	$.each(amountRows, function(number) {
-		subTotal += parseInt($(this).val());
-	});
-
-	$('input.sub-total').val(subTotal.toFixed(2));
-
-	// calculate discount
-
-	var discount = 0;
-	var percentage = $('#discount').val();
-
-	var discount = subTotal * (percentage / 100);
-	$('input.discount-total').val(-discount.toFixed(2));
-
-	// get shipping costs
-	var shippingcosts = $('.shipping-total').val();
-
-	// calculate balance
-	var balance = 0;
-
-	balance = Number(subTotal) + Number(-discount) + Number(shippingcosts);
-
-	//$('input.balance').val(balance);
-	
-	$('input.balance').val(balance.toFixed(2));
-
-	return false;
-});
+</body>
+</html>

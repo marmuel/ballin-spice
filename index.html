@@ -12,8 +12,13 @@
 		<title>lexoffice invoice - time to get paid!</title>
 		<meta name="description" content="invoice - smart &amp; easy">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-
-		<!-- Latest compiled and minified  bootstrap CSS -->
+		<!-- Latest compiled and minified jQuery -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<!-- Latest compiled and minified bootstrap JavaScript -->
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  		<script type="text/javascript" src="js/mylibs/main.js"></script>
+  		<script type="text/javascript" src="js/libs/angular-translate.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 		<!-- Optional theme and table-->
@@ -24,7 +29,7 @@
 		<link rel="stylesheet" href="css/jquery.ezdz.min.css">
 	</head>
 
-	<body onload="initialize()">
+	<body ng:app="jqanim" ng:controller="InvoiceController">
 		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -140,6 +145,49 @@
 					<div class="document-wrapper">
 
 						<div id="invoice-header" class="row" >
+							
+							 <!-- An example of changing language in runtime -->
+  <p>
+    <a href="#" ng-click="setLang('en_US')">English</a>
+    |
+    <a href="#" ng-click="setLang('ru_RU')">Русский</a>
+  </p>
+
+  <!-- Translation by a filter -->
+  <h1>{{'HEADER' | translate}}</h1>
+
+  <!-- Translation by a directive -->
+  <h2 translate="SUBHEADER">Subheader</h2>
+
+  <!-- Using inner HTML as a key for translation -->
+  <p translate>HTML_KEYS</p>
+
+  <hr>
+
+  <!-- Passing a data object to the translation by the filter -->
+  <p>{{'DATA_TO_FILTER' | translate: tlData}}</p>
+
+  <!-- Passing a data object to the translation by the directive -->
+  <p translate="DATA_TO_DIRECTIVE" translate-values="{{tlData}}"></p>
+
+  <hr>
+
+  <!-- Passing a raw data to the filter -->
+  <p>{{'RAW_TO_FILTER' | translate:'{ type: "raw" }' }}</p>
+
+  <!-- Passing a raw data to the filter -->
+  <p translate="RAW_TO_DIRECTIVE" translate-values="{ type: 'directives' }"></p>
+
+  <hr>
+
+  <!-- Using a $translate service -->
+  <p>{{jsTrSimple}}</p>
+
+  <!-- Passing a data to the $translate service -->
+  <p>{{jsTrParams}}</p>
+							
+							
+							
 
 							<div class="col-md-6">
 								<textarea id="document-type" class="document-inputs" data-i18n="document.type"></textarea>
@@ -336,10 +384,6 @@
 </div><!-- /.modal -->
 			</div>
 		</div>
-		<!-- Latest compiled and minified jQuery -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		<!-- Latest compiled and minified bootstrap JavaScript -->
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<script defer src="js/libs/i18next-1.7.3.js"></script>
 		<script defer src="js/mylibs/script.js"></script>
 		
