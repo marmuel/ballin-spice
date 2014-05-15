@@ -12,8 +12,13 @@
 		<title>lexoffice invoice - time to get paid!</title>
 		<meta name="description" content="invoice - smart &amp; easy">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-
-		<!-- Latest compiled and minified  bootstrap CSS -->
+		<!-- Latest compiled and minified jQuery -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<!-- Latest compiled and minified bootstrap JavaScript -->
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  		<script type="text/javascript" src="js/mylibs/main.js"></script>
+  		<script type="text/javascript" src="angular-translate-master/bower_components/angular/angular-translate.min.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 		<!-- Optional theme and table-->
@@ -21,9 +26,10 @@
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">	
 		<link rel="stylesheet" href="css/style.css">
 		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/jquery.ezdz.min.css">
 	</head>
 
-	<body ng:app="jqanim" ng:controller="InvoiceController" >
+	<body ng:app="jqanim" ng:controller="InvoiceController" ng-app="lexoffice">
 		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -123,45 +129,100 @@
 						</li>
 						<li class="divider"></li>
 					</ul>
+					<ul class="nav nav-sidebar actionbuttons">
+						<li>
+							<button id="button-default" class="btn btn-lg btn-default" >
+								<span class="glyphicon glyphicon-floppy-disk" data-i18n="sidebarbutton.default"></span>
+							</button>
+
+						</li>
+					</ul>
 
 				</div>
 
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-<div class="document-wrapper">
+					<div class="document-wrapper">
 
-						<div id="invoice-header" class="row">
+						<div id="invoice-header" class="row" >
+							
+							 <!-- An example of changing language in runtime -->
+  <p>
+    <a href="#" ng-click="setLang('en_US')">English</a>
+    |
+    <a href="#" ng-click="setLang('ru_RU')">Русский</a>
+  </p>
+
+  <!-- Translation by a filter -->
+  <h1>{{'HEADER' | translate}}</h1>
+
+  <!-- Translation by a directive -->
+  <h2 translate="SUBHEADER">Subheader</h2>
+
+  <!-- Using inner HTML as a key for translation -->
+  <p translate>HTML_KEYS</p>
+
+  <hr>
+
+  <!-- Passing a data object to the translation by the filter -->
+  <p>{{'DATA_TO_FILTER' | translate: tlData}}</p>
+
+  <!-- Passing a data object to the translation by the directive -->
+  <p translate="DATA_TO_DIRECTIVE" translate-values="{{tlData}}"></p>
+
+  <hr>
+
+  <!-- Passing a raw data to the filter -->
+  <p>{{'RAW_TO_FILTER' | translate:'{ type: "raw" }' }}</p>
+
+  <!-- Passing a raw data to the filter -->
+  <p translate="RAW_TO_DIRECTIVE" translate-values="{ type: 'directives' }"></p>
+
+  <hr>
+
+  <!-- Using a $translate service -->
+  <p>{{jsTrSimple}}</p>
+
+  <!-- Passing a data to the $translate service -->
+  <p>{{jsTrParams}}</p>
+							
+							
+							
 
 							<div class="col-md-6">
-								<textarea id="document-type" class="document-inputs" data-i18n="document.type" style="">Invoice</textarea>
-								<textarea id="document-from" class="document-inputs address" data-i18n="document.fromaddress" style="overflow: hidden; word-wrap: break-word; resize: none; height: 80px;">
-</textarea>
+								<textarea id="document-type" class="document-inputs" data-i18n="document.type"></textarea>
+								<textarea id="document-from" class="document-inputs address" data-i18n="document.fromaddress"></textarea>
 							</div>
-							<div class="col-md-6 document-logo">
-								<input type="file" id="imgInp">
-        <img ng-hide="logoRemoved" id="company_logo" src="img/logo.jpeg" alt="your image">
-        <br>
-        <div class="noPrint" ng-hide="printMode">
-          <a ng-click="editLogo()" href="">Edit Logo</a>
-          <a ng-click="removeLogo()" id="remove_logo" href="">Remove logo</a>
-        </div>
+							<div class="col-md-6">
+								<form action="" method="post" enctype="multipart/form-data">
+									<div class="ezdz-dropzone">
+										<div data-i18n="document.logoupload"></div>
+										<input type="file" accept="image/png, image/jpeg">
+									</div>
+
+									<!--<input type="submit">-->
+								</form>
 
 							</div>
 						</div>
-						<div id="invoice-body" class="row">
+						<div id="invoice-body" class="row" >
 							<div class="col-md-6">
-								<textarea id="document-tocompany" class="document-inputs" data-i18n="document.tocompany" style="">Bill To Company</textarea>
+								<textarea id="document-tocompany" class="document-inputs" data-i18n="document.tocompany"></textarea>
 								<div id="googleaddress">
 
 									<div id="locationField" class="right-inner-addon" style="display: none">
                                         <i class="icon-search"></i>
-										<input id="autocomplete" class="form-control" data-i18n="[placeholder]document.enteraddress" onfocus="geolocate()" type="search" placeholder="Enter Address">
+										<input id="autocomplete" class="form-control" data-i18n="[placeholder]document.enteraddress" onFocus="geolocate()" type="search">
 									</div>
 
 									<table id="addressresult" style="display: none">
-										<tbody><tr class="nodrag">
-											<td class="streetno">											<textarea class="document-inputs-googlesearch" id="street_number" disabled="true" data-i18n="[placeholder]document.streetno" placeholder="No." style="overflow: hidden; word-wrap: break-word; resize: none; height: 48px;">											</textarea></td>
-											<td class="street" colspan="2">											<textarea class="document-inputs-googlesearch" id="route" disabled="true" data-i18n="[placeholder]document.street" placeholder="Street" style="overflow: hidden; word-wrap: break-word; resize: none; height: 48px;">											</textarea></td>
+										<tr class="nodrag">
+											<td class="streetno">											<textarea class="document-inputs-googlesearch" id="street_number"
+											disabled="true" data-i18n="[placeholder]document.streetno">
+											</textarea></td>
+											<td  class="street" colspan="2">											<textarea class="document-inputs-googlesearch" id="route"
+											disabled="true" data-i18n="[placeholder]document.street">
+											</textarea></td>
 											<td class="address-controls" colspan="2">
 											<button class="btn btn-default" href="#" id="search-again">
 												<span class="glyphicon glyphicon-search"></span>
@@ -171,105 +232,135 @@
 											</button></td>
 										</tr>
 										<tr class="nodrag">
-											<td class="city" colspan="3">											<textarea class="document-inputs-googlesearch" id="locality" disabled="true" data-i18n="[placeholder]document.city" placeholder="City" style="overflow: hidden; word-wrap: break-word; resize: none; height: 48px;">											</textarea></td>
+											<td class="city" colspan="3">											<textarea class="document-inputs-googlesearch" id="locality"
+											disabled="true" data-i18n="[placeholder]document.city">
+											</textarea></td>
 										</tr>
 										<tr class="nodrag">
-											<td class="state">											<textarea class="document-inputs-googlesearch" id="administrative_area_level_1" disabled="true" data-i18n="[placeholder]document.state" placeholder="State" style="overflow: hidden; word-wrap: break-word; resize: none; height: 48px;">											</textarea></td>
-											<td class="zipcode">											<textarea class="document-inputs-googlesearch" id="postal_code" disabled="true" data-i18n="[placeholder]document.zipcode" placeholder="Zip Code" style="overflow: hidden; word-wrap: break-word; resize: none; height: 48px;">											</textarea></td>
+											<td class="state">											<textarea class="document-inputs-googlesearch"
+											id="administrative_area_level_1" disabled="true" data-i18n="[placeholder]document.state">
+											</textarea></td>
+											<td class="zipcode">											<textarea class="document-inputs-googlesearch" id="postal_code"
+											disabled="true" data-i18n="[placeholder]document.zipcode">
+											</textarea></td>
 										</tr>
 										<tr class="nodrag">
-											<td class="country" colspan="3">											<textarea class="document-inputs-googlesearch" id="country" disabled="true" data-i18n="[placeholder]document.country" placeholder="Country" style="overflow: hidden; word-wrap: break-word; resize: none; height: 48px;">											</textarea></td>
+											<td class="country" colspan="3">											<textarea class="document-inputs-googlesearch"
+											id="country" disabled="true" data-i18n="[placeholder]document.country">
+											</textarea></td>
 										</tr>
-									</tbody></table>
+									</table>
 
 								</div>
-								<textarea id="document-to" class="document-inputs to-address" data-i18n="document.toaddress" style="overflow: hidden; word-wrap: break-word; resize: none; height: 80px;">Joe Blogg
-123 Anywhere Street, Anytown
-State 67890</textarea>								
+								<textarea id="document-to" class="document-inputs to-address" data-i18n="document.toaddress"></textarea>								
 
 
 							</div>
 							<div class="col-md-6">
 								<div class="col-md-6">
-									<textarea id="document-no-label" class="document-inputs label-right" data-i18n="document.nolabel" style="overflow: hidden; word-wrap: break-word; resize: none; height: 48px;">Invoice Number</textarea>
-									<textarea id="document-date-label" class="document-inputs label-right" data-i18n="document.datelabel" style="overflow: hidden; word-wrap: break-word; resize: none; height: 48px;">Date</textarea>
+									<textarea id="document-no-label" class="document-inputs label-right" data-i18n="document.nolabel"></textarea>
+									<textarea id="document-date-label" class="document-inputs label-right" data-i18n="document.datelabel"></textarea>
 								</div>
 								<div class="col-md-6">
-									<textarea class="document-inputs" id="invoice_number" ng-model="invoice.invoice_number" style="overflow: hidden; word-wrap: break-word; resize: none; height: 48px;"></textarea>
+									<textarea id="document-no" class="document-inputs" placeholder="12345678"></textarea>
 									<input id="document-date" class="document-inputs">
 								</div>
 							</div>
-<table class="table table-striped" align="center" >
-      <tr>
-          <th></th>
-          <th>Description</th>
-          <th>Qty</th>
-          <th>Cost</th>
-          <th style="text-align:right;">Total</th>
-          
-      </tr>
-      <tr ng:repeat="item in invoice.items" style="display: none" jq:animate="dropdown;250">
-          <td><a href ng-hide="printMode" ng-click="removeItem(item)" class="btn btn-danger">[X]</a></td>
-          <td><input ng:model="item.description" placeholder="Description"></td>
-          <td><input ng:model="item.qty" value="1" size="4" ng:required ng:validate="integer" placeholder="qty"></td>
-          <td><input ng:model="item.cost" value="0.00" ng:required ng:validate="number" size="6" placeholder="cost"></td>
-          <td align="right">{{item.cost * item.qty | currency}}</td>
-          
-      </tr>
-      <tr ng-hide="printMode">
-          <td colspan="5"><a class="btn btn-primary" href ng:click="addItem()" >Add Item</a></td>
-      </tr>
-      <tr>
-          <td colspan="4" align="right">
-            Sub Total
-          </td>
-          <td align="right">
-            {{invoice_sub_total() | currency}}
-          </td>
-      </tr>
-      <tr>
-          <td colspan="4" align="right">
-            Tax(%): <input ng:model="invoice.tax" ng:validate="number" style="width:43px">
-          </td>
-          <td align="right">
-            {{calculate_tax() | currency}}
-          </td>
-      </tr>
-      <tr>
-          <td colspan="4" align="right">
-            Grand Total:
-          </td>
-          <td align="right">
-            {{calculate_grand_total() | currency}}
-          </td>
-      </tr>
-  </table>
 
+							<table class="table" id="document-table">
+								<thead>
+									<tr>
+										<th class="dragHandle"></th><th>										<textarea type="text" class="header-inputs" data-i18n="table.description" >Description</textarea></th><th>										<textarea type="text" class="header-inputs" data-i18n="table.quantity">Quantity</textarea></th><th>										<textarea type="text" class="header-inputs" data-i18n="table.unitprice">Unit Price</textarea></th><th>										<textarea type="text" class="header-inputs tax1-header" data-i18n="table.tax1"></textarea></th><th>										<textarea type="text" class="header-inputs tax2-header" data-i18n="table.tax2"></textarea></th><th>										<textarea type="text" class="header-inputs" data-i18n="table.amount" value="0">Amount</textarea></th><th style="cursor: default"></th>
+									</tr>
+								</thead>
 
-  <div class="noPrint">
-    <a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printInfo()">Print</a>
-    <a href="#" class="btn btn-primary" ng-click="clearLocalStorage()">Reset</a>
-    <a href="#" class="btn btn-primary" ng-hide="printMode" ng-click="printMode = true;">Turn On Print Mode</a>
-    <a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printMode = false;">Turn Off Print Mode</a>
-  </div>
+								<tfoot>
+									<tr class="nodrag">
+										<td colspan="3" style="cursor: default;" class="nodrag">
+										<button id="button-rowadd" class="btn btn-primary">
+											<span class="glyphicon glyphicon-plus" data-i18n="table.addrow"> Product</span>
+										</button></td>
+										<td class="nodrag footer-labels">										<textarea type="text" class="table-inputs" data-i18n="table.subtotal" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;">Subtotal</textarea></td>
+				
+										<td style="cursor: default;" class="nodrag">
+										<input class="table-inputs sub-total" disabled="disabled" value="0">
+										</td>
+										<td style="cursor: default;" class="nodrag currency-column">										<textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled"></textarea></td>
+									</tr>
+									<tr class="nodrag">
+										<td colspan="3" style="cursor: default;" class="nodrag noline"></td><td class="nodrag footer-labels">										<textarea type="text" class="table-inputs discount-row" data-i18n="table.discount" style="cursor: default;">Discount</textarea></td>
+								
+										<td style="cursor: default;" class="nodrag">
+										<input class="table-inputs discount-total" value="0" disabled="disabled">
+										</td>
+										<td style="cursor: default;" class="nodrag ">										<textarea type="text" class="table-inputs discount-row-label" style="cursor: default;" disabled="disabled"></textarea></td>
+									</tr>
+									<!--<tr class="nodrag taxrow tax-subtotal">
+										<td colspan="3" class="noline" style="cursor: default;"></td>
+										<td class="nodrag footer-labels">										<textarea type="text" class="table-inputs tax-row" data-i18n="table.taxtotal1" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;"></textarea></td>
+										
+										
+										<td style="cursor: default;" class="nodrag">
+										<input class="table-inputs tax-total" disabled="disabled" value="0">
+										</td>
+										<td style="cursor: default;" class="nodrag currency-column">										<textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled"></textarea></td>
+									</tr>	-->							
+									<tr class="nodrag trShipping">
+										<td colspan="3" style="cursor: default;" class="nodrag noline"></td>
+										<td class="nodrag footer-labels">	<textarea type="text" class="table-inputs shipping-row" data-i18n="table.shipping" style="cursor: default;">Shipping</textarea></td>
+								
+										<td style="cursor: default;" class="nodrag">
+										<input class="table-inputs shipping-total" value="0">
+										</td>
+										<td style="cursor: default;" class="nodrag currency-column">										<textarea type="text" class="table-inputs currency-label" style="cursor: default;" disabled="disabled"></textarea></td>
+									</tr>									
+									<tr class="nodrag trBalance">
+										<td colspan="3" class="noline" style="cursor: default;"></td>
+										<td class="nodrag footer-labels">										<textarea type="text" class="table-inputs" data-i18n="table.balance" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;">Balance</textarea></td>
+							
+										<td style="cursor: default;">
+										<input class="table-inputs balance" disabled="disabled" value="0">
+										</td>
+										<td style="cursor: default;" class="nodrag currency-column">										<textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled"></textarea></td>
+									</tr>
 
+								</tfoot>
 
+								<tbody >
+									<tr>
+										<td class="dragHandle"></td>
+										<td class="product-column">										<textarea type="text"  class="table-inputs product" data-i18n="table.product" contentEditable="true"></textarea></td>
+										<td class="quantity-column">
+										<input  class="table-inputs quantity" type="number" value="1">
+										</td><td class="netprice-column">
+										<input class="table-inputs unitprice" autocomplete="off" value="0">
+										</td><td class="tax1-column">
+										<input  class="table-inputs tax1-row taxes" autocomplete="off">
+										</td><td class="tax2-column">
+										<input  class="table-inputs tax2-row taxes" autocomplete="off">
+										</td><td class="grossprice-column">
+										<input disabled="disabled" class="table-inputs grossprice" autocomplete="off" value="0">
+										</td>
 
+										<td class="table-controls"><button class="btn btn-danger glyphicon glyphicon-trash remove-row" href="#"></button></td>
+									</tr>
+								</tbody>
 
+							</table>
 							<div class="col-md-6">
-								<textarea id="document-terms" class="document-inputs address" data-i18n="[placeholder]document.termslabel" placeholder="Terms (Visible to your client). For Example: Thank you for your order. Please send the payment within 14 days after you receive this invoice." style="overflow: hidden; word-wrap: break-word; resize: none; height: 80px;"></textarea>
+								<textarea id="document-terms" class="document-inputs address" data-i18n="[placeholder]document.termslabel"></textarea>
 							</div>
 							<div class="col-md-6">
-								<textarea id="notes" class="document-inputs address" data-i18n="[placeholder]document.notes" placeholder="Notes (Visible to your client)" style="overflow: hidden; word-wrap: break-word; resize: none; height: 80px;"></textarea>
+								<textarea id="notes" class="document-inputs address" data-i18n="[placeholder]document.notes"></textarea>
 							</div>
 							<div class="col-md-4">
-								<textarea id="footer-notes1" class="document-inputs address" data-i18n="[placeholder]document.footer" placeholder="footer" style="overflow: hidden; word-wrap: break-word; resize: none; height: 80px;"></textarea>
+								<textarea id="footer-notes1" class="document-inputs address" data-i18n="[placeholder]document.footer"></textarea>
 							</div>
 							<div class="col-md-4">
-								<textarea id="footer-notes2" class="document-inputs address" data-i18n="[placeholder]document.footer" placeholder="footer" style="overflow: hidden; word-wrap: break-word; resize: none; height: 80px;"></textarea>
+								<textarea id="footer-notes2" class="document-inputs address" data-i18n="[placeholder]document.footer"></textarea>
 							</div>
 							<div class="col-md-4">
-								<textarea id="footer-notes3" class="document-inputs address" data-i18n="[placeholder]document.footer" placeholder="footer" style="overflow: hidden; word-wrap: break-word; resize: none; height: 80px;"></textarea>
+								<textarea id="footer-notes3" class="document-inputs address" data-i18n="[placeholder]document.footer"></textarea>
 							</div>
 						</div>
 					</div>
@@ -293,17 +384,13 @@ State 67890</textarea>
 </div><!-- /.modal -->
 			</div>
 		</div>
-		<!-- Latest compiled and minified jQuery -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<script defer src="js/libs/i18next-1.7.3.js"></script>
 		<script defer src="js/mylibs/script.js"></script>
-		<script defer src="js/mylibs/main.js"></script>
 		
 		<script type="text/javascript" src="js/mylibs/i18nlexoffice.js" ></script>
 		<script type="text/javascript" src="js/libs/jquery.tablednd.js" ></script>
 		<script type="text/javascript" src="js/libs/jquery.autosize.min.js" ></script>
+		<script type="text/javascript" src="js/libs/jquery.ezdz.min.js" ></script>
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 		<script defer src="js/mylibs/localize.js"></script>
 		<!-- end scripts-->

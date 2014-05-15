@@ -128,7 +128,7 @@ background-color: #222222;
 		padding-left: 40px;
 	}
 	.document-wrapper {
-        margin-top: 50px;
+
 		width: 90%;
 		background-color: #fff;
 		margin: auto;
@@ -158,11 +158,15 @@ background-color: #222222;
 .document-logo {
 	float: right;
 	margin-bottom: 10px;
-	width: 300px;
+	width: 250px;
 	height: 150px;
 	display: block;
+	background: transparent url('../img/logo.jpeg') center top no-repeat;
 }
 
+.document-logo:hover {
+	background-image: url('../img/logo-hover.jpeg');
+}
 .document-inputs {
 	padding: 10px;
 	margin-top: 10px;
@@ -316,44 +320,3 @@ div.brand a{
     padding: 15px 0px;
     pointer-events: none;
 }
-
-/*Angular invoice example */
-
-input, textarea{
-  border: 1px solid #FFF;
-}
-
-.container input:hover, .container textarea:hover, 
-.table-striped > tbody > tr:nth-child(2n+1) > td input:hover,
-.container input:focus, .container textarea:focus, 
-.table-striped > tbody > tr:nth-child(2n+1) > td input:focus{
-  border: 1px solid #CCC;
-}
-
-.table-striped > tbody > tr:nth-child(2n+1) > td input{
-    background-color: #F9F9F9;
-    border: 1px solid #F9F9F9;
-}
-
-
-
-@media print {
-    .noPrint {
-        display:none;
-    }
-}
-
-.infos input{
-  width: 300px;
-}
-
-.align-right input{
-  text-align:right;
-  width: 300px;
-}
-
-
-#imgInp{
-  display: none;
-}
-
