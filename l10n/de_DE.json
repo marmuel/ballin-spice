@@ -27,6 +27,10 @@
 		"searchyes": "Ja"
 		
 	},
+	 "dialog": {
+	 "accept": " Übernehmen",
+	 "searchagain": " Erneut suchen"
+	},
 	"document": {
 		"type": "Rechnung",
 		"enteraddress": "Bitte geben Sie eine Adresse ein",

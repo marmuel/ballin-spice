@@ -299,6 +299,7 @@ div.brand a{
         margin-bottom: 2px;
       }
 .document-inputs-googlesearch {
+	width: 100%;
 	padding: 10px;
 	margin-top: 2px;
 	border: none;

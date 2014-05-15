@@ -1,9 +1,4 @@
 <!doctype html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
 <html class="no-js" lang="en">
 	<!--<![endif]-->
 	<head>
@@ -13,14 +8,13 @@
 		<meta name="description" content="invoice - smart &amp; easy">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 
-		<!-- Latest compiled and minified bootstrap JavaScript -->
-			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 		<script type="text/javascript" src="bower_components/angular-translate/angular-translate.min.js"></script>
 		<script type="text/javascript" src="js/libs/loader-static-files.js"></script>
 		<script type="text/javascript" src="js/mylibs/main.js"></script>
-	
+
 		<script defer src="js/mylibs/script.js"></script>
 		<script type="text/javascript" src="js/libs/jquery.tablednd.js" ></script>
 		<script type="text/javascript" src="js/libs/jquery.autosize.min.js" ></script>
@@ -38,9 +32,9 @@
 		<link rel="stylesheet" href="css/jquery.ezdz.min.css">
 	</head>
 
-	<body ng-app="lexoffice"ng:controller="InvoiceController" onload="initialize()">
+	<body ng-app="lexoffice" ng:controller="InvoiceController" onload="initialize()">
 		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			<div class="container-fluid">
+			<div class="container-fluid" ng:controller="Translation">
 				<div class="navbar-header">
 					<div class="brand">
 						<a href="#"><img class="brand-logo" src="img/logo_lexoffice.png" width="232" height="35" alt="lexoffice - time to get paid"><span class="claim"> Time to get paid!</span></a>
@@ -170,7 +164,7 @@
 									// Tell the module what language to use by default
 									$translateProvider.preferredLanguage('en_US');
 
-								}]).controller('InvoiceController', ['$scope', '$translate',
+								}]).controller('Translation', ['$scope', '$translate',
 								function($scope, $translate) {
 
 									$scope.setLang = function(langKey) {
@@ -186,16 +180,14 @@
 								<textarea id="document-type" class="document-inputs" translate="inv.document.type"></textarea>
 								<textarea id="document-from" class="document-inputs address" translate="inv.document.fromaddress"></textarea>
 							</div>
-							<div class="col-md-6">
-								<form action="" method="post" enctype="multipart/form-data">
-									<div class="ezdz-dropzone">
-										<div translate="inv.document.logoupload"></div>
-										<input type="file" accept="image/png, image/jpeg">
-									</div>
+							<div class="col-md-6" id="logo">
+								<input type='file' id="imgInp" />
+								<img ng-hide="logoRemoved" id="company_logo" src="img/logo.jpg" alt="logo" width="250">
 
-									<!--<input type="submit">-->
-								</form>
-
+								<div class="noPrint" ng-hide="printMode">
+									<a ng-click="editLogo()" href="">Edit Logo</a>
+									<a ng-click="removeLogo()" id="remove_logo" href="">Remove logo</a>
+								</div>
 							</div>
 						</div>
 						<div id="invoice-body" class="row" >
@@ -216,13 +208,6 @@
 											<td  class="street" colspan="2">											<textarea class="document-inputs-googlesearch" id="route"
 											disabled="true"   placeholder="{{ 'inv.document.street' | translate }}">
 											</textarea></td>
-											<td class="address-controls" colspan="2">
-											<button class="btn btn-default" href="#" id="search-again">
-												<span class="glyphicon glyphicon-search"></span>
-											</button>
-											<button class="btn btn-success" href="#" id="search-accept">
-												<span class="glyphicon glyphicon-ok"></span>
-											</button></td>
 										</tr>
 										<tr class="nodrag">
 											<td class="city" colspan="3">											<textarea class="document-inputs-googlesearch" id="locality"
@@ -242,10 +227,24 @@
 											id="country" disabled="true" placeholder="{{ 'inv.document.country' | translate }}">
 											</textarea></td>
 										</tr>
+										<tr class="nodrag">
+											<td></td>
+											<td class="address-controls">
+											<div class="button-group">
+												<button class="btn btn-success" href="#" id="search-accept" translate="inv.dialog.accept">
+													<span class="glyphicon glyphicon-ok"></span>Accept
+												</button>
+												<button class="btn btn-default" href="#" id="search-again" translate="inv.dialog.searchagain">
+													<span class="glyphicon glyphicon-search"></span>Search again
+												</button>
+											</div></td>
+										</tr>
 									</table>
 
 								</div>
-								<textarea id="document-to" class="document-inputs to-address" translate="inv.document.toaddress"></textarea>																
+								<textarea id="document-to" class="document-inputs to-address" translate="inv.document.toaddress"></textarea>																																
+
+
 
 
 

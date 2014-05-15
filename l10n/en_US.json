@@ -22,10 +22,14 @@
 		"tax1": "1 Column",
 		"tax2": "2 Columns",
 		"dropbox": " Dropbox",
-	"googlesearch": " Address",
-			"searchno": "No",
+		"googlesearch": " Address",
+		"searchno": "No",
 		"searchyes": "Yes"
 	},
+	 "dialog": {
+	 "accept": " Accept",
+	 "searchagain": " Search again"
+	 },
 	"document": {
 		"type": "Invoice",
 		"enteraddress": "Enter Address",
@@ -37,7 +41,7 @@
 		"termslabel": "Terms (Visible to your client). For Example: Thank you for your order. Please send the payment within 14 days after you receive this invoice.",
 		"notes": "Notes (Visible to your client)",
 		"footer": "footer",
-		"logoupload": "Drop a Logo",
+		"logoupload": "Upload Logo",
 		"streetno": "No.",
 		"street": "Street",
 		"city": "City",
