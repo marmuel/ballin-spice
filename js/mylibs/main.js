@@ -1,6 +1,10 @@
+var app = angular.module('lexoffice', ['pascalprecht.translate']);
+
+app.controller("InvoiceController", function($scope, $translate) {
+  // do some stuff
+});
 function InvoiceController($scope) {
 	
-
   $scope.logoRemoved = false;
   $scope.printMode = false;
 
