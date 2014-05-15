@@ -12,24 +12,33 @@
 		<title>lexoffice invoice - time to get paid!</title>
 		<meta name="description" content="invoice - smart &amp; easy">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<!-- Latest compiled and minified jQuery -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
 		<!-- Latest compiled and minified bootstrap JavaScript -->
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-  		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-  		<script type="text/javascript" src="js/mylibs/main.js"></script>
-  		<script type="text/javascript" src="angular-translate-master/bower_components/angular/angular-translate.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-translate/angular-translate.min.js"></script>
+		<script type="text/javascript" src="js/libs/loader-static-files.js"></script>
+		<script type="text/javascript" src="js/mylibs/main.js"></script>
+	
+		<script defer src="js/mylibs/script.js"></script>
+		<script type="text/javascript" src="js/libs/jquery.tablednd.js" ></script>
+		<script type="text/javascript" src="js/libs/jquery.autosize.min.js" ></script>
+
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+		<script defer src="js/mylibs/localize.js"></script>
+
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 		<!-- Optional theme and table-->
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">	
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/style.css">
 		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/jquery.ezdz.min.css">
 	</head>
 
-	<body ng:app="jqanim" ng:controller="InvoiceController" ng-app="lexoffice">
+	<body ng-app="lexoffice"ng:controller="InvoiceController" onload="initialize()">
 		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -41,19 +50,19 @@
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a href="#" data-i18n="nav.invoice">Invoice</a>
+							<a href="#" translate="inv.nav.invoice">Invoice</a>
 						</li>
 						<li>
-							<a href="#" data-i18n="nav.settings">Settings</a>
+							<a href="#" translate="inv.nav.settings">Settings</a>
 						</li>
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#" data-i18n="nav.language"> Language <b class="caret"></b></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#" translate="inv.nav.language"> Language <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="?setLng=en-US">English</a>
+									<a href="#" ng-click="setLang('en_US')">English</a>
 								</li>
 								<li>
-									<a href="?setLng=de-DE">Deutsch</a>
+									<a href="#" ng-click="setLang('de_DE')">Deutsch</a>
 								</li>
 							</ul>
 						</li>
@@ -69,59 +78,59 @@
 					<ul class="nav nav-sidebar actionbuttons">
 						<li>
 							<button id="button-preview" class="btn btn-lg btn-default" >
-								<span class="glyphicon glyphicon-search" data-i18n="sidebarbutton.preview"></span>
+								<span class="glyphicon glyphicon-search" translate="inv.sidebarbutton.preview"></span>
 							</button>
 
 						</li>
 						<li>
 							<button id="button-pdf" class="btn btn-lg btn-primary">
-								<span class="glyphicon glyphicon-file" data-i18n="sidebarbutton.pdf"></span>
+								<span class="glyphicon glyphicon-file" translate="inv.sidebarbutton.pdf"></span>
 							</button>
 						</li>
 						<li>
 							<button id="button-dropbox" class="btn btn-lg btn-primary">
-								<span class="glyphicon dropbox" data-i18n="sidebarbutton.dropbox"></span>
+								<span class="glyphicon dropbox" translate="inv.sidebarbutton.dropbox"></span>
 							</button>
 						</li>
 						<li>
 							<button id="button-email" class="btn btn-lg btn-success" data-toggle="modal" data-target="#modal-email">
-								<span class="glyphicon glyphicon-envelope" data-i18n="sidebarbutton.email"></span>
+								<span class="glyphicon glyphicon-envelope" translate="inv.sidebarbutton.email"></span>
 							</button>
 						</li>
 						<li class="divider"></li>
 					</ul>
 					<ul class="nav nav-sidebar actionbuttons">
 						<li>
-							
+
 							<button id="googlesearch" class="btn btn-lg btn-inverse">
-								<span class="glyphicon glyphicon-search" data-i18n="sidebarbutton.googlesearch" ></span>
+								<span class="glyphicon glyphicon-search" translate="inv.sidebarbutton.googlesearch" ></span>
 							</button>
 						</li>
 						<li>
-							<label for="currency" data-i18n="sidebarbutton.currencylabel"></label>
+							<label for="currency" translate="inv.sidebarbutton.currencylabel"></label>
 							<select id="currency" class="form-control currency">
 								<option value="USD"> USD US Dollar</option><option value="CAD"> CAD Canadian Dollar</option><option value="EUR" selected="selected"> EUR Euro</option><option value="GBP"> GBP Pound Sterling</option><option value="AUD"> AUD Australian Dollar</option><option disabled="disabled">__________________________________</option><option value="AED"> AED United Arab Emirates Dirham</option><option value="AFN"> AFN Afghani</option><option value="ALL"> ALL Lek</option><option value="AMD"> AMD Armenian Dram</option><option value="ANG"> ANG Netherlands Antillian Guilder</option><option value="AOA"> AOA Kwanza</option><option value="ARS"> ARS Argentine Peso</option><option value="AWG"> AWG Aruban Guilder</option><option value="AZN"> AZN Azerbaijanian Manat</option><option value="BAM"> BAM Convertible Marks</option><option value="BBD"> BBD Barbados Dollar</option><option value="BDT"> BDT Bangladeshi Taka</option><option value="BGN"> BGN Bulgarian Lev</option><option value="BHD"> BHD Bahraini Dinar</option><option value="BIF"> BIF Burundian Franc</option><option value="BMD"> BMD Bermudian Dollar</option><option value="BND"> BND Brunei Dollar</option><option value="BOB"> BOB Boliviano</option><option value="BRL"> BRL Brazilian Real</option><option value="BSD"> BSD Bahamian Dollar</option><option value="BTN"> BTN Ngultrum</option><option value="BWP"> BWP Pula</option><option value="BZD"> BZD Belize Dollar</option><option value="CDF"> CDF Franc Congolais</option><option value="CHF"> CHF Swiss Franc</option><option value="CLP"> CLP Chilean Peso</option><option value="CNY"> CNY Renminbi</option><option value="COP"> COP Colombian Peso</option><option value="CRC"> CRC Costa Rican Colon</option><option value="CUP"> CUP Cuban Peso</option><option value="CVE"> CVE Cape Verde Escudo</option><option value="CZK"> CZK Czech Koruna</option><option value="DJF"> DJF Djibouti Franc</option><option value="DKK"> DKK Danish Krone</option><option value="DOP"> DOP Dominican Peso</option><option value="DZD"> DZD Algerian Dinar</option><option value="EEK"> EEK Kroon</option><option value="EGP"> EGP Egyptian Pound</option><option value="ERN"> ERN Nakfa</option><option value="ETB"> ETB Ethiopian Birr</option><option value="FJD"> FJD Fiji Dollar</option><option value="FKP"> FKP Falkland Islands Pound</option><option value="GEL"> GEL Lari</option><option value="GHS"> GHS Cedi</option><option value="GIP"> GIP Gibraltar Pound</option><option value="GMD"> GMD Dalasi</option><option value="GNF"> GNF Guinea Franc</option><option value="GTQ"> GTQ Quetzal</option><option value="GYD"> GYD Guyana Dollar</option><option value="HKD"> HKD Hong Kong Dollar</option><option value="HNL"> HNL Lempira</option><option value="HRK"> HRK Croatian Kuna</option><option value="HTG"> HTG Haiti Gourde</option><option value="HUF"> HUF Forint</option><option value="IDR"> IDR Rupiah</option><option value="ILS"> ILS New Israeli Shekel</option><option value="INR"> INR Indian Rupee</option><option value="IQD"> IQD Iraqi Dinar</option><option value="IRR"> IRR Iranian Rial</option><option value="ISK"> ISK Iceland Krona</option><option value="JMD"> JMD Jamaican Dollar</option><option value="JOD"> JOD Jordanian Dinar</option><option value="JPY"> JPY Japanese Yen</option><option value="KES"> KES Kenyan Shilling</option><option value="KGS"> KGS Som</option><option value="KHR"> KHR Riel</option><option value="KMF"> KMF Comoro Franc</option><option value="KRW"> KRW South Korean Won</option><option value="KWD"> KWD Kuwaiti Dinar</option><option value="KYD"> KYD Cayman Islands Dollar</option><option value="KZT"> KZT Tenge</option><option value="LAK"> LAK Kip</option><option value="LBP"> LBP Lebanese Pound</option><option value="LKR"> LKR Sri Lanka Rupee</option><option value="LRD"> LRD Liberian Dollar</option><option value="LSL"> LSL Loti</option><option value="LTL"> LTL Lithuanian Litas</option><option value="LVL"> LVL Latvian Lats</option><option value="LYD"> LYD Libyan Dinar</option><option value="MAD"> MAD Moroccan Dirham</option><option value="MDL"> MDL Moldovan Leu</option><option value="MGA"> MGA Malagasy Ariary</option><option value="MKD"> MKD Denar</option><option value="MNT"> MNT Tugrik</option><option value="MOP"> MOP Pataca</option><option value="MRO"> MRO Ouguiya</option><option value="MUR"> MUR Mauritius Rupee</option><option value="MVR"> MVR Rufiyaa</option><option value="MWK"> MWK Kwacha</option><option value="MXN"> MXN Mexican Peso</option><option value="MYR"> MYR Malaysian Ringgit</option><option value="MZN"> MZN Metical</option><option value="NAD"> NAD Namibian Dollar</option><option value="NGN"> NGN Naira</option><option value="NIO"> NIO Cordoba Oro</option><option value="NOK"> NOK Norwegian Krone</option><option value="NPR"> NPR Nepalese Rupee</option><option value="NZD"> NZD New Zealand Dollar</option><option value="OMR"> OMR Rial Omani</option><option value="PAB"> PAB Balboa</option><option value="PEN"> PEN Nuevo Sol</option><option value="PGK"> PGK Kina</option><option value="PHP"> PHP Philippine Peso</option><option value="PKR"> PKR Pakistan Rupee</option><option value="PLN"> PLN Zloty</option><option value="PYG"> PYG Guarani</option><option value="QAR"> QAR Qatari Rial</option><option value="RON"> RON Romanian New Leu</option><option value="RSD"> RSD Serbian Dinar</option><option value="RUB"> RUB Russian Ruble</option><option value="RWF"> RWF Rwanda Franc</option><option value="SAR"> SAR Saudi Riyal</option><option value="SBD"> SBD Solomon Islands Dollar</option><option value="SCR"> SCR Seychelles Rupee</option><option value="SDG"> SDG Sudanese Pound</option><option value="SEK"> SEK Swedish Krona</option><option value="SGD"> SGD Singapore Dollar</option><option value="SHP"> SHP Saint Helena Pound</option><option value="SKK"> SKK Slovak Koruna</option><option value="SLL"> SLL Leone</option><option value="SRD"> SRD Surinam Dollar</option><option value="SSP"> SSP South Sudanese Pound</option><option value="STD"> STD Dobra</option><option value="SYP"> SYP Syrian Pound</option><option value="SZL"> SZL Lilangeni</option><option value="THB"> THB Baht</option><option value="TJS"> TJS Somoni</option><option value="TMM"> TMM Manat</option><option value="TND"> TND Tunisian Dinar</option><option value="TOP"> TOP Pa'anga</option><option value="TRY"> TRY Turkish Lira</option><option value="TTD"> TTD Trinidad and Tobago Dollar</option><option value="TWD"> TWD New Taiwan Dollar</option><option value="TZS"> TZS Tanzanian Shilling</option><option value="UAH"> UAH Hryvnia</option><option value="UGX"> UGX Uganda Shilling</option><option value="UYU"> UYU Peso Uruguayo</option><option value="UZS"> UZS Uzbekistan Som</option><option value="VEF"> VEF Venezuelan bolívar fuerte</option><option value="VND"> VND Vietnamese Dồng</option><option value="VUV"> VUV Vatu</option><option value="WST"> WST Samoan Tala</option><option value="XAF"> XAF CFA Franc BEAC</option><option value="XCD"> XCD East Caribbean Dollar</option><option value="XOF"> XOF CFA Franc BCEAO</option><option value="XPF"> XPF CFP Franc</option><option value="YER"> YER Yemeni Rial</option><option value="ZAR"> ZAR South African Rand</option><option value="ZMK"> ZMK Kwacha</option>
 							</select>
 						</li>
 						<li>
-							<label for="tax" data-i18n="sidebarbutton.taxlabel"></label>
+							<label for="tax" translate="inv.sidebarbutton.taxlabel"></label>
 							<select id="tax" class="form-control tax">
-								<option value="tax-none" selected="selected" data-i18n="sidebarbutton.taxnone"></option><option value="1 Tax" data-i18n="sidebarbutton.tax1" selected="selected"></option><option value="2 Taxes" data-i18n="sidebarbutton.tax2"></option>
+								<option value="tax-none" selected="selected" translate="inv.sidebarbutton.taxnone"></option><option value="1 Tax" translate="inv.sidebarbutton.tax1" selected="selected"></option><option value="2 Taxes" translate="inv.sidebarbutton.tax2"></option>
 							</select>
 						</li>
 						<li>
-							<label for="discount" data-i18n="sidebarbutton.discountlabel"></label>
+							<label for="discount" translate="inv.sidebarbutton.discountlabel"></label>
 							<input id="discount" class="form-control discount" type="number">
 						</li>
 						<li>
-							<label for="shipping" data-i18n="sidebarbutton.shippinglabel"></label>
+							<label for="shipping" translate="inv.sidebarbutton.shippinglabel"></label>
 							<div class="btn-group btn-group-shipping" data-toggle="buttons" id="shipping">
 								<label class="btn btn-default shipping-radio" id="shippingno">
 									<input type="radio" class="btn">
-									<span data-i18n="sidebarbutton.shippingno"></span> </label>
+									<span translate="inv.sidebarbutton.shippingno"></span> </label>
 								<label class="btn btn-default shipping-radio" id="shippingyes">
 									<input type="radio" class="btn">
-									<span data-i18n="sidebarbutton.shippingyes"></span> </label>
+									<span translate="inv.sidebarbutton.shippingyes"></span> </label>
 							</div>
 						</li>
 						<li>
@@ -132,7 +141,7 @@
 					<ul class="nav nav-sidebar actionbuttons">
 						<li>
 							<button id="button-default" class="btn btn-lg btn-default" >
-								<span class="glyphicon glyphicon-floppy-disk" data-i18n="sidebarbutton.default"></span>
+								<span class="glyphicon glyphicon-floppy-disk" translate="inv.sidebarbutton.default"></span>
 							</button>
 
 						</li>
@@ -145,58 +154,42 @@
 					<div class="document-wrapper">
 
 						<div id="invoice-header" class="row" >
-							
-							 <!-- An example of changing language in runtime -->
-  <p>
-    <a href="#" ng-click="setLang('en_US')">English</a>
-    |
-    <a href="#" ng-click="setLang('ru_RU')">Русский</a>
-  </p>
 
-  <!-- Translation by a filter -->
-  <h1>{{'HEADER' | translate}}</h1>
+							<script>
+								angular.module('lexoffice', ['pascalprecht.translate']).config(['$translateProvider',
+								function($translateProvider) {
 
-  <!-- Translation by a directive -->
-  <h2 translate="SUBHEADER">Subheader</h2>
+									// Register a loader for the static files
+									// So, the module will search missing translation tables under the specified urls.
+									// Those urls are [prefix][langKey][suffix].
+									$translateProvider.useStaticFilesLoader({
+										prefix : 'l10n/',
+										suffix : '.json'
+									});
 
-  <!-- Using inner HTML as a key for translation -->
-  <p translate>HTML_KEYS</p>
+									// Tell the module what language to use by default
+									$translateProvider.preferredLanguage('en_US');
 
-  <hr>
+								}]).controller('InvoiceController', ['$scope', '$translate',
+								function($scope, $translate) {
 
-  <!-- Passing a data object to the translation by the filter -->
-  <p>{{'DATA_TO_FILTER' | translate: tlData}}</p>
+									$scope.setLang = function(langKey) {
+										// You can change the language during runtime
+										$translate.use(langKey);
+									};
 
-  <!-- Passing a data object to the translation by the directive -->
-  <p translate="DATA_TO_DIRECTIVE" translate-values="{{tlData}}"></p>
+								}]);
 
-  <hr>
-
-  <!-- Passing a raw data to the filter -->
-  <p>{{'RAW_TO_FILTER' | translate:'{ type: "raw" }' }}</p>
-
-  <!-- Passing a raw data to the filter -->
-  <p translate="RAW_TO_DIRECTIVE" translate-values="{ type: 'directives' }"></p>
-
-  <hr>
-
-  <!-- Using a $translate service -->
-  <p>{{jsTrSimple}}</p>
-
-  <!-- Passing a data to the $translate service -->
-  <p>{{jsTrParams}}</p>
-							
-							
-							
+							</script>
 
 							<div class="col-md-6">
-								<textarea id="document-type" class="document-inputs" data-i18n="document.type"></textarea>
-								<textarea id="document-from" class="document-inputs address" data-i18n="document.fromaddress"></textarea>
+								<textarea id="document-type" class="document-inputs" translate="inv.document.type"></textarea>
+								<textarea id="document-from" class="document-inputs address" translate="inv.document.fromaddress"></textarea>
 							</div>
 							<div class="col-md-6">
 								<form action="" method="post" enctype="multipart/form-data">
 									<div class="ezdz-dropzone">
-										<div data-i18n="document.logoupload"></div>
+										<div translate="inv.document.logoupload"></div>
 										<input type="file" accept="image/png, image/jpeg">
 									</div>
 
@@ -207,21 +200,21 @@
 						</div>
 						<div id="invoice-body" class="row" >
 							<div class="col-md-6">
-								<textarea id="document-tocompany" class="document-inputs" data-i18n="document.tocompany"></textarea>
+								<textarea id="document-tocompany" class="document-inputs" translate="inv.document.tocompany"></textarea>
 								<div id="googleaddress">
 
 									<div id="locationField" class="right-inner-addon" style="display: none">
-                                        <i class="icon-search"></i>
-										<input id="autocomplete" class="form-control" data-i18n="[placeholder]document.enteraddress" onFocus="geolocate()" type="search">
+										<i class="icon-search"></i>
+										<input id="autocomplete" class="form-control" placeholder="{{ 'inv.document.enteraddress' | translate }}" onFocus="geolocate()" type="search">
 									</div>
 
 									<table id="addressresult" style="display: none">
 										<tr class="nodrag">
 											<td class="streetno">											<textarea class="document-inputs-googlesearch" id="street_number"
-											disabled="true" data-i18n="[placeholder]document.streetno">
+											disabled="true" placeholder="{{ 'inv.document.streetno' | translate }}">
 											</textarea></td>
 											<td  class="street" colspan="2">											<textarea class="document-inputs-googlesearch" id="route"
-											disabled="true" data-i18n="[placeholder]document.street">
+											disabled="true"   placeholder="{{ 'inv.document.street' | translate }}">
 											</textarea></td>
 											<td class="address-controls" colspan="2">
 											<button class="btn btn-default" href="#" id="search-again">
@@ -233,33 +226,34 @@
 										</tr>
 										<tr class="nodrag">
 											<td class="city" colspan="3">											<textarea class="document-inputs-googlesearch" id="locality"
-											disabled="true" data-i18n="[placeholder]document.city">
+											disabled="true" placeholder="{{ 'inv.document.city' | translate }}">
 											</textarea></td>
 										</tr>
 										<tr class="nodrag">
 											<td class="state">											<textarea class="document-inputs-googlesearch"
-											id="administrative_area_level_1" disabled="true" data-i18n="[placeholder]document.state">
+											id="administrative_area_level_1" disabled="true" placeholder="{{ 'inv.document.state' | translate }}">
 											</textarea></td>
 											<td class="zipcode">											<textarea class="document-inputs-googlesearch" id="postal_code"
-											disabled="true" data-i18n="[placeholder]document.zipcode">
+											disabled="true" placeholder="{{ 'inv.document.zipcode' | translate }}">
 											</textarea></td>
 										</tr>
 										<tr class="nodrag">
 											<td class="country" colspan="3">											<textarea class="document-inputs-googlesearch"
-											id="country" disabled="true" data-i18n="[placeholder]document.country">
+											id="country" disabled="true" placeholder="{{ 'inv.document.country' | translate }}">
 											</textarea></td>
 										</tr>
 									</table>
 
 								</div>
-								<textarea id="document-to" class="document-inputs to-address" data-i18n="document.toaddress"></textarea>								
+								<textarea id="document-to" class="document-inputs to-address" translate="inv.document.toaddress"></textarea>																
+
 
 
 							</div>
 							<div class="col-md-6">
 								<div class="col-md-6">
-									<textarea id="document-no-label" class="document-inputs label-right" data-i18n="document.nolabel"></textarea>
-									<textarea id="document-date-label" class="document-inputs label-right" data-i18n="document.datelabel"></textarea>
+									<textarea id="document-no-label" class="document-inputs label-right" translate="inv.document.nolabel"></textarea>
+									<textarea id="document-date-label" class="document-inputs label-right" translate="inv.document.datelabel"></textarea>
 								</div>
 								<div class="col-md-6">
 									<textarea id="document-no" class="document-inputs" placeholder="12345678"></textarea>
@@ -270,7 +264,7 @@
 							<table class="table" id="document-table">
 								<thead>
 									<tr>
-										<th class="dragHandle"></th><th>										<textarea type="text" class="header-inputs" data-i18n="table.description" >Description</textarea></th><th>										<textarea type="text" class="header-inputs" data-i18n="table.quantity">Quantity</textarea></th><th>										<textarea type="text" class="header-inputs" data-i18n="table.unitprice">Unit Price</textarea></th><th>										<textarea type="text" class="header-inputs tax1-header" data-i18n="table.tax1"></textarea></th><th>										<textarea type="text" class="header-inputs tax2-header" data-i18n="table.tax2"></textarea></th><th>										<textarea type="text" class="header-inputs" data-i18n="table.amount" value="0">Amount</textarea></th><th style="cursor: default"></th>
+										<th class="dragHandle"></th><th>										<textarea type="text" class="header-inputs" translate="inv.table.description" >Description</textarea></th><th>										<textarea type="text" class="header-inputs" translate="inv.table.quantity">Quantity</textarea></th><th>										<textarea type="text" class="header-inputs" translate="inv.table.unitprice">Unit Price</textarea></th><th>										<textarea type="text" class="header-inputs tax1-header" translate="inv.table.tax1"></textarea></th><th>										<textarea type="text" class="header-inputs tax2-header" translate="inv.table.tax2"></textarea></th><th>										<textarea type="text" class="header-inputs" translate="inv.table.amount" value="0">Amount</textarea></th><th style="cursor: default"></th>
 									</tr>
 								</thead>
 
@@ -278,46 +272,45 @@
 									<tr class="nodrag">
 										<td colspan="3" style="cursor: default;" class="nodrag">
 										<button id="button-rowadd" class="btn btn-primary">
-											<span class="glyphicon glyphicon-plus" data-i18n="table.addrow"> Product</span>
+											<span class="glyphicon glyphicon-plus" translate="inv.table.addrow"> Product</span>
 										</button></td>
-										<td class="nodrag footer-labels">										<textarea type="text" class="table-inputs" data-i18n="table.subtotal" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;">Subtotal</textarea></td>
-				
+										<td class="nodrag footer-labels">										<textarea type="text" class="table-inputs" translate="inv.table.subtotal" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;">Subtotal</textarea></td>
+
 										<td style="cursor: default;" class="nodrag">
 										<input class="table-inputs sub-total" disabled="disabled" value="0">
 										</td>
 										<td style="cursor: default;" class="nodrag currency-column">										<textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled"></textarea></td>
 									</tr>
 									<tr class="nodrag">
-										<td colspan="3" style="cursor: default;" class="nodrag noline"></td><td class="nodrag footer-labels">										<textarea type="text" class="table-inputs discount-row" data-i18n="table.discount" style="cursor: default;">Discount</textarea></td>
-								
+										<td colspan="3" style="cursor: default;" class="nodrag noline"></td><td class="nodrag footer-labels">										<textarea type="text" class="table-inputs discount-row" translate="inv.table.discount" style="cursor: default;">Discount</textarea></td>
+
 										<td style="cursor: default;" class="nodrag">
 										<input class="table-inputs discount-total" value="0" disabled="disabled">
 										</td>
 										<td style="cursor: default;" class="nodrag ">										<textarea type="text" class="table-inputs discount-row-label" style="cursor: default;" disabled="disabled"></textarea></td>
 									</tr>
 									<!--<tr class="nodrag taxrow tax-subtotal">
-										<td colspan="3" class="noline" style="cursor: default;"></td>
-										<td class="nodrag footer-labels">										<textarea type="text" class="table-inputs tax-row" data-i18n="table.taxtotal1" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;"></textarea></td>
-										
-										
-										<td style="cursor: default;" class="nodrag">
-										<input class="table-inputs tax-total" disabled="disabled" value="0">
-										</td>
-										<td style="cursor: default;" class="nodrag currency-column">										<textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled"></textarea></td>
-									</tr>	-->							
+									<td colspan="3" class="noline" style="cursor: default;"></td>
+									<td class="nodrag footer-labels">										<textarea type="text" class="table-inputs tax-row" translate="inv.table.taxtotal1" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;"></textarea></td>
+
+									<td style="cursor: default;" class="nodrag">
+									<input class="table-inputs tax-total" disabled="disabled" value="0">
+									</td>
+									<td style="cursor: default;" class="nodrag currency-column">										<textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled"></textarea></td>
+									</tr>	-->
 									<tr class="nodrag trShipping">
 										<td colspan="3" style="cursor: default;" class="nodrag noline"></td>
-										<td class="nodrag footer-labels">	<textarea type="text" class="table-inputs shipping-row" data-i18n="table.shipping" style="cursor: default;">Shipping</textarea></td>
-								
+										<td class="nodrag footer-labels">										<textarea type="text" class="table-inputs shipping-row" translate="inv.table.shipping" style="cursor: default;">Shipping</textarea></td>
+
 										<td style="cursor: default;" class="nodrag">
 										<input class="table-inputs shipping-total" value="0">
 										</td>
 										<td style="cursor: default;" class="nodrag currency-column">										<textarea type="text" class="table-inputs currency-label" style="cursor: default;" disabled="disabled"></textarea></td>
-									</tr>									
+									</tr>
 									<tr class="nodrag trBalance">
 										<td colspan="3" class="noline" style="cursor: default;"></td>
-										<td class="nodrag footer-labels">										<textarea type="text" class="table-inputs" data-i18n="table.balance" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;">Balance</textarea></td>
-							
+										<td class="nodrag footer-labels">										<textarea type="text" class="table-inputs" translate="inv.table.balance" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;">Balance</textarea></td>
+
 										<td style="cursor: default;">
 										<input class="table-inputs balance" disabled="disabled" value="0">
 										</td>
@@ -329,7 +322,7 @@
 								<tbody >
 									<tr>
 										<td class="dragHandle"></td>
-										<td class="product-column">										<textarea type="text"  class="table-inputs product" data-i18n="table.product" contentEditable="true"></textarea></td>
+										<td class="product-column">										<textarea type="text"  class="table-inputs product" translate="inv.table.product" contentEditable="true"></textarea></td>
 										<td class="quantity-column">
 										<input  class="table-inputs quantity" type="number" value="1">
 										</td><td class="netprice-column">
@@ -348,58 +341,47 @@
 
 							</table>
 							<div class="col-md-6">
-								<textarea id="document-terms" class="document-inputs address" data-i18n="[placeholder]document.termslabel"></textarea>
+								<textarea id="document-terms" class="document-inputs address" placeholder="{{ 'inv.document.termslabel' | translate }}"></textarea>
 							</div>
 							<div class="col-md-6">
-								<textarea id="notes" class="document-inputs address" data-i18n="[placeholder]document.notes"></textarea>
+								<textarea id="notes" class="document-inputs address" placeholder="{{ 'inv.document.notes' | translate }}"></textarea>
 							</div>
 							<div class="col-md-4">
-								<textarea id="footer-notes1" class="document-inputs address" data-i18n="[placeholder]document.footer"></textarea>
+								<textarea id="footer-notes1" class="document-inputs address" placeholder="{{ 'inv.document.footer' | translate }}"></textarea>
 							</div>
 							<div class="col-md-4">
-								<textarea id="footer-notes2" class="document-inputs address" data-i18n="[placeholder]document.footer"></textarea>
+								<textarea id="footer-notes2" class="document-inputs address" placeholder="{{ 'inv.document.footer' | translate }}"></textarea>
 							</div>
 							<div class="col-md-4">
-								<textarea id="footer-notes3" class="document-inputs address" data-i18n="[placeholder]document.footer"></textarea>
+								<textarea id="footer-notes3" class="document-inputs address" placeholder="{{ 'inv.document.footer' | translate }}"></textarea>
 							</div>
 						</div>
 					</div>
 				</div>
-<div class="modal fade" id="modal-email">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" data-i18n="table.product"></h4>
-      </div>
-      <div class="modal-body">
-        <p data-i18n=".modalemail.email"></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+				<div class="modal fade" id="modal-email">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" translate="inv.table.product"></h4>
+							</div>
+							<div class="modal-body">
+								<p translate="inv.modalemail.email"></p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Close
+								</button>
+								<button type="button" class="btn btn-primary">
+									Save changes
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
 			</div>
 		</div>
-		<script defer src="js/libs/i18next-1.7.3.js"></script>
-		<script defer src="js/mylibs/script.js"></script>
-		
-		<script type="text/javascript" src="js/mylibs/i18nlexoffice.js" ></script>
-		<script type="text/javascript" src="js/libs/jquery.tablednd.js" ></script>
-		<script type="text/javascript" src="js/libs/jquery.autosize.min.js" ></script>
-		<script type="text/javascript" src="js/libs/jquery.ezdz.min.js" ></script>
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-		<script defer src="js/mylibs/localize.js"></script>
-		<!-- end scripts-->
-		<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
-		chromium.org/developers/how-tos/chrome-frame-getting-started -->
-		<!--[if lt IE 7 ]>
-		<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-		<script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
-		<![endif]-->
-
 	</body>
 </html>

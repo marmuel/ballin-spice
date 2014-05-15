@@ -1,9 +1,5 @@
-var app = angular.module('lexoffice', ['pascalprecht.translate']);
 
-app.controller("InvoiceController", function($scope, $translate) {
-  // do some stuff
-});
-function InvoiceController($scope) {
+function InvoiceController($scope, $translate) {
 	
   $scope.logoRemoved = false;
   $scope.printMode = false;
@@ -78,7 +74,7 @@ function InvoiceController($scope) {
 
 };
 
-angular.module('jqanim', []).directive('jqAnimate', function(){ 
+angular.module('lexoffice', []).directive('jqAnimate', function(){ 
   return function(scope, instanceElement){ 
       setTimeout(function() {instanceElement.show('slow');}, 0); 
   } 

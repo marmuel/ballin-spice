@@ -1,0 +1,65 @@
+{
+"inv" : {
+	"nav": {
+		"invoice": "Invoice",
+		"settings": "Settings",
+		"language": "Language"
+	},
+	"sidebarbutton": {
+		"preview": " Preview",
+		"pdf": " PDF",
+		"email": " Email",
+		"default": " Template",
+		"currencylabel": "Currency",
+		"discountlabel": "% Discount",
+		"discountnone": "No",
+		"discountpercent": "Discount Percent",
+		"shippinglabel": "Shipping",
+		"shippingno": "No",
+		"shippingyes": "Yes",
+		"taxlabel": "Tax Columns",
+		"taxnone": "No Tax",
+		"tax1": "1 Column",
+		"tax2": "2 Columns",
+		"dropbox": " Dropbox",
+	"googlesearch": " Address",
+			"searchno": "No",
+		"searchyes": "Yes"
+	},
+	"document": {
+		"type": "Invoice",
+		"enteraddress": "Enter Address",
+		"fromaddress": "Your Company\nJane Doe\n123 Anywhere Street, Anytown\nState 12345",
+		"tocompany": "Bill To Company",
+		"toaddress": "Joe Blogg\n123 Anywhere Street, Anytown\nState 67890",
+		"nolabel": "Invoice Number",
+		"datelabel": "Date",
+		"termslabel": "Terms (Visible to your client). For Example: Thank you for your order. Please send the payment within 14 days after you receive this invoice.",
+		"notes": "Notes (Visible to your client)",
+		"footer": "footer",
+		"logoupload": "Drop a Logo",
+		"streetno": "No.",
+		"street": "Street",
+		"city": "City",
+		"state": "State",
+		"zipcode": "Zip Code",
+		"country": "Country"
+	},
+	"table": {
+		"amount": "Amount",
+		"quantity": "Quantity",
+		"tax1": "% Tax",
+		"tax2": "% Tax 2",
+		"unitprice": "Unit Price",
+		"description": "Description",
+		"addrow": " Line",
+		"product": "Product",
+		"subtotal": "Subtotal",
+		"taxtotal1": "Taxes Total",
+		"taxtotal2": "Taxes 2 Total",
+		"balance": "Balance",
+		"discount": "Discount",
+		"shipping": "Shipping"
+	}
+}
+}
