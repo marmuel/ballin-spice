@@ -94,10 +94,7 @@ p, div {
 .btn-group-shipping, .btn-group-googlesearch{
 	width: 100%;
 }
-span.dropbox{
-	background: url('../img/dropbox-20.png') no-repeat; 
-	padding: 0px 0px 0px 25px;
-}
+
 .btn-inverse {
 color: #ffffff;
 text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -129,13 +126,24 @@ background-color: #222222;
 	}
 	.document-wrapper {
 
-		width: 90%;
+		width: 800px;
 		background-color: #fff;
 		margin: auto;
 		border: 1px solid #ddd;
 		box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
 		padding: 20px;
 	}
+}
+
+@media print {
+    .noPrint {
+        display:none;
+    }
+}
+
+.print-actions{
+	float: right;
+	margin: -10px 15px 10px 0px;
 }
 .main .page-header {
 	margin-top: 0;
@@ -155,22 +163,18 @@ background-color: #222222;
 	box-shadow: none;
 }
 
-.document-logo {
-	float: right;
-	margin-bottom: 10px;
-	width: 250px;
-	height: 150px;
-	display: block;
-	background: transparent url('../img/logo.jpeg') center top no-repeat;
+#logoCompany{
+	display: none;
 }
 
-.document-logo:hover {
-	background-image: url('../img/logo-hover.jpeg');
+#company_logo{
+	float: right;
 }
+
 .document-inputs {
 	padding: 10px;
-	margin-top: 10px;
 	width: 100%;
+	margin-top: 10px;
 	border: none;
 	overflow: hidden;
 	word-wrap: break-word;
@@ -190,9 +194,11 @@ input[type=date] {
 }
 .address {
 	height: 80px;
+	width: 400px;
 	margin-bottom: 10px;
 }
 .to-address {
+	width: 400px;
 	height: 80px;
 	margin: 2px 0px 10px 0px;
 }
@@ -206,6 +212,10 @@ input[type=date] {
 	max-width: 100%;
     margin-left: 0px;
 }
+#document-no-label, #document-date-label{
+	width: 150px;
+}
+
 .myDragClass{
 	background-color:#fcf8e3 !important;
 }
@@ -229,9 +239,10 @@ box-shadow: none;
 .table-functions{
 	margin:0px 0px 20px 25px;
 }
-.noline{
+.noline,  .table>tbody>tr>td{
 	border-top: 0px !important;
 }
+
 .sub-total:hover, .noline:hover, .tax-total:hover, .currency-label:hover, .balance:hover, .grossprice:hover, .discount-total:hover{
 	background-color: #fff;
 }
@@ -259,16 +270,16 @@ td.showDragHandle {
 	width: 1%;
 }
 .product-column{
-	width: 30%;
+	width: 26%;
 }
 .quantity-column{
-	width: 11%;
+	width: 13%;
 }
 .tax1-column, .tax2-column {
  width: 17%;
 }
  .grossprice-column {
- 	width: 15%;
+ 	width: 17%;
  }
  .netprice-column{
  	width: 15%;

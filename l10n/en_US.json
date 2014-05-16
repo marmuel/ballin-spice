@@ -47,7 +47,11 @@
 		"city": "City",
 		"state": "State",
 		"zipcode": "Zip Code",
-		"country": "Country"
+		"country": "Country",
+		"resetbutton": " Reset",
+		"printmodeonbutton": " Print Mode On",
+		"printmodeoffbutton": " Print Mode Off",
+		"printbutton": " Print"
 	},
 	"table": {
 		"amount": "Amount",

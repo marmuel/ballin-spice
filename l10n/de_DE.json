@@ -48,7 +48,11 @@
 		"city": "Stadt",
 		"state": "Bundesland",
 		"zipcode": "PLZ",
-		"country": "Land"
+		"country": "Land",
+		"resetbutton": " Zurücksetzen",
+		"printmodeonbutton": " Druckmodus an",
+		"printmodeoffbutton": " Druckmodus aus",
+		"printbutton": " Drucken"
 	},
 	"table": {
 		"amount": "Gesamtbetrag",

@@ -4,8 +4,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>lexoffice invoice - time to get paid!</title>
-		<meta name="description" content="invoice - smart &amp; easy">
+		<title>lexoffice invoice - time to get paid. now.</title>
+		<meta name="description" content="invoice - time to get paid. now.">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -26,18 +26,16 @@
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 		<!-- Optional theme and table-->
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/style.css">
-		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="css/jquery.ezdz.min.css">
 	</head>
 
-	<body ng-app="lexoffice" ng:controller="InvoiceController" onload="initialize()">
-		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			<div class="container-fluid" ng:controller="Translation">
+	<body ng-app="lexoffice" ng:controller="CtrlInvoice" onload="initialize()">
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-hide="printMode">
+			<div class="container-fluid" ng:controller="CtrlTranslation">
 				<div class="navbar-header">
 					<div class="brand">
-						<a href="#"><img class="brand-logo" src="img/logo_lexoffice.png" width="232" height="35" alt="lexoffice - time to get paid"><span class="claim"> Time to get paid!</span></a>
+						<a href="#"><img class="brand-logo" src="img/logo_lexoffice.png" width="232" height="35" alt="lexoffice - time to get paid. now"><span class="claim"> Time to get paid. now.</span></a>
 					</div>
 
 				</div>
@@ -68,27 +66,27 @@
 		<div class="container-fluid">
 			<div class="row">
 
-				<div class="col-sm-3 col-md-2 sidebar">
+				<div class="col-sm-3 col-md-2 sidebar" ng-hide="printMode">
 					<ul class="nav nav-sidebar actionbuttons">
 						<li>
 							<button id="button-preview" class="btn btn-lg btn-default" >
-								<span class="glyphicon glyphicon-search" translate="inv.sidebarbutton.preview"></span>
+								<span class="fa fa-search" translate="inv.sidebarbutton.preview"></span>
 							</button>
 
 						</li>
 						<li>
 							<button id="button-pdf" class="btn btn-lg btn-primary">
-								<span class="glyphicon glyphicon-file" translate="inv.sidebarbutton.pdf"></span>
+								<span class="fa fa-file" translate="inv.sidebarbutton.pdf"></span>
 							</button>
 						</li>
 						<li>
 							<button id="button-dropbox" class="btn btn-lg btn-primary">
-								<span class="glyphicon dropbox" translate="inv.sidebarbutton.dropbox"></span>
+								<span class="fa fa-dropbox" translate="inv.sidebarbutton.dropbox"></span>
 							</button>
 						</li>
 						<li>
 							<button id="button-email" class="btn btn-lg btn-success" data-toggle="modal" data-target="#modal-email">
-								<span class="glyphicon glyphicon-envelope" translate="inv.sidebarbutton.email"></span>
+								<span class="fa fa-envelope" translate="inv.sidebarbutton.email"></span>
 							</button>
 						</li>
 						<li class="divider"></li>
@@ -97,7 +95,7 @@
 						<li>
 
 							<button id="googlesearch" class="btn btn-lg btn-inverse">
-								<span class="glyphicon glyphicon-search" translate="inv.sidebarbutton.googlesearch" ></span>
+								<span class="fa fa-magic" translate="inv.sidebarbutton.googlesearch" ></span>
 							</button>
 						</li>
 						<li>
@@ -132,15 +130,6 @@
 						</li>
 						<li class="divider"></li>
 					</ul>
-					<ul class="nav nav-sidebar actionbuttons">
-						<li>
-							<button id="button-default" class="btn btn-lg btn-default" >
-								<span class="glyphicon glyphicon-floppy-disk" translate="inv.sidebarbutton.default"></span>
-							</button>
-
-						</li>
-					</ul>
-
 				</div>
 
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -148,6 +137,31 @@
 					<div class="document-wrapper">
 
 						<div id="invoice-header" class="row" >
+
+							<div class="noPrint print-actions">
+
+								<button type="button" class="btn btn-primary" ng-show="printMode" ng-click="printInfo()" style="display: none;">
+									<span class="fa fa-print" translate="inv.document.printbutton" ></span>
+								</button>
+								<button type="button" class="btn btn-primary" ng-click="clearLocalStorage()">
+									<span class="fa fa-trash-o" translate="inv.document.resetbutton" ></span>
+								</button>
+								<button type="button" class="btn btn-primary" ng-hide="printMode" ng-click="printMode = true;">
+									<span class="fa fa-eye" translate="inv.document.printmodeonbutton" ></span>
+								</button>
+								<button type="button" class="btn btn-primary" ng-show="printMode" ng-click="printMode = false;" style="display: none;">
+									<span class="fa fa-eye-slash" translate="inv.document.printmodeoffbutton" ></span>
+								</button>
+								<div class="btn-group" ng-hide="printMode">
+									<button type="button" class="btn btn-default" ng-click="editLogo()" href="">
+										<span  class="fa fa-pencil" ></span>
+									</button>
+									<button type="button" class="btn btn-default" ng-click="removeLogo()" id="remove_logo" href="">
+										<span id="logoRemove" ng-class="class"></span>
+									</button>
+								</div>
+
+							</div>
 
 							<script>
 								angular.module('lexoffice', ['pascalprecht.translate']).config(['$translateProvider',
@@ -164,7 +178,7 @@
 									// Tell the module what language to use by default
 									$translateProvider.preferredLanguage('en_US');
 
-								}]).controller('Translation', ['$scope', '$translate',
+								}]).controller('CtrlTranslation', ['$scope', '$translate',
 								function($scope, $translate) {
 
 									$scope.setLang = function(langKey) {
@@ -176,89 +190,85 @@
 
 							</script>
 
-							<div class="col-md-6">
-								<textarea id="document-type" class="document-inputs" translate="inv.document.type"></textarea>
-								<textarea id="document-from" class="document-inputs address" translate="inv.document.fromaddress"></textarea>
-							</div>
-							<div class="col-md-6" id="logo">
-								<input type='file' id="imgInp" />
-								<img ng-hide="logoRemoved" id="company_logo" src="img/logo.jpg" alt="logo" width="250">
-
-								<div class="noPrint" ng-hide="printMode">
-									<a ng-click="editLogo()" href="">Edit Logo</a>
-									<a ng-click="removeLogo()" id="remove_logo" href="">Remove logo</a>
-								</div>
-							</div>
+							<table class="table">
+								<tbody>
+									<tr class="nodrag">
+										<td>										<textarea id="document-type" class="document-inputs" translate="inv.document.type"></textarea>										<textarea id="document-from" class="document-inputs address" translate="inv.document.fromaddress"></textarea></td>
+										<td align="right">
+										<input type='file' id="logoCompany" />
+										<img ng-hide="logoRemoved" id="company_logo" src="img/logo.jpg" alt="logo" width="250"></td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 						<div id="invoice-body" class="row" >
-							<div class="col-md-6">
-								<textarea id="document-tocompany" class="document-inputs" translate="inv.document.tocompany"></textarea>
-								<div id="googleaddress">
+							<div id="locationField" class="right-inner-addon" style="display: none">
+												<input id="autocomplete" class="form-control" placeholder="{{ 'inv.document.enteraddress' | translate }}" onFocus="geolocate()" type="search">
+											</div>
 
-									<div id="locationField" class="right-inner-addon" style="display: none">
-										<i class="icon-search"></i>
-										<input id="autocomplete" class="form-control" placeholder="{{ 'inv.document.enteraddress' | translate }}" onFocus="geolocate()" type="search">
-									</div>
+							<table class="table">
+								<tbody>
+									<tr class="nodrag">
+										<td>										<textarea id="document-tocompany" class="document-inputs" translate="inv.document.tocompany"></textarea>
+										
+										<div id="googleaddress">
 
-									<table id="addressresult" style="display: none">
-										<tr class="nodrag">
-											<td class="streetno">											<textarea class="document-inputs-googlesearch" id="street_number"
+											
+											<table id="addressresult" style="display: none">
+												<tr class="nodrag">
+													<td class="streetno">													<textarea class="document-inputs-googlesearch" id="street_number"
 											disabled="true" placeholder="{{ 'inv.document.streetno' | translate }}">
 											</textarea></td>
-											<td  class="street" colspan="2">											<textarea class="document-inputs-googlesearch" id="route"
+													<td  class="street" colspan="2">													<textarea class="document-inputs-googlesearch" id="route"
 											disabled="true"   placeholder="{{ 'inv.document.street' | translate }}">
 											</textarea></td>
-										</tr>
-										<tr class="nodrag">
-											<td class="city" colspan="3">											<textarea class="document-inputs-googlesearch" id="locality"
+												</tr>
+												<tr class="nodrag">
+													<td class="city" colspan="3">													<textarea class="document-inputs-googlesearch" id="locality"
 											disabled="true" placeholder="{{ 'inv.document.city' | translate }}">
 											</textarea></td>
-										</tr>
-										<tr class="nodrag">
-											<td class="state">											<textarea class="document-inputs-googlesearch"
+												</tr>
+												<tr class="nodrag">
+													<td class="state">													<textarea class="document-inputs-googlesearch"
 											id="administrative_area_level_1" disabled="true" placeholder="{{ 'inv.document.state' | translate }}">
 											</textarea></td>
-											<td class="zipcode">											<textarea class="document-inputs-googlesearch" id="postal_code"
+													<td class="zipcode">													<textarea class="document-inputs-googlesearch" id="postal_code"
 											disabled="true" placeholder="{{ 'inv.document.zipcode' | translate }}">
 											</textarea></td>
-										</tr>
-										<tr class="nodrag">
-											<td class="country" colspan="3">											<textarea class="document-inputs-googlesearch"
+												</tr>
+												<tr class="nodrag">
+													<td class="country" colspan="3">													<textarea class="document-inputs-googlesearch"
 											id="country" disabled="true" placeholder="{{ 'inv.document.country' | translate }}">
 											</textarea></td>
-										</tr>
-										<tr class="nodrag">
-											<td></td>
-											<td class="address-controls">
-											<div class="button-group">
-												<button class="btn btn-success" href="#" id="search-accept" translate="inv.dialog.accept">
-													<span class="glyphicon glyphicon-ok"></span>Accept
-												</button>
-												<button class="btn btn-default" href="#" id="search-again" translate="inv.dialog.searchagain">
-													<span class="glyphicon glyphicon-search"></span>Search again
-												</button>
-											</div></td>
-										</tr>
-									</table>
+												</tr>
+												<tr class="nodrag">
+													<td></td>
+													<td class="address-controls">
+													<div class="button-group">
+														<button class="btn btn-success" href="#" id="search-accept">
+															<span class="fa fa-check" translate="inv.dialog.accept"></span>
+														</button>
+														<button class="btn btn-default" href="#" id="search-again">
+															<span class="fa fa-search" translate="inv.dialog.searchagain"></span>
+														</button>
+													</div></td>
+												</tr>
+											</table>
 
-								</div>
-								<textarea id="document-to" class="document-inputs to-address" translate="inv.document.toaddress"></textarea>																																
+										</div>	
+										<textarea id="document-to" class="document-inputs to-address" translate="inv.document.toaddress"></textarea></td>
 
-
-
-
-
-							</div>
-							<div class="col-md-6">
-								<div class="col-md-6">
-									<textarea id="document-no-label" class="document-inputs label-right" translate="inv.document.nolabel"></textarea>
-									<textarea id="document-date-label" class="document-inputs label-right" translate="inv.document.datelabel"></textarea>
-								</div>
-								<div class="col-md-6">
-									<textarea id="document-no" class="document-inputs" placeholder="12345678"></textarea>
-									<input id="document-date" class="document-inputs">
-								</div>
-							</div>
+										<td align="right">
+											<textarea id="document-no-label" class="document-inputs" translate="inv.document.nolabel"></textarea>	
+											<textarea id="document-date-label" class="document-inputs" translate="inv.document.datelabel"></textarea>	
+											</td>
+											<td align="right">
+												<textarea id="document-no" class="document-inputs" placeholder="12345678"></textarea>										
+										<input id="document-date" class="document-inputs">
+										</td>
+									</tr>
+								</tbody>
+							</table>
 
 							<table class="table" id="document-table">
 								<thead>
@@ -271,7 +281,7 @@
 									<tr class="nodrag">
 										<td colspan="3" style="cursor: default;" class="nodrag">
 										<button id="button-rowadd" class="btn btn-primary">
-											<span class="glyphicon glyphicon-plus" translate="inv.table.addrow"> Product</span>
+											<span class="fa fa-plus" translate="inv.table.addrow"> Product</span>
 										</button></td>
 										<td class="nodrag footer-labels">										<textarea type="text" class="table-inputs" translate="inv.table.subtotal" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;">Subtotal</textarea></td>
 
@@ -334,7 +344,10 @@
 										<input disabled="disabled" class="table-inputs grossprice" autocomplete="off" value="0">
 										</td>
 
-										<td class="table-controls"><button class="btn btn-danger glyphicon glyphicon-trash remove-row" href="#"></button></td>
+										<td class="table-controls">
+										<button class="btn btn-danger remove-row" href="#">
+											<span class="fa fa-trash-o"></span>
+										</button></td>
 									</tr>
 								</tbody>
 
@@ -354,6 +367,7 @@
 							<div class="col-md-4">
 								<textarea id="footer-notes3" class="document-inputs address" placeholder="{{ 'inv.document.footer' | translate }}"></textarea>
 							</div>
+
 						</div>
 					</div>
 				</div>

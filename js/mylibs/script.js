@@ -231,6 +231,7 @@ $googlesearch.on('click', function() {
 	(gbtnsearchagain).hide();
 	$('#autocomplete').val('');
 	(locationfield).show();
+	$('#autocomplete').focus();
 
 });
 
