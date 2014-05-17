@@ -66,8 +66,9 @@
 			</div>
 
 		</div>
-		<div id="wrapper">
-					<div class="subheader" ng-hide="printMode">
+		<div class="col-md-2" ng-hide="printMode"></div>
+		<div class="col-md-10 header-buttons-line">
+			<div class="subheader" ng-hide="printMode">
 
 				<div class="btn-group noPrint" id="header-buttons">
 					<button id="button-preview" type="button" class="btn btn-lg btn-default" ng-hide="printMode" ng-click="printMode = true;">
@@ -82,13 +83,71 @@
 					<button id="button-email" class="btn btn-lg btn-default" data-toggle="modal" data-target="#modal-email">
 						<span class="fa fa-envelope" translate="inv.headerbutton.email"></span>
 					</button>
-
+				</div>
+			</div>
 		</div>
 
-		</div>
+		<div class="container-fluid">
+			<div class="row">
 
-			<div id="main">
+				<div class="col-sm-3 col-md-2 sidebar" ng-hide="printMode">
+					<ul class="nav nav-sidebar actionbuttons">
 
+						<li>
+							<button id="button-dropbox" class="btn btn-lg btn-primary">
+								<span class="fa fa-dropbox" translate="inv.sidebarbutton.dropbox"></span>
+							</button>
+						</li>
+
+						<li>
+
+							<button id="googlesearch" class="btn btn-lg btn-inverse">
+								<span class="fa fa-magic" translate="inv.sidebarbutton.googlesearch" ></span>
+							</button>
+
+						</li>
+						<li class="divider"></li>
+					</ul>
+					<ul class="nav nav-sidebar actionbuttons">
+						<li>
+							<label for="currency" translate="inv.sidebarbutton.currencylabel"></label>
+							<select id="currency" class="form-control currency">
+								<option value="USD"> USD US Dollar</option><option value="CAD"> CAD Canadian Dollar</option><option value="EUR" selected="selected"> EUR Euro</option><option value="GBP"> GBP Pound Sterling</option><option value="AUD"> AUD Australian Dollar</option><option disabled="disabled">__________________________________</option><option value="AED"> AED United Arab Emirates Dirham</option><option value="AFN"> AFN Afghani</option><option value="ALL"> ALL Lek</option><option value="AMD"> AMD Armenian Dram</option><option value="ANG"> ANG Netherlands Antillian Guilder</option><option value="AOA"> AOA Kwanza</option><option value="ARS"> ARS Argentine Peso</option><option value="AWG"> AWG Aruban Guilder</option><option value="AZN"> AZN Azerbaijanian Manat</option><option value="BAM"> BAM Convertible Marks</option><option value="BBD"> BBD Barbados Dollar</option><option value="BDT"> BDT Bangladeshi Taka</option><option value="BGN"> BGN Bulgarian Lev</option><option value="BHD"> BHD Bahraini Dinar</option><option value="BIF"> BIF Burundian Franc</option><option value="BMD"> BMD Bermudian Dollar</option><option value="BND"> BND Brunei Dollar</option><option value="BOB"> BOB Boliviano</option><option value="BRL"> BRL Brazilian Real</option><option value="BSD"> BSD Bahamian Dollar</option><option value="BTN"> BTN Ngultrum</option><option value="BWP"> BWP Pula</option><option value="BZD"> BZD Belize Dollar</option><option value="CDF"> CDF Franc Congolais</option><option value="CHF"> CHF Swiss Franc</option><option value="CLP"> CLP Chilean Peso</option><option value="CNY"> CNY Renminbi</option><option value="COP"> COP Colombian Peso</option><option value="CRC"> CRC Costa Rican Colon</option><option value="CUP"> CUP Cuban Peso</option><option value="CVE"> CVE Cape Verde Escudo</option><option value="CZK"> CZK Czech Koruna</option><option value="DJF"> DJF Djibouti Franc</option><option value="DKK"> DKK Danish Krone</option><option value="DOP"> DOP Dominican Peso</option><option value="DZD"> DZD Algerian Dinar</option><option value="EEK"> EEK Kroon</option><option value="EGP"> EGP Egyptian Pound</option><option value="ERN"> ERN Nakfa</option><option value="ETB"> ETB Ethiopian Birr</option><option value="FJD"> FJD Fiji Dollar</option><option value="FKP"> FKP Falkland Islands Pound</option><option value="GEL"> GEL Lari</option><option value="GHS"> GHS Cedi</option><option value="GIP"> GIP Gibraltar Pound</option><option value="GMD"> GMD Dalasi</option><option value="GNF"> GNF Guinea Franc</option><option value="GTQ"> GTQ Quetzal</option><option value="GYD"> GYD Guyana Dollar</option><option value="HKD"> HKD Hong Kong Dollar</option><option value="HNL"> HNL Lempira</option><option value="HRK"> HRK Croatian Kuna</option><option value="HTG"> HTG Haiti Gourde</option><option value="HUF"> HUF Forint</option><option value="IDR"> IDR Rupiah</option><option value="ILS"> ILS New Israeli Shekel</option><option value="INR"> INR Indian Rupee</option><option value="IQD"> IQD Iraqi Dinar</option><option value="IRR"> IRR Iranian Rial</option><option value="ISK"> ISK Iceland Krona</option><option value="JMD"> JMD Jamaican Dollar</option><option value="JOD"> JOD Jordanian Dinar</option><option value="JPY"> JPY Japanese Yen</option><option value="KES"> KES Kenyan Shilling</option><option value="KGS"> KGS Som</option><option value="KHR"> KHR Riel</option><option value="KMF"> KMF Comoro Franc</option><option value="KRW"> KRW South Korean Won</option><option value="KWD"> KWD Kuwaiti Dinar</option><option value="KYD"> KYD Cayman Islands Dollar</option><option value="KZT"> KZT Tenge</option><option value="LAK"> LAK Kip</option><option value="LBP"> LBP Lebanese Pound</option><option value="LKR"> LKR Sri Lanka Rupee</option><option value="LRD"> LRD Liberian Dollar</option><option value="LSL"> LSL Loti</option><option value="LTL"> LTL Lithuanian Litas</option><option value="LVL"> LVL Latvian Lats</option><option value="LYD"> LYD Libyan Dinar</option><option value="MAD"> MAD Moroccan Dirham</option><option value="MDL"> MDL Moldovan Leu</option><option value="MGA"> MGA Malagasy Ariary</option><option value="MKD"> MKD Denar</option><option value="MNT"> MNT Tugrik</option><option value="MOP"> MOP Pataca</option><option value="MRO"> MRO Ouguiya</option><option value="MUR"> MUR Mauritius Rupee</option><option value="MVR"> MVR Rufiyaa</option><option value="MWK"> MWK Kwacha</option><option value="MXN"> MXN Mexican Peso</option><option value="MYR"> MYR Malaysian Ringgit</option><option value="MZN"> MZN Metical</option><option value="NAD"> NAD Namibian Dollar</option><option value="NGN"> NGN Naira</option><option value="NIO"> NIO Cordoba Oro</option><option value="NOK"> NOK Norwegian Krone</option><option value="NPR"> NPR Nepalese Rupee</option><option value="NZD"> NZD New Zealand Dollar</option><option value="OMR"> OMR Rial Omani</option><option value="PAB"> PAB Balboa</option><option value="PEN"> PEN Nuevo Sol</option><option value="PGK"> PGK Kina</option><option value="PHP"> PHP Philippine Peso</option><option value="PKR"> PKR Pakistan Rupee</option><option value="PLN"> PLN Zloty</option><option value="PYG"> PYG Guarani</option><option value="QAR"> QAR Qatari Rial</option><option value="RON"> RON Romanian New Leu</option><option value="RSD"> RSD Serbian Dinar</option><option value="RUB"> RUB Russian Ruble</option><option value="RWF"> RWF Rwanda Franc</option><option value="SAR"> SAR Saudi Riyal</option><option value="SBD"> SBD Solomon Islands Dollar</option><option value="SCR"> SCR Seychelles Rupee</option><option value="SDG"> SDG Sudanese Pound</option><option value="SEK"> SEK Swedish Krona</option><option value="SGD"> SGD Singapore Dollar</option><option value="SHP"> SHP Saint Helena Pound</option><option value="SKK"> SKK Slovak Koruna</option><option value="SLL"> SLL Leone</option><option value="SRD"> SRD Surinam Dollar</option><option value="SSP"> SSP South Sudanese Pound</option><option value="STD"> STD Dobra</option><option value="SYP"> SYP Syrian Pound</option><option value="SZL"> SZL Lilangeni</option><option value="THB"> THB Baht</option><option value="TJS"> TJS Somoni</option><option value="TMM"> TMM Manat</option><option value="TND"> TND Tunisian Dinar</option><option value="TOP"> TOP Pa'anga</option><option value="TRY"> TRY Turkish Lira</option><option value="TTD"> TTD Trinidad and Tobago Dollar</option><option value="TWD"> TWD New Taiwan Dollar</option><option value="TZS"> TZS Tanzanian Shilling</option><option value="UAH"> UAH Hryvnia</option><option value="UGX"> UGX Uganda Shilling</option><option value="UYU"> UYU Peso Uruguayo</option><option value="UZS"> UZS Uzbekistan Som</option><option value="VEF"> VEF Venezuelan bolívar fuerte</option><option value="VND"> VND Vietnamese Dồng</option><option value="VUV"> VUV Vatu</option><option value="WST"> WST Samoan Tala</option><option value="XAF"> XAF CFA Franc BEAC</option><option value="XCD"> XCD East Caribbean Dollar</option><option value="XOF"> XOF CFA Franc BCEAO</option><option value="XPF"> XPF CFP Franc</option><option value="YER"> YER Yemeni Rial</option><option value="ZAR"> ZAR South African Rand</option><option value="ZMK"> ZMK Kwacha</option>
+							</select>
+						</li>
+						<li>
+							<label for="tax" translate="inv.sidebarbutton.taxlabel"></label>
+							<select id="tax" class="form-control tax">
+								<option value="tax-none" selected="selected" translate="inv.sidebarbutton.taxnone"></option><option value="1 Tax" translate="inv.sidebarbutton.tax1" selected="selected"></option><option value="2 Taxes" translate="inv.sidebarbutton.tax2"></option>
+							</select>
+						</li>
+						<li>
+							<label for="discount" translate="inv.sidebarbutton.discountlabel"></label>
+							<input id="discount" class="form-control discount" type="number">
+						</li>
+						<li>
+							<label for="shipping" translate="inv.sidebarbutton.shippinglabel"></label>
+							<div class="btn-group btn-group-shipping" data-toggle="buttons" id="shipping">
+								<label class="btn btn-default shipping-radio" id="shippingno">
+									<input type="radio" class="btn">
+									<span translate="inv.sidebarbutton.shippingno"></span> </label>
+								<label class="btn btn-default shipping-radio" id="shippingyes">
+									<input type="radio" class="btn">
+									<span translate="inv.sidebarbutton.shippingyes"></span> </label>
+							</div>
+						</li>
+						<li class="divider"></li>
+					</ul>
+					<ul class="nav nav-sidebar actionbuttons">
+						<li>
+							<button id="button-reset" type="button" class="btn btn-lg btn-default" ng-click="clearLocalStorage()">
+								<span class="fa fa-trash-o" translate="inv.sidebarbutton.resetbutton" ></span>
+							</button>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 					<div class="document-wrapper">
 
@@ -124,11 +183,60 @@
 								</tbody>
 							</table>
 						</div>
+						<div id="invoice-body" class="row" >
+							<div id="locationField" class="right-inner-addon" style="display: none">
+								<input id="autocomplete" class="form-control" placeholder="{{ 'inv.document.enteraddress' | translate }}" onFocus="geolocate()" type="search">
+							</div>
+							<div id="googleaddress">
+
+								<table id="addressresult" style="display: none">
+									<tr class="nodrag">
+										<td class="streetno">										<textarea class="document-inputs-googlesearch" id="street_number"
+											disabled="true" placeholder="{{ 'inv.document.streetno' | translate }}">
+											</textarea></td>
+										<td  class="street" colspan="2">										<textarea class="document-inputs-googlesearch" id="route"
+											disabled="true"   placeholder="{{ 'inv.document.street' | translate }}">
+											</textarea></td>
+									</tr>
+									<tr class="nodrag">
+										<td class="city" colspan="3">										<textarea class="document-inputs-googlesearch" id="locality"
+											disabled="true" placeholder="{{ 'inv.document.city' | translate }}">
+											</textarea></td>
+									</tr>
+									<tr class="nodrag">
+										<td class="state">										<textarea class="document-inputs-googlesearch"
+											id="administrative_area_level_1" disabled="true" placeholder="{{ 'inv.document.state' | translate }}">
+											</textarea></td>
+										<td class="zipcode">										<textarea class="document-inputs-googlesearch" id="postal_code"
+											disabled="true" placeholder="{{ 'inv.document.zipcode' | translate }}">
+											</textarea></td>
+									</tr>
+									<tr class="nodrag">
+										<td class="country" colspan="3">										<textarea class="document-inputs-googlesearch"
+											id="country" disabled="true" placeholder="{{ 'inv.document.country' | translate }}">
+											</textarea></td>
+									</tr>
+									<tr class="nodrag">
+										<td></td>
+										<td class="address-controls">
+										<div class="button-group">
+											<button class="btn btn-success" href="#" id="search-accept">
+												<span class="fa fa-check" translate="inv.dialog.accept"></span>
+											</button>
+											<button class="btn btn-default" href="#" id="search-again">
+												<span class="fa fa-search" translate="inv.dialog.searchagain"></span>
+											</button>
+										</div></td>
+									</tr>
+								</table>
+
+							</div>
 
 							<table class="table">
 								<tbody>
 									<tr class="nodrag">
 										<td>										<textarea id="document-tocompany" class="document-inputs" translate="inv.document.tocompany"></textarea>										<textarea id="document-to" class="document-inputs to-address" translate="inv.document.toaddress"></textarea></td>
+
 										<td align="right">										<textarea id="document-no-label" class="document-inputs" translate="inv.document.nolabel"></textarea>										<textarea id="document-date-label" class="document-inputs" translate="inv.document.datelabel"></textarea></td>
 										<td align="right">										<textarea id="document-no" class="document-inputs" placeholder="12345678"></textarea>
 										<input id="document-date" class="document-inputs">
@@ -230,7 +338,7 @@
 							</table>
 						</div>
 					</div>
-
+				</div>
 				<div class="modal fade" id="modal-email">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -255,68 +363,7 @@
 					</div><!-- /.modal-dialog -->
 				</div><!-- /.modal -->
 			</div>
-
-			<div id="sidebar" ng-hide="printMode">
-		
-				<ul class="nav nav-sidebar actionbuttons">
-
-					<li>
-						<button id="button-dropbox" class="btn btn-lg btn-primary">
-							<span class="fa fa-dropbox" translate="inv.sidebarbutton.dropbox"></span>
-						</button>
-					</li>
-
-					<li>
-
-						<button id="googlesearch" class="btn btn-lg btn-inverse">
-							<span class="fa fa-magic" translate="inv.sidebarbutton.googlesearch" ></span>
-						</button>
-
-					</li>
-					<li class="divider"></li>
-				</ul>
-				<ul class="nav nav-sidebar actionbuttons">
-					<li>
-						<label for="currency" translate="inv.sidebarbutton.currencylabel"></label>
-						<select id="currency" class="form-control currency">
-							<option value="USD"> USD US Dollar</option><option value="CAD"> CAD Canadian Dollar</option><option value="EUR" selected="selected"> EUR Euro</option><option value="GBP"> GBP Pound Sterling</option><option value="AUD"> AUD Australian Dollar</option><option disabled="disabled">__________________________________</option><option value="AED"> AED United Arab Emirates Dirham</option><option value="AFN"> AFN Afghani</option><option value="ALL"> ALL Lek</option><option value="AMD"> AMD Armenian Dram</option><option value="ANG"> ANG Netherlands Antillian Guilder</option><option value="AOA"> AOA Kwanza</option><option value="ARS"> ARS Argentine Peso</option><option value="AWG"> AWG Aruban Guilder</option><option value="AZN"> AZN Azerbaijanian Manat</option><option value="BAM"> BAM Convertible Marks</option><option value="BBD"> BBD Barbados Dollar</option><option value="BDT"> BDT Bangladeshi Taka</option><option value="BGN"> BGN Bulgarian Lev</option><option value="BHD"> BHD Bahraini Dinar</option><option value="BIF"> BIF Burundian Franc</option><option value="BMD"> BMD Bermudian Dollar</option><option value="BND"> BND Brunei Dollar</option><option value="BOB"> BOB Boliviano</option><option value="BRL"> BRL Brazilian Real</option><option value="BSD"> BSD Bahamian Dollar</option><option value="BTN"> BTN Ngultrum</option><option value="BWP"> BWP Pula</option><option value="BZD"> BZD Belize Dollar</option><option value="CDF"> CDF Franc Congolais</option><option value="CHF"> CHF Swiss Franc</option><option value="CLP"> CLP Chilean Peso</option><option value="CNY"> CNY Renminbi</option><option value="COP"> COP Colombian Peso</option><option value="CRC"> CRC Costa Rican Colon</option><option value="CUP"> CUP Cuban Peso</option><option value="CVE"> CVE Cape Verde Escudo</option><option value="CZK"> CZK Czech Koruna</option><option value="DJF"> DJF Djibouti Franc</option><option value="DKK"> DKK Danish Krone</option><option value="DOP"> DOP Dominican Peso</option><option value="DZD"> DZD Algerian Dinar</option><option value="EEK"> EEK Kroon</option><option value="EGP"> EGP Egyptian Pound</option><option value="ERN"> ERN Nakfa</option><option value="ETB"> ETB Ethiopian Birr</option><option value="FJD"> FJD Fiji Dollar</option><option value="FKP"> FKP Falkland Islands Pound</option><option value="GEL"> GEL Lari</option><option value="GHS"> GHS Cedi</option><option value="GIP"> GIP Gibraltar Pound</option><option value="GMD"> GMD Dalasi</option><option value="GNF"> GNF Guinea Franc</option><option value="GTQ"> GTQ Quetzal</option><option value="GYD"> GYD Guyana Dollar</option><option value="HKD"> HKD Hong Kong Dollar</option><option value="HNL"> HNL Lempira</option><option value="HRK"> HRK Croatian Kuna</option><option value="HTG"> HTG Haiti Gourde</option><option value="HUF"> HUF Forint</option><option value="IDR"> IDR Rupiah</option><option value="ILS"> ILS New Israeli Shekel</option><option value="INR"> INR Indian Rupee</option><option value="IQD"> IQD Iraqi Dinar</option><option value="IRR"> IRR Iranian Rial</option><option value="ISK"> ISK Iceland Krona</option><option value="JMD"> JMD Jamaican Dollar</option><option value="JOD"> JOD Jordanian Dinar</option><option value="JPY"> JPY Japanese Yen</option><option value="KES"> KES Kenyan Shilling</option><option value="KGS"> KGS Som</option><option value="KHR"> KHR Riel</option><option value="KMF"> KMF Comoro Franc</option><option value="KRW"> KRW South Korean Won</option><option value="KWD"> KWD Kuwaiti Dinar</option><option value="KYD"> KYD Cayman Islands Dollar</option><option value="KZT"> KZT Tenge</option><option value="LAK"> LAK Kip</option><option value="LBP"> LBP Lebanese Pound</option><option value="LKR"> LKR Sri Lanka Rupee</option><option value="LRD"> LRD Liberian Dollar</option><option value="LSL"> LSL Loti</option><option value="LTL"> LTL Lithuanian Litas</option><option value="LVL"> LVL Latvian Lats</option><option value="LYD"> LYD Libyan Dinar</option><option value="MAD"> MAD Moroccan Dirham</option><option value="MDL"> MDL Moldovan Leu</option><option value="MGA"> MGA Malagasy Ariary</option><option value="MKD"> MKD Denar</option><option value="MNT"> MNT Tugrik</option><option value="MOP"> MOP Pataca</option><option value="MRO"> MRO Ouguiya</option><option value="MUR"> MUR Mauritius Rupee</option><option value="MVR"> MVR Rufiyaa</option><option value="MWK"> MWK Kwacha</option><option value="MXN"> MXN Mexican Peso</option><option value="MYR"> MYR Malaysian Ringgit</option><option value="MZN"> MZN Metical</option><option value="NAD"> NAD Namibian Dollar</option><option value="NGN"> NGN Naira</option><option value="NIO"> NIO Cordoba Oro</option><option value="NOK"> NOK Norwegian Krone</option><option value="NPR"> NPR Nepalese Rupee</option><option value="NZD"> NZD New Zealand Dollar</option><option value="OMR"> OMR Rial Omani</option><option value="PAB"> PAB Balboa</option><option value="PEN"> PEN Nuevo Sol</option><option value="PGK"> PGK Kina</option><option value="PHP"> PHP Philippine Peso</option><option value="PKR"> PKR Pakistan Rupee</option><option value="PLN"> PLN Zloty</option><option value="PYG"> PYG Guarani</option><option value="QAR"> QAR Qatari Rial</option><option value="RON"> RON Romanian New Leu</option><option value="RSD"> RSD Serbian Dinar</option><option value="RUB"> RUB Russian Ruble</option><option value="RWF"> RWF Rwanda Franc</option><option value="SAR"> SAR Saudi Riyal</option><option value="SBD"> SBD Solomon Islands Dollar</option><option value="SCR"> SCR Seychelles Rupee</option><option value="SDG"> SDG Sudanese Pound</option><option value="SEK"> SEK Swedish Krona</option><option value="SGD"> SGD Singapore Dollar</option><option value="SHP"> SHP Saint Helena Pound</option><option value="SKK"> SKK Slovak Koruna</option><option value="SLL"> SLL Leone</option><option value="SRD"> SRD Surinam Dollar</option><option value="SSP"> SSP South Sudanese Pound</option><option value="STD"> STD Dobra</option><option value="SYP"> SYP Syrian Pound</option><option value="SZL"> SZL Lilangeni</option><option value="THB"> THB Baht</option><option value="TJS"> TJS Somoni</option><option value="TMM"> TMM Manat</option><option value="TND"> TND Tunisian Dinar</option><option value="TOP"> TOP Pa'anga</option><option value="TRY"> TRY Turkish Lira</option><option value="TTD"> TTD Trinidad and Tobago Dollar</option><option value="TWD"> TWD New Taiwan Dollar</option><option value="TZS"> TZS Tanzanian Shilling</option><option value="UAH"> UAH Hryvnia</option><option value="UGX"> UGX Uganda Shilling</option><option value="UYU"> UYU Peso Uruguayo</option><option value="UZS"> UZS Uzbekistan Som</option><option value="VEF"> VEF Venezuelan bolívar fuerte</option><option value="VND"> VND Vietnamese Dồng</option><option value="VUV"> VUV Vatu</option><option value="WST"> WST Samoan Tala</option><option value="XAF"> XAF CFA Franc BEAC</option><option value="XCD"> XCD East Caribbean Dollar</option><option value="XOF"> XOF CFA Franc BCEAO</option><option value="XPF"> XPF CFP Franc</option><option value="YER"> YER Yemeni Rial</option><option value="ZAR"> ZAR South African Rand</option><option value="ZMK"> ZMK Kwacha</option>
-						</select>
-					</li>
-					<li>
-						<label for="tax" translate="inv.sidebarbutton.taxlabel"></label>
-						<select id="tax" class="form-control tax">
-							<option value="tax-none" selected="selected" translate="inv.sidebarbutton.taxnone"></option><option value="1 Tax" translate="inv.sidebarbutton.tax1" selected="selected"></option><option value="2 Taxes" translate="inv.sidebarbutton.tax2"></option>
-						</select>
-					</li>
-					<li>
-						<label for="discount" translate="inv.sidebarbutton.discountlabel"></label>
-						<input id="discount" class="form-control discount" type="number">
-					</li>
-					<li>
-						<label for="shipping" translate="inv.sidebarbutton.shippinglabel"></label>
-						<div class="btn-group btn-group-shipping" data-toggle="buttons" id="shipping">
-							<label class="btn btn-default shipping-radio" id="shippingno">
-								<input type="radio" class="btn">
-								<span translate="inv.sidebarbutton.shippingno"></span> </label>
-							<label class="btn btn-default shipping-radio" id="shippingyes">
-								<input type="radio" class="btn">
-								<span translate="inv.sidebarbutton.shippingyes"></span> </label>
-						</div>
-					</li>
-					<li class="divider"></li>
-				</ul>
-				<ul class="nav nav-sidebar actionbuttons">
-					<li>
-						<button id="button-reset" type="button" class="btn btn-lg btn-default" ng-click="clearLocalStorage()">
-							<span class="fa fa-trash-o" translate="inv.sidebarbutton.resetbutton" ></span>
-						</button>
-					</li>
-				</ul>
-			
-			</div>
-
-			</div>
-		
+		</div>
 		<script>
 			angular.module('lexoffice', ['pascalprecht.translate']).config(['$translateProvider',
 			function($translateProvider) {
