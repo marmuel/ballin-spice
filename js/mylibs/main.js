@@ -62,6 +62,7 @@ function CtrlInvoice($scope) {
 	}
 
 	$scope.printInfo = function() {
+				
 		window.print();
 	}
 
@@ -74,7 +75,7 @@ function CtrlInvoice($scope) {
 	}
 };
 
-angular.module('jqanim', []).directive('jqAnimate', function() {
+angular.module('lexoffice', []).directive('jqAnimate', function() {
 	return function(scope, instanceElement) {
 		setTimeout(function() {
 			instanceElement.show('slow');

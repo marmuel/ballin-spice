@@ -1,74 +1,77 @@
 {
-"inv" : {
-	"nav": {
-		"invoice": "Rechnung",
-		"settings": "Einstellungen",
-		"language": "Sprache"
-	},
-	"sidebarbutton": {
-		"preview": " Vorschau",
-		"pdf": " PDF",
-		"email": " E-Mail",
-		"default": " Vorlage",
-		"currencylabel": "Währung",
-		"discountlabel": "% Rabatt",
-		"discountnone": "Kein Rabatt",
-		"discountpercent": "Prozent",
-		"shippinglabel": "Versandkosten",
-		"shippingno": "Nein",
-		"shippingyes": "Ja",
-		"taxlabel": "Mehrwertsteuer",
-		"taxnone": "Keine MwSt.",
-		"tax1": "Mit MwSt.",
-		"tax2": "",
-		"dropbox": " Dropbox",
-		"googlesearch": " Adresse",
-		"searchno": "Nein",
-		"searchyes": "Ja"
-		
-	},
-	 "dialog": {
-	 "accept": " Übernehmen",
-	 "searchagain": " Erneut suchen"
-	},
-	"document": {
-		"type": "Rechnung",
-		"enteraddress": "Bitte geben Sie eine Adresse ein",
-		"fromaddress": "Ihre Firma GmbH & Co. KG\nMax Mustermann\nMusterstrasse 10\n12345 Musterstadt",
-		"tocompany": "Rechnungsempfänger Firma GmbH & Co. KG",
-		"toaddress": "Max Mustermann\nMusterstrasse 10\n12345 Musterstadt",
-		"nolabel": "Rechnungsnummer",
-		"datelabel": "Rechnungsdatum",
-		"notes": "Bemerkungen (Sichtbar für Ihren Kunden)",
-		"termslabel": "Bedingungen (Sichtbar für Ihren Kunden). Zum Beispiel: Vielen Dank für Ihren Auftrag! Bitte überweisen Sie uns den Betrag innerhalb von 14 Tagen auf das Konto 123 456 78",
-		"footer": "Fussnote",
-		"logoupload": "Logo hinzufügen",
-		"streetno": "Nr.",
-		"street": "Strasse",
-		"city": "Stadt",
-		"state": "Bundesland",
-		"zipcode": "PLZ",
-		"country": "Land",
-		"resetbutton": " Zurücksetzen",
-		"printmodeonbutton": " Druckmodus an",
-		"printmodeoffbutton": " Druckmodus aus",
-		"printbutton": " Drucken"
-	},
-	"table": {
-		"amount": "Gesamtbetrag",
-		"quantity": "Menge",
-		"tax1": "% MwSt.",
-		"tax2": "% MwSt.",
-		"unitprice": "Einzelpreis",
-		"description": "Beschreibung",
-		"addrow": " Zeile",
-		"product": "Produkt oder Service",
-		"subtotal": "Nettopreis",
-		"taxtotal1": "Mehrwertsteuer",
-		"taxtotal2": "Mehrwertsteuer",
-		"balance": "Bruttopreis",
-		"discount": "Rabatt",
-		"shipping": "Versandkosten"
+	"inv": {
+		"nav": {
+			"invoice": "Rechnung",
+			"settings": "Einstellungen",
+			"language": "Sprache"
+		},
+		"headerbutton": {
+			"preview": " Vorschau",
+			"pdf": " PDF",
+			"email": " E-Mail",
+			"print": " Drucken"
+		},
+
+		"sidebarbutton": {
+
+			"resetbutton": " Zurücksetzen",
+			"currencylabel": "Währung",
+			"discountlabel": "% Rabatt",
+			"discountnone": "Kein Rabatt",
+			"discountpercent": "Prozent",
+			"shippinglabel": "Versandkosten",
+			"shippingno": "Nein",
+			"shippingyes": "Ja",
+			"taxlabel": "Mehrwertsteuer",
+			"taxnone": "Keine MwSt.",
+			"tax1": "Mit MwSt.",
+			"tax2": "",
+			"dropbox": " Dropbox",
+			"googlesearch": " Adresse",
+			"searchno": "Nein",
+			"searchyes": "Ja"
+		},
+		"dialog": {
+			"accept": " Übernehmen",
+			"searchagain": " Erneut suchen"
+		},
+		"document": {
+			"type": "Rechnung",
+			"enteraddress": "Bitte geben Sie eine Adresse ein",
+			"fromaddress": "Ihre Firma GmbH & Co. KG\nMax Mustermann\nMusterstrasse 10\n12345 Musterstadt",
+			"tocompany": "Rechnungsempfänger Firma GmbH & Co. KG",
+			"toaddress": "Max Mustermann\nMusterstrasse 10\n12345 Musterstadt",
+			"nolabel": "Rechnungsnummer",
+			"datelabel": "Rechnungsdatum",
+			"notes": "Bemerkungen (Sichtbar für Ihren Kunden)",
+			"termslabel": "Bedingungen (Sichtbar für Ihren Kunden). Zum Beispiel: Vielen Dank für Ihren Auftrag! Bitte überweisen Sie uns den Betrag innerhalb von 14 Tagen auf das Konto 123 456 78",
+			"footer": "Fussnote",
+			"logoupload": "Logo hinzufügen",
+			"streetno": "Nr.",
+			"street": "Strasse",
+			"city": "Stadt",
+			"state": "Bundesland",
+			"zipcode": "PLZ",
+			"country": "Land",
+			"printmodeonbutton": " Druckmodus an",
+			"printmodeoffbutton": " Druckmodus aus",
+			"printbutton": " Drucken"
+		},
+		"table": {
+			"amount": "Gesamtbetrag",
+			"quantity": "Menge",
+			"tax1": "% MwSt.",
+			"tax2": "% MwSt.",
+			"unitprice": "Einzelpreis",
+			"description": "Beschreibung",
+			"addrow": " Zeile",
+			"product": "Produkt oder Service",
+			"subtotal": "Nettopreis",
+			"taxtotal1": "Mehrwertsteuer",
+			"taxtotal2": "Mehrwertsteuer",
+			"balance": "Bruttopreis",
+			"discount": "Rabatt",
+			"shipping": "Versandkosten"
+		}
 	}
-}
 }
