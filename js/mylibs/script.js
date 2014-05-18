@@ -177,26 +177,6 @@ $('#tax').change(function() {
 	colspan();
 });
 
-// disable 'taxes 2' for e.g. German Market
-
-$('#currency').change(function() {
-	var str = "";
-	var currencysettings = $("#currency option:selected").text();
-	if (currencysettings == ' EUR Euro') {
-		//$('#tax').attr('disabled','disabled');
-		$("#tax option[value='2 Taxes']").attr('disabled', 'disabled');
-
-	} else {
-		$("#tax option[value='2 Taxes']").removeAttr('disabled');
-	}
-
-	// add currency to labels
-
-	var cur = $('#currency').val();
-	$('.currency-label').val(cur);
-	$('.discount-row-label').val(cur);
-});
-
 // set correct colpsan for tfoot (subtotals) depending on count of Tax columns
 function colspan() {
 

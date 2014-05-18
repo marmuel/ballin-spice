@@ -43,7 +43,7 @@ function CtrlInvoice($scope, $http) {
 	$scope.showLogo = function() {
 		$scope.logoRemoved = false;
 	}
-	
+
 
 	$scope.removeItem = function(item) {
 		$scope.invoice.items.splice($scope.invoice.items.indexOf(item), 1);

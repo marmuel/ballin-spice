@@ -84,11 +84,11 @@ z-index: 1030;
 	color: #fff;
 	background-color: #428bca;
 }
-#button-dropbox, #googlesearch, #button-reset {
+#button-dropbox, #googlesearch {
 	width: 80%;
 	margin-bottom: 20px;
 }
-#button-preview, #button-pdf, #button-print, #button-email, #button-default {
+#button-preview, #button-pdf, #button-print, #button-email, #button-default, #button-reset {
 	width: 130px;
 	margin-bottom: 20px;
 }
