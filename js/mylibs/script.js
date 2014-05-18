@@ -244,6 +244,7 @@ $gSearchAgain.on('click', function() {
 	$('#autocomplete').val('');
 	(locationfield).show();
 	(gaddressResult).hide();
+	$('#autocomplete').focus();
 });
 
 // Accept Search

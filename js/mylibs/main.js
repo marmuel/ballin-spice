@@ -1,4 +1,5 @@
-function CtrlInvoice($scope) {
+function CtrlInvoice($scope, $http) {
+	
     $scope.class = "glyphicon glyphicon-minus";
 	$scope.logoRemoved = false;
 	$scope.printMode = false;
@@ -42,6 +43,8 @@ function CtrlInvoice($scope) {
 	$scope.showLogo = function() {
 		$scope.logoRemoved = false;
 	}
+	
+
 	$scope.removeItem = function(item) {
 		$scope.invoice.items.splice($scope.invoice.items.indexOf(item), 1);
 	}

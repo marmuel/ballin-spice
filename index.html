@@ -91,6 +91,33 @@
 			<div class="row">
 
 				<div class="col-sm-3 col-md-2 sidebar" ng-hide="printMode">
+					<script>
+						angular.module('lexoffice', ['pascalprecht.translate']).config(['$translateProvider',
+						function($translateProvider) {
+
+							// Register a loader for the static files
+							// So, the module will search missing translation tables under the specified urls.
+							// Those urls are [prefix][langKey][suffix].
+							$translateProvider.useStaticFilesLoader({
+								prefix : 'l10n/',
+								suffix : '.json'
+							});
+
+							// Tell the module what language to use by default
+							$translateProvider.preferredLanguage('en_US');
+
+						}]).controller('CtrlTranslation', ['$scope', '$translate',
+						function($scope, $translate) {
+
+							$scope.setLang = function(langKey) {
+								// You can change the language during runtime
+								$translate.use(langKey);
+							};
+
+						}]);
+
+					</script>
+
 					<ul class="nav nav-sidebar actionbuttons">
 
 						<li>
@@ -101,7 +128,7 @@
 
 						<li>
 
-							<button id="googlesearch" class="btn btn-lg btn-inverse">
+							<button id="googlesearch" class="btn btn-lg btn-inverse" ng-click="showGoogleAddress = ! showGoogleAddress">
 								<span class="fa fa-magic" translate="inv.sidebarbutton.googlesearch" ></span>
 							</button>
 
@@ -184,12 +211,12 @@
 							</table>
 						</div>
 						<div id="invoice-body" class="row" >
-							<div id="locationField" class="right-inner-addon" style="display: none">
+							<div id="locationField" class="right-inner-addon" ng-show="showGoogleAddress">
 								<input id="autocomplete" class="form-control" placeholder="{{ 'inv.document.enteraddress' | translate }}" onFocus="geolocate()" type="search">
 							</div>
 							<div id="googleaddress">
 
-								<table id="addressresult" style="display: none">
+								<table id="addressresult" style="display: none" >
 									<tr class="nodrag">
 										<td class="streetno">										<textarea class="document-inputs-googlesearch" id="street_number"
 											disabled="true" placeholder="{{ 'inv.document.streetno' | translate }}">
@@ -364,31 +391,6 @@
 				</div><!-- /.modal -->
 			</div>
 		</div>
-		<script>
-			angular.module('lexoffice', ['pascalprecht.translate']).config(['$translateProvider',
-			function($translateProvider) {
 
-				// Register a loader for the static files
-				// So, the module will search missing translation tables under the specified urls.
-				// Those urls are [prefix][langKey][suffix].
-				$translateProvider.useStaticFilesLoader({
-					prefix : 'l10n/',
-					suffix : '.json'
-				});
-
-				// Tell the module what language to use by default
-				$translateProvider.preferredLanguage('en_US');
-
-			}]).controller('CtrlTranslation', ['$scope', '$translate',
-			function($scope, $translate) {
-
-				$scope.setLang = function(langKey) {
-					// You can change the language during runtime
-					$translate.use(langKey);
-				};
-
-			}]);
-
-		</script>
 	</body>
 </html>
