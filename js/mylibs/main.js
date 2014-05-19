@@ -1,6 +1,6 @@
-function CtrlInvoice($scope, $http) {
-	
-    $scope.class = "glyphicon glyphicon-minus";
+function CtrlInvoice($scope, $http, $window) {
+
+	$scope.class = "glyphicon glyphicon-minus";
 	$scope.logoRemoved = false;
 	$scope.printMode = false;
 
@@ -15,14 +15,14 @@ function CtrlInvoice($scope, $http) {
 		//$scope.invoice = sample_invoice;
 	} else {
 		$scope.invoice = JSON.parse(localStorage["invoice"]);
-	}
+	};
 	$scope.addItem = function() {
 		$scope.invoice.items.push({
 			qty : 0,
 			cost : 0,
 			description : ""
 		});
-	}
+	};
 
 	$scope.removeLogo = function(element) {
 
@@ -34,20 +34,44 @@ function CtrlInvoice($scope, $http) {
 			$scope.logoRemoved = true;
 		}
 
-	}
+	};
 
 	$scope.editLogo = function() {
 		$("#logoCompany").trigger("click");
-	}
+	};
 
 	$scope.showLogo = function() {
 		$scope.logoRemoved = false;
-	}
+	};
 
+	//show and hide shipping costs //
+
+	$scope.shipping = {
+		fields : [{
+			shippingcosts : 0.00,
+			isRowHidden : true
+		}]
+	};
+
+	$scope.hideShippingCosts = function(field) {
+		field.shippingcosts = 0.00;
+		field.isRowHidden = true;
+	};
+	$scope.showShippingCosts = function(field) {
+		field.shippingcosts = 0.00;
+		field.isRowHidden = false;
+	};
+
+	// add discount percent to discount label
+
+	$("#discount").change(function() {
+		var percent = $(this).val();
+		$('.discount-row').val($('.discount-row').val() + ' ' + percent + ' %');
+	});
 
 	$scope.removeItem = function(item) {
 		$scope.invoice.items.splice($scope.invoice.items.indexOf(item), 1);
-	}
+	};
 
 	$scope.invoice_sub_total = function() {
 		var total = 0.00;
@@ -55,19 +79,18 @@ function CtrlInvoice($scope, $http) {
 			total += (item.qty * item.cost);
 		});
 		return total;
-	}
+	};
 	$scope.calculate_tax = function() {
 		return (($scope.invoice.tax * $scope.invoice_sub_total()) / 100);
-	}
+	};
 	$scope.calculate_grand_total = function() {
 		localStorage["invoice"] = JSON.stringify($scope.invoice);
 		return $scope.calculate_tax() + $scope.invoice_sub_total();
-	}
+	};
 
 	$scope.printInfo = function() {
-				
 		window.print();
-	}
+	};
 
 	$scope.clearLocalStorage = function() {
 		var confirmClear = confirm("Are you sure you would like to clear the invoice?");
@@ -75,15 +98,16 @@ function CtrlInvoice($scope, $http) {
 			localStorage["invoice"] = "";
 			$scope.invoice = sample_invoice;
 		}
-	}
-};
+	};
+}
+
 
 angular.module('lexoffice', []).directive('jqAnimate', function() {
 	return function(scope, instanceElement) {
 		setTimeout(function() {
 			instanceElement.show('slow');
 		}, 0);
-	}
+	};
 });
 
 function readURL(input) {
@@ -91,7 +115,7 @@ function readURL(input) {
 		var reader = new FileReader();
 		reader.onload = function(e) {
 			$('#company_logo').attr('src', e.target.result);
-		}
+		};
 		reader.readAsDataURL(input.files[0]);
 	}
 }
@@ -102,7 +126,9 @@ function readURL(input) {
 
 $(document).ready(function() {
 	$("#invoice_number").focus();
+	//set default currency
+	$("#currency").val('USD');
 	$("#logoCompany").change(function() {
 		readURL(this);
 	});
-}); 
+});

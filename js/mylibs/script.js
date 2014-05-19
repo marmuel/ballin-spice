@@ -4,11 +4,9 @@ $(document).ready(function() {
 	$("#document-table> tbody").not(':first').empty();
 
 	// trigger default values
-	$('#shippingno').trigger('click');
 	$('.tax-subtotal').hide();
 	$("#tax").trigger("change");
-	$("#currency").trigger("change");
-	$("#discount").trigger("change");
+
 
 	// add class for styling
 	$("#document-table").tableDnD({
@@ -83,64 +81,9 @@ $("#document-table").on('click', ".remove-row", function() {
 	$("#document-table").closest('tr').remove();
 });
 
-// Discount or not?
-$("#discount").change(function() {
 
-	var dissettings = $("#discount").val();
-	var drow = $(".discount-row").parents('tr');
-	if (dissettings == "") {
-		// no discount
-		$(drow).fadeOut();
-		$(".discount-total").val(0);
-	}
-	if (dissettings != "") {
-		// discount
-		$(drow).fadeIn();
-		$(drow).i18n();
-		// add currency to labels
-		$("#currency").trigger("change");
-	}
-});
 
-// Shipping or not?
-var $delbtnyes = $('#shippingyes');
-var $delbtnno = $('#shippingno');
-var srow = $(".shipping-row").parents('tr');
 
-$delbtnyes.on('click', function() {
-	// shipping costs
-	(srow).fadeIn();
-	//$("#document-table tbody .tax1-row, .tax2-row").trigger("change");
-	colspan();
-});
-$delbtnno.on('click', function() {
-	// no shipping costs
-	$(srow).fadeOut();
-	$(".shipping-total").val(0);
-	//$("#document-table tbody .tax1-row, .tax2-row").trigger("change");
-	colspan();
-});
-var $taxes = $('.taxes');
-$taxes.on('change', function() {
-
-	$('.tax-subtotal').show();
-	return false;
-
-	$($taxes).each(function() {
-		if ($(this).val().length == 0) {
-			return;
-		};
-		if ($(this).val().length !== 0) {
-			// add new taxrow
-			$trLast = $('#document-table').find("tr.taxrow:last");
-
-			$trNew = $trLast.clone();
-			$trLast.after($trNew);
-			$("#currency").trigger("change");
-
-		};
-	});
-});
 
 // add dynamically rows for taxes
 $('#tax').change(function() {
@@ -230,11 +173,13 @@ $gSearchAgain.on('click', function() {
 // Accept Search
 var $gSearchAccept = $('#search-accept');
 $gSearchAccept.on('click', function() {
-
+	
+var gaddress = $('#googleaddress');
 	(manaddress).show();
 	(gbtnsearchagain).hide();
 	$('#autocomplete').val('');
 	(gaddressResult).hide();
+		(gaddress).fadeOut();
 
 	Country();
 });
@@ -267,10 +212,12 @@ function initialize() {
 
 function fillInAddress() {
 	var gaddressResult = $('#addressresult');
+	var gaddress = $('#googleaddress');
 	var locationfield = $('#locationField');
 	var gbtnsearchagain = $('.address-controls');
 
 	(locationfield).fadeOut();
+	(gaddress).fadeIn();
 	(gaddressResult).fadeIn();
 	(gbtnsearchagain).fadeIn();
 	// Get the place details from the autocomplete object.
@@ -336,7 +283,6 @@ $("#document-table tbody .tax1-row, .tax2-row").on("change", function() {
 				txt = $('textarea.tax-row:last').text();
 				newTxt = txt + " " + taxPercent + " %";
 				colspan();
-				$("#currency").trigger("change");
 				$('textarea.tax-row:last').text(newTxt);
 				console.log(txt);
 			}
