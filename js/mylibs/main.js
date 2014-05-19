@@ -1,5 +1,8 @@
+
 function CtrlInvoice($scope, $http, $window) {
 
+angular.module('lexoffice', ['ui.bootstrap']);
+		
 	$scope.class = "glyphicon glyphicon-minus";
 	$scope.logoRemoved = false;
 	$scope.printMode = false;
@@ -61,6 +64,7 @@ function CtrlInvoice($scope, $http, $window) {
 		field.shippingcosts = 0.00;
 		field.isRowHidden = false;
 	};
+	
 
 	// add discount percent to discount label
 
