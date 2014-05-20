@@ -26,16 +26,6 @@ $("#document-table tbody input, #discount, #tax, .shipping-total").on("change", 
     $(this).val($(this).val().replace(/,/g, "."));
   });
 
-	// calculate rows
-	$('#document-table tbody tr').each(function() {
-		var quantity = $(this).find('input.quantity').val();
-		var unitprice = $(this).find('input.unitprice').val();
-		var amountTotal = (quantity * unitprice);
-		$(this).find('input.grossprice').val(amountTotal);
-		$('input.grossprice').val(amountTotal.toFixed(2));
-	});
-	//END .each
-
 	// calculate subtotals
 
 	var subTotal = 0;

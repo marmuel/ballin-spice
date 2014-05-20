@@ -2,32 +2,28 @@
 function CtrlInvoice($scope, $http, $window) {
 
 angular.module('lexoffice', ['ui.bootstrap']);
-		
+
+
 	$scope.class = "glyphicon glyphicon-minus";
 	$scope.logoRemoved = false;
 	$scope.printMode = false;
 
-	//var sample_invoice = {
-	//          tax: 13.00,
-	//          invoice_number: 10,
-	//          customer_info:  {name: "Mr. John Doe", web_link: "John Doe Designs Inc.", address1: "1 Infinite Loop", address2: "Cupertino, California, US", postal: "90210"},
-	//          company_info:  {name: "Metaware Labs", web_link: "www.metawarelabs.com", address1: "123 Yonge Street", address2: "Toronto, ON, Canada", postal: "M5S 1B6"},
-	//            items:[ {qty:10, description:'Gadget', cost:9.95}]};
+  var sample_invoice = {
+            taxOne: 19, 
+            taxTwo: 0, 
+              items:[ {qty:10, description:'Gadget', cost:9.95}]};
 
-	if (localStorage["invoice"] == "" || localStorage["invoice"] == null) {
-		//$scope.invoice = sample_invoice;
-	} else {
-		$scope.invoice = JSON.parse(localStorage["invoice"]);
-	};
-	$scope.addItem = function() {
-		$scope.invoice.items.push({
-			qty : 0,
-			cost : 0,
-			description : ""
-		});
-	};
+  if(localStorage["invoice"] == "" || localStorage["invoice"] == null){
+    $scope.invoice = sample_invoice;
+  }
+  else{
+    $scope.invoice =  JSON.parse(localStorage["invoice"]);
+  }
+    $scope.addItem = function() {
+        $scope.invoice.items.push({description:"", qty:0, cost:0, taxOne:0, taxTwo:0});    
+    };
 
-	$scope.removeLogo = function(element) {
+   $scope.removeLogo = function(element) {
 
 		if ($scope.class === "glyphicon glyphicon-plus") {
 			$scope.class = "glyphicon glyphicon-minus";
@@ -47,6 +43,7 @@ angular.module('lexoffice', ['ui.bootstrap']);
 		$scope.logoRemoved = false;
 	};
 
+
 	//show and hide shipping costs //
 
 	$scope.shipping = {
@@ -64,7 +61,7 @@ angular.module('lexoffice', ['ui.bootstrap']);
 		field.shippingcosts = 0.00;
 		field.isRowHidden = false;
 	};
-	
+
 
 	// add discount percent to discount label
 
@@ -85,7 +82,7 @@ angular.module('lexoffice', ['ui.bootstrap']);
 		return total;
 	};
 	$scope.calculate_tax = function() {
-		return (($scope.invoice.tax * $scope.invoice_sub_total()) / 100);
+		return (($scope.invoice.taxOne * $scope.invoice_sub_total()) / 100);
 	};
 	$scope.calculate_grand_total = function() {
 		localStorage["invoice"] = JSON.stringify($scope.invoice);
@@ -105,15 +102,6 @@ angular.module('lexoffice', ['ui.bootstrap']);
 	};
 }
 
-
-angular.module('lexoffice', []).directive('jqAnimate', function() {
-	return function(scope, instanceElement) {
-		setTimeout(function() {
-			instanceElement.show('slow');
-		}, 0);
-	};
-});
-
 function readURL(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
@@ -132,6 +120,7 @@ $(document).ready(function() {
 	$("#invoice_number").focus();
 	//set default currency
 	$("#currency").val('USD');
+	$("#currency").trigger('change');
 	$("#logoCompany").change(function() {
 		readURL(this);
 	});
