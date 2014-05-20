@@ -350,7 +350,9 @@ div.brand a {
 	position: absolute;
 margin: 5px 0px 0px 805px;
 }
-
+.invoice-row{
+	border-top: 1px solid #ddd !important; */
+}
 /*google maps address search */
 
 #googleaddress {

@@ -11,7 +11,7 @@ angular.module('lexoffice', ['ui.bootstrap']);
   var sample_invoice = {
             taxOne: 19, 
             taxTwo: 0, 
-              items:[ {qty:10, description:'Gadget', cost:9.95}]};
+              items:[ {qty:10, description:'Computer', cost:9.95}]};
 
   if(localStorage["invoice"] == "" || localStorage["invoice"] == null){
     $scope.invoice = sample_invoice;
