@@ -132,6 +132,7 @@ $(document).ready(function() {
 	$("#invoice_number").focus();
 	//set default currency
 	$("#currency").val('USD');
+	$("#currency").trigger('change');
 	$("#logoCompany").change(function() {
 		readURL(this);
 	});
