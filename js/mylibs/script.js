@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	// empty all inputs of tbody
 
-	$("#document-table> tbody").not(':first').empty();
+	//$("#document-table> tbody").not(':first').empty();
 
 	// trigger default values
 	$('.tax-subtotal').hide();

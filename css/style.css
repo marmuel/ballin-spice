@@ -309,13 +309,6 @@ td.grossprice-column{
 	padding-top: 15px !important;
 }
 
-td.showDragHandle {
-	margin: 0px 0px 0px 0px;
-	background-image: url(../img/draghandle.png);
-	background-repeat: no-repeat;
-	background-position: center center;
-	cursor: move;
-}
 
 .currency-column {
 	width: 4%;
