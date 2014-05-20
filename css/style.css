@@ -235,6 +235,10 @@ input[type=date] {
 /*
  * document table
  */
+
+thead {
+	font-size: 12px;
+}
 #document-table {
 	max-width: 100%;
 	margin-left: 0px;
@@ -247,9 +251,8 @@ input[type=date] {
 	background-color: #fcf8e3 !important;
 }
 
-.header-inputs, .table-inputs {
+.header-inputs {
 	padding: 5px;
-	margin-top: 10px;
 	width: 100%;
 	border: none;
 	overflow: hidden;
@@ -257,6 +260,27 @@ input[type=date] {
 	resize: none;
 	line-height: 1em;
 }
+
+.table-inputs {
+	padding-top: 7px;
+	width: 100%;
+	border: none;
+	overflow: hidden;
+	word-wrap: break-word;
+	resize: none;
+	line-height: 1em;
+}
+
+.table-textareas{
+	padding-top: 10px;
+	width: 100%;
+	border: none;
+	overflow: hidden;
+	word-wrap: break-word;
+	resize: none;
+	line-height: 1em;
+}
+
 
 .header-inputs:hover, .table-inputs:hover {
 	background: #fcf8e3;
@@ -280,36 +304,36 @@ input[type=date] {
 img.table-move {
 	padding-right: 10px
 }
-td.dragHandle {
 
+td.grossprice-column{
+	padding-top: 15px !important;
 }
 
 td.showDragHandle {
+	margin: 0px 0px 0px 0px;
 	background-image: url(../img/draghandle.png);
 	background-repeat: no-repeat;
 	background-position: center center;
 	cursor: move;
 }
-.remove-row {
-	margin-top: 8px;
-}
+
 .currency-column {
-	width: 7%;
+	width: 4%;
 }
 .product-column {
-	width: 30%;
+	width: 18%;
 }
 .quantity-column {
-	width: 13%;
+	width: 6%;
 }
 .tax1-column, .tax2-column {
-	width: 12%;
+	width: 6%;
 }
 .grossprice-column {
-	width: 17%;
+	width: 9%;
 }
 .netprice-column {
-	width: 15%;
+	width: 7%;
 }
 .dragHandle {
 	width: 1%;
@@ -320,6 +344,11 @@ td.showDragHandle {
 
 div.brand a {
 	text-decoration: none;
+}
+
+.delete-action{
+	position: absolute;
+margin: 5px 0px 0px 805px;
 }
 
 /*google maps address search */
@@ -364,4 +393,3 @@ div.brand a {
 	padding: 15px 0px;
 	pointer-events: none;
 }
-

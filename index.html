@@ -30,9 +30,8 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 
-	<body ng-app="lexoffice" onload="initialize()" ng:controller="CtrlTranslation">
-		<div ng:controller="CtrlInvoice">
-
+	<body ng-app="lexoffice" onload="initialize()" ng:controller="CtrlInvoice">
+		<div ng:controller="CtrlTranslation">
 		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-hide="printMode"  >
 			<div class="container-fluid" >
 				<div class="navbar-header">
@@ -125,7 +124,7 @@
 						</li>
 						<li>
 							<label for="tax" translate="inv.sidebarbutton.taxlabel"></label>
-							<select id="tax" class="form-control tax">
+							<select id="tax" class="form-control tax" ng-change="selectTax()" ng-model="taxOption">
 								<option value="tax-none" selected="selected" translate="inv.sidebarbutton.taxnone"></option><option value="1 Tax" translate="inv.sidebarbutton.tax1" selected="selected"></option><option value="2 Taxes" translate="inv.sidebarbutton.tax2"></option>
 							</select>
 						</li>
@@ -172,7 +171,7 @@
 
 							</div>
 
-							<table class="table">
+							<table class="table" >
 								<tbody>
 									<tr class="nodrag">
 										<td>										<textarea id="document-type" class="document-inputs" translate="inv.document.type"></textarea>										<textarea id="document-from" class="document-inputs address" translate="inv.document.fromaddress"></textarea></td>
@@ -248,14 +247,14 @@
 							<table class="table" id="document-table">
 								<thead >
 									<tr class="nodrag">
-										<th></th><th>										<textarea type="text" class="header-inputs" translate="inv.table.description" >Description</textarea></th><th>										<textarea type="text" class="header-inputs" translate="inv.table.quantity">Quantity</textarea></th><th>										<textarea type="text" class="header-inputs" translate="inv.table.unitprice">Unit Price</textarea></th><th>										<textarea type="text" class="header-inputs tax1-header" translate="inv.table.tax1"></textarea></th><th>										<textarea type="text" class="header-inputs tax2-header" translate="inv.table.tax2"></textarea></th><th>										<textarea type="text" class="header-inputs" translate="inv.table.amount" value="0">Amount</textarea></th><th style="cursor: default"></th>
+										<th></th><th>										<textarea type="text" class="header-inputs" translate="inv.table.description" >Description</textarea></th><th>										<textarea type="text" class="header-inputs" translate="inv.table.quantity">Quantity</textarea></th><th>										<textarea type="text" class="header-inputs" translate="inv.table.unitprice">Unit Price</textarea></th><th ng-hide="taxOption=='tax-none'">										<textarea type="text" class="header-inputs tax1-header" translate="inv.table.tax1"></textarea></th><th ng-hide="taxOption=='tax-none' || taxOption=='1 Tax'">										<textarea type="text" class="header-inputs tax2-header" translate="inv.table.tax2"></textarea></th><th>										<textarea type="text" class="header-inputs" translate="inv.table.amount" value="0">Amount</textarea></th><th style="cursor: default;"><textarea class="header-inputs balance" disabled="disabled">CUR</textarea></th>
 									</tr>
 								</thead>
 
 								<tfoot>
 									<tr class="nodrag">
 										<td colspan="3" style="cursor: default;" class="nodrag" >
-										<button id="button-rowadd " class="btn btn-primary noPrint" ng-hide="printMode">
+										<button id="button-rowadd " class="btn btn-primary noPrint" ng-hide="printMode" href ng:click="addItem()">
 											<span class="fa fa-plus noPrint" translate="inv.table.addrow"></span>
 										</button></td>
 										<td class="nodrag footer-labels">										<textarea type="text" class="table-inputs" translate="inv.table.subtotal" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;">Subtotal</textarea></td>
@@ -304,27 +303,33 @@
 								</tfoot>
 
 								<tbody >
-									<tr>
-										<td class="dragHandle"></td>
-										<td class="product-column">										<textarea type="text"  class="table-inputs product" translate="inv.table.product" contentEditable="true"></textarea></td>
-										<td class="quantity-column">
-										<input  class="table-inputs quantity" type="number" value="1">
-										</td><td class="netprice-column">
-										<input class="table-inputs unitprice" autocomplete="off" value="0">
-										</td><td class="tax1-column">
-										<input  class="table-inputs tax1-row taxes" autocomplete="off">
-										</td><td class="tax2-column">
-										<input  class="table-inputs tax2-row taxes" autocomplete="off">
-										</td><td class="grossprice-column">
-										<input disabled="disabled" class="table-inputs grossprice" autocomplete="off" value="0">
-										</td>
-
-										<td class="table-controls">
-										<button class="btn btn-danger remove-row noPrint" href="#" ng-hide="printMode">
+									<tr ng:repeat="item in invoice.items"   jq:animate="dropdown;250">
+										<td class="dragHandle">
+											<div class= "delete-action">
+										<button class="btn btn-danger remove-row noPrint" href="#" ng-hide="printMode" ng-click="removeItem(item)">
 											<span class="fa fa-trash-o"></span>
-										</button></td>
+										</button>
+										</div></td>
+										<td class="product-column">
+										<textarea ng:model="item.description" type="text"  class="table-textareas product" translate="inv.table.product" contentEditable="true"></textarea>
+										</td><td class="quantity-column">
+										<input  class="table-inputs quantity" ng:model="item.qty" value="1" size="4" ng:required ng:validate="integer" placeholder="qty">
+										</td><td class="netprice-column">
+										<input ng:model="item.cost" class="table-inputs unitprice" autocomplete="off" value="0.00" >
+										</td><td ng-hide="taxOption=='tax-none'" class="tax1-column">
+										<input ng:model="invoice.taxOne" ng:validate="number" class="table-inputs tax1-row taxes" autocomplete="off">
+										</td><td ng-hide="taxOption=='tax-none' || taxOption=='1 Tax' " class="tax2-column">
+										<input  ng:model="invoice.taxTwo" ng:validate="number" class="table-inputs tax2-row taxes" autocomplete="off">
+										</td><td class="grossprice-column">
+										{{item.cost * item.qty | currency :""}}
+										</td>
+										<td style="cursor: default;" class="nodrag currency-column">										
+											<textarea type="text" class="table-textareas currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency">												
+											</textarea></td>
+
 									</tr>
 								</tbody>
+								
 
 							</table>
 							<table class="table">
@@ -398,6 +403,8 @@
 							};
 
 						}]);
+						
+					
 
 					</script>
 	</body>
