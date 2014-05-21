@@ -10,8 +10,8 @@ $(document).ready(function() {
 
 	// destroy autosize for different inputs
 	$('#document-tocompany').trigger('autosize.destroy');
-	$('#document-type').trigger('autosize.destroy');
-	//$('.document-inputs-googlesearch').trigger('autosize.destroy');
+	$('#document-tocompany').trigger('autosize.destroy');
+	$('.currency-label').trigger('autosize.destroy');
 
 });
 
@@ -46,23 +46,14 @@ var gbtnsearchagain = $('.address-controls');
 var locationfield = $('#locationField');
 var gaddressResult = $('#addressresult');
 var manaddress = $("#document-to");
+var gaddress = $('#googleaddress');
 
-$googlesearch.on('click', function() {
-	// Init Modal Email-Dialog Translation 
-	// google address search
-	(manaddress).hide();
-	(gaddressResult).hide();
-	(gbtnsearchagain).hide();
-	$('#autocomplete').val('');
-	(locationfield).show();
-	$('#autocomplete').focus();
-
-});
 
 // Search Again
 var $gSearchAgain = $('#search-again');
 $gSearchAgain.on('click', function() {
 	// google address search
+	(gaddress).hide();
 	(manaddress).hide();
 	(gbtnsearchagain).hide();
 	$('#autocomplete').val('');
