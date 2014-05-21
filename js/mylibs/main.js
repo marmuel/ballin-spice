@@ -23,11 +23,6 @@ function($translateProvider) {
 		$translate.use(langKey);
 	};
 
-//Register Bootstrap UI for Angular (Actually not in use)
-
-angular.module('lexoffice', ['ui.bootstrap']);
-
-
 //Invoice Control
 
 	$scope.class = "glyphicon glyphicon-minus";
