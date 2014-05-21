@@ -304,7 +304,7 @@
 								</tfoot>
 
 								<tbody >
-									<tr ng:repeat="item in invoice.items" class="invoice-row">
+									<tr ng:repeat="item in invoice.items" class="invoice-row" style="display: none" jq:animate="dropdown;250">
 										<td class="dragHandle">
 											<div class= "delete-action">
 										<button class="btn btn-danger remove-row noPrint" href="#" ng-hide="printMode" ng-click="removeItem(item)">

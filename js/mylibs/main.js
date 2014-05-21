@@ -153,7 +153,17 @@ angular.module('lexoffice', ['ui.bootstrap']);
             }
         };
   
-});
+})
+
+// Animation for e.g. Row add / delete
+
+.directive('jqAnimate', function(){ 
+  return function(scope, instanceElement){ 
+      setTimeout(function() {instanceElement.show('slow');}, 0); 
+  };
+})
+
+
 
 function readURL(input) {
 	if (input.files && input.files[0]) {
