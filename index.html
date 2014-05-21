@@ -129,7 +129,7 @@
 						</li>
 						<li>
 							<label for="discount" translate="inv.sidebarbutton.discountlabel"></label>
-							<input id="discount" class="form-control discount" type="number" ng-model="discount.show">
+							<input id="discount" class="form-control discount"  ng:validate="number" coma-dot-converter="coma-dot-converter" ng-model="discount.show">
 						</li>
 						<li>
 							<label for="shipping" translate="inv.sidebarbutton.shippinglabel"></label>
@@ -180,6 +180,9 @@
 								</tbody>
 							</table>
 						</div>
+						
+						
+						 
 						<div id="invoice-body" class="row" >
 							<div id="locationField" class="right-inner-addon" ng-show="showGoogleAddress">
 								<input id="autocomplete" class="form-control" placeholder="{{ 'inv.document.enteraddress' | translate }}" onFocus="geolocate()" type="search">
@@ -284,7 +287,7 @@
 										<td class="footer-labels">										<textarea type="text" class="table-inputs shipping-row" translate="inv.table.shipping" >Shipping</textarea></td>
 
 										<td >
-										<input class="table-inputs shipping-total" ng-model="shipping.fields[0].shippingcosts">
+										<input class="table-inputs shipping-total" ng-model="shipping.fields[0].shippingcosts" coma-dot-converter="coma-dot-converter">
 										</td>
 										<td class="currency-column">										<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
 									</tr>
@@ -311,13 +314,13 @@
 										<td class="product-column">
 										<textarea ng:model="item.description" type="text"  class="table-textareas product" translate="inv.table.product" contentEditable="true"></textarea>
 										</td><td class="quantity-column">
-										<input  ng:model="item.qty" class="table-inputs quantity" value="1" size="4" ng:required ng:validate="integer" placeholder="qty">
+										<input  ng:model="item.qty" coma-dot-converter="coma-dot-converter" class="table-inputs quantity" value="1" size="4" ng:required ng:validate="integer" placeholder="qty">
 										</td><td class="netprice-column">
-										<input ng:model="item.cost" class="table-inputs unitprice" autocomplete="off" value="0.00" >
+										<input ng:model="item.cost" coma-dot-converter="coma-dot-converter"  class="table-inputs unitprice" autocomplete="off" value="0.00" >
 										</td><td ng-hide="taxOption=='tax-none'" class="tax1-column">
-										<input ng:model="invoice.taxOne" ng:validate="number" class="table-inputs tax1-row taxes" autocomplete="off">
+										<input ng:model="invoice.taxOne" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax1-row taxes" autocomplete="off">
 										</td><td ng-hide="taxOption=='tax-none' || taxOption=='1 Tax' " class="tax2-column">
-										<input  ng:model="invoice.taxTwo" ng:validate="number" class="table-inputs tax2-row taxes" autocomplete="off">
+										<input  ng:model="invoice.taxTwo" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax2-row taxes" autocomplete="off">
 										</td><td class="grossprice-column">
 										{{item.cost * item.qty | currency :""}}
 										</td>

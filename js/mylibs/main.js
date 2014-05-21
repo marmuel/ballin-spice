@@ -1,6 +1,6 @@
-
+var app = angular.module("lexoffice",['pascalprecht.translate']);
 //Translation
-angular.module('lexoffice', ['pascalprecht.translate']).config(['$translateProvider',
+app.config(['$translateProvider',
 function($translateProvider) {
 
 	// Register a loader for the static files
@@ -16,8 +16,7 @@ function($translateProvider) {
 	
 	
 //START THE MAIN CONTROLLER
-}]).controller('CtrlInvoice', ['$scope', '$translate',
-function($scope, $translate) {
+}]).controller('CtrlInvoice', ['$scope', '$translate', function($scope, $translate) {
 
 	$scope.setLang = function(langKey) {
 		// You can change the language during runtime
@@ -27,6 +26,7 @@ function($scope, $translate) {
 //Register Bootstrap UI for Angular (Actually not in use)
 
 angular.module('lexoffice', ['ui.bootstrap']);
+
 
 //Invoice Control
 
@@ -129,7 +129,31 @@ angular.module('lexoffice', ['ui.bootstrap']);
 			$scope.invoice = sample_invoice;
 		}
 	};
-}]);
+}])
+
+//coma dot converter (custom directive)
+
+.directive("comaDotConverter",function(){
+   return {
+            require: 'ngModel',
+            link: function (scope, element, attrs, modelCtrl) {
+              
+                modelCtrl.$parsers.push(function(inputValue) {
+                    
+                    if (typeof (inputValue) == "undefined") return '';
+                    var transformedInput = inputValue.replace(/,/g,'.');
+                    
+                    if (transformedInput != inputValue) {
+                        modelCtrl.$setViewValue(transformedInput);
+                        modelCtrl.$render();
+                    }
+
+                    return transformedInput;
+                });
+            }
+        };
+  
+});
 
 function readURL(input) {
 	if (input.files && input.files[0]) {
