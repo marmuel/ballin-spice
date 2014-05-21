@@ -10,7 +10,7 @@
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		 <script data-require="angular.js@*" data-semver="1.2.10" src="http://code.angularjs.org/1.2.10/angular.js"></script>
 		<script type="text/javascript" src="bower_components/angular-translate/angular-translate.min.js"></script>
 		<script type="text/javascript" src="js/libs/loader-static-files.js"></script>
 		<script type="text/javascript" src="js/mylibs/main.js"></script>
@@ -29,8 +29,8 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 
-	<body onload="initialize()" ng:controller="CtrlInvoice">
-		<div ng:controller="CtrlTranslation">
+	<body ng:controller="CtrlInvoice">
+		<div>
 		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-hide="printMode"  >
 			<div class="container-fluid" >
 				<div class="navbar-header">
@@ -169,7 +169,6 @@
 								</div>
 
 							</div>
-
 							<table class="table" >
 								<tbody>
 									<tr>
@@ -258,7 +257,7 @@
 										</button></td>
 										<td class="footer-labels">										<textarea type="text" class="table-inputs" translate="inv.table.subtotal" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;">Subtotal</textarea></td>
 
-										<td class="total-rows">
+										<td class="total-rows" style="cursor: default;">
 										{{invoice_sub_total() | currency :""}}
 										</td>
 										<td class="currency-column">										<textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
@@ -293,7 +292,7 @@
 										<td colspan="3" class="noline" ></td>
 										<td class="footer-labels">										<textarea type="text" class="table-inputs" translate="inv.table.balance" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;">Balance</textarea></td>
 
-										<td class="total-rows">
+										<td class="total-rows" style="cursor: default;">
 											 {{calculate_grand_total() | currency :""}}
 										</td>
 										<td class="currency-column">										<textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
@@ -334,17 +333,17 @@
 							<table class="table">
 								<tbody>
 									<tr >
-										<td>										<textarea id="document-terms" class="document-inputs terms" placeholder="{{ 'inv.document.termslabel' | translate }}"></textarea></td>
-										<td align="right">										<textarea id="notes" class="document-inputs notes" placeholder="{{ 'inv.document.notes' | translate }}"></textarea></td>
+										<td>										<textarea ng-model="invoice.terms" id="terms" class="document-inputs terms" placeholder="{{ 'inv.document.termslabel' | translate }}"></textarea></td>
+										<td align="right">					<textarea ng-model="invoice.notes" id="notes" class="document-inputs notes" placeholder="{{ 'inv.document.notes' | translate }}"></textarea></td>
 									</tr>
 								</tbody>
 							</table>
 							<table class="table">
 								<tbody>
 									<tr >
-										<td>										<textarea id="footer-notes1" class="document-inputs footer" placeholder="{{ 'inv.document.footer' | translate }}"></textarea></td>
-										<td align="center">										<textarea id="footer-notes2" class="document-inputs footer" placeholder="{{ 'inv.document.footer' | translate }}"></textarea></td>
-										<td align="right">										<textarea id="footer-notes3" class="document-inputs footer" placeholder="{{ 'inv.document.footer' | translate }}"></textarea></td>
+										<td>										<textarea ng-model="invoice.footer_left" id="footer-left" class="document-inputs footer" placeholder="{{ 'inv.document.footer' | translate }}"></textarea></td>
+										<td align="center">					<textarea ng-model="invoice.footer_middle" id="footer-middle" class="document-inputs footer" placeholder="{{ 'inv.document.footer' | translate }}"></textarea></td>
+										<td align="right">					<textarea ng-model="invoice.footer_right" id="footer-right"  class="document-inputs footer" placeholder="{{ 'inv.document.footer' | translate }}"></textarea></td>
 									</tr>
 								</tbody>
 

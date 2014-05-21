@@ -13,8 +13,10 @@ function($translateProvider) {
 
 	// Tell the module what language to use by default
 	$translateProvider.preferredLanguage('en_US');
-
-}]).controller('CtrlTranslation', ['$scope', '$translate',
+	
+	
+//START THE MAIN CONTROLLER
+}]).controller('CtrlInvoice', ['$scope', '$translate',
 function($scope, $translate) {
 
 	$scope.setLang = function(langKey) {
@@ -22,13 +24,11 @@ function($scope, $translate) {
 		$translate.use(langKey);
 	};
 
-}]);
-
-//Invoice Control
-function CtrlInvoice($scope) {
+//Register Bootstrap UI for Angular (Actually not in use)
 
 angular.module('lexoffice', ['ui.bootstrap']);
 
+//Invoice Control
 
 	$scope.class = "glyphicon glyphicon-minus";
 	$scope.logoRemoved = false;
@@ -129,7 +129,7 @@ angular.module('lexoffice', ['ui.bootstrap']);
 			$scope.invoice = sample_invoice;
 		}
 	};
-}
+}]);
 
 function readURL(input) {
 	if (input.files && input.files[0]) {

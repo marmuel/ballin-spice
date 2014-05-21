@@ -16,45 +16,14 @@ function Country() {
 	}
 }
 
-// calculation USA
 
-$("#document-table tbody input, #discount, #tax, .shipping-total").on("change", function() {
+
+$(".unitprice input").on("change", function() {
 	
 	// replace comma with dot if user inputs comma
 	
-	$("#document-table tbody input, #discount, #tax, .shipping-total").each(function() {
+	$(".unitprice input").each(function() {
     $(this).val($(this).val().replace(/,/g, "."));
   });
 
-	// calculate subtotals
-
-	var subTotal = 0;
-	var amountRows = $(".grossprice");
-	$.each(amountRows, function(number) {
-		subTotal += parseInt($(this).val());
-	});
-
-	$('input.sub-total').val(subTotal.toFixed(2));
-
-	// calculate discount
-
-	var discount = 0;
-	var percentage = $('#discount').val();
-
-	var discount = subTotal * (percentage / 100);
-	$('input.discount-total').val(-discount.toFixed(2));
-
-	// get shipping costs
-	var shippingcosts = $('.shipping-total').val();
-
-	// calculate balance
-	var balance = 0;
-
-	balance = Number(subTotal) + Number(-discount) + Number(shippingcosts);
-
-	//$('input.balance').val(balance);
-	
-	$('input.balance').val(balance.toFixed(2));
-
-	return false;
 });
