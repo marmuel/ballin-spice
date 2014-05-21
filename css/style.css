@@ -298,15 +298,12 @@ thead {
 	background-color: #fff;
 }
 
-.table-move {
-	margin-top: 5px;
-}
-img.table-move {
-	padding-right: 10px
-}
-
 td.grossprice-column{
 	padding-top: 15px !important;
+}
+
+.total-rows{
+	padding-top: 12px !important;
 }
 
 
@@ -323,7 +320,7 @@ td.grossprice-column{
 	width: 6%;
 }
 .grossprice-column {
-	width: 9%;
+	width: 6%;
 }
 .netprice-column {
 	width: 7%;

@@ -1,24 +1,9 @@
 $(document).ready(function() {
-	// empty all inputs of tbody
-
-	//$("#document-table> tbody").not(':first').empty();
 
 	// trigger default values
 	$('.tax-subtotal').hide();
 	$("#tax").trigger("change");
 
-
-	// add class for styling
-	$("#document-table").tableDnD({
-		onDragClass : "myDragClass"
-		//dragHandle: ".dragHandle"
-	});
-	// add class for hover move icon
-	$('table tr:not(".nodrag")').hover(function() {
-		$(this.cells[0]).addClass('showDragHandle');
-	}, function() {
-		$(this.cells[0]).removeClass('showDragHandle');
-	});
 
 	// set all textareas to autosize
 	$('textarea').autosize();
@@ -184,7 +169,7 @@ $("#document-table tbody .tax1-row, .tax2-row").on("change", function() {
 			} else {
 				//taxSelector class is not available
 
-				var $newTaxSubtotalRow = $('<tr class="nodrag taxrow tax-subtotal tax' + taxPercent + '"><td colspan="3" class="noline" style="cursor: default;"></td><td class="nodrag footer-labels"><textarea type="text" class="table-inputs tax-row" translate="inv.table.taxtotal1" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;"></textarea></td><td style="cursor: default;" class="nodrag"><input class="table-inputs tax-total" disabled="disabled" value="0"></td><td style="cursor: default;" class="nodrag currency-column"><textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled"></textarea></td></tr>');              
+				var $newTaxSubtotalRow = $('<tr class="taxrow tax-subtotal tax' + taxPercent + '"><td colspan="3" class="noline" style="cursor: default;"></td><td class="footer-labels"><textarea type="text" class="table-inputs tax-row" translate="inv.table.taxtotal1" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;"></textarea></td><td style="cursor: default;"><input class="table-inputs tax-total" disabled="disabled" value="0"></td><td style="cursor: default;" class="currency-column"><textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled"></textarea></td></tr>');              
 				$trLast = $('#document-table').find("tr.taxrow:last");
 				// detect if shipping-row exists (for the correct position of taxSubtotalRow)
 				var preRow = '';

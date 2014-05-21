@@ -1,5 +1,31 @@
 
-function CtrlInvoice($scope, $http, $window) {
+//Translation
+angular.module('lexoffice', ['pascalprecht.translate']).config(['$translateProvider',
+function($translateProvider) {
+
+	// Register a loader for the static files
+	// So, the module will search missing translation tables under the specified urls.
+	// Those urls are [prefix][langKey][suffix].
+	$translateProvider.useStaticFilesLoader({
+		prefix : 'l10n/',
+		suffix : '.json'
+	});
+
+	// Tell the module what language to use by default
+	$translateProvider.preferredLanguage('en_US');
+
+}]).controller('CtrlTranslation', ['$scope', '$translate',
+function($scope, $translate) {
+
+	$scope.setLang = function(langKey) {
+		// You can change the language during runtime
+		$translate.use(langKey);
+	};
+
+}]);
+
+//Invoice Control
+function CtrlInvoice($scope) {
 
 angular.module('lexoffice', ['ui.bootstrap']);
 
@@ -9,14 +35,17 @@ angular.module('lexoffice', ['ui.bootstrap']);
 	$scope.printMode = false;
 
   var sample_invoice = {
-            taxOne: 19, 
-            taxTwo: 0, 
-              items:[ {qty:10, description:'Computer', cost:9.95}]};
+  	        invoice_number: 1000,
+            taxOne: 19.00, 
+            taxTwo: 0.00, 
+              items:[ {qty:10, description:'Tablet', cost:9.95}]};
 
-  if(localStorage["invoice"] == "" || localStorage["invoice"] == null){
+    if(localStorage["invoice"] == "" || localStorage["invoice"] == null){
+  	console.log('Sample Invoice');
     $scope.invoice = sample_invoice;
   }
   else{
+  	console.log('Stored Invoice');
     $scope.invoice =  JSON.parse(localStorage["invoice"]);
   }
     $scope.addItem = function() {
@@ -81,9 +110,9 @@ angular.module('lexoffice', ['ui.bootstrap']);
 		});
 		return total;
 	};
-	$scope.calculate_tax = function() {
-		return (($scope.invoice.taxOne * $scope.invoice_sub_total()) / 100);
-	};
+	    $scope.calculate_tax = function() {
+        return (($scope.invoice.taxOne * $scope.invoice_sub_total())/100);
+    };
 	$scope.calculate_grand_total = function() {
 		localStorage["invoice"] = JSON.stringify($scope.invoice);
 		return $scope.calculate_tax() + $scope.invoice_sub_total();
@@ -112,6 +141,8 @@ function readURL(input) {
 	}
 }
 
+
+
 // window.onbeforeunload = function(e) {
 //   confirm('Are you sure you would like to close this tab? All your data will be lost');
 // };
@@ -125,3 +156,4 @@ $(document).ready(function() {
 		readURL(this);
 	});
 });
+
