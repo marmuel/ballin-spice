@@ -72,6 +72,16 @@
 			"balance": "Bruttopreis",
 			"discount": "Rabatt",
 			"shipping": "Versandkosten"
+		},
+		"email":{
+			"title": "Rechnung per E-mail versenden",
+			"send": "Senden",
+			"close": "Schliessen",
+			"customer-email": "E-Mail-Adresse Ihres Kunden",
+			"subject": "Betreff",
+			"customer-message": "Ihre Nachricht",
+			"getpaid": "PayPal-Zahlung akzeptieren",
+			"paypal_merchantaccount": "Ihr Händlerkonto bei PayPal"
 		}
 	}
 }

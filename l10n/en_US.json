@@ -71,6 +71,16 @@
 			"balance": "Balance",
 			"discount": "Discount",
 			"shipping": "Shipping"
+		},
+		"email":{
+			"title": "Send Invoice via Email",
+			"send": "Send",
+			"close": "Close",
+			"customer-email": "Your Customer´s Email Address",
+			"subject": "Subject",
+			"customer-message": "Your Message",
+			"getpaid": "Get Paid with PayPal",
+			"paypal_merchantaccount": "Your PayPal Merchant Account"
 		}
 	}
 }

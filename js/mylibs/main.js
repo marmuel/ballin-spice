@@ -156,7 +156,8 @@ function($translateProvider) {
   return function(scope, instanceElement){ 
       setTimeout(function() {instanceElement.show('slow');}, 0); 
   };
-})
+});
+// ACHTUNG WENN EINE WEITERE DIREKTIVE HINZUKOMMT ; semicolon ENTFERNEN!!!!!
 
 
 
