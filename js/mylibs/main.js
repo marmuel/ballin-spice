@@ -1,4 +1,6 @@
-var app = angular.module("lexoffice",['pascalprecht.translate']);
+// Register Angular Translate & Bootstrap UI
+var app = angular.module("lexoffice",['pascalprecht.translate', 'ui.bootstrap']);
+
 //Translation
 app.config(['$translateProvider',
 function($translateProvider) {
@@ -16,7 +18,7 @@ function($translateProvider) {
 	
 	
 //START THE MAIN CONTROLLER
-}]).controller('CtrlInvoice', ['$scope', '$translate', function($scope, $translate) {
+}]).controller('CtrlInvoice', ['$scope', '$translate', '$modal', function($scope, $translate, $modal) {
 
 	$scope.setLang = function(langKey) {
 		// You can change the language during runtime
@@ -124,7 +126,39 @@ function($translateProvider) {
 			$scope.invoice = sample_invoice;
 		}
 	};
+	
+// Modal Dialog 
+	
+	$scope.open = function (size) {
+    var modalInstance = $modal.open({
+      templateUrl: 'EmailModalContent.html',
+      controller: ModalInstanceCtrl,
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+  };
+// Please note that $modalInstance represents a modal window (instance) dependency.
+// It is not the same as the $modal service used above.
+
+var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
+
+  $scope.ok = function () {
+    $modalInstance.dismiss('cancel');
+    //do some stuff and send email after o.k. 
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+};
+  
 }])
+
+
 
 //coma dot converter (custom directive)
 
