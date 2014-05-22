@@ -33,7 +33,7 @@ function($translateProvider) {
 
   var sample_invoice = {
   	        invoice_number: 1000,
-              items:[ {qty:10, taxOne: 19.00, taxTwo: 0.00, description:'Tablet', cost:9.95}]};
+              items:[ {qty:10, taxOne: '', taxTwo: '', description:'Tablet', cost:9.95}]};
 
     if(localStorage["invoice"] == "" || localStorage["invoice"] == null){
   	console.log('Sample Invoice');
@@ -44,7 +44,7 @@ function($translateProvider) {
     $scope.invoice =  JSON.parse(localStorage["invoice"]);
   }
     $scope.addItem = function() {
-        $scope.invoice.items.push({description:"", qty:0, cost:0, taxOne:0, taxTwo:0});    
+        $scope.invoice.items.push({description:"", qty:0, cost:0, taxOne:'', taxTwo:''});    
     };
 
    $scope.removeLogo = function(element) {
@@ -144,12 +144,13 @@ function($translateProvider) {
         $scope.invoice.items.forEach(function (invoice) {
             ['taxOne', 'taxTwo'].forEach(function (key) {
                 var perc = invoice[key];
-                if (perc === '0') { return; }   // ignore 0 percentage
+                if (perc === '0' || perc === "") { return; }   // ignore 0 percentage
 
                 if (!groups[perc]) {
                     groups[perc] = 0;
                 }
-                groups[perc] += parseFloat(invoice.amount);
+                
+                groups[perc] += invoice.cost * invoice.qty;
             });
         });
         return groups;

@@ -266,7 +266,7 @@
 										<tr ng-repeat="group in groupsArr">
 											<td colspan="3" class="noline"></td>
 											<td class="footer-labels">											<textarea type="text" class="table-inputs tax1-row" >{{ 'inv.table.taxtotal' | translate }} {{group.perc}} %</textarea></td>
-											<td class="total-rows">{{group.sum * group.perc / 100.0}}</td>
+											<td class="total-rows">{{group.sum * group.perc / 100.0 | currency :""}}</td>
 											<td >											<textarea type="text" class="table-inputs discount-row-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
 										</tr>
 
