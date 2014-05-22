@@ -131,13 +131,9 @@
 							</li>
 							<li>
 								<label for="shipping" translate="inv.sidebarbutton.shippinglabel"></label>
-								<div class="btn-group btn-group-shipping" data-toggle="buttons" id="shipping">
-									<label class="btn btn-default shipping-radio active"ng-click="hideShippingCosts(shipping.fields[0])">
-										<input type="radio" class="btn"/>
-										<span translate="inv.sidebarbutton.shippingno"></span> </label>
-									<label class="btn btn-default shipping-radio" ng-click="showShippingCosts(shipping.fields[0])">
-										<input type="radio" class="btn"/>
-										<span translate="inv.sidebarbutton.shippingyes"></span> </label>
+								<div class="btn-group btn-group-shipping" id="shipping">
+									<label ng-model="radioModel"  btn-radio="'No'" class="btn btn-default shipping-radio" ng-click="hideShippingCosts(shipping.fields[0])">	<span translate="inv.sidebarbutton.shippingno"></span> </label>
+									<label ng-model="radioModel" btn-radio="'Yes'" class="btn btn-default shipping-radio" ng-click="showShippingCosts(shipping.fields[0])"><span translate="inv.sidebarbutton.shippingyes"></span> </label>
 								</div>
 							</li>
 						</ul>

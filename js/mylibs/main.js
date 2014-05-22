@@ -71,12 +71,22 @@ function($translateProvider) {
 
 
 	//show and hide shipping costs //
+	
+	// set default to no
+	
+	$scope.radioModel = 'No';
+  $scope.checkModel = {
+    yes: false,
+    no: true
+  };
 
 	$scope.shipping = {
 		fields : [{
 			shippingcosts : 0.00,
 			isRowHidden : true
 		}]
+		
+		
 	};
 
 	$scope.hideShippingCosts = function(field) {
