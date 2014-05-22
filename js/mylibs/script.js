@@ -10,6 +10,7 @@ $(document).ready(function() {
 
 	// destroy autosize for different inputs
 	$('#document-tocompany').trigger('autosize.destroy');
+	$('#document-type').trigger('autosize.destroy');
 	$('#document-tocompany').trigger('autosize.destroy');
 	$('.currency-label').trigger('autosize.destroy');
 

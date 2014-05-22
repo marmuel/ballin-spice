@@ -339,8 +339,16 @@ div.brand a {
 
 .delete-action{
 	position: absolute;
-margin: 5px 0px 0px 805px;
+margin: 5px 0px 0px 0px;
 }
+
+.invoice-row .delete-action { visibility: hidden; }
+.invoice-row:hover .delete-action { visibility: visible; }
+
+.remove-row{
+	padding: 2px 4px;
+}
+
 .invoice-row{
 	border-top: 1px solid #ddd !important; */
 }
@@ -386,3 +394,5 @@ margin: 5px 0px 0px 805px;
 	padding: 15px 0px;
 	pointer-events: none;
 }
+
+
