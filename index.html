@@ -264,7 +264,13 @@
 											</td>
 											<td >											<textarea type="text" class="table-inputs discount-row-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
 										</tr>
-
+										<!--tax subtotals-->
+                                       <tr ng-repeat="group in groupsArr">
+            								<td colspan="3" class="noline"></td>
+            								<td>Subtotal for {{perc}}%</td>      
+            								<td>{{sum * perc / 100.0}}</td>
+        								</tr>
+        								
 										<tr class="trShipping" ng-hide="shipping.fields[0].isRowHidden">
 											<td colspan="3" class="noline"></td>
 											<td class="footer-labels">											<textarea type="text" class="table-inputs shipping-row" translate="inv.table.shipping" >Shipping</textarea></td>
@@ -300,8 +306,8 @@
 											<input ng:model="invoice.taxOne" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax1-row taxes" autocomplete="off">
 											</td><td ng-hide="taxOption=='tax-none' || taxOption=='1 Tax' " class="tax2-column">
 											<input  ng:model="invoice.taxTwo" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax2-row taxes" autocomplete="off">
-											</td><td class="grossprice-column"> {{item.cost * item.qty | currency :""}} </td>
-											<td class="currency-column">											<textarea type="text" class="table-textareas currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency">												
+											</td><td class="grossprice-column" ng:model="invoice.amount"> {{item.cost * item.qty | currency :""}} </td>
+											<td class="currency-column"><textarea type="text" class="table-textareas currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency">												
 											</textarea></td>
 
 										</tr>

@@ -18,7 +18,6 @@ $(document).ready(function() {
 
 // add dynamically rows for taxes
 $('#tax').change(function() {
-	delTaxSubtotalRows();
 	colspan();
 });
 
@@ -140,58 +139,6 @@ function geolocate() {
 			autocomplete.setBounds(new google.maps.LatLngBounds(geolocation, geolocation));
 		});
 	}
-}
-
-
-$("#document-table tbody .tax1-row, .tax2-row").on("change", function() {
-	var a = {}, l = 0;
-	// remove all tax rows - TODO: Performance?
-	delTaxSubtotalRows();
-
-	$('.tax2-row, .tax1-row').each(function() {
-		if ($(this).val() != "") {
-            taxPercent = "";
-            taxSelector = ""; 
-			var taxPercent = $(this).val();
-			var taxSelector = "tax" + taxPercent;
-			if ($('#document-table tfoot tr').hasClass(taxSelector)) {
-				//taxSelector class is available
-				console.log('ist schon da');
-				return false;
-			} else {
-				//taxSelector class is not available
-
-				var $newTaxSubtotalRow = $('<tr class="taxrow tax-subtotal tax' + taxPercent + '"><td colspan="3" class="noline" style="cursor: default;"></td><td class="footer-labels"><textarea type="text" class="table-inputs tax-row" translate="inv.table.taxtotal1" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;"></textarea></td><td style="cursor: default;"><input class="table-inputs tax-total" disabled="disabled" value="0"></td><td style="cursor: default;" class="currency-column"><textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled"></textarea></td></tr>');              
-				$trLast = $('#document-table').find("tr.taxrow:last");
-				// detect if shipping-row exists (for the correct position of taxSubtotalRow)
-				var preRow = '';
-				if ($(".trShipping").is(":visible")) {
-					var preRow = '#document-table .trShipping';
-				} else {
-					var preRow = '#document-table .trBalance';
-				}
-				$(preRow).before($newTaxSubtotalRow);
-				
-				$(".tax-row:last").i18n();	
-				txt = $('textarea.tax-row:last').text();
-				newTxt = txt + " " + taxPercent + " %";
-				colspan();
-				$('textarea.tax-row:last').text(newTxt);
-				console.log(txt);
-			}
-
-		} else {
-			return;
-		}
-	});
-});
-
-// remove all TaxSubtotalRows
-function delTaxSubtotalRows() {
-	$('.taxrow').each(function() {
-		$(this).remove();
-
-	});
 }
 
 

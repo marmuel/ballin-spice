@@ -137,6 +137,40 @@ function($translateProvider) {
 		}
 	};
 	
+// Callculate Tax and dynamically add new rows for subtotals
+
+//TODO Check Performance: Actually two approaches to calculate taxes and add dynamically subtotal rows
+ 
+    $scope.grouppedByPercentage = function () {
+        var groups = {};
+        $scope.invoice.items.forEach(function (invoice) {
+            ['taxOne', 'taxTwo'].forEach(function (key) {
+                var perc = invoice[key];
+                if (perc === '0') { return; }   // ignore 0 percentage
+
+                if (!groups[perc]) {
+                    groups[perc] = 0;
+                }
+                groups[perc] += parseFloat(invoice.amount);
+            });
+        });
+        return groups;
+    };
+
+//---------- For alternative approach ----------\\    
+    $scope.$watch('invoice', function (newValue, oldValue) {
+        $scope.groupsArr = convertToArray($scope.grouppedByPercentage());
+    }, true);
+
+    function convertToArray(groups) {
+        var arr = [];
+        angular.forEach(groups, function (value, key) {
+            arr.push({perc: key, sum: value});
+        });
+        return arr;
+    }
+	
+	
 // Modal Dialog 
 	
 	$scope.open = function (size) {
