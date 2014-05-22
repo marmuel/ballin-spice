@@ -66,8 +66,7 @@
 			"addrow": " Line",
 			"product": "Product",
 			"subtotal": "Subtotal",
-			"taxtotal1": "Taxes Total",
-			"taxtotal2": "Taxes 2 Total",
+			"taxtotal": "Taxes",
 			"balance": "Balance",
 			"discount": "Discount",
 			"shipping": "Shipping"

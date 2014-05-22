@@ -281,7 +281,7 @@ thead {
 	line-height: 1em;
 }
 
-.header-inputs:hover, .table-inputs:hover {
+.header-inputs:hover, .table-inputs:hover, .table-textareas:hover{
 	background: #fcf8e3;
 	border: none;
 	box-shadow: none;

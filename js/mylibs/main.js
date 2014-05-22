@@ -33,9 +33,7 @@ function($translateProvider) {
 
   var sample_invoice = {
   	        invoice_number: 1000,
-            taxOne: 19.00, 
-            taxTwo: 0.00, 
-              items:[ {qty:10, description:'Tablet', cost:9.95}]};
+              items:[ {qty:10, taxOne: 19.00, taxTwo: 0.00, description:'Tablet', cost:9.95}]};
 
     if(localStorage["invoice"] == "" || localStorage["invoice"] == null){
   	console.log('Sample Invoice');

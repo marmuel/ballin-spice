@@ -67,8 +67,7 @@
 			"addrow": " Zeile",
 			"product": "Produkt oder Service",
 			"subtotal": "Nettopreis",
-			"taxtotal1": "Mehrwertsteuer",
-			"taxtotal2": "Mehrwertsteuer",
+			"taxtotal": "Mehrwertsteuer",
 			"balance": "Bruttopreis",
 			"discount": "Rabatt",
 			"shipping": "Versandkosten"
