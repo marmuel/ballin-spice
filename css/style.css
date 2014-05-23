@@ -20,6 +20,10 @@ p, div {
 	padding-bottom: 10px;
 	border-bottom: 1px solid #eee;
 }
+
+.invoice-alerts{
+	margin-top: 80px;
+}
 .brand {
 	margin: 5px 0px 0px 20px !important;
 }
@@ -30,20 +34,26 @@ p, div {
 }
 .subheader {
 	margin: 0px auto;
-	padding-top: 10px;
-	padding-bottom: 5px;
-	background: rgba(245,245,245,0.88);
-	box-shadow: 0 0 2px #999;
-	position: fixed;
-	right: 0;
-	left: 0;
-	z-index: 1000;
+padding-top: 16px;
+padding-bottom: 0px;
+background: rgba(245,245,245,0.88);
+box-shadow: 0 0 2px #999;
+position: fixed;
+right: 0;
+left: 0;
+z-index: 1000;
 }
 #header-buttons {
-	margin-left: 250px;
+	margin-left: 23%;
 }
 .dropdown open {
 	z-index: 1100;
+}
+.company-info{
+	text-align: center;
+}
+.heart{
+	color: #CC0000;
 }
 /*
  * Sidebar
@@ -58,7 +68,7 @@ p, div {
 		position: fixed;
 		top: 131px;
 		bottom: 0;
-		left: 0;
+		right: 0;
 		z-index: 1000;
 		display: block;
 		padding: 20px;
@@ -138,9 +148,9 @@ p, div {
 
 @media (min-width: 768px) {
 	.main {
-		margin-top: 20px;
 		padding-right: 40px;
 		padding-left: 40px;
+		margin: 20px auto;
 	}
 	.document-wrapper {
 		width: 800px;
@@ -320,7 +330,7 @@ td.grossprice-column {
 	width: 6%;
 }
 .netprice-column {
-	width: 7%;
+	width: 8%;
 }
 .dragHandle {
 	width: 1%;

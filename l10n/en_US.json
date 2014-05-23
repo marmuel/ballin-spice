@@ -67,7 +67,7 @@
 			"product": "Product",
 			"subtotal": "Subtotal",
 			"taxtotal": "Taxes",
-			"balance": "Balance",
+			"balance": "Total",
 			"discount": "Discount",
 			"shipping": "Shipping"
 		},
@@ -80,6 +80,12 @@
 			"customer-message": "Your Message",
 			"getpaid": "Get Paid online with PayPal",
 			"paypal_merchantaccount": "Your PayPal Merchant Account"
+		},
+		"reset":{
+			"title": "Rechnungsformular zurücksetzen",
+			"message": "Are you sure you want to reset your invoice form?\nAll previously entered data will be lost!",
+			"yes": "Yes",
+			"abort": "Abort"		
 		}
 	}
 }

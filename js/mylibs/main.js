@@ -18,7 +18,7 @@ function($translateProvider) {
 	
 	
 //START THE MAIN CONTROLLER
-}]).controller('CtrlInvoice', ['$scope', '$translate', '$modal', function($scope, $translate, $modal) {
+}]).controller('CtrlInvoice', ['$scope', '$translate', '$modal', '$window', function($scope, $translate, $modal, $window) {
 
 	$scope.setLang = function(langKey) {
 		// You can change the language during runtime
@@ -33,15 +33,15 @@ function($translateProvider) {
 
   var sample_invoice = {
   	        invoice_number: 1000,
-              items:[ {qty:10, taxOne: '', taxTwo: '', description:'Tablet', cost:9.95}]};
+              items:[ {qty:10, taxOne: '', taxTwo: '', description:'Tablet', cost:99.95}]};
 
-    if(localStorage["invoice"] == "" || localStorage["invoice"] == null){
+    if(localStorage["lexoffice"] == "" || localStorage["lexoffice"] == null){
   	console.log('Sample Invoice');
     $scope.invoice = sample_invoice;
   }
   else{
   	console.log('Stored Invoice');
-    $scope.invoice =  JSON.parse(localStorage["invoice"]);
+    $scope.invoice =  JSON.parse(localStorage["lexoffice"]);
   }
     $scope.addItem = function() {
         $scope.invoice.items.push({description:"", qty:0, cost:0, taxOne:'', taxTwo:''});    
@@ -96,18 +96,14 @@ function($translateProvider) {
 		field.isRowHidden = false;
 	};
 
-
-	// add discount percent to discount label
-
-	$("#discount").change(function() {
-		var percent = $(this).val();
-		$('.discount-row').val($('.discount-row').val() + ' ' + percent + ' %');
-	});
-
 	$scope.removeItem = function(item) {
 		$scope.invoice.items.splice($scope.invoice.items.indexOf(item), 1);
 	};
 
+
+	// Calculations (Taxes are calculated directly in the view)
+	
+	// SubTotal
 	$scope.invoice_sub_total = function() {
 		var total = 0.00;
 		angular.forEach($scope.invoice.items, function(item, key) {
@@ -115,24 +111,36 @@ function($translateProvider) {
 		});
 		return total;
 	};
-	    $scope.calculate_tax = function() {
-        return (($scope.invoice.taxOne * $scope.invoice_sub_total())/100);
-    };
+	
+	// Discount TODO Angular combined with jQuery..quick & dirty
+	$scope.invoice_discount = function() {
+		 // check if discount-input is empty
+		 var disCount = $('#discount').val();
+		if (disCount === '') {
+				    return;
+	  } else { 
+	  			return (($scope.invoice_sub_total()  * $scope.discount.show)/100); 
+		}
+ };
+ 
+ // TODO Shipping Costs and Taxes!
+	// Grand Total / Balance
 	$scope.calculate_grand_total = function() {
-		localStorage["invoice"] = JSON.stringify($scope.invoice);
-		return $scope.calculate_tax() + $scope.invoice_sub_total();
+		localStorage["lexoffice"] = JSON.stringify($scope.invoice);
+		var disCount = $('#discount').val();
+		// check if discount-input is empty
+		if (disCount === '') {
+			return $scope.invoice_sub_total();
+	  } else {
+	  		return $scope.invoice_sub_total() - $scope.invoice_discount();
+		}
+			
 	};
+
+
 
 	$scope.printInfo = function() {
 		window.print();
-	};
-
-	$scope.clearLocalStorage = function() {
-		var confirmClear = confirm("Are you sure you would like to clear the invoice?");
-		if (confirmClear) {
-			localStorage["invoice"] = "";
-			$scope.invoice = sample_invoice;
-		}
 	};
 	
 // Callculate Tax and dynamically add new rows for subtotals
@@ -166,11 +174,11 @@ function($translateProvider) {
         });
         return arr;
     }
+
 	
+// Modal Dialog Email
 	
-// Modal Dialog 
-	
-	$scope.open = function (size) {
+	$scope.openModalEmail = function (size) {
     var modalInstance = $modal.open({
       templateUrl: 'EmailModalContent.html',
       controller: ModalInstanceCtrl,
@@ -182,21 +190,44 @@ function($translateProvider) {
       }
     });
   };
+  // Modal Dialog Reset
+  
+  	$scope.openModalReset = function (size) {
+    var modalInstance = $modal.open({
+      templateUrl: 'ResetModalContent.html',
+      controller: ModalInstanceCtrl,
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+  };
+  
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
 
 var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
-
+// Email
   $scope.ok = function () {
     $modalInstance.dismiss('cancel');
     //do some stuff and send email after o.k. 
   };
-
-  $scope.cancel = function () {
+  
+    $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
-};
   
+  
+  $scope.resetStorage = function () {
+    $modalInstance.dismiss('cancel');
+		 
+			localStorage["lexoffice"] = "";
+			$scope.invoice = sample_invoice;	
+
+	};
+ }; 
 }])
 
 
@@ -237,13 +268,13 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
 
 
 function readURL(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			$('#company_logo').attr('src', e.target.result);
-		};
-		reader.readAsDataURL(input.files[0]);
-	}
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#company_logo').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
 }
 
 
@@ -253,12 +284,13 @@ function readURL(input) {
 // };
 
 $(document).ready(function() {
-	$("#invoice_number").focus();
 	//set default currency
 	$("#currency").val('USD');
+	
 	$("#currency").trigger('change');
 	$("#logoCompany").change(function() {
 		readURL(this);
 	});
 });
+
 

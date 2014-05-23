@@ -78,10 +78,10 @@
 						<button id="button-pdf" class="btn btn-lg btn-default">
 							<span class="fa fa-file" translate="inv.headerbutton.pdf"></span>
 						</button>
-						<button id="button-email" class="btn btn-lg btn-default" data-toggle="modal" ng-click="open()">
+						<button id="button-email" class="btn btn-lg btn-default" data-toggle="modal" ng-click="openModalEmail()">
 							<span class="fa fa-envelope" translate="inv.headerbutton.email"></span>
 						</button>
-						<button id="button-reset" type="button" class="btn btn-lg btn-default" ng-click="clearLocalStorage()">
+						<button id="button-reset" type="button" class="btn btn-lg btn-default"  ng-click="openModalReset()">
 							<span class="fa fa-trash-o" translate="inv.sidebarbutton.resetbutton" ></span>
 						</button>
 
@@ -139,7 +139,6 @@
 					</div>
 
 					<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
-
 						<div class="document-wrapper">
 
 							<div id="invoice-header" class="row" >
@@ -256,17 +255,15 @@
 
 										</tr>
 										<tr  ng-show="discount.show">
-											<td colspan="3" class="noline"></td><td class="footer-labels">											<textarea type="text" class="table-inputs discount-row" translate="inv.table.discount" ></textarea></td>
-											<td >
-											<input class="table-inputs discount-total" disabled="disabled">
-											</td>
+											<td colspan="3" class="noline"></td><td class="footer-labels">											<textarea type="text" class="table-inputs discount-row">{{'inv.table.discount' | translate}} {{discount.show}} %</textarea></td>
+											<td class="total-rows" > - {{invoice_discount() | currency :""}} </td>
 											<td >											<textarea type="text" class="table-inputs discount-row-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
 										</tr>
 										<!--tax subtotals-->
 										<tr ng-repeat="group in groupsArr">
 											<td colspan="3" class="noline"></td>
 											<td class="footer-labels">											<textarea type="text" class="table-inputs tax1-row" >{{ 'inv.table.taxtotal' | translate }} {{group.perc}} %</textarea></td>
-											<td class="total-rows">{{group.sum * group.perc / 100.0 | currency :""}}</td>
+											<td class="total-rows" ng-model="taxes">{{group.sum * group.perc / 100.0 | currency :""}}</td>
 											<td >											<textarea type="text" class="table-inputs discount-row-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
 										</tr>
 
@@ -283,7 +280,7 @@
 											<td colspan="3" class="noline" ></td>
 											<td class="footer-labels">											<textarea type="text" class="table-inputs" translate="inv.table.balance" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;">Balance</textarea></td>
 
-											<td class="total-rows" style="cursor: default;"> {{calculate_grand_total() | currency :""}} </td>
+											<td class="total-rows" style="cursor: default;"> {{calculate_grand_total() -discount.show| currency :""}}</td>
 											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
 										</tr>
 
@@ -306,7 +303,7 @@
 											</td><td ng-hide="taxOption=='tax-none' || taxOption=='1 Tax' " class="tax2-column">
 											<input  ng:model="item.taxTwo" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax2-row taxes" autocomplete="off">
 											</td><td class="grossprice-column" ng:model="item.amount"> {{item.cost * item.qty | currency :""}} </td>
-											<td class="currency-column"><textarea type="text" class="table-textareas currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency">												
+											<td class="currency-column">											<textarea type="text" class="table-textareas currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency">												
 											</textarea></td>
 
 										</tr>
@@ -332,15 +329,15 @@
 
 								</table>
 							</div>
+																		
 						</div>
+					<div class="company-info noPrint" ng-hide="printMode"><p>made with <i class="fa fa-heart heart"></i> in Germany by  <a href="http://www.lexware.de"><img src="img/lexware_logo.jpg" target="_blank" style="width: 120px; height: 20px"><img /></a></p></div>
 					</div>
-					<div>
+
+					<div><!-- modal -Email-->
 						<script type="text/ng-template" id="EmailModalContent.html">
 							<div class="modal-content">
 							<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-							&times;
-							</button>
 							<h4 class="modal-title" translate="inv.email.title"></h4>
 							</div>
 							<div class="modal-body">
@@ -371,8 +368,29 @@
 							</div><!-- /.modal-content -->
 						</script>
 
-					</div><!-- /.modal -->
+					</div><!-- /.modal -Email-->
+					<div><!-- modal -Reset-->
+						<script type="text/ng-template" id="ResetModalContent.html">
+							<div class="modal-content">
+							<div class="modal-header">
+							<h4 class="modal-title" translate="inv.reset.title"></h4>
+							</div>
+							<div class="modal-body">
+							
+							<div class="form-group">
+							<p>{{ 'inv.reset.message' | translate }}</p>						
+							</div>
+							<div class="modal-footer">
+							<button ng-click="cancel()" type="button" class="btn btn-default"  translate="inv.reset.abort"></button>
+							<button ng-click="resetStorage();" type="button" class="btn btn-primary" translate="inv.reset.yes"></button>
+							</div>
+							</div><!-- /.modal-content -->
+						</script>
+
+					</div><!-- /.modal -Reset-->
+					
 				</div>
+				
 			</div>
 		</div>
 	</body>
