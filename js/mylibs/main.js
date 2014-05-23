@@ -136,8 +136,6 @@ function($translateProvider) {
 	};
 	
 // Callculate Tax and dynamically add new rows for subtotals
-
-//TODO Check Performance: Actually two approaches to calculate taxes and add dynamically subtotal rows
  
     $scope.grouppedByPercentage = function () {
         var groups = {};
