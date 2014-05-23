@@ -66,8 +66,7 @@
 			"addrow": " Line",
 			"product": "Product",
 			"subtotal": "Subtotal",
-			"taxtotal1": "Taxes Total",
-			"taxtotal2": "Taxes 2 Total",
+			"taxtotal": "Taxes",
 			"balance": "Balance",
 			"discount": "Discount",
 			"shipping": "Shipping"
@@ -79,7 +78,7 @@
 			"customer-email": "Your Customer´s Email Address",
 			"subject": "Subject",
 			"customer-message": "Your Message",
-			"getpaid": "Get Paid with PayPal",
+			"getpaid": "Get Paid online with PayPal",
 			"paypal_merchantaccount": "Your PayPal Merchant Account"
 		}
 	}

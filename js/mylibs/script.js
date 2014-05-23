@@ -20,6 +20,10 @@ $(document).ready(function() {
 $('#tax').change(function() {
 	colspan();
 });
+// TODO Not really a good way to set colspan...
+$('#document-table').change(function() {
+	colspan();
+});	
 
 // set correct colpsan for tfoot (subtotals) depending on count of Tax columns
 function colspan() {

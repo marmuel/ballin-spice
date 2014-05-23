@@ -16,9 +16,8 @@
 		<script type="text/javascript" src="bower_components/angular-translate/angular-translate.min.js"></script>
 		<script type="text/javascript" src="js/libs/loader-static-files.js"></script>
 		<script type="text/javascript" src="js/mylibs/main.js"></script>
-
-		<script defer src="js/mylibs/script.js"></script>
 		<script type="text/javascript" src="js/libs/jquery.autosize.min.js" ></script>
+		<script defer src="js/mylibs/script.js"></script>
 
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 		<script defer src="js/mylibs/localize.js"></script>
@@ -132,7 +131,7 @@
 							<li>
 								<label for="shipping" translate="inv.sidebarbutton.shippinglabel"></label>
 								<div class="btn-group btn-group-shipping" id="shipping">
-									<label ng-model="radioModel"  btn-radio="'No'" class="btn btn-default shipping-radio" ng-click="hideShippingCosts(shipping.fields[0])">	<span translate="inv.sidebarbutton.shippingno"></span> </label>
+									<label ng-model="radioModel"  btn-radio="'No'" class="btn btn-default shipping-radio" ng-click="hideShippingCosts(shipping.fields[0])"> <span translate="inv.sidebarbutton.shippingno"></span> </label>
 									<label ng-model="radioModel" btn-radio="'Yes'" class="btn btn-default shipping-radio" ng-click="showShippingCosts(shipping.fields[0])"><span translate="inv.sidebarbutton.shippingyes"></span> </label>
 								</div>
 							</li>
@@ -144,7 +143,6 @@
 						<div class="document-wrapper">
 
 							<div id="invoice-header" class="row" >
-								
 
 								<div class="noPrint print-actions">
 
@@ -265,15 +263,16 @@
 											<td >											<textarea type="text" class="table-inputs discount-row-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
 										</tr>
 										<!--tax subtotals-->
-                                       <tr ng-repeat="group in groupsArr">
-            								<td colspan="3" class="noline"></td>
-            								<td>Subtotal for {{perc}}%</td>      
-            								<td>{{sum * perc / 100.0}}</td>
-        								</tr>
-        								
-										<tr class="trShipping" ng-hide="shipping.fields[0].isRowHidden">
+										<tr ng-repeat="group in groupsArr">
 											<td colspan="3" class="noline"></td>
-											<td class="footer-labels">											<textarea type="text" class="table-inputs shipping-row" translate="inv.table.shipping" >Shipping</textarea></td>
+											<td class="footer-labels">											<textarea type="text" class="table-inputs tax1-row" >{{ 'inv.table.taxtotal' | translate }} {{group.perc}} %</textarea></td>
+											<td class="total-rows">{{group.sum * group.perc / 100.0 | currency :""}}</td>
+											<td >											<textarea type="text" class="table-inputs discount-row-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
+										</tr>
+
+										<tr class="trShipping" ng-hide="shipping.fields[0].isRowHidden" >
+											<td colspan="3" class="noline"></td>
+											<td class="footer-labels">											<textarea type="text" class="table-inputs shipping-row" translate="inv.table.shipping" ></textarea></td>
 
 											<td >
 											<input class="table-inputs shipping-total" ng-model="shipping.fields[0].shippingcosts" coma-dot-converter="coma-dot-converter">
@@ -303,10 +302,10 @@
 											</td><td class="netprice-column">
 											<input ng:model="item.cost" coma-dot-converter="coma-dot-converter"  class="table-inputs unitprice" autocomplete="off" value="0.00" >
 											</td><td ng-hide="taxOption=='tax-none'" class="tax1-column">
-											<input ng:model="invoice.taxOne" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax1-row taxes" autocomplete="off">
+											<input ng:model="item.taxOne" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax1-row taxes" autocomplete="off">
 											</td><td ng-hide="taxOption=='tax-none' || taxOption=='1 Tax' " class="tax2-column">
-											<input  ng:model="invoice.taxTwo" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax2-row taxes" autocomplete="off">
-											</td><td class="grossprice-column" ng:model="invoice.amount"> {{item.cost * item.qty | currency :""}} </td>
+											<input  ng:model="item.taxTwo" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax2-row taxes" autocomplete="off">
+											</td><td class="grossprice-column" ng:model="item.amount"> {{item.cost * item.qty | currency :""}} </td>
 											<td class="currency-column"><textarea type="text" class="table-textareas currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency">												
 											</textarea></td>
 
@@ -338,40 +337,40 @@
 					<div>
 						<script type="text/ng-template" id="EmailModalContent.html">
 							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-										&times;
-									</button>
-									<h4 class="modal-title" translate="inv.email.title"></h4>
-								</div>
-								<div class="modal-body">
-									<form role="form">
-										<div class="form-group">											
-											<input type="email" class="form-control" id="customer-email" placeholder="{{ 'inv.email.customer-email' | translate }}">
-										</div>
-										<div class="form-group">											
-											<textarea class="form-control" id="subject" placeholder="{{ 'inv.email.subject' | translate }}"></textarea>
-										</div>
-										<div class="form-group">											
-											<textarea class="form-control" id="customer-message" placeholder="{{ 'inv.email.customer-message' | translate }}"></textarea>
-										</div>
-										<div class="checkbox">
-											<label>
-												<input type="checkbox"  ng-click="showPayPalMode = ! showPayPalMode">
-												{{ 'inv.email.getpaid' | translate }}</label>
-										</div>
-										<div class="form-group" ng-show="showPayPalMode">											
-											<input type="email" class="form-control" id="paypal-merchantaccount" placeholder="{{ 'inv.email.paypal_merchantaccount' | translate }}">
-										</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button ng-click="ok()" type="button" class="btn btn-default"  translate="inv.email.close"></button>
-									<button ng-click="cancel()" type="button" class="btn btn-primary" translate="inv.email.send"></button>
-								</div>
+							<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+							</button>
+							<h4 class="modal-title" translate="inv.email.title"></h4>
+							</div>
+							<div class="modal-body">
+							<form role="form">
+							<div class="form-group">
+							<input type="email" class="form-control" id="customer-email" placeholder="{{ 'inv.email.customer-email' | translate }}">
+							</div>
+							<div class="form-group">
+							<textarea class="form-control" id="subject" placeholder="{{ 'inv.email.subject' | translate }}"></textarea>
+							</div>
+							<div class="form-group">
+							<textarea class="form-control" id="customer-message" placeholder="{{ 'inv.email.customer-message' | translate }}"></textarea>
+							</div>
+							<div class="checkbox">
+							<label>
+							<input type="checkbox"  ng-click="showPayPalMode = ! showPayPalMode">
+							{{ 'inv.email.getpaid' | translate }}</label>
+							</div>
+							<div class="form-group" ng-show="showPayPalMode">
+							<input type="email" class="form-control" id="paypal-merchantaccount" placeholder="{{ 'inv.email.paypal_merchantaccount' | translate }}">
+							</div>
+							</form>
+							</div>
+							<div class="modal-footer">
+							<button ng-click="ok()" type="button" class="btn btn-default"  translate="inv.email.close"></button>
+							<button ng-click="cancel()" type="button" class="btn btn-primary" translate="inv.email.send"></button>
+							</div>
 							</div><!-- /.modal-content -->
-						 </script>
-						 
+						</script>
+
 					</div><!-- /.modal -->
 				</div>
 			</div>
