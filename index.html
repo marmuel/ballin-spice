@@ -126,7 +126,7 @@
 							</li>
 							<li>
 								<label for="discount" translate="inv.sidebarbutton.discountlabel"></label>
-								<input id="discount" class="form-control discount"  ng:validate="number" coma-dot-converter="coma-dot-converter" ng-model="discount.show">
+								<input id="discount" class="form-control discount"  ng:validate="number" coma-dot-converter="coma-dot-converter" ng-model="invoice.discount">
 							</li>
 							<li>
 								<label for="shipping" translate="inv.sidebarbutton.shippinglabel"></label>
@@ -254,8 +254,8 @@
 											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
 
 										</tr>
-										<tr  ng-show="discount.show">
-											<td colspan="3" class="noline"></td><td class="footer-labels">											<textarea type="text" class="table-inputs discount-row">{{'inv.table.discount' | translate}} {{discount.show}} %</textarea></td>
+										<tr  ng-show="invoice.discount">
+											<td colspan="3" class="noline"></td><td class="footer-labels">											<textarea type="text" class="table-inputs discount-row">{{'inv.table.discount' | translate}} {{invoice.discount}} %</textarea></td>
 											<td class="total-rows" > - {{invoice_discount() | currency :""}} </td>
 											<td >											<textarea type="text" class="table-inputs discount-row-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
 										</tr>
