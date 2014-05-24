@@ -1,5 +1,5 @@
 // Register Angular Translate & Bootstrap UI
-var app = angular.module("lexoffice", ['pascalprecht.translate', 'ui.bootstrap']);
+var app = angular.module("lexoffice", ['pascalprecht.translate', 'ui.bootstrap', 'App.filters']);
 
 //Translation
 app.config(['$translateProvider',
@@ -17,8 +17,8 @@ function($translateProvider) {
 	$translateProvider.preferredLanguage('en_US');
 
 	//START THE MAIN CONTROLLER
-}]).controller('CtrlInvoice', ['$scope', '$translate', '$modal', '$window',
-function($scope, $translate, $modal, $window) {
+}]).controller('CtrlInvoice', ['$scope', '$translate', '$modal', '$window','$filter',
+function($scope, $translate, $modal, $window, $filter) {
 
 	$scope.setLang = function(langKey) {
 		// You can change the language during runtime
@@ -107,15 +107,18 @@ function($scope, $translate, $modal, $window) {
 		});
 		
 		return groups;
-		
+	
 	};
 
 	$scope.$watch('invoice', function(newValue, oldValue) {
 		// Arr for multiple Taxes
 		$scope.groupsArr = convertToArray($scope.grouppedByPercentage());
-		console.log(convertToArray($scope.grouppedByPercentage()));
+		 
+		// Taxes 
+		// pass the arr trough filter 'sumFilter' 
+	    // Calculations (Taxes are calculated directly in the view)
+		 var taxTotal = $filter('sumFilter')($scope.groupsArr);
 
-		// Calculations (Taxes are calculated directly in the view)
 
 		// SubTotal
 		$scope.invoice_sub_total = function() {
@@ -132,16 +135,13 @@ function($scope, $translate, $modal, $window) {
 			return (($scope.invoice_sub_total() * disCount) / 100);
 		};
 		
-       		// Taxes
-
-
 
 		// Grand Total
 		$scope.calculate_grand_total = function() {
 			localStorage["lexoffice"] = JSON.stringify($scope.invoice);
 			// Shipping
 			shipPing =+ $scope.invoice.shippingcosts;
-			return $scope.invoice_sub_total() - $scope.invoice_discount() + shipPing;
+			return $scope.invoice_sub_total() - $scope.invoice_discount() + shipPing + taxTotal;
 		};
 
 	}, true);
@@ -250,6 +250,22 @@ function($scope, $translate, $modal, $window) {
 });
 // ACHTUNG WENN EINE WEITERE DIREKTIVE HINZUKOMMT ; semicolon ENTFERNEN!!!!!
 
+// Tax Sum
+
+angular.module('App.filters', []).filter('sumFilter', [function () {
+// filter for tax sum
+     return function(groups, lenght) {
+         var taxTotal = 0; 
+         for (i=0; i < groups.length; i++) {        	
+             taxTotal = taxTotal + ((groups[i].perc * groups[i].sum) / 100);  
+          };
+         return taxTotal;
+     };	
+	}]);
+
+
+
+
 function readURL(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
@@ -263,6 +279,8 @@ function readURL(input) {
 // window.onbeforeunload = function(e) {
 //   confirm('Are you sure you would like to close this tab? All your data will be lost');
 // };
+
+
 
 $(document).ready(function() {
 	//set default currency

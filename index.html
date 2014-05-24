@@ -248,10 +248,10 @@
 											<button id="button-row-add " class="btn btn-primary noPrint" ng-hide="printMode" href ng:click="addItem()">
 												<span class="fa fa-plus noPrint" translate="inv.invoice_table.addrow"></span>
 											</button></td>
-											<td class="footer-labels">											<textarea type="text" class="table-inputs" translate="inv.invoice_table.subtotal" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;">Subtotal</textarea></td>
+											<td class="footer-labels">											<textarea type="text" class="table-inputs" translate="inv.invoice_table.subtotal"></textarea></td>
 
 											<td class="total-rows" style="cursor: default;"> {{invoice_sub_total() | currency :""}} </td>
-											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
+											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
 
 										</tr>
 										<tr  ng-show="invoice.discount">
@@ -263,7 +263,7 @@
 										<tr ng-repeat="group in groupsArr">
 											<td colspan="3" class="noline"></td>
 											<td class="footer-labels"><textarea type="text" class="table-inputs tax1-row" >{{ 'inv.invoice_table.taxtotal' | translate }} {{group.perc}} %</textarea></td>
-											<td class="total-rows" ng-model="taxes">{{group.sum * group.perc / 100.0 | currency :""}}</td>
+											<td class="total-rows" ng-model="taxes">{{ group.sum * group.perc / 100.0 | currency :""}}</td>
 											<td ><textarea type="text" class="table-inputs currency-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
 										</tr>
 
@@ -279,10 +279,11 @@
 										</tr>
 										<tr class="trBalance">
 											<td colspan="3" class="noline" ></td>
-											<td class="footer-labels">											<textarea type="text" class="table-inputs" translate="inv.invoice_table.balance" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;"></textarea></td>
+											<td class="footer-labels">											<textarea type="text" class="table-inputs" translate="inv.invoice_table.balance"></textarea></td>
 
 											<td class="total-rows" style="cursor: default;"> {{calculate_grand_total() -discount.show| currency :""}}</td>
-											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
+											<td class="currency-column">	
+											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
 										</tr>
 
 									</tfoot>
