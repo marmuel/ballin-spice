@@ -33,7 +33,7 @@
 				<div class="container-fluid" >
 					<div class="navbar-header">
 						<div class="brand">
-							<a href="#"><img class="brand-logo" src="img/logo_lexoffice.png" width="232" height="35" alt="lexoffice - time to get paid. now"><span class="claim"> Time to get paid. now.</span></a>
+							<a href="#"><img class="brand-logo" src="img/logo_lexoffice.png" width="135px" height="20px" alt="lexoffice - time to get paid. now"><span class="claim"> Time to get paid. now.</span></a>
 						</div>
 
 					</div>
@@ -120,7 +120,7 @@
 							</li>
 							<li>
 								<label for="tax" translate="inv.sidebarbutton.taxlabel"></label>
-								<select id="tax" class="form-control tax" ng-change="[invoice.taxTwo='', invoice.taxOne='']" ng-model="taxOption">
+								<select id="tax" class="form-control tax" ng-change="[taxTwo='', taxOne='']" ng-model="taxOption">
 									<option value="tax-none" selected="selected" translate="inv.sidebarbutton.taxnone"></option><option value="1 Tax" translate="inv.sidebarbutton.tax1" selected="selected"></option><option value="2 Taxes" translate="inv.sidebarbutton.tax2"></option>
 								</select>
 							</li>
@@ -131,8 +131,8 @@
 							<li>
 								<label for="shipping" translate="inv.sidebarbutton.shippinglabel"></label>
 								<div class="btn-group btn-group-shipping" id="shipping">
-									<label ng-model="radioShipping"  btn-radio="'No'" class="btn btn-default shipping-radio" ng-click="hideShippingCosts(shipping.fields[0])"> <span translate="inv.sidebarbutton.shippingno"></span> </label>
-									<label ng-model="radioShipping" btn-radio="'Yes'" class="btn btn-default shipping-radio" ng-click="showShippingCosts(shipping.fields[0])"><span translate="inv.sidebarbutton.shippingyes"></span> </label>
+									<label ng-model="radioShipping" btn-radio="''" class="btn btn-default shipping-radio"> <span translate="inv.sidebarbutton.shippingno"></span> </label>
+									<label ng-model="radioShipping" btn-radio="'0.00'"  class="btn btn-default shipping-radio"><span translate="inv.sidebarbutton.shippingyes"></span> </label>
 								</div>
 							</li>
 						</ul>
@@ -262,28 +262,25 @@
 										<!--tax subtotals-->
 										<tr ng-repeat="group in groupsArr">
 											<td colspan="3" class="noline"></td>
-											<td class="footer-labels"><textarea type="text" class="table-inputs tax1-row" >{{ 'inv.invoice_table.taxtotal' | translate }} {{group.perc}} %</textarea></td>
+											<td class="footer-labels">											<textarea type="text" class="table-inputs tax1-row" >{{ 'inv.invoice_table.taxtotal' | translate }} {{group.perc}} %</textarea></td>
 											<td class="total-rows" ng-model="taxes">{{ group.sum * group.perc / 100.0 | currency :""}}</td>
-											<td ><textarea type="text" class="table-inputs currency-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
+											<td >											<textarea type="text" class="table-inputs currency-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
 										</tr>
 
 										<tr class="trShipping" ng-show="radioShipping">
 											<td colspan="3" class="noline"></td>
-											<td class="footer-labels">											
-												<textarea type="text" class="table-inputs shipping-row" translate="inv.invoice_table.shipping" ></textarea></td>
+											<td class="footer-labels">											<textarea type="text" class="table-inputs shipping-row" translate="inv.invoice_table.shipping" ></textarea></td>
 											<td >
 											<input class="table-inputs shipping-total" ng:validate="number" ng-model="invoice.shippingcosts" coma-dot-converter="coma-dot-converter">
 											</td>
-											<td class="currency-column">											
-												<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
+											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
 										</tr>
 										<tr class="trBalance">
 											<td colspan="3" class="noline" ></td>
 											<td class="footer-labels">											<textarea type="text" class="table-inputs" translate="inv.invoice_table.balance"></textarea></td>
 
 											<td class="total-rows" style="cursor: default;"> {{calculate_grand_total() -discount.show| currency :""}}</td>
-											<td class="currency-column">	
-											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
+											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
 										</tr>
 
 									</tfoot>
@@ -304,7 +301,7 @@
 											<input ng:model="item.taxOne" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax1-row taxes" autocomplete="off">
 											</td><td ng-hide="taxOption=='tax-none' || taxOption=='1 Tax' " class="tax2-column">
 											<input  ng:model="item.taxTwo" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax2-row taxes" autocomplete="off">
-											</td><td class="grossprice-column" ng:model="item.amount"> {{item.cost * item.qty | currency :""}} </td>
+											</td><td class="grossprice-column"> {{item.cost * item.qty | currency :""}} </td>
 											<td class="currency-column">											<textarea type="text" class="table-textareas currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency">												
 											</textarea></td>
 
@@ -315,28 +312,33 @@
 								<table class="table">
 									<tbody>
 										<tr >
-											<td>											<textarea ng-model="invoice.terms" class="document-inputs terms" placeholder="{{ 'inv.invoice_header.termslabel' | translate }}"></textarea></td>
-											<td align="right">								<textarea ng-model="invoice.notes" class="document-inputs notes" placeholder="{{ 'inv.invoice_header.notes' | translate }}"></textarea></td>
+											<td>											<textarea ng-model="footer.terms" class="document-inputs terms" placeholder="{{ 'inv.invoice_header.termslabel' | translate }}"></textarea></td>
+											<td align="right">											<textarea ng-model="footer.notes" class="document-inputs notes" placeholder="{{ 'inv.invoice_header.notes' | translate }}"></textarea></td>
 										</tr>
 									</tbody>
 								</table>
 								<table class="table">
 									<tbody>
 										<tr >
-											<td>											<textarea ng-model="invoice.footer_left" class="document-inputs footer" placeholder="{{ 'inv.invoice_header.footer' | translate }}"></textarea></td>
-											<td align="center">											<textarea ng-model="invoice.footer_middle" class="document-inputs footer" placeholder="{{ 'inv.invoice_header.footer' | translate }}"></textarea></td>
-											<td align="right">											<textarea ng-model="invoice.footer_right" class="document-inputs footer" placeholder="{{ 'inv.invoice_header.footer' | translate }}"></textarea></td>
+											<td>											<textarea ng-model="footer.footer_left" class="document-inputs footer" placeholder="{{ 'inv.invoice_header.footer' | translate }}"></textarea></td>
+											<td align="center">											<textarea ng-model="footer.footer_middle" class="document-inputs footer" placeholder="{{ 'inv.invoice_header.footer' | translate }}"></textarea></td>
+											<td align="right">											<textarea ng-model="footer.footer_right" class="document-inputs footer" placeholder="{{ 'inv.invoice_header.footer' | translate }}"></textarea></td>
 										</tr>
 									</tbody>
 
 								</table>
 							</div>
-																		
+
 						</div>
-					<div class="company-info noPrint" ng-hide="printMode"><p>made with <i class="fa fa-heart heart"></i> in Germany by  <a href="http://www.lexware.de"><img src="img/lexware_logo.jpg" target="_blank" style="width: 120px; height: 20px"><img /></a></p></div>
+						<div class="company-info noPrint" ng-hide="printMode">
+							<p>
+								made with <i class="fa fa-heart heart"></i> in Germany by <a href="http://www.lexware.de"><img src="img/lexware_logo.jpg" target="_blank" style="width: 120px; height: 20px"><img /></a>
+							</p>
+						</div>
 					</div>
 
-					<div><!-- modal -Email-->
+					<div>
+						<!-- modal -Email-->
 						<script type="text/ng-template" id="EmailModalContent.html">
 							<div class="modal-content">
 							<div class="modal-header">
@@ -371,16 +373,17 @@
 						</script>
 
 					</div><!-- /.modal -Email-->
-					<div><!-- modal -Reset-->
+					<div>
+						<!-- modal -Reset-->
 						<script type="text/ng-template" id="ResetModalContent.html">
 							<div class="modal-content">
 							<div class="modal-header">
 							<h4 class="modal-title" translate="inv.reset.title"></h4>
 							</div>
 							<div class="modal-body">
-							
+
 							<div class="form-group">
-							<p>{{ 'inv.reset.message' | translate }}</p>						
+							<p>{{ 'inv.reset.message' | translate }}</p>
 							</div>
 							<div class="modal-footer">
 							<button ng-click="cancel()" type="button" class="btn btn-default"  translate="inv.reset.abort"></button>
@@ -390,9 +393,9 @@
 						</script>
 
 					</div><!-- /.modal -Reset-->
-					
+
 				</div>
-				
+
 			</div>
 		</div>
 	</body>

@@ -17,7 +17,7 @@ function($translateProvider) {
 	$translateProvider.preferredLanguage('en_US');
 
 	//START THE MAIN CONTROLLER
-}]).controller('CtrlInvoice', ['$scope', '$translate', '$modal', '$window','$filter',
+}]).controller('CtrlInvoice', ['$scope', '$translate', '$modal', '$window', '$filter',
 function($scope, $translate, $modal, $window, $filter) {
 
 	$scope.setLang = function(langKey) {
@@ -34,7 +34,7 @@ function($scope, $translate, $modal, $window, $filter) {
 	var sample_invoice = {
 		invoice_number : 1000,
 		discount : 0,
-		shippingcosts: 0.00,
+		//shippingcosts : 0.00,
 		items : [{
 			qty : 10,
 			taxOne : '',
@@ -44,12 +44,12 @@ function($scope, $translate, $modal, $window, $filter) {
 		}]
 	};
 
-	if (localStorage["lexoffice"] == "" || localStorage["lexoffice"] == null) {
+	if (localStorage["invoice"] == "" || localStorage["invoice"] == null) {
 		console.log('Sample Invoice');
 		$scope.invoice = sample_invoice;
 	} else {
 		console.log('Stored Invoice');
-		$scope.invoice = JSON.parse(localStorage["lexoffice"]);
+		$scope.invoice = JSON.parse(localStorage["invoice"]);
 	}
 	$scope.addItem = function() {
 		$scope.invoice.items.push({
@@ -81,10 +81,30 @@ function($scope, $translate, $modal, $window, $filter) {
 		$scope.logoRemoved = false;
 	};
 	// set default to button to 'no'
-	$scope.radioShipping = 'No';
-
+	$scope.radioShipping = '';
+		
+	// remove Row
 	$scope.removeItem = function(item) {
 		$scope.invoice.items.splice($scope.invoice.items.indexOf(item), 1);
+	};
+
+	// tax Select
+
+	$scope.taxUpdate = function() {
+
+		var taxSelect = $scope.taxOption;
+		if (taxSelect == '1 Tax') {
+			console.log('1 Tax');
+		    taxTwo == "13";
+		} else if (taxSelect == '2 Taxes') {
+			console.log('2 Tax');
+		} else if (taxSelect == 'tax-none') {
+			console.log('tax-none');
+			taxOne == "13";
+			taxTwo == "13";
+		}
+		;
+
 	};
 
 	// Callculate Tax and dynamically add new rows for subtotals
@@ -105,20 +125,19 @@ function($scope, $translate, $modal, $window, $filter) {
 				groups[perc] += invoice.cost * invoice.qty;
 			});
 		});
-		
+
 		return groups;
-	
+
 	};
 
 	$scope.$watch('invoice', function(newValue, oldValue) {
 		// Arr for multiple Taxes
 		$scope.groupsArr = convertToArray($scope.grouppedByPercentage());
-		 
-		// Taxes 
-		// pass the arr trough filter 'sumFilter' 
-	    // Calculations (Taxes are calculated directly in the view)
-		 var taxTotal = $filter('sumFilter')($scope.groupsArr);
 
+		// Taxes
+		// pass the arr trough filter 'sumFilter'
+		// Calculations (Taxes are calculated directly in the view)
+		var taxTotal = $filter('sumFilter')($scope.groupsArr);
 
 		// SubTotal
 		$scope.invoice_sub_total = function() {
@@ -134,13 +153,12 @@ function($scope, $translate, $modal, $window, $filter) {
 			disCount = $scope.invoice.discount;
 			return (($scope.invoice_sub_total() * disCount) / 100);
 		};
-		
 
 		// Grand Total
 		$scope.calculate_grand_total = function() {
-			localStorage["lexoffice"] = JSON.stringify($scope.invoice);
+			localStorage["invoice"] = JSON.stringify($scope.invoice);
 			// Shipping
-			shipPing =+ $scope.invoice.shippingcosts;
+			shipPing = +$scope.invoice.shippingcosts;
 			return $scope.invoice_sub_total() - $scope.invoice_discount() + shipPing + taxTotal;
 		};
 
@@ -208,7 +226,8 @@ function($scope, $translate, $modal, $window, $filter) {
 		$scope.resetStorage = function() {
 			$modalInstance.dismiss('cancel');
 
-			localStorage["lexoffice"] = "";
+			localStorage["invoice"] = "";
+			console.log('localStorage gelöscht');
 			$scope.invoice = sample_invoice;
 
 		};
@@ -252,19 +271,17 @@ function($scope, $translate, $modal, $window, $filter) {
 
 // Tax Sum
 
-angular.module('App.filters', []).filter('sumFilter', [function () {
-// filter for tax sum
-     return function(groups, lenght) {
-         var taxTotal = 0; 
-         for (i=0; i < groups.length; i++) {        	
-             taxTotal = taxTotal + ((groups[i].perc * groups[i].sum) / 100);  
-          };
-         return taxTotal;
-     };	
-	}]);
-
-
-
+angular.module('App.filters', []).filter('sumFilter', [
+function() {
+	// filter for tax sum
+	return function(groups, lenght) {
+		var taxTotal = 0;
+		for ( i = 0; i < groups.length; i++) {
+			taxTotal = taxTotal + ((groups[i].perc * groups[i].sum) / 100);
+		};
+		return taxTotal;
+	};
+}]);
 
 function readURL(input) {
 	if (input.files && input.files[0]) {
@@ -279,8 +296,6 @@ function readURL(input) {
 // window.onbeforeunload = function(e) {
 //   confirm('Are you sure you would like to close this tab? All your data will be lost');
 // };
-
-
 
 $(document).ready(function() {
 	//set default currency
