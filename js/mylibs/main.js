@@ -34,6 +34,7 @@ function($scope, $translate, $modal, $window) {
 	var sample_invoice = {
 		invoice_number : 1000,
 		discount : 0,
+		shippingcosts: 0.00,
 		items : [{
 			qty : 10,
 			taxOne : '',
@@ -79,33 +80,8 @@ function($scope, $translate, $modal, $window) {
 	$scope.showLogo = function() {
 		$scope.logoRemoved = false;
 	};
-
-	//show and hide shipping costs //
-
-	// set default to no
-
-	$scope.radioModel = 'No';
-	$scope.checkModel = {
-		yes : false,
-		no : true
-	};
-
-	$scope.shipping = {
-		fields : [{
-			shippingcosts : 0.00,
-			isRowHidden : true
-		}]
-
-	};
-
-	$scope.hideShippingCosts = function(field) {
-		field.shippingcosts = 0.00;
-		field.isRowHidden = true;
-	};
-	$scope.showShippingCosts = function(field) {
-		field.shippingcosts = 0.00;
-		field.isRowHidden = false;
-	};
+	// set default to button to 'no'
+	$scope.radioShipping = 'No';
 
 	$scope.removeItem = function(item) {
 		$scope.invoice.items.splice($scope.invoice.items.indexOf(item), 1);
@@ -129,13 +105,15 @@ function($scope, $translate, $modal, $window) {
 				groups[perc] += invoice.cost * invoice.qty;
 			});
 		});
+		
 		return groups;
+		
 	};
 
-	//---------- For alternative approach ----------\\
 	$scope.$watch('invoice', function(newValue, oldValue) {
 		// Arr for multiple Taxes
 		$scope.groupsArr = convertToArray($scope.grouppedByPercentage());
+		console.log(convertToArray($scope.grouppedByPercentage()));
 
 		// Calculations (Taxes are calculated directly in the view)
 
@@ -150,30 +128,20 @@ function($scope, $translate, $modal, $window) {
 		// Discount
 
 		$scope.invoice_discount = function() {
-
 			disCount = $scope.invoice.discount;
-			if (disCount == '' || disCount == 'NaN') {
-				return;
-			} else {
-				return (($scope.invoice_sub_total() * disCount) / 100);
-			}
+			return (($scope.invoice_sub_total() * disCount) / 100);
 		};
+		
+       		// Taxes
 
-		// Grand Total / Balance
+
+
+		// Grand Total
 		$scope.calculate_grand_total = function() {
 			localStorage["lexoffice"] = JSON.stringify($scope.invoice);
-			//var disCount = parseFloat($scope.discount);
-			disCount = $scope.invoice.discount;
-			// check if discount-input is empty
-			if (disCount === '' || disCount == '0') {
-				console.log('kein Discount');
-				return $scope.invoice_sub_total();
-			} else {
-				console.log('mit Discount');
-				return $scope.invoice_sub_total() - (($scope.invoice_sub_total() * disCount) / 100);
-				
-			}
-
+			// Shipping
+			shipPing =+ $scope.invoice.shippingcosts;
+			return $scope.invoice_sub_total() - $scope.invoice_discount() + shipPing;
 		};
 
 	}, true);

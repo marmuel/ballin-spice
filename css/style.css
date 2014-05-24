@@ -92,16 +92,16 @@ z-index: 1000;
 	color: #fff;
 	background-color: #428bca;
 }
-#button-dropbox, #googlesearch {
+.sidebar-button {
 	width: 80%;
 	margin-bottom: 20px;
 }
-#button-preview, #button-pdf, #button-print, #button-email, #button-default, #button-reset {
+.subheader-button {
 	width: 130px;
 	margin-bottom: 20px;
 }
 
-.actionbuttons {
+.action-buttons {
 	margin-left: 10%;
 }
 .currency, .discount, .shipping, .tax, .googlesearch {
@@ -238,7 +238,7 @@ input[type=date] {
 	height: 80px;
 	margin: 2px 0px 10px 0px;
 }
-#document-tocompany {
+#document-to-company {
 	padding-top: 5px;
 }
 /*
@@ -252,7 +252,7 @@ thead {
 	max-width: 100%;
 	margin-left: 0px;
 }
-#document-no-label, #document-date-label {
+.document-data-label {
 	width: 160px;
 }
 
@@ -335,7 +335,7 @@ td.grossprice-column {
 .dragHandle {
 	width: 1%;
 }
-#button-rowadd {
+#button-row-add {
 	margin-left: 20px;
 }
 
@@ -364,7 +364,7 @@ div.brand a {
 }
 /*google maps address search */
 
-#googleaddress {
+#google-address {
 	margin-top: 0px;
     background-color: #dff0d8;
 	padding: 20px;

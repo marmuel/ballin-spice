@@ -30,11 +30,11 @@
 			"searchno": "No",
 			"searchyes": "Yes"
 		},
-		"dialog": {
+		"googlesearch": {
 			"accept": " Accept",
 			"searchagain": " Search again"
 		},
-		"document": {
+		"invoice_header": {
 			"type": "Invoice",
 			"enteraddress": "Enter Address",
 			"fromaddress": "Your Company\nJane Doe\n123 Anywhere Street, Anytown\nState 12345",
@@ -56,7 +56,7 @@
 			"printmodeoffbutton": " Print Mode Off",
 			"printbutton": " Print"
 		},
-		"table": {
+		"invoice_table": {
 			"amount": "Amount",
 			"quantity": "Quantity",
 			"tax1": "% Tax",
@@ -71,7 +71,7 @@
 			"discount": "Discount",
 			"shipping": "Shipping"
 		},
-		"email":{
+		"invoice_email":{
 			"title": "Send Invoice via Email",
 			"send": "Send",
 			"close": "Close",
@@ -82,7 +82,7 @@
 			"paypal_merchantaccount": "Your PayPal Merchant Account"
 		},
 		"reset":{
-			"title": "Rechnungsformular zurücksetzen",
+			"title": "Reset Invoice Form",
 			"message": "Are you sure you want to reset your invoice form?\nAll previously entered data will be lost!",
 			"yes": "Yes",
 			"abort": "Abort"		

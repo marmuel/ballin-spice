@@ -9,9 +9,8 @@ $(document).ready(function() {
 	$('textarea').autosize();
 
 	// destroy autosize for different inputs
-	$('#document-tocompany').trigger('autosize.destroy');
+	$('#document-to-company').trigger('autosize.destroy');
 	$('#document-type').trigger('autosize.destroy');
-	$('#document-tocompany').trigger('autosize.destroy');
 	$('.currency-label').trigger('autosize.destroy');
 
 });
@@ -48,9 +47,9 @@ function colspan() {
 var $googlesearch = $('#googlesearch');
 var gbtnsearchagain = $('.address-controls');
 var locationfield = $('#locationField');
-var gaddressResult = $('#addressresult');
+var gaddressResult = $('#google-result');
 var manaddress = $("#document-to");
-var gaddress = $('#googleaddress');
+var gaddress = $('#google-address');
 
 
 // Search Again
@@ -70,7 +69,7 @@ $gSearchAgain.on('click', function() {
 var $gSearchAccept = $('#search-accept');
 $gSearchAccept.on('click', function() {
 	
-var gaddress = $('#googleaddress');
+var gaddress = $('#google-address');
 	(manaddress).show();
 	(gbtnsearchagain).hide();
 	$('#autocomplete').val('');
@@ -107,8 +106,8 @@ function initialize() {
 }
 
 function fillInAddress() {
-	var gaddressResult = $('#addressresult');
-	var gaddress = $('#googleaddress');
+	var gaddressResult = $('#google-result');
+	var gaddress = $('#google-address');
 	var locationfield = $('#locationField');
 	var gbtnsearchagain = $('.address-controls');
 

@@ -31,11 +31,11 @@
 			"searchno": "Nein",
 			"searchyes": "Ja"
 		},
-		"dialog": {
+		"googlesearch": {
 			"accept": " Übernehmen",
 			"searchagain": " Erneut suchen"
 		},
-		"document": {
+		"invoice_header": {
 			"type": "Rechnung",
 			"enteraddress": "Bitte geben Sie eine Adresse ein",
 			"fromaddress": "Ihre Firma GmbH & Co. KG\nMax Mustermann\nMusterstrasse 10\n12345 Musterstadt",
@@ -57,7 +57,7 @@
 			"printmodeoffbutton": " Druckmodus aus",
 			"printbutton": " Drucken"
 		},
-		"table": {
+		"invoice_table": {
 			"amount": "Gesamtbetrag",
 			"quantity": "Menge",
 			"tax1": "% MwSt.",
@@ -72,7 +72,7 @@
 			"discount": "Rabatt",
 			"shipping": "Versandkosten"
 		},
-		"email":{
+		"invoice_email":{
 			"title": "Rechnung per E-mail versenden",
 			"send": "Senden",
 			"close": "Schliessen",
@@ -81,6 +81,12 @@
 			"customer-message": "Ihre Nachricht",
 			"getpaid": "PayPal-Zahlung akzeptieren",
 			"paypal_merchantaccount": "Ihr Händlerkonto bei PayPal"
+		},
+		"reset":{
+			"title": "Rechnungsformular zurücksetzen",
+			"message": "Sind Sie sicher, dass Sie die das Rechnungsformular zurücksetzen möchten?\nAlle bereits eingegebenen Daten gehen hierbei verloren!",
+			"yes": "Ja",
+			"abort": "Abbrechen"		
 		}
 	}
 }
