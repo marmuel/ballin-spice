@@ -1,28 +1,14 @@
-$(document).ready(function() {
 
-	// trigger default values
-	$('.tax-subtotal').hide();
-	$("#tax").trigger("change");
-
-
-	// set all textareas to autosize
-	$('textarea').autosize();
-
-	// destroy autosize for different inputs
-	$('#document-to-company').trigger('autosize.destroy');
-	$('#document-type').trigger('autosize.destroy');
-	$('.currency-label').trigger('autosize.destroy');
-
-});
-
-// add dynamically rows for taxes
-$('#tax').change(function() {
-	colspan();
-});
-// TODO Not really a good way to set colspan...
+// set colspan for footer labels and subtotals, depending on no. of tax columns
 $('#document-table').change(function() {
 	colspan();
 });	
+$('#discount').change(function() {
+	colspan();
+});
+$('#tax').change(function() {
+	colspan();
+});
 
 // set correct colpsan for tfoot (subtotals) depending on count of Tax columns
 function colspan() {
@@ -40,7 +26,7 @@ function colspan() {
 	}
 }
 
-// autocomplete feature
+// google address autocomplete feature
 // of the Google Places API to help users fill in the information.
 
 // Use Google Search or not
@@ -78,8 +64,6 @@ var gaddress = $('#google-address');
 
 	Country();
 });
-
-// Autocomplete
 
 var placeSearch, autocomplete;
 var componentForm = {

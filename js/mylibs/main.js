@@ -34,7 +34,7 @@ function($scope, $translate, $modal, $window, $filter) {
 	var sample_invoice = {
 		invoice_number : 1000,
 		discount : 0,
-		//shippingcosts : 0.00,
+		shippingcosts : 0.00,
 		items : [{
 			qty : 10,
 			taxOne : '',
@@ -88,24 +88,6 @@ function($scope, $translate, $modal, $window, $filter) {
 		$scope.invoice.items.splice($scope.invoice.items.indexOf(item), 1);
 	};
 
-	// tax Select
-
-	$scope.taxUpdate = function() {
-
-		var taxSelect = $scope.taxOption;
-		if (taxSelect == '1 Tax') {
-			console.log('1 Tax');
-		    taxTwo == "13";
-		} else if (taxSelect == '2 Taxes') {
-			console.log('2 Tax');
-		} else if (taxSelect == 'tax-none') {
-			console.log('tax-none');
-			taxOne == "13";
-			taxTwo == "13";
-		}
-		;
-
-	};
 
 	// Callculate Tax and dynamically add new rows for subtotals
 
@@ -156,7 +138,7 @@ function($scope, $translate, $modal, $window, $filter) {
 
 		// Grand Total
 		$scope.calculate_grand_total = function() {
-			localStorage["invoice"] = JSON.stringify($scope.invoice);
+			// TODO Needed here? localStorage["invoice"] = JSON.stringify($scope.invoice);
 			// Shipping
 			shipPing = +$scope.invoice.shippingcosts;
 			return $scope.invoice_sub_total() - $scope.invoice_discount() + shipPing + taxTotal;
@@ -300,10 +282,20 @@ function readURL(input) {
 $(document).ready(function() {
 	//set default currency
 	$("#currency").val('USD');
+	$("#tax").trigger("change");
 
 	$("#currency").trigger('change');
 	$("#logoCompany").change(function() {
 		readURL(this);
 	});
+	
+	// set all textareas to autosize
+	$('textarea').autosize();
+
+	// destroy autosize for different inputs
+	$('#document-to-company').trigger('autosize.destroy');
+	$('#document-type').trigger('autosize.destroy');
+	$('.currency-label').trigger('autosize.destroy');
+
 });
 

@@ -17,10 +17,9 @@ function Country() {
 }
 
 
+// replace comma with dot if user inputs comma
 
 $(".unitprice input").on("change", function() {
-	
-	// replace comma with dot if user inputs comma
 	
 	$(".unitprice input").each(function() {
     $(this).val($(this).val().replace(/,/g, "."));
