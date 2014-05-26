@@ -13,6 +13,7 @@
 
 			"resetbutton": " Reset",
 			"currencylabel": "Currency",
+			"datelabel": "Date Format",
 			"discountlabel": "% Discount",
 			"discountnone": "No",
 			"discountpercent": "Discount Percent",
@@ -35,7 +36,7 @@
 		"invoice_form": {
 			"type": "Invoice",
 			"enteraddress": "Enter Address",
-			"fromaddress": "Your Company Address",
+			"fromaddress": "Your Company Name and Address",
 			"tocompany": "Your Customer's Company Name",
 			"toaddress": "Your Customer's Company Address",
 			"nolabel": "Invoice Number",

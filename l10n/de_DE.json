@@ -14,6 +14,7 @@
 
 			"resetbutton": " Reset",
 			"currencylabel": "Währung",
+			"datelabel": "Datumsformat",
 			"discountlabel": "% Rabatt",
 			"discountnone": "Kein Rabatt",
 			"discountpercent": "Prozent",
@@ -36,7 +37,7 @@
 		"invoice_form": {
 			"type": "Rechnung",
 			"enteraddress": "Bitte geben Sie eine Adresse ein",
-			"fromaddress": "Ihre Adresse",
+			"fromaddress": "Ihre Firmierung und Adresse",
 			"tocompany": "Firmierung Ihres Kunden (z.B. Firma GmbH & Co. KG)",
 			"toaddress": "Rechnungsadresse Ihres Kunden",
 			"nolabel": "Rechnungsnummer",

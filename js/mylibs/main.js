@@ -17,8 +17,8 @@ function($translateProvider) {
 	$translateProvider.preferredLanguage('en_US');
 
 	//START THE MAIN CONTROLLER
-}]).controller('CtrlInvoice', ['$scope', '$translate', '$modal', '$window', '$filter',
-function($scope, $translate, $modal, $window, $filter) {
+}]).controller('CtrlInvoice', ['$scope', '$translate', '$modal', '$window', '$filter', '$http',
+function($scope, $translate, $modal, $window, $filter, $http) {
 
 	$scope.setLang = function(langKey) {
 		// You can change the language during runtime
