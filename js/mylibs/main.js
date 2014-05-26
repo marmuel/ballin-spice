@@ -208,10 +208,10 @@ function($scope, $translate, $modal, $window, $filter) {
 
 		$scope.resetStorage = function() {
 			$modalInstance.dismiss('cancel');
-
 			localStorage["invoice"] = "";
-			console.log('localStorage gelöscht');
+			console.log('localStorage cleared');
 			$scope.invoice = sample_invoice;
+			$window.location.reload();
 
 		};
 	};
