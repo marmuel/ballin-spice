@@ -113,6 +113,8 @@ function($scope, $translate, $modal, $window, $filter) {
 	};
 
 	$scope.$watch('invoice', function(newValue, oldValue) {
+		// Save in localstorage
+		localStorage["invoice"] = JSON.stringify($scope.invoice);
 		// Arr for multiple Taxes
 		$scope.groupsArr = convertToArray($scope.grouppedByPercentage());
 
@@ -138,7 +140,6 @@ function($scope, $translate, $modal, $window, $filter) {
 
 		// Grand Total
 		$scope.calculate_grand_total = function() {
-			// TODO Needed here? localStorage["invoice"] = JSON.stringify($scope.invoice);
 			// Shipping
 			shipPing = +$scope.invoice.shippingcosts;
 			return $scope.invoice_sub_total() - $scope.invoice_discount() + shipPing + taxTotal;
