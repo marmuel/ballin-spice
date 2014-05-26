@@ -81,7 +81,7 @@ function($scope, $translate, $modal, $window, $filter) {
 		$scope.logoRemoved = false;
 	};
 	// set default to button to 'no'
-	$scope.radioShipping = '';
+	//$scope.radioShipping = '';
 		
 	// remove Row
 	$scope.removeItem = function(item) {
@@ -292,6 +292,20 @@ $(document).ready(function() {
 	$("#logoCompany").change(function() {
 		readURL(this);
 	});
+	
+	// toggle shipping-button
+	
+   $ (function (){
+   	var d = "";
+   	var d = $('.shipping-total').val();
+   	console.log(d);
+   	if (d != 0) {
+   		$('.shipping-yes').click();
+   	} else {
+   		$('.shipping-no').click();
+   	}
+   	});
+   	
 	
 	// set all textareas to autosize
 	$('textarea').autosize();
