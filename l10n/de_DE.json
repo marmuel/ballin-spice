@@ -81,6 +81,12 @@
 			"customer-message": "Ihre Nachricht",
 			"getpaid": "PayPal-Zahlung akzeptieren",
 			"paypal_merchantaccount": "Ihr Händlerkonto bei PayPal"
+		},
+		"reset":{
+			"title": "Rechnungsformular zurücksetzen",
+			"message": "Sind Sie sicher, dass Sie das Rechnungsformular zurücksetzen möchten?\nAlle bereits eingegebenen Daten werden gelöscht!",
+			"yes": "Ja",
+			"abort": "Abbrechen"		
 		}
 	}
 }

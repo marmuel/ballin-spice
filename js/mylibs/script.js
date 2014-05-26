@@ -13,7 +13,7 @@ $(document).ready(function() {
 	$('#document-type').trigger('autosize.destroy');
 	$('#document-tocompany').trigger('autosize.destroy');
 	$('.currency-label').trigger('autosize.destroy');
-
+    $('.table-inputs').trigger('autosize.destroy');
 });
 
 // add dynamically rows for taxes
