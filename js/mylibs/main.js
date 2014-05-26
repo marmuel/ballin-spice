@@ -93,6 +93,9 @@ function($scope, $translate, $modal, $window, $filter) {
 
 	$scope.grouppedByPercentage = function() {
 		var groups = {};
+		var discount = 0;
+		var discount = $scope.invoice.discount;
+
 		$scope.invoice.items.forEach(function(invoice) {
 			['taxOne', 'taxTwo'].forEach(function(key) {
 				var perc = invoice[key];
@@ -103,8 +106,8 @@ function($scope, $translate, $modal, $window, $filter) {
 				if (!groups[perc]) {
 					groups[perc] = 0;
 				}
-
-				groups[perc] += invoice.cost * invoice.qty;
+               
+				groups[perc] += ((invoice.cost * invoice.qty) * (100 - discount)) / 100;
 			});
 		});
 
