@@ -1,5 +1,5 @@
 // Register Angular Translate & Bootstrap UI
-var app = angular.module("lexoffice", ['pascalprecht.translate', 'ui.bootstrap', 'App.filters']);
+var app = angular.module("lexoffice", ['pascalprecht.translate', 'ui.bootstrap', 'App.filters', ]);
 
 //Translation
 app.config(['$translateProvider',
@@ -69,6 +69,8 @@ function($scope, $translate, $modal, $window, $filter, $http) {
 			taxTwo : ''
 		});
 	};
+
+
 
 	$scope.removeLogo = function(element) {
 
