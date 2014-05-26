@@ -41,7 +41,16 @@ function($scope, $translate, $modal, $window, $filter) {
 			taxTwo : '',
 			description : 'Tablet',
 			cost : 99.95
-		}]
+		}],
+		type: '',
+		tocompany: '',
+		toaddress: '',
+		fromaddress:'',
+		terms: '',
+		notes:'',
+		footer_left: '',
+		footer_middle: '',
+		footer_right: ''
 	};
 
 	if (localStorage["invoice"] == "" || localStorage["invoice"] == null) {
@@ -80,8 +89,7 @@ function($scope, $translate, $modal, $window, $filter) {
 	$scope.showLogo = function() {
 		$scope.logoRemoved = false;
 	};
-	// set default to button to 'no'
-	//$scope.radioShipping = '';
+
 		
 	// remove Row
 	$scope.removeItem = function(item) {
@@ -279,10 +287,6 @@ function readURL(input) {
 	}
 }
 
-// window.onbeforeunload = function(e) {
-//   confirm('Are you sure you would like to close this tab? All your data will be lost');
-// };
-
 $(document).ready(function() {
 	//set default currency
 	$("#currency").val('USD');
@@ -298,7 +302,6 @@ $(document).ready(function() {
    $ (function (){
    	var d = "";
    	var d = $('.shipping-total').val();
-   	console.log(d);
    	if (d != 0) {
    		$('.shipping-yes').click();
    	} else {

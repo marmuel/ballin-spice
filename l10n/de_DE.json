@@ -1,8 +1,6 @@
 {
 	"inv": {
 		"nav": {
-			"invoice": "Rechnung",
-			"settings": "Einstellungen",
 			"language": "Sprache"
 		},
 		"headerbutton": {
@@ -35,12 +33,12 @@
 			"accept": " Übernehmen",
 			"searchagain": " Erneut suchen"
 		},
-		"invoice_header": {
+		"invoice_form": {
 			"type": "Rechnung",
 			"enteraddress": "Bitte geben Sie eine Adresse ein",
-			"fromaddress": "Ihre Firma GmbH & Co. KG\nMax Mustermann\nMusterstrasse 10\n12345 Musterstadt",
-			"tocompany": "Rechnungsempfänger Firma GmbH & Co. KG",
-			"toaddress": "Max Mustermann\nMusterstrasse 10\n12345 Musterstadt",
+			"fromaddress": "Ihre Adresse",
+			"tocompany": "Firmierung Ihres Kunden (z.B. Firma GmbH & Co. KG)",
+			"toaddress": "Rechnungsadresse Ihres Kunden",
 			"nolabel": "Rechnungsnummer",
 			"datelabel": "Rechnungsdatum",
 			"notes": "Bemerkungen (Sichtbar für Ihren Kunden)",

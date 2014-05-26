@@ -1,8 +1,6 @@
 {
 	"inv": {
 		"nav": {
-			"invoice": "Invoice",
-			"settings": "Settings",
 			"language": "Language"
 		},
 		"headerbutton": {
@@ -34,16 +32,16 @@
 			"accept": " Accept",
 			"searchagain": " Search again"
 		},
-		"invoice_header": {
+		"invoice_form": {
 			"type": "Invoice",
 			"enteraddress": "Enter Address",
-			"fromaddress": "Your Company\nJane Doe\n123 Anywhere Street, Anytown\nState 12345",
-			"tocompany": "Bill To Company",
-			"toaddress": "Joe Blogg\n123 Anywhere Street, Anytown\nState 67890",
+			"fromaddress": "Your Company Address",
+			"tocompany": "Your Customer's Company Name",
+			"toaddress": "Your Customer's Company Address",
 			"nolabel": "Invoice Number",
 			"datelabel": "Date",
-			"termslabel": "Terms (Visible to your client). For Example: Thank you for your order. Please send the payment within 14 days after you receive this invoice.",
-			"notes": "Notes (Visible to your client)",
+			"termslabel": "Terms (Visible to your Customer). For Example: Thank you for your order. Please send the payment within 14 days after you receive this invoice.",
+			"notes": "Notes (Visible to your Customer)",
 			"footer": "footer",
 			"logoupload": "Upload Logo",
 			"streetno": "No.",
