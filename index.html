@@ -1,0 +1,402 @@
+<!doctype html>
+<html class="no-js" lang="en" ng-app="lexoffice" >
+	<!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>lexoffice invoice - time to get paid. now.</title>
+		<meta name="description" content="invoice - time to get paid. now.">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
+		<script data-require="angular.js@*" data-semver="1.2.10" src="http://code.angularjs.org/1.2.10/angular.js"></script>
+		<!--bootstrap ui-->
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-translate/angular-translate.min.js"></script>
+		<script type="text/javascript" src="js/libs/loader-static-files.js"></script>
+		<script type="text/javascript" src="js/mylibs/main.js"></script>
+		<script type="text/javascript" src="js/libs/jquery.autosize.min.js" ></script>
+		<script defer src="js/mylibs/script.js"></script>
+
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+		<script defer src="js/mylibs/localize.js"></script>
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+
+	<body ng:controller="CtrlInvoice" onload="initialize()">
+		<div>
+			<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-hide="printMode"  >
+				<div class="container-fluid" >
+					<div class="navbar-header">
+						<div class="brand">
+							<a href="#"><img class="brand-logo" src="img/logo_lexoffice.png" width="135px" height="20px" alt="lexoffice - time to get paid. now"><span class="claim"> Time to get paid. now.</span></a>
+						</div>
+
+					</div>
+
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="#" translate="inv.nav.invoice">Invoice</a>
+							</li>
+							<li>
+								<a href="#" translate="inv.nav.settings">Settings</a>
+							</li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#" >{{ 'inv.nav.language' | translate }}<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="#" ng-click="setLang('en_US')">English</a>
+									</li>
+									<li>
+										<a href="#" ng-click="setLang('de_DE')">Deutsch</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+
+					</div>
+
+				</div>
+
+			</div>
+			<div class="col-md-2" ng-hide="printMode"></div>
+			<div class="col-md-10 header-buttons-line">
+				<div class="subheader" ng-hide="printMode">
+
+					<div class="btn-group noPrint" id="header-buttons">
+						<button type="button" class="btn btn-lg btn-default subheader-button" ng-hide="printMode" ng-click="printMode = true;">
+							<span class="fa fa-eye" translate="inv.headerbutton.preview" ></span>
+						</button>
+						<button  class="btn btn-lg btn-default subheader-button"  ng-click="printInfo()">
+							<span class="fa fa-print" translate="inv.headerbutton.print"></span>
+						</button>
+						<button  class="btn btn-lg btn-default subheader-button">
+							<span class="fa fa-file" translate="inv.headerbutton.pdf"></span>
+						</button>
+						<button  class="btn btn-lg btn-default subheader-button" data-toggle="modal" ng-click="openModalEmail()">
+							<span class="fa fa-envelope" translate="inv.headerbutton.email"></span>
+						</button>
+						<button  type="button" class="btn btn-lg btn-default subheader-button"  ng-click="openModalReset()">
+							<span class="fa fa-trash-o" translate="inv.sidebarbutton.resetbutton" ></span>
+						</button>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="container-fluid" >
+				<div class="row">
+
+					<div class="col-sm-3 col-md-2 sidebar" ng-hide="printMode">
+
+						<ul class="nav nav-sidebar action-buttons" >
+
+							<li>
+								<button class="btn btn-lg btn-primary sidebar-button">
+									<span class="fa fa-dropbox" translate="inv.sidebarbutton.dropbox"></span>
+								</button>
+							</li>
+
+							<li>
+
+								<button class="btn btn-lg btn-inverse sidebar-button" ng-click="showGoogleAddress = ! showGoogleAddress">
+									<span class="fa fa-magic" translate="inv.sidebarbutton.googlesearch" ></span>
+								</button>
+
+							</li>
+							<li class="divider"></li>
+						</ul>
+						<ul class="nav nav-sidebar action-buttons">
+							<li>
+								<label for="currency" translate="inv.sidebarbutton.currencylabel"></label>
+								<select id="currency" class="form-control currency" ng:model="selectionCurrency" ng-init="selectionCurrency = options[1]">
+									<option value="USD"> USD US Dollar</option><option value="CAD"> CAD Canadian Dollar</option><option value="EUR" selected="selected"> EUR Euro</option><option value="GBP"> GBP Pound Sterling</option><option value="AUD"> AUD Australian Dollar</option><option disabled="disabled">__________________________________</option><option value="AED"> AED United Arab Emirates Dirham</option><option value="AFN"> AFN Afghani</option><option value="ALL"> ALL Lek</option><option value="AMD"> AMD Armenian Dram</option><option value="ANG"> ANG Netherlands Antillian Guilder</option><option value="AOA"> AOA Kwanza</option><option value="ARS"> ARS Argentine Peso</option><option value="AWG"> AWG Aruban Guilder</option><option value="AZN"> AZN Azerbaijanian Manat</option><option value="BAM"> BAM Convertible Marks</option><option value="BBD"> BBD Barbados Dollar</option><option value="BDT"> BDT Bangladeshi Taka</option><option value="BGN"> BGN Bulgarian Lev</option><option value="BHD"> BHD Bahraini Dinar</option><option value="BIF"> BIF Burundian Franc</option><option value="BMD"> BMD Bermudian Dollar</option><option value="BND"> BND Brunei Dollar</option><option value="BOB"> BOB Boliviano</option><option value="BRL"> BRL Brazilian Real</option><option value="BSD"> BSD Bahamian Dollar</option><option value="BTN"> BTN Ngultrum</option><option value="BWP"> BWP Pula</option><option value="BZD"> BZD Belize Dollar</option><option value="CDF"> CDF Franc Congolais</option><option value="CHF"> CHF Swiss Franc</option><option value="CLP"> CLP Chilean Peso</option><option value="CNY"> CNY Renminbi</option><option value="COP"> COP Colombian Peso</option><option value="CRC"> CRC Costa Rican Colon</option><option value="CUP"> CUP Cuban Peso</option><option value="CVE"> CVE Cape Verde Escudo</option><option value="CZK"> CZK Czech Koruna</option><option value="DJF"> DJF Djibouti Franc</option><option value="DKK"> DKK Danish Krone</option><option value="DOP"> DOP Dominican Peso</option><option value="DZD"> DZD Algerian Dinar</option><option value="EEK"> EEK Kroon</option><option value="EGP"> EGP Egyptian Pound</option><option value="ERN"> ERN Nakfa</option><option value="ETB"> ETB Ethiopian Birr</option><option value="FJD"> FJD Fiji Dollar</option><option value="FKP"> FKP Falkland Islands Pound</option><option value="GEL"> GEL Lari</option><option value="GHS"> GHS Cedi</option><option value="GIP"> GIP Gibraltar Pound</option><option value="GMD"> GMD Dalasi</option><option value="GNF"> GNF Guinea Franc</option><option value="GTQ"> GTQ Quetzal</option><option value="GYD"> GYD Guyana Dollar</option><option value="HKD"> HKD Hong Kong Dollar</option><option value="HNL"> HNL Lempira</option><option value="HRK"> HRK Croatian Kuna</option><option value="HTG"> HTG Haiti Gourde</option><option value="HUF"> HUF Forint</option><option value="IDR"> IDR Rupiah</option><option value="ILS"> ILS New Israeli Shekel</option><option value="INR"> INR Indian Rupee</option><option value="IQD"> IQD Iraqi Dinar</option><option value="IRR"> IRR Iranian Rial</option><option value="ISK"> ISK Iceland Krona</option><option value="JMD"> JMD Jamaican Dollar</option><option value="JOD"> JOD Jordanian Dinar</option><option value="JPY"> JPY Japanese Yen</option><option value="KES"> KES Kenyan Shilling</option><option value="KGS"> KGS Som</option><option value="KHR"> KHR Riel</option><option value="KMF"> KMF Comoro Franc</option><option value="KRW"> KRW South Korean Won</option><option value="KWD"> KWD Kuwaiti Dinar</option><option value="KYD"> KYD Cayman Islands Dollar</option><option value="KZT"> KZT Tenge</option><option value="LAK"> LAK Kip</option><option value="LBP"> LBP Lebanese Pound</option><option value="LKR"> LKR Sri Lanka Rupee</option><option value="LRD"> LRD Liberian Dollar</option><option value="LSL"> LSL Loti</option><option value="LTL"> LTL Lithuanian Litas</option><option value="LVL"> LVL Latvian Lats</option><option value="LYD"> LYD Libyan Dinar</option><option value="MAD"> MAD Moroccan Dirham</option><option value="MDL"> MDL Moldovan Leu</option><option value="MGA"> MGA Malagasy Ariary</option><option value="MKD"> MKD Denar</option><option value="MNT"> MNT Tugrik</option><option value="MOP"> MOP Pataca</option><option value="MRO"> MRO Ouguiya</option><option value="MUR"> MUR Mauritius Rupee</option><option value="MVR"> MVR Rufiyaa</option><option value="MWK"> MWK Kwacha</option><option value="MXN"> MXN Mexican Peso</option><option value="MYR"> MYR Malaysian Ringgit</option><option value="MZN"> MZN Metical</option><option value="NAD"> NAD Namibian Dollar</option><option value="NGN"> NGN Naira</option><option value="NIO"> NIO Cordoba Oro</option><option value="NOK"> NOK Norwegian Krone</option><option value="NPR"> NPR Nepalese Rupee</option><option value="NZD"> NZD New Zealand Dollar</option><option value="OMR"> OMR Rial Omani</option><option value="PAB"> PAB Balboa</option><option value="PEN"> PEN Nuevo Sol</option><option value="PGK"> PGK Kina</option><option value="PHP"> PHP Philippine Peso</option><option value="PKR"> PKR Pakistan Rupee</option><option value="PLN"> PLN Zloty</option><option value="PYG"> PYG Guarani</option><option value="QAR"> QAR Qatari Rial</option><option value="RON"> RON Romanian New Leu</option><option value="RSD"> RSD Serbian Dinar</option><option value="RUB"> RUB Russian Ruble</option><option value="RWF"> RWF Rwanda Franc</option><option value="SAR"> SAR Saudi Riyal</option><option value="SBD"> SBD Solomon Islands Dollar</option><option value="SCR"> SCR Seychelles Rupee</option><option value="SDG"> SDG Sudanese Pound</option><option value="SEK"> SEK Swedish Krona</option><option value="SGD"> SGD Singapore Dollar</option><option value="SHP"> SHP Saint Helena Pound</option><option value="SKK"> SKK Slovak Koruna</option><option value="SLL"> SLL Leone</option><option value="SRD"> SRD Surinam Dollar</option><option value="SSP"> SSP South Sudanese Pound</option><option value="STD"> STD Dobra</option><option value="SYP"> SYP Syrian Pound</option><option value="SZL"> SZL Lilangeni</option><option value="THB"> THB Baht</option><option value="TJS"> TJS Somoni</option><option value="TMM"> TMM Manat</option><option value="TND"> TND Tunisian Dinar</option><option value="TOP"> TOP Pa'anga</option><option value="TRY"> TRY Turkish Lira</option><option value="TTD"> TTD Trinidad and Tobago Dollar</option><option value="TWD"> TWD New Taiwan Dollar</option><option value="TZS"> TZS Tanzanian Shilling</option><option value="UAH"> UAH Hryvnia</option><option value="UGX"> UGX Uganda Shilling</option><option value="UYU"> UYU Peso Uruguayo</option><option value="UZS"> UZS Uzbekistan Som</option><option value="VEF"> VEF Venezuelan bolívar fuerte</option><option value="VND"> VND Vietnamese Dồng</option><option value="VUV"> VUV Vatu</option><option value="WST"> WST Samoan Tala</option><option value="XAF"> XAF CFA Franc BEAC</option><option value="XCD"> XCD East Caribbean Dollar</option><option value="XOF"> XOF CFA Franc BCEAO</option><option value="XPF"> XPF CFP Franc</option><option value="YER"> YER Yemeni Rial</option><option value="ZAR"> ZAR South African Rand</option><option value="ZMK"> ZMK Kwacha</option>
+								</select>
+							</li>
+							<li>
+								<label for="tax" translate="inv.sidebarbutton.taxlabel"></label>
+								<select id="tax" class="form-control tax" ng-model="taxOption">
+									<option value="tax-none" selected="selected" translate="inv.sidebarbutton.taxnone"></option><option value="1 Tax" translate="inv.sidebarbutton.tax1" selected="selected"></option><option value="2 Taxes" translate="inv.sidebarbutton.tax2"></option>
+								</select>
+							</li>
+							<li>
+								<label for="discount" translate="inv.sidebarbutton.discountlabel"></label>
+								<input id="discount" class="form-control discount"  ng:validate="number" coma-dot-converter="coma-dot-converter" ng-model="invoice.discount">
+							</li>
+							<li>
+								<label for="shipping" translate="inv.sidebarbutton.shippinglabel"></label>
+								<div class="btn-group btn-group-shipping" id="shipping">
+									<label ng-model="radioShipping" btn-radio="''" class="btn btn-default shipping-radio"> <span translate="inv.sidebarbutton.shippingno"></span> </label>
+									<label ng-model="radioShipping" btn-radio="'0.00'"  class="btn btn-default shipping-radio"><span translate="inv.sidebarbutton.shippingyes"></span> </label>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
+						<div class="document-wrapper">
+
+							<div id="invoice-header" class="row" >
+
+								<div class="noPrint print-actions">
+
+									<button type="button" class="btn btn-primary" ng-show="printMode" ng-click="printInfo()" >
+										<span class="fa fa-print" translate="inv.invoice_header.printbutton" ></span>
+									</button>
+									<button type="button" class="btn btn-primary" ng-show="printMode" ng-click="printMode = false;" >
+										<span class="fa fa-eye-slash" translate="inv.invoice_header.printmodeoffbutton" ></span>
+									</button>
+									<div class="btn-group" ng-hide="printMode">
+										<button type="button" class="btn btn-default" ng-click="editLogo()" href="">
+											<span  class="fa fa-pencil" ></span>
+										</button>
+										<button type="button" class="btn btn-default" ng-click="removeLogo()" id="remove_logo" href="">
+											<span id="logoRemove" ng-class="class"></span>
+										</button>
+									</div>
+
+								</div>
+								<table class="table" >
+									<tbody>
+										<tr>
+											<td>											<textarea id="document-type" class="document-inputs" translate="inv.invoice_header.type"></textarea>											<textarea id="document-from" class="document-inputs address" translate="inv.invoice_header.fromaddress"></textarea></td>
+											<td align="right">
+											<input type='file' id="logoCompany" />
+											<img ng-hide="logoRemoved" id="company_logo" src="img/logo.jpg" alt="logo" width="250"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="row" >
+								<div id="locationField" class="right-inner-addon" ng-show="showGoogleAddress">
+									<input id="autocomplete" class="form-control" placeholder="{{ 'inv.invoice_header.enteraddress' | translate }}" onFocus="geolocate()" type="search">
+								</div>
+								<div id="google-address" style="display: none" >
+
+									<table id="google-result" style="display: none" >
+										<tr>
+											<td class="streetno">											<textarea class="document-inputs-googlesearch" id="street_number"
+											disabled="true" placeholder="{{ 'inv.invoice_header.streetno' | translate }}">
+											</textarea></td>
+											<td  class="street" colspan="2">											<textarea class="document-inputs-googlesearch" id="route"
+											disabled="true"   placeholder="{{ 'inv.invoice_header.street' | translate }}">
+											</textarea></td>
+										</tr>
+										<tr>
+											<td class="city" colspan="3">											<textarea class="document-inputs-googlesearch" id="locality"
+											disabled="true" placeholder="{{ 'inv.invoice_header.city' | translate }}">
+											</textarea></td>
+										</tr>
+										<tr >
+											<td class="state">											<textarea class="document-inputs-googlesearch"
+											id="administrative_area_level_1" disabled="true" placeholder="{{ 'inv.invoice_header.state' | translate }}">
+											</textarea></td>
+											<td class="zipcode">											<textarea class="document-inputs-googlesearch" id="postal_code"
+											disabled="true" placeholder="{{ 'inv.invoice_header.zipcode' | translate }}">
+											</textarea></td>
+										</tr>
+										<tr >
+											<td class="country" colspan="3">											<textarea class="document-inputs-googlesearch"
+											id="country" disabled="true" placeholder="{{ 'inv.invoice_header.country' | translate }}">
+											</textarea></td>
+										</tr>
+										<tr >
+											<td></td>
+											<td class="address-controls">
+											<div class="button-group">
+												<button class="btn btn-success" href="#" id="search-accept">
+													<span class="fa fa-check" translate="inv.googlesearch.accept"></span>
+												</button>
+												<button class="btn btn-default" href="#" id="search-again">
+													<span class="fa fa-search" translate="inv.googlesearch.searchagain"></span>
+												</button>
+											</div></td>
+										</tr>
+									</table>
+
+								</div>
+
+								<table class="table">
+									<tbody>
+										<tr >
+											<td>											<textarea id="document-to-company" class="document-inputs" translate="inv.intocompany"></textarea>											<textarea id="document-to" class="document-inputs to-address" translate="inv.invoice_header.toaddress"></textarea></td>
+
+											<td align="right">											<textarea class="document-inputs document-data-label" translate="inv.invoice_header.nolabel"></textarea>											<textarea class="document-inputs document-data-label" translate="inv.invoice_header.datelabel"></textarea></td>
+											<td align="right">											<textarea ng-model="invoice.invoice_number" class="document-inputs" placeholder="12345678"></textarea>
+											<input class="document-inputs">
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+								<table class="table" id="document-table">
+									<thead >
+										<tr >
+											<th></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.description" >Description</textarea></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.quantity">Quantity</textarea></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.unitprice">Unit Price</textarea></th><th ng-hide="taxOption=='tax-none'">											<textarea type="text" class="header-inputs tax1-header" translate="inv.invoice_table.tax1"></textarea></th><th ng-hide="taxOption=='tax-none' || taxOption=='1 Tax'">											<textarea type="text" class="header-inputs tax2-header" translate="inv.invoice_table.tax2"></textarea></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.amount" value="0">Amount</textarea></th><th >											<textarea class="header-inputs balance" disabled="disabled"></textarea></th>
+										</tr>
+									</thead>
+
+									<tfoot>
+										<tr >
+											<td colspan="3"  >
+											<button id="button-row-add " class="btn btn-primary noPrint" ng-hide="printMode" href ng:click="addItem()">
+												<span class="fa fa-plus noPrint" translate="inv.invoice_table.addrow"></span>
+											</button></td>
+											<td class="footer-labels">											<textarea type="text" class="table-inputs" translate="inv.invoice_table.subtotal"></textarea></td>
+
+											<td class="total-rows" style="cursor: default;"> {{invoice_sub_total() | currency :""}} </td>
+											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
+
+										</tr>
+										<tr  ng-show="invoice.discount">
+											<td colspan="3" class="noline"></td><td class="footer-labels">											<textarea type="text" class="table-inputs discount-row">{{'inv.invoice_table.discount' | translate}} {{invoice.discount}} %</textarea></td>
+											<td class="total-rows" > - {{invoice_discount() | currency :""}} </td>
+											<td >											<textarea type="text" class="table-inputs currency-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
+										</tr>
+										<!--tax subtotals-->
+										<tr ng-repeat="group in groupsArr">
+											<td colspan="3" class="noline"></td>
+											<td class="footer-labels">											<textarea type="text" class="table-inputs tax1-row" >{{ 'inv.invoice_table.taxtotal' | translate }} {{group.perc}} %</textarea></td>
+											<td class="total-rows" ng-model="taxes">{{ group.sum * group.perc / 100.0 | currency :""}}</td>
+											<td >											<textarea type="text" class="table-inputs currency-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
+										</tr>
+
+										<tr class="trShipping" ng-show="radioShipping">
+											<td colspan="3" class="noline"></td>
+											<td class="footer-labels">											<textarea type="text" class="table-inputs shipping-row" translate="inv.invoice_table.shipping" ></textarea></td>
+											<td >
+											<input class="table-inputs shipping-total" ng:validate="number" ng-model="invoice.shippingcosts" coma-dot-converter="coma-dot-converter">
+											</td>
+											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
+										</tr>
+										<tr class="trBalance">
+											<td colspan="3" class="noline" ></td>
+											<td class="footer-labels">											<textarea type="text" class="table-inputs" translate="inv.invoice_table.balance"></textarea></td>
+
+											<td class="total-rows" style="cursor: default;"> {{calculate_grand_total() -discount.show| currency :""}}</td>
+											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
+										</tr>
+
+									</tfoot>
+
+									<tbody >
+										<tr ng:repeat="item in invoice.items" class="invoice-row" style="display: none" jq:animate="dropdown;250">
+											<td class="dragHandle">
+											<div class= "delete-action">
+												<button class="btn btn-danger remove-row noPrint" href="#" ng-hide="printMode" ng-click="removeItem(item)">
+													<span class="fa fa-trash-o"></span>
+												</button>
+											</div></td>
+											<td class="product-column">											<textarea ng:model="item.description" type="text"  class="table-textareas product" translate="inv.invoice_table.product" contentEditable="true"></textarea></td><td class="quantity-column">
+											<input  ng:model="item.qty" coma-dot-converter="coma-dot-converter" class="table-inputs quantity" value="1" size="4" ng:required ng:validate="integer" placeholder="qty">
+											</td><td class="netprice-column">
+											<input ng:model="item.cost" coma-dot-converter="coma-dot-converter"  class="table-inputs unitprice" autocomplete="off" value="0.00" >
+											</td><td ng-hide="taxOption=='tax-none'" class="tax1-column">
+											<input ng:model="item.taxOne" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax1-row taxes" autocomplete="off">
+											</td><td ng-hide="taxOption=='tax-none' || taxOption=='1 Tax' " class="tax2-column">
+											<input  ng:model="item.taxTwo" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax2-row taxes" autocomplete="off">
+											</td><td class="grossprice-column"> {{item.cost * item.qty | currency :""}} </td>
+											<td class="currency-column">											<textarea type="text" class="table-textareas currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency">												
+											</textarea></td>
+
+										</tr>
+									</tbody>
+
+								</table>
+								<table class="table">
+									<tbody>
+										<tr >
+											<td>											<textarea ng-model="footer.terms" class="document-inputs terms" placeholder="{{ 'inv.invoice_header.termslabel' | translate }}"></textarea></td>
+											<td align="right">											<textarea ng-model="footer.notes" class="document-inputs notes" placeholder="{{ 'inv.invoice_header.notes' | translate }}"></textarea></td>
+										</tr>
+									</tbody>
+								</table>
+								<table class="table">
+									<tbody>
+										<tr >
+											<td>											<textarea ng-model="footer.footer_left" class="document-inputs footer" placeholder="{{ 'inv.invoice_header.footer' | translate }}"></textarea></td>
+											<td align="center">											<textarea ng-model="footer.footer_middle" class="document-inputs footer" placeholder="{{ 'inv.invoice_header.footer' | translate }}"></textarea></td>
+											<td align="right">											<textarea ng-model="footer.footer_right" class="document-inputs footer" placeholder="{{ 'inv.invoice_header.footer' | translate }}"></textarea></td>
+										</tr>
+									</tbody>
+
+								</table>
+							</div>
+
+						</div>
+						<div class="company-info noPrint" ng-hide="printMode">
+							<p>
+								made with <i class="fa fa-heart heart"></i> in Germany by <a href="http://www.lexware.de"><img src="img/lexware_logo.jpg" target="_blank" style="width: 120px; height: 20px"><img /></a>
+							</p>
+						</div>
+					</div>
+
+					<div>
+						<!-- modal -Email-->
+						<script type="text/ng-template" id="EmailModalContent.html">
+							<div class="modal-content">
+							<div class="modal-header">
+							<h4 class="modal-title" translate="inv.invoice_email.title"></h4>
+							</div>
+							<div class="modal-body">
+							<form role="form">
+							<div class="form-group">
+							<input type="email" class="form-control" placeholder="{{ 'inv.invoice_email.customer-email' | translate }}">
+							</div>
+							<div class="form-group">
+							<textarea class="form-control" placeholder="{{ 'inv.invoice_email.subject' | translate }}"></textarea>
+							</div>
+							<div class="form-group">
+							<textarea class="form-control" placeholder="{{ 'inv.invoice_email.customer-message' | translate }}"></textarea>
+							</div>
+							<div class="checkbox">
+							<label>
+							<input type="checkbox"  ng-click="showPayPalMode = ! showPayPalMode">
+							{{ 'inv.invoice_email.getpaid' | translate }}</label>
+							</div>
+							<div class="form-group" ng-show="showPayPalMode">
+							<input type="email" class="form-control" placeholder="{{ 'inv.invoice_email.paypal_merchantaccount' | translate }}">
+							</div>
+							</form>
+							</div>
+							<div class="modal-footer">
+							<button ng-click="ok()" type="button" class="btn btn-default"  translate="inv.invoice_email.close"></button>
+							<button ng-click="cancel()" type="button" class="btn btn-primary" translate="inv.invoice_email.send"></button>
+							</div>
+							</div><!-- /.modal-content -->
+						</script>
+
+					</div><!-- /.modal -Email-->
+					<div>
+						<!-- modal -Reset-->
+						<script type="text/ng-template" id="ResetModalContent.html">
+							<div class="modal-content">
+							<div class="modal-header">
+							<h4 class="modal-title" translate="inv.reset.title"></h4>
+							</div>
+							<div class="modal-body">
+
+							<div class="form-group">
+							<p>{{ 'inv.reset.message' | translate }}</p>
+							</div>
+							<div class="modal-footer">
+							<button ng-click="cancel()" type="button" class="btn btn-default"  translate="inv.reset.abort"></button>
+							<button ng-click="resetStorage();" type="button" class="btn btn-primary" translate="inv.reset.yes"></button>
+							</div>
+							</div><!-- /.modal-content -->
+						</script>
+
+					</div><!-- /.modal -Reset-->
+
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>
