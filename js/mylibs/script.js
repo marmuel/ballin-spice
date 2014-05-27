@@ -38,6 +38,7 @@ $('#document-table').change(function() {
 $('#discount').change(function() {
 	colspan();
 });
+
 $('#tax').change(function() {
 	colspan();
 });

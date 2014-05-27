@@ -17,7 +17,8 @@ function($translateProvider) {
 	$translateProvider.preferredLanguage('en_US');
 
 	//START THE MAIN CONTROLLER
-}]).controller('CtrlInvoice', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout',
+}])
+.controller('CtrlInvoice', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout',
 function($scope, $translate, $modal, $window, $filter, $http, $timeout) {
 
 	$scope.setLang = function(langKey) {
@@ -107,6 +108,7 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout) {
 	$scope.removeItem = function(item) {
 		$scope.invoice.items.splice($scope.invoice.items.indexOf(item), 1);
 	};
+
 
 
 	// Callculate Tax and dynamically add new rows for subtotals
