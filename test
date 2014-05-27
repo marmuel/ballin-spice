@@ -15,10 +15,10 @@
 		<script type="text/javascript" src="bower_components/angular-translate/angular-translate.min.js"></script>
 		<script type="text/javascript" src="js/libs/loader-static-files.js"></script>
 		<script type="text/javascript" src="js/libs/jquery.autosize.min.js" ></script>
-
-		<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="13ysuqq7fl50z0k"></script>
+		<script type="text/javascript" src="js/mylibs/script.js"></script>
 		<script type="text/javascript" src="js/mylibs/main.js"></script>
-		<script defer src="js/mylibs/script.js"></script>
+		<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="13ysuqq7fl50z0k"></script>
+
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 		<script defer src="js/mylibs/localize.js"></script>
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -99,7 +99,7 @@
 
 							<li>
 
-								<button class="btn btn-lg btn-inverse sidebar-button" ng-click="showGoogleAddress = ! showGoogleAddress ; focusInput=true">
+								<button class="btn btn-lg btn-inverse sidebar-button" ng-click="showGoogleAddress = ! showGoogleAddress">
 									<span class="fa fa-google" translate="inv.sidebarbutton.googlesearch" ></span>
 								</button>
 
@@ -174,7 +174,7 @@
 
 							<div class="row" >
 								<div id="locationField" class="right-inner-addon" ng-show="showGoogleAddress">
-									<input id="autocomplete" class="form-control" focus-me="focusInput" placeholder="{{ 'inv.invoice_form.enteraddress' | translate }}" onFocus="geolocate()" type="search">
+									<input id="autocomplete" class="form-control" placeholder="{{ 'inv.invoice_form.enteraddress' | translate }}" onFocus="geolocate()" type="search">
 								</div>
 								<div id="google-address" style="display: none" >
 

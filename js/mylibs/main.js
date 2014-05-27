@@ -17,8 +17,8 @@ function($translateProvider) {
 	$translateProvider.preferredLanguage('en_US');
 
 	//START THE MAIN CONTROLLER
-}]).controller('CtrlInvoice', ['$scope', '$translate', '$modal', '$window', '$filter', '$http',
-function($scope, $translate, $modal, $window, $filter, $http) {
+}]).controller('CtrlInvoice', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout',
+function($scope, $translate, $modal, $window, $filter, $http, $timeout) {
 
 	$scope.setLang = function(langKey) {
 		// You can change the language during runtime
@@ -273,7 +273,28 @@ function($scope, $translate, $modal, $window, $filter, $http) {
 			instanceElement.show('slow');
 		}, 0);
 	};
+})
+
+// Set Focus on Inputs for e.g. Google Address Search
+
+.directive('focusMe', function($timeout) {
+  return {
+    link: function(scope, element, attrs) {
+      scope.$watch(attrs.focusMe, function(value) {
+        if(value === true) { 
+          $timeout(function() {
+            element[0].focus();
+            scope[attrs.focusMe] = false;
+          });
+        }
+      });
+    }
+  };
 });
+
+
+
+
 // ACHTUNG WENN EINE WEITERE DIREKTIVE HINZUKOMMT ; semicolon ENTFERNEN!!!!!
 
 // Tax Sum
@@ -302,39 +323,5 @@ function readURL(input) {
 	}
 }
 
-// jQUERY
-
-$(document).ready(function() {
-	//set default currency
-	$("#currency").val('USD');
-	$("#tax").trigger("change");
-
-	$("#currency").trigger('change');
-	$("#logoCompany").change(function() {
-		readURL(this);
-	});
-	
-	// toggle shipping-button
-	
-   $ (function (){
-   	var d = "";
-   	var d = $('.shipping-total').val();
-   	if (d != 0) {
-   		$('.shipping-yes').click();
-   	} else {
-   		$('.shipping-no').click();
-   	}
-   	});
-   	
-	
-	// set all textareas to autosize
-	$('textarea').autosize();
-
-	// destroy autosize for different inputs
-	$('#document-to-company').trigger('autosize.destroy');
-	$('#document-type').trigger('autosize.destroy');
-	$('.currency-label').trigger('autosize.destroy');
-
-});
 
 
