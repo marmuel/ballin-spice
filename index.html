@@ -166,7 +166,7 @@
 											<td>											<textarea ng-model="invoice.type" id="document-type" class="document-inputs" placeholder="{{ 'inv.invoice_form.type' | translate }}"></textarea>											<textarea ng-model="invoice.fromaddress" id="document-from" class="document-inputs address" placeholder="{{ 'inv.invoice_form.fromaddress' | translate }}"></textarea></td>
 											<td align="right">
 											<input type='file' id="logoCompany" />
-											<img ng-hide="logoRemoved" id="company_logo" src="img/logo.jpg" alt="logo" width="250"></td>
+											<img ng-hide="logoRemoved" id="company_logo" ng-src="{{ logo }}" alt="logo" width="250" />
 										</tr>
 									</tbody>
 								</table>

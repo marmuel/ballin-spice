@@ -53,6 +53,8 @@ function($scope, $translate, $modal, $window, $filter, $http) {
 		footer_right: ''
 	};
 
+    var default_logo = "img/logo.jpg";
+
 	if (localStorage["invoice"] == "" || localStorage["invoice"] == null) {
 		console.log('Sample Invoice');
 		$scope.invoice = sample_invoice;
@@ -60,6 +62,14 @@ function($scope, $translate, $modal, $window, $filter, $http) {
 		console.log('Stored Invoice');
 		$scope.invoice = JSON.parse(localStorage["invoice"]);
 	}
+	
+	if (localStorage["logo"]) {
+     $scope.logo = localStorage["logo"];
+   } else {
+     $scope.logo = default_logo;
+   }
+   
+   
 	$scope.addItem = function() {
 		$scope.invoice.items.push({
 			description : "",
@@ -81,7 +91,7 @@ function($scope, $translate, $modal, $window, $filter, $http) {
 			$scope.class = "glyphicon glyphicon-plus";
 			$scope.logoRemoved = true;
 		}
-
+           localStorage["logo"] = "";
 	};
 
 	$scope.editLogo = function() {
@@ -222,6 +232,7 @@ function($scope, $translate, $modal, $window, $filter, $http) {
 		$scope.resetStorage = function() {
 			$modalInstance.dismiss('cancel');
 			localStorage["invoice"] = "";
+			localStorage["logo"] = "";
 			console.log('localStorage cleared');
 			$scope.invoice = sample_invoice;
 			$window.location.reload();
@@ -285,6 +296,7 @@ function readURL(input) {
 		var reader = new FileReader();
 		reader.onload = function(e) {
 			$('#company_logo').attr('src', e.target.result);
+			localStorage["logo"] = e.target.result;
 		};
 		reader.readAsDataURL(input.files[0]);
 	}
@@ -463,7 +475,8 @@ function dropboxupload() {
 	options = {
 		success : function(files) {
 		console.log(files);
-		$('#company_logo').attr('src',  files[0].link);						
+		$('#company_logo').attr('src',  files[0].link);	
+		localStorage["logo"] = files[0].link;					
 		},
 		multiselect : false, 
 		linkType: "direct",
