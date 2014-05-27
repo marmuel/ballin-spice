@@ -15,9 +15,8 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
 		<script type="text/javascript" src="bower_components/angular-translate/angular-translate.min.js"></script>
 		<script type="text/javascript" src="js/libs/loader-static-files.js"></script>
-		<script type="text/javascript" src="js/mylibs/main.js"></script>
 		<script type="text/javascript" src="js/libs/jquery.autosize.min.js" ></script>
-		<script defer src="js/mylibs/script.js"></script>
+		<script type="text/javascript" src="js/mylibs/main.js"></script>
 		<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="13ysuqq7fl50z0k"></script>
 
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
@@ -101,7 +100,7 @@
 							<li>
 
 								<button class="btn btn-lg btn-inverse sidebar-button" ng-click="showGoogleAddress = ! showGoogleAddress">
-									<span class="fa fa-magic" translate="inv.sidebarbutton.googlesearch" ></span>
+									<span class="fa fa-google" translate="inv.sidebarbutton.googlesearch" ></span>
 								</button>
 
 							</li>
@@ -161,12 +160,6 @@
 									</div>
 
 								</div>
-																		<script>
-										function dropboxupload() {
-											Dropbox.choose();
-										};
-											
-										</script>
 								<table class="table" >
 									<tbody>
 										<tr>
@@ -233,10 +226,8 @@
 										<tr >
 											<td>											<textarea ng-model="invoice.tocompany" id="document-to-company" class="document-inputs" placeholder="{{ 'inv.invoice_form.tocompany' | translate }}"></textarea>											<textarea ng-model="invoice.toaddress" id="document-to" class="document-inputs to-address" placeholder="{{ 'inv.invoice_form.toaddress' | translate }}"></textarea></td>
 
-											
-											<td align="right"><textarea class="document-inputs document-date-label" translate="inv.invoice_form.nolabel"></textarea>											
-												<textarea class="document-inputs document-data-label" translate="inv.invoice_form.datelabel"></textarea></td>
-											<td align="right"><textarea ng-model="invoice.invoice_number" class="document-inputs" placeholder="12345678"></textarea>
+											<td align="right">											<textarea class="document-inputs document-date-label" translate="inv.invoice_form.nolabel"></textarea>											<textarea class="document-inputs document-data-label" translate="inv.invoice_form.datelabel"></textarea></td>
+											<td align="right">											<textarea ng-model="invoice.invoice_number" class="document-inputs" placeholder="12345678"></textarea>
 											<input class="document-inputs">
 											</td>
 										</tr>
@@ -321,7 +312,7 @@
 									<tbody>
 										<tr >
 											<td>											<textarea ng-model="invoice.terms" class="document-inputs terms" placeholder="{{ 'inv.invoice_form.termslabel' | translate }}"></textarea></td>
-											<td align="right">						<textarea ng-model="invoice.notes" class="document-inputs notes" placeholder="{{ 'inv.invoice_form.notes' | translate }}"></textarea></td>
+											<td align="right">											<textarea ng-model="invoice.notes" class="document-inputs notes" placeholder="{{ 'inv.invoice_form.notes' | translate }}"></textarea></td>
 										</tr>
 									</tbody>
 								</table>
@@ -329,8 +320,8 @@
 									<tbody>
 										<tr >
 											<td>											<textarea ng-model="invoice.footer_left" class="document-inputs footer" placeholder="{{ 'inv.invoice_form.footer' | translate }}"></textarea></td>
-											<td align="center">						<textarea ng-model="invoice.footer_middle" class="document-inputs footer" placeholder="{{ 'inv.invoice_form.footer' | translate }}"></textarea></td>
-											<td align="right">						<textarea ng-model="invoice.footer_right" class="document-inputs footer" placeholder="{{ 'inv.invoice_form.footer' | translate }}"></textarea></td>
+											<td align="center">											<textarea ng-model="invoice.footer_middle" class="document-inputs footer" placeholder="{{ 'inv.invoice_form.footer' | translate }}"></textarea></td>
+											<td align="right">											<textarea ng-model="invoice.footer_right" class="document-inputs footer" placeholder="{{ 'inv.invoice_form.footer' | translate }}"></textarea></td>
 										</tr>
 									</tbody>
 
