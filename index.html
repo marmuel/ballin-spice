@@ -9,13 +9,13 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
 		<script data-require="angular.js@*" data-semver="1.2.10" src="http://code.angularjs.org/1.2.10/angular.js"></script>
 		<!--bootstrap ui-->
 		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
 		<script type="text/javascript" src="bower_components/angular-translate/angular-translate.min.js"></script>
 		<script type="text/javascript" src="js/libs/loader-static-files.js"></script>
 		<script type="text/javascript" src="js/libs/jquery.autosize.min.js" ></script>
+		<script type="text/javascript" src="js/mylibs/script.js"></script>
 		<script type="text/javascript" src="js/mylibs/main.js"></script>
 		<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="13ysuqq7fl50z0k"></script>
 
@@ -150,7 +150,7 @@
 										<button type="button" class="btn btn-default" ng-click="editLogo()" href="">
 											<span  class="fa fa-pencil" ></span>
 										</button>
-										<button type="button" class="btn btn-default" href="" onclick="dropboxupload()">
+										<button type="button" id="dropboxupload" class="btn btn-default">
 											<span  class="fa fa-dropbox" ></span>
 										</button>
 
