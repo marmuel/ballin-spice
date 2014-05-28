@@ -190,13 +190,13 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout) {
 		
 	var taxSelect = $scope.taxOption;
 	
-	if (taxSelect === '1 Tax') {
+	if (taxSelect === '2') {
 		var tItems = $scope.invoice.items;
 		angular.forEach(tItems, function(item) {
 			item.taxTwo = "";
     	});		
 	};
-    if (taxSelect === 'tax-none') {
+    if (taxSelect === '1') {
 		var tItems = $scope.invoice.items;
 		angular.forEach(tItems, function(item) {
 			item.taxTwo = "";	
