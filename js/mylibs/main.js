@@ -16,9 +16,9 @@ function($translateProvider) {
 	// Tell the module what language to use by default
 	$translateProvider.preferredLanguage('en_US');
 
-	//START THE MAIN CONTROLLER
+//START THE MAIN CONTROLLER
 }])
-.controller('CtrlInvoice', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout',
+.controller('NewInvoiceCtrl', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout',
 function($scope, $translate, $modal, $window, $filter, $http, $timeout) {
 
 	$scope.setLang = function(langKey) {
@@ -242,6 +242,7 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout) {
 		};
 	};
 }])
+
 
 //coma dot converter (custom directive)
 
