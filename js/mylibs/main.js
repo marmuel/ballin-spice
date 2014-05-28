@@ -184,6 +184,33 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout) {
 	}
 
 
+	// Clear Taxes in Column depending on select #tax
+
+	$scope.resetTaxes = function() {
+		
+	var taxSelect = $scope.taxOption;
+	
+	if (taxSelect === '1 Tax') {
+		var tItems = $scope.invoice.items;
+		angular.forEach(tItems, function(item) {
+			item.taxTwo = "";
+    	});		
+	};
+    if (taxSelect === 'tax-none') {
+		var tItems = $scope.invoice.items;
+		angular.forEach(tItems, function(item) {
+			item.taxTwo = "";	
+			});
+
+		var tItems = $scope.invoice.items;
+		angular.forEach(tItems, function(item) {
+			item.taxOne = "";				
+			});
+	   };
+
+};
+   
+
 	$scope.printInfo = function() {
 		window.print();
 	};

@@ -115,7 +115,7 @@
 							</li>
 							<li>
 								<label for="tax" translate="inv.sidebarbutton.taxlabel"></label>
-								<select id="tax" class="form-control tax" ng-model="taxOption">
+								<select id="tax" class="form-control tax" ng-model="taxOption" ng-change="resetTaxes()">
 									<option value="tax-none" selected="selected" translate="inv.sidebarbutton.taxnone"></option><option value="1 Tax" translate="inv.sidebarbutton.tax1"></option><option value="2 Taxes" translate="inv.sidebarbutton.tax2"></option>
 								</select>
 							</li>
