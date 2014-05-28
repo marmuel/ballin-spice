@@ -21,6 +21,12 @@ function($translateProvider) {
 .controller('NewInvoiceCtrl', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout',
 function($scope, $translate, $modal, $window, $filter, $http, $timeout) {
 
+	// TODO set default shipping-button Necessary?
+
+		$scope.radioShipping = '0';
+
+
+	
 	$scope.setLang = function(langKey) {
 		// You can change the language during runtime
 		$translate.use(langKey);
@@ -210,11 +216,6 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout) {
 
 };
    
-  // Clear Shipping Costs depending on toggle state Yes / No
-
-	$scope.resetShipping = function() {
-		$scope.radioShipping = '0.00';
-	}; 
 
 	// Modal Dialog Email
 
