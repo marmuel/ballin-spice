@@ -166,7 +166,7 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout) {
 		// Grand Total
 		$scope.calculate_grand_total = function() {
 			// Shipping
-			shipPing = +$scope.invoice.shippingcosts;
+			shipPing = +$scope.radioShipping;
 			return $scope.invoice_sub_total() - $scope.invoice_discount() + shipPing + taxTotal;
 		};
 
@@ -210,10 +210,11 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout) {
 
 };
    
+  // Clear Shipping Costs depending on toggle state Yes / No
 
-	$scope.printInfo = function() {
-		window.print();
-	};
+	$scope.resetShipping = function() {
+		$scope.radioShipping = '0.00';
+	}; 
 
 	// Modal Dialog Email
 

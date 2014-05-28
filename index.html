@@ -116,7 +116,7 @@
 							<li>
 								<label for="tax" translate="inv.sidebarbutton.taxlabel"></label>
 								<select id="tax" class="form-control tax" ng-model="taxOption" ng-change="resetTaxes()">
-									<option value="tax-none" selected="selected" translate="inv.sidebarbutton.taxnone"></option><option value="1 Tax" translate="inv.sidebarbutton.tax1"></option><option value="2 Taxes" translate="inv.sidebarbutton.tax2"></option>
+									<option ng-value="1" selected="selected" translate="inv.sidebarbutton.taxnone"></option><option ng-value="2" translate="inv.sidebarbutton.tax1"></option><option ng-value="3" translate="inv.sidebarbutton.tax2"></option>
 								</select>
 							</li>
 							<li>
@@ -125,9 +125,9 @@
 							</li>
 							<li>
 								<label for="shipping" translate="inv.sidebarbutton.shippinglabel"></label>
-								<div class="btn-group btn-group-shipping" id="shipping">
-									<label ng-model="radioShipping" btn-radio="''" class="btn btn-default shipping-radio shipping-no"> <span translate="inv.sidebarbutton.shippingno"></span> </label>
+								<div class="btn-group btn-group-shipping" id="shipping">							
 									<label ng-model="radioShipping" btn-radio="'0.00'"  class="btn btn-default shipping-radio shipping-yes"><span translate="inv.sidebarbutton.shippingyes"></span> </label>
+									<label ng-model="radioShipping" btn-radio="''" class="btn btn-default shipping-radio shipping-no"> <span translate="inv.sidebarbutton.shippingno"></span> </label>
 								</div>
 							</li>
 						</ul>
@@ -236,7 +236,15 @@
 								<table class="table" id="document-table">
 									<thead >
 										<tr >
-											<th></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.description" >Description</textarea></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.quantity">Quantity</textarea></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.unitprice">Unit Price</textarea></th><th ng-hide="taxOption=='tax-none'">											<textarea type="text" class="header-inputs tax1-header" translate="inv.invoice_table.tax1"></textarea></th><th ng-hide="taxOption=='tax-none' || taxOption=='1 Tax'">											<textarea type="text" class="header-inputs tax2-header" translate="inv.invoice_table.tax2"></textarea></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.amount" value="0">Amount</textarea></th><th >											<textarea class="header-inputs balance" disabled="disabled"></textarea></th>
+											<th></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.description" >Description</textarea></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.quantity">Quantity</textarea></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.unitprice">Unit Price</textarea></th>
+											<th ng-hide="taxOption=='1'">											
+												   <textarea type="text" class="header-inputs tax1-header" translate="inv.invoice_table.tax1"></textarea></th>
+												<th ng-hide="taxOption=='1' || taxOption=='2'">											
+													<textarea type="text" class="header-inputs tax2-header" translate="inv.invoice_table.tax2"></textarea></th>
+													
+													
+													<th><textarea type="text" class="header-inputs" translate="inv.invoice_table.amount" value="0">Amount</textarea></th>
+													<th ><textarea class="header-inputs balance" disabled="disabled"></textarea></th>
 										</tr>
 									</thead>
 
@@ -246,36 +254,36 @@
 											<button id="button-row-add " class="btn btn-primary noPrint" ng-hide="printMode" href ng:click="addItem()">
 												<span class="fa fa-plus noPrint" translate="inv.invoice_table.addrow"></span>
 											</button></td>
-											<td class="footer-labels">											<textarea type="text" class="table-inputs" translate="inv.invoice_table.subtotal"></textarea></td>
+											<td class="footer-labels" colspan="{{taxOption}}">											<textarea type="text" class="table-inputs" translate="inv.invoice_table.subtotal"></textarea></td>
 
 											<td class="total-rows" style="cursor: default;"> {{invoice_sub_total() | currency :""}} </td>
 											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
 
 										</tr>
 										<tr  ng-show="invoice.discount">
-											<td colspan="3" class="noline"></td><td class="footer-labels">											<textarea type="text" class="table-inputs discount-row">{{'inv.invoice_table.discount' | translate}} {{invoice.discount}} %</textarea></td>
+											<td colspan="3" class="noline"></td><td class="footer-labels" colspan="{{taxOption}}">											<textarea type="text" class="table-inputs discount-row">{{'inv.invoice_table.discount' | translate}} {{invoice.discount}} %</textarea></td>
 											<td class="total-rows" > - {{invoice_discount() | currency :""}} </td>
 											<td >											<textarea type="text" class="table-inputs currency-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
 										</tr>
 										<!--tax subtotals-->
 										<tr ng-repeat="group in groupsArr">
 											<td colspan="3" class="noline"></td>
-											<td class="footer-labels">											<textarea type="text" class="table-inputs tax1-row" >{{ 'inv.invoice_table.taxtotal' | translate }} {{group.perc}} %</textarea></td>
+											<td class="footer-labels" colspan="{{taxOption}}">											<textarea type="text" class="table-inputs tax1-row" >{{ 'inv.invoice_table.taxtotal' | translate }} {{group.perc}} %</textarea></td>
 											<td class="total-rows" ng-model="taxes">{{ group.sum * group.perc / 100.0 | currency :""}}</td>
 											<td >											<textarea type="text" class="table-inputs currency-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
 										</tr>
 
 										<tr class="trShipping" ng-show="radioShipping">
 											<td colspan="3" class="noline"></td>
-											<td class="footer-labels">											<textarea type="text" class="table-inputs shipping-row" translate="inv.invoice_table.shipping" ></textarea></td>
+											<td class="footer-labels" colspan="{{taxOption}}">											<textarea type="text" class="table-inputs shipping-row" translate="inv.invoice_table.shipping" ></textarea></td>
 											<td >
-											<input class="table-inputs shipping-total" ng:validate="number" ng-model="invoice.shippingcosts" coma-dot-converter="coma-dot-converter">
+											<input class="table-inputs shipping-total" ng:validate="number" ng-model="radioShipping" coma-dot-converter="coma-dot-converter">
 											</td>
 											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
 										</tr>
 										<tr class="trBalance">
 											<td colspan="3" class="noline" ></td>
-											<td class="footer-labels">											<textarea type="text" class="table-inputs" translate="inv.invoice_table.balance"></textarea></td>
+											<td class="footer-labels" colspan="{{taxOption}}">											<textarea type="text" class="table-inputs" translate="inv.invoice_table.balance"></textarea></td>
 
 											<td class="total-rows" style="cursor: default;"> {{calculate_grand_total() -discount.show| currency :""}}</td>
 											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
@@ -295,9 +303,9 @@
 											<input  ng:model="item.qty" coma-dot-converter="coma-dot-converter" class="table-inputs quantity" value="1" size="4" ng:required ng:validate="integer" placeholder="qty">
 											</td><td class="netprice-column">
 											<input ng:model="item.cost" coma-dot-converter="coma-dot-converter"  class="table-inputs unitprice" autocomplete="off" value="0.00" >
-											</td><td ng-hide="taxOption=='tax-none'" class="tax1-column">
+											</td><td ng-hide="taxOption=='1'" class="tax1-column">
 											<input ng:model="item.taxOne" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax1-row taxes" autocomplete="off">
-											</td><td ng-hide="taxOption=='tax-none' || taxOption=='1 Tax' " class="tax2-column">
+											</td><td ng-hide="taxOption=='1' || taxOption=='2' " class="tax2-column">
 											<input  ng:model="item.taxTwo" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax2-row taxes" autocomplete="off">
 											</td><td class="grossprice-column"> {{item.cost * item.qty | currency :""}} </td>
 											<td class="currency-column">											<textarea type="text" class="table-textareas currency-label" style="cursor: default; overflow: hidden; word-wrap: break-word; resize: none; height: 38px;" disabled="disabled" ng:model="selectionCurrency">												

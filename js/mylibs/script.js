@@ -2,25 +2,11 @@ $(document).ready(function() {
 	//set default currency
 	$("#currency").val('USD');
 	$("#tax").trigger("change");
-
 	$("#currency").trigger('change');
 	$("#logoCompany").change(function() {
 		readURL(this);
 	});
-	
-	// toggle shipping-button
-	
-   $ (function (){
-   	var d = "";
-   	var d = $('.shipping-total').val();
-   	if (d != 0) {
-   		$('.shipping-yes').click();
-   	} else {
-   		$('.shipping-no').click();
-   	}
-   	});
-   	
-	
+		
 	// set all textareas to autosize
 	$('textarea').autosize();
 
@@ -31,34 +17,6 @@ $(document).ready(function() {
 
 });
 
-// set colspan for footer labels and subtotals, depending on no. of tax columns
-$('#document-table').change(function() {
-	colspan();
-});	
-$('#discount').change(function() {
-	colspan();
-});
-
-$('#tax').change(function() {
-	colspan();
-});
-
-// set correct colpsan for tfoot (subtotals) depending on count of Tax columns
-function colspan() {
-
-
-	var ts = $("#tax option:selected").index();
-	var colspan = ts + 1;
-	if (ts == "0") {
-		$('.footer-labels').attr('colspan', 1);
-	}
-	if (ts == "1") {
-		$('.footer-labels').attr('colspan', 2);
-	}
-	if (ts == "2") {
-		$('.footer-labels').attr('colspan', 3);
-	}
-}
 
 // google address autocomplete feature
 // of the Google Places API to help users fill in the information.
@@ -178,36 +136,3 @@ $( "#dropboxupload" ).click(function() {
 		linkType: "direct",
 		extensions : ['.jpeg', '.gif', '.jpg', '.png'],
 };
-
-$(document).ready(function() {
-	//set default currency
-	$("#currency").val('USD');
-	$("#tax").trigger("change");
-
-	$("#currency").trigger('change');
-	$("#logoCompany").change(function() {
-		readURL(this);
-	});
-
-	// toggle shipping-button
-
-   $ (function (){
-   	var d = "";
-   	var d = $('.shipping-total').val();
-   	if (d != 0) {
-   		$('.shipping-yes').click();
-   	} else {
-   		$('.shipping-no').click();
-   	}
-   	});
-   	
-
-	// set all textareas to autosize
-	$('textarea').autosize();
-
-	// destroy autosize for different inputs
-	$('#document-to-company').trigger('autosize.destroy');
-	$('#document-type').trigger('autosize.destroy');
-	$('.currency-label').trigger('autosize.destroy');
-
-});
