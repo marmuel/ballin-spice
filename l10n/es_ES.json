@@ -1,0 +1,91 @@
+{
+	"inv": {
+		"nav": {
+			"language": "Lenguaje"
+		},
+		"headerbutton": {
+			"preview": " Vista previa",
+			"pdf": " PDF",
+			"email": " E-mail",
+			"print": " Imprimir"
+		},
+
+		"sidebarbutton": {
+
+			"resetbutton": " Reset",
+			"currencylabel": "Moneda",
+			"datelabel": "Formato de la fecha",
+			"discountlabel": "% Descuento",
+			"discountnone": "Sin descuento",
+			"discountpercent": "Porcentajes",
+			"shippinglabel": "Precio de envio",
+			"shippingno": "No",
+			"shippingyes": "Si",
+			"taxlabel": "IVA",
+			"taxnone": "Sin IVA",
+			"tax1": "Con IVA",
+			"tax2": "",
+			"dropbox": " Dropbox",
+			"googlesearch": " Dirección",
+			"searchno": "No",
+			"searchyes": "Si"
+		},
+		"googlesearch": {
+			"accept": " Aceptar",
+			"searchagain": " Buscar nuevamente"
+		},
+		"invoice_form": {
+			"type": "Factura",
+			"enteraddress": "Por favor entre una nueva dirección",
+			"fromaddress": "Nombre de la empresa y dirección",
+			"tocompany": "Nombre de la empresa del cliente",
+			"toaddress": "Dirección del cliente",
+			"nolabel": "Número de la factura",
+			"datelabel": "Fecha de la factura",
+			"notes": "Notas (Es visible para el cliente)",
+			"termslabel": "Condiciones de pago (Es visible para el cliente)",
+			"footer": "Pie de página",
+			"logoupload": "Adicionar logo ",
+			"streetno": "No.",
+			"street": "Via / Calle",
+			"city": "Ciudad",
+			"state": "Estado",
+			"zipcode": "Código postal",
+			"country": "País",
+			"printmodeonbutton": " Vista previa activada",
+			"printmodeoffbutton": " Vista previa desactivada",
+			"printbutton": " Imprimir"
+		},
+		"invoice_table": {
+			"amount": "Total",
+			"quantity": "Cantidad",
+			"tax1": "% IVA",
+			"tax2": "% IVA",
+			"unitprice": "Precio por unidad",
+			"description": "Descripción",
+			"addrow": " Línea",
+			"product": "Producto",
+			"subtotal": "Precio neto",
+			"taxtotal": "IVA",
+			"balance": "Precio total",
+			"discount": "Descuento",
+			"shipping": "Coste de envio"
+		},
+		"invoice_email":{
+			"title": "Enviar factura por E-mail",
+			"send": "Enviar",
+			"close": "Cerrar",
+			"customer-email": "Correo del cliente",
+			"subject": "Asunto",
+			"customer-message": "Su mensaje",
+			"getpaid": "Aceptar PayPal",
+			"paypal_merchantaccount": "Su cuenta bajo PayPal"
+		},
+		"reset":{
+			"title": "Borrar formualrio de factura",
+			"message": "Está seguro que desea borrar el formuario de la factura?\nTodos los datos que ha accedido serán borrados!",
+			"yes": "Si",
+			"abort": "Cancelar"		
+		}
+	}
+}
