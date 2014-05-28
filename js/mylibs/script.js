@@ -10,7 +10,7 @@ $(document).ready(function() {
 	// set all textareas to autosize
 	$('textarea').autosize();
 
-	// destroy autosize for different inputs
+	// destroy autosize for particular inputs
 	$('#document-to-company').trigger('autosize.destroy');
 	$('#document-type').trigger('autosize.destroy');
 	$('.currency-label').trigger('autosize.destroy');
