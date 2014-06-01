@@ -305,6 +305,9 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout) {
 
 		};
 	};
+	$scope.printInfo = function() {
+      window.print();
+    };
 }])
 
 
