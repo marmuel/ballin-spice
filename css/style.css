@@ -105,7 +105,7 @@ p, div {
 .action-buttons {
 	margin-left: 10%;
 }
-.currency, .discount, .shipping, .tax, .googlesearch, .date-format {
+.currency, .discount, .shipping, .tax, .googlesearch, .date-format, .country{
 	max-width: 80%;
 	margin-bottom: 20px;
 }

@@ -13,6 +13,7 @@
 
 			"resetbutton": " Reset",
 			"currencylabel": "Currency",
+			"countrylabel": "Country",
 			"datelabel": "Date Format",
 			"discountlabel": "% Discount",
 			"discountnone": "No",

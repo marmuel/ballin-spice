@@ -1,15 +1,14 @@
 $(document).ready(function() {
 	//set default currency
-	$("#currency").val('USD');
 	$("#tax").trigger("change");
 	$("#currency").trigger('change');
 	$("#logoCompany").change(function() {
 		readURL(this);
 	});
-		
+	
+	//autosize	
 	// set all textareas to autosize
 	$('textarea').autosize();
-
 	// destroy autosize for particular inputs
 	$('#document-to-company').trigger('autosize.destroy');
 	$('#document-type').trigger('autosize.destroy');
@@ -136,3 +135,4 @@ $( "#dropboxupload" ).click(function() {
 		linkType: "direct",
 		extensions : ['.jpeg', '.gif', '.jpg', '.png'],
 };
+

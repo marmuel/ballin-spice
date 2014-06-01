@@ -13,6 +13,7 @@
 		"sidebarbutton": {
 
 			"resetbutton": " Reset",
+			"countrylabel": "Land",
 			"currencylabel": "Währung",
 			"datelabel": "Datumsformat",
 			"discountlabel": "% Rabatt",

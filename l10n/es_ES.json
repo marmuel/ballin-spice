@@ -15,6 +15,7 @@
 			"resetbutton": " Reset",
 			"currencylabel": "Moneda",
 			"datelabel": "Formato de la fecha",
+			"countrylabel": "País",
 			"discountlabel": "% Descuento",
 			"discountnone": "Sin descuento",
 			"discountpercent": "Porcentajes",

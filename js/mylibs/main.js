@@ -20,8 +20,26 @@ function($translateProvider) {
 }])
 .controller('NewInvoiceCtrl', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout',
 function($scope, $translate, $modal, $window, $filter, $http, $timeout) {
-
-	// TODO set default shipping-button Necessary?
+	
+   // load, populate and order Json in country select
+   $scope.data = {
+    locations: {
+      countries: []
+    }
+  };
+  // set default 
+  $scope.data.locations.countries.$default = 'United States';
+  $scope.data.locations.countries.$resolved = false;
+  
+  $http.get('l10n/countries.json').success(function(countries) {
+    $scope.data.locations.countries.length = 0;
+    // actually filter is set to none. to activate choose for e.g. (countries, 'name')
+    Array.prototype.push.apply($scope.data.locations.countries, $filter('orderBy')(countries, ''));
+    $scope.selectionCountry || ($scope.selectionCountry = $filter('filter')($scope.data.locations.countries, {name: $scope.data.locations.countries.$default})[0]);
+    $scope.data.locations.countries.$resolved = true; 
+  });
+      
+	// Set default shipping-button
 
 		$scope.radioShipping = '0';
 
