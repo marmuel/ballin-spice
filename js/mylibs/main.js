@@ -39,6 +39,23 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout) {
     $scope.data.locations.countries.$resolved = true; 
   });
       
+   // pre set currency select  
+  
+  $scope.updateCountry = function() {
+
+  var selCountry=$scope.selectionCountry.currencies[0];
+  var selCurrency=document.getElementById('currency').options;
+  for(var i=0;i<selCurrency.length;i++) {
+    if(selCurrency[i].value.indexOf(selCountry)==0){
+      selCurrency[i].selected=true;
+    };
+    if(document.getElementById('country').value==''){
+      selCurrency[0].selected=true;
+    };
+  };
+};
+
+ 
 	// Set default shipping-button
 
 		$scope.radioShipping = '0';

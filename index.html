@@ -112,7 +112,7 @@
 						<ul class="nav nav-sidebar action-buttons">
 							<li>
 								<label for="country" translate="inv.sidebarbutton.countrylabel"></label>
-								<select id="country" class="form-control country" ng-disabled="!data.locations.countries.$resolved" ng-model="selectionCountry" ng-options="country.name for country in data.locations.countries"></select>
+								<select id="country" class="form-control country" ng-change="updateCountry()" ng-disabled="!data.locations.countries.$resolved" ng-model="selectionCountry" ng-options="country.name for country in data.locations.countries"></select>
 							</li>
 							<li>
 								<label for="currency" translate="inv.sidebarbutton.currencylabel"></label>
