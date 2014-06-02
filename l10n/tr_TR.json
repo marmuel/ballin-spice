@@ -1,0 +1,92 @@
+{
+	"inv": {
+		"nav": {
+			"language": "Lisan"
+		},
+		"headerbutton": {
+			"preview": " Önizleme",
+			"pdf": " PDF",
+			"email": " E-Posta",
+			"print": " Baskı"
+		},
+
+		"sidebarbutton": {
+
+			"resetbutton": " Reset",
+			"countrylabel": "Ülke",
+			"currencylabel": "Para Birimi",
+			"datelabel": "Tarih Biçimi",
+			"discountlabel": "% Iskonto",
+			"discountnone": "Hiçbir Iskonto",
+			"discountpercent": "Yüzde",
+			"shippinglabel": "İade",
+			"shippingno": "Hayır",
+			"shippingyes": "Evet",
+			"taxlabel": "KDV",
+			"taxnone": "Hayır KDV",
+			"tax1": "KDV Ile",
+			"tax2": "",
+			"dropbox": " Dropbox",
+			"googlesearch": " Adres",
+			"searchno": "Hayır",
+			"searchyes": "Evet"
+		},
+		"googlesearch": {
+			"accept": " Üzerine almak",
+			"searchagain": " Yine ara"
+		},
+		"invoice_form": {
+			"type": "Fatura",
+			"enteraddress": "Lütfen bir adres girin",
+			"fromaddress": "Şirket adı ve adresi",
+			"tocompany": "Şirket adı müşteriler",
+			"toaddress": "Adres",
+			"nolabel": "Fatura No",
+			"datelabel": "Fatura Tarihi",
+			"notes": "Not",
+			"termslabel": "Ödeme şartları",
+			"footer": "Dipnot",
+			"logoupload": "Logo",
+			"streetno": "Evin Numarası",
+			"street": "Yol",
+			"city": "şehir",
+			"state": "Eyalet",
+			"zipcode": "Posta Kodu",
+			"country": "Ülke",
+			"printmodeonbutton": " Baskı modu açmak",
+			"printmodeoffbutton": " Baskı modu kapamak",
+			"printbutton": " Baskı"
+		},
+		"invoice_table": {
+			"amount": "Ödenecek Tutar",
+			"quantity": "Miktar",
+			"tax1": "% KDV",
+			"tax2": "% KDV",
+			"unitprice": "Birim Fiyat",
+			"description": "Mal Hizmet",
+			"addrow": " Satırbaşı",
+			"product": "Ürün",
+			"subtotal": "Mal Hizmet Tutarı",
+			"taxtotal": "Hesaplanan KDV",
+			"balance": "Ödenecek Tutar",
+			"discount": "Iskonto",
+			"shipping": "İade"
+		},
+		"invoice_email":{
+			"title": "E-posta ile fatura gönder",
+			"send": "Göndermek",
+			"close": "Yakın",
+			"customer-email": "E-posta adresi, müşteri",
+			"subject": "Konu",
+			"customer-message": "Mesaj",
+			"getpaid": "PayPal",
+			"paypal_merchantaccount": "PayPal Erişim Bilgileri "
+		},
+		"reset":{
+			"title": "Fatura formu Reset",
+			"message": "Fatura formu Reset? Tüm veriler kaybolacak!",
+			"yes": "Evet",
+			"abort": "Iptal Etmek"		
+		}
+	}
+}
