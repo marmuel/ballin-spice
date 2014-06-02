@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 });
 
-// trigger on change for currency
+// trigger / change currency after update country
 $("#country").change(function() {
 	setTimeout(function() {
 		$("#currency").trigger('change');
