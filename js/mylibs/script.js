@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	//set default currency
-	$("#tax").trigger("change");
+	$("#tax").trigger('change');
 	$("#currency").trigger('change');
 	$("#logoCompany").change(function() {
 		readURL(this);
@@ -15,6 +15,14 @@ $(document).ready(function() {
 	$('.currency-label').trigger('autosize.destroy');
 
 });
+
+// trigger on change for currency
+$("#country").change(function() {
+	setTimeout(function() {
+		$("#currency").trigger('change');
+		}, 100);	
+});
+ 
 
 
 // google address autocomplete feature
