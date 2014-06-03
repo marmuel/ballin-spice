@@ -25,7 +25,7 @@
 			"taxlabel": "Mehrwertsteuer",
 			"taxnone": "Keine MwSt.",
 			"tax1": "Mit MwSt.",
-			"tax2": "",
+			"tax2": "Mit MwSt.",
 			"dropbox": " Dropbox",
 			"googlesearch": " Adresse",
 			"searchno": "Nein",
@@ -58,7 +58,7 @@
 			"printbutton": " Drucken"
 		},
 		"invoice_table": {
-			"amount": "Gesamtbetrag",
+			"amount": "Summe",
 			"quantity": "Menge",
 			"tax1": "% MwSt.",
 			"tax2": "% MwSt.",
