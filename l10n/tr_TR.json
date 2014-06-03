@@ -58,7 +58,7 @@
 			"printbutton": " Baskı"
 		},
 		"invoice_table": {
-			"amount": "Ödenecek Tutar",
+			"amount": "Mal Hizmet Tutarı",
 			"quantity": "Miktar",
 			"tax1": "% KDV",
 			"tax2": "% KDV",
@@ -66,10 +66,10 @@
 			"description": "Mal Hizmet",
 			"addrow": " Satırbaşı",
 			"product": "Ürün",
-			"subtotal": "Mal Hizmet Tutarı",
+			"subtotal": "Mal Hizmet Toplam Tutarı",
 			"taxtotal": "Hesaplanan KDV",
 			"balance": "Ödenecek Tutar",
-			"discount": "Iskonto",
+			"discount": "Toplam Iskonto",
 			"shipping": "İade"
 		},
 		"invoice_email":{
