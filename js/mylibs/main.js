@@ -64,6 +64,12 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale)
   // TODO set i18n date, number and currency filters in angular
    var selFormat=$scope.selectionCountry.i18n;
    console.log(selFormat);
+   // start load locale script dynamically   
+   var imported = document.createElement('script');
+   var fileImport = 'angular-locale_' + selFormat + '.js';
+   imported.src = 'https://code.angularjs.org/1.2.10/i18n/' + fileImport;
+   document.head.appendChild(imported); 
+   // end load locale script dynamically
 };
 
 
