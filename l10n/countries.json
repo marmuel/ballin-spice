@@ -1,1041 +1,250 @@
 [
-	{
-		"alpha3": "USA",
-		"currencies": ["USD"],
-		"name": "United States"
-	}, {
-		"alpha3": "CAN",
-		"currencies": ["CAD"],
-		"name": "Canada"
-	}, {
-		"alpha3": "DEU",
-		"currencies": ["EUR"],
-		"name": "Germany"
-	}, {
-		"alpha3": "AUT",
-		"currencies": ["EUR"],
-		"name": "Austria"
-	}, {
-		"alpha3": "CHE",
-		"currencies": ["CHF"],
-		"name": "Switzerland"
-	}, {
-		"alpha3": "GBR",
-		"currencies": ["GBP"],
-		"name": "United Kingdom"
-	}, {
-		"alpha3": "AUS",
-		"currencies": ["AUD"],
-		"name": "Australia"
-	}, {
-		"name": "__________________________________________________"
-	}, {
-		"alpha3": "",
-		"currencies": ["USD"],
-		"name": "Ascension Island"
-	}, {
-		"alpha3": "AND",
-		"currencies": ["EUR"],
-		"name": "Andorra"
-	}, {
-		"alpha3": "ARE",
-		"currencies": ["AED"],
-		"name": "United Arab Emirates"
-	}, {
-		"alpha3": "AFG",
-		"currencies": ["AFN"],
-		"name": "Afghanistan"
-	}, {
-		"alpha3": "ATG",
-		"currencies": ["XCD"],
-		"name": "Antigua And Barbuda"
-	}, {
-		"alpha3": "AIA",
-		"currencies": ["XCD"],
-		"name": "Anguilla"
-	}, {
-		"alpha3": "ALB",
-		"currencies": ["ALL"],
-		"name": "Albania"
-	}, {
-		"alpha3": "ARM",
-		"currencies": ["AMD"],
-		"name": "Armenia"
-	}, {
-		"alpha3": "AGO",
-		"currencies": ["AOA"],
-		"name": "Angola"
-	}, {
-		"alpha3": "ATA",
-		"currencies": [],
-		"name": "Antarctica"
-	}, {
-		"alpha3": "ARG",
-		"currencies": ["ARS"],
-		"name": "Argentina"
-	}, {
-		"alpha3": "ASM",
-		"currencies": ["USD"],
-		"name": "American Samoa"
-	}, {
-		"alpha3": "ABW",
-		"currencies": ["AWG"],
-		"name": "Aruba"
-	}, {
-		"alpha3": "AZE",
-		"currencies": ["AZN"],
-		"name": "Azerbaijan"
-	}, {
-		"alpha3": "BIH",
-		"currencies": ["BAM"],
-		"name": "Bosnia & Herzegovina"
-	}, {
-		"alpha3": "BRB",
-		"currencies": ["BBD"],
-		"name": "Barbados"
-	}, {
-		"alpha3": "BGD",
-		"currencies": ["BDT"],
-		"name": "Bangladesh"
-	}, {
-		"alpha3": "BEL",
-		"currencies": ["EUR"],
-		"name": "Belgium"
-	}, {
-		"alpha3": "BFA",
-		"currencies": ["XOF"],
-		"name": "Burkina Faso"
-	}, {
-		"alpha3": "BGR",
-		"currencies": ["BGN"],
-		"name": "Bulgaria"
-	}, {
-		"alpha3": "BHR",
-		"currencies": ["BHD"],
-		"name": "Bahrain"
-	}, {
-		"alpha3": "BDI",
-		"currencies": ["BIF"],
-		"name": "Burundi"
-	}, {
-		"alpha3": "BEN",
-		"currencies": ["XOF"],
-		"name": "Benin"
-	}, {
-		"alpha3": "BLM",
-		"currencies": ["EUR"],
-		"name": "Saint Barthélemy"
-	}, {
-		"alpha3": "BMU",
-		"currencies": ["BMD"],
-		"name": "Bermuda"
-	}, {
-		"alpha3": "BRN",
-		"currencies": ["BND"],
-		"name": "Brunei Darussalam"
-	}, {
-		"alpha3": "BOL",
-		"currencies": ["BOB"],
-		"name": "Bolivia, Plurinational State Of"
-	}, {
-		"alpha3": "BES",
-		"currencies": ["USD"],
-		"name": "Bonaire, Saint Eustatius And Saba"
-	}, {
-		"alpha3": "BRA",
-		"currencies": ["BRL"],
-		"name": "Brazil"
-	}, {
-		"alpha3": "BHS",
-		"currencies": ["BSD"],
-		"name": "Bahamas"
-	}, {
-		"alpha3": "BTN",
-		"currencies": ["INR"],
-		"name": "Bhutan"
-	}, {
-		"alpha3": "BVT",
-		"currencies": ["NOK"],
-		"name": "Bouvet Island"
-	}, {
-		"alpha3": "BWA",
-		"currencies": ["BWP"],
-		"name": "Botswana"
-	}, {
-		"alpha3": "BLR",
-		"currencies": ["BYR"],
-		"name": "Belarus"
-	}, {
-		"alpha3": "BLZ",
-		"currencies": ["BZD"],
-		"name": "Belize"
-	}, {
-		"alpha3": "CCK",
-		"currencies": ["AUD"],
-		"name": "Cocos (Keeling) Islands"
-	}, {
-		"alpha3": "COD",
-		"currencies": ["CDF"],
-		"name": "Democratic Republic Of Congo"
-	}, {
-		"alpha3": "CAF",
-		"currencies": ["XAF"],
-		"name": "Central African Republic"
-	}, {
-		"alpha3": "COG",
-		"currencies": ["XAF"],
-		"name": "Republic Of Congo"
-	}, {
-		"alpha3": "CIV",
-		"currencies": ["XOF"],
-		"name": "Cote d'Ivoire"
-	}, {
-		"alpha3": "COK",
-		"currencies": ["NZD"],
-		"name": "Cook Islands"
-	}, {
-		"alpha3": "CHL",
-		"currencies": ["CLP", "CLF"],
-		"name": "Chile"
-	}, {
-		"alpha3": "CMR",
-		"currencies": ["XAF"],
-		"name": "Cameroon"
-	}, {
-		"alpha3": "CHN",
-		"currencies": ["CNY"],
-		"name": "China"
-	}, {
-		"alpha3": "COL",
-		"currencies": ["COP"],
-		"name": "Colombia"
-	}, {
-		"alpha3": "",
-		"currencies": ["EUR"],
-		"name": "Clipperton Island"
-	}, {
-		"alpha3": "CRI",
-		"currencies": ["CRC"],
-		"name": "Costa Rica"
-	}, {
-		"alpha3": "CUB",
-		"currencies": ["CUP"],
-		"name": "Cuba"
-	}, {
-		"alpha3": "CPV",
-		"currencies": ["CVE"],
-		"name": "Cape Verde"
-	}, {
-		"alpha3": "CUW",
-		"currencies": ["ANG"],
-		"name": "Curacao"
-	}, {
-		"alpha3": "CXR",
-		"currencies": ["AUD"],
-		"name": "Christmas Island"
-	}, {
-		"alpha3": "CYP",
-		"currencies": ["EUR"],
-		"name": "Cyprus"
-	}, {
-		"alpha3": "CZE",
-		"currencies": ["CZK"],
-		"name": "Czech Republic"
-	}, {
-		"alpha3": "DEU",
-		"currencies": ["EUR"],
-		"name": "Germany"
-	}, {
-		"alpha3": "",
-		"currencies": ["USD"],
-		"name": "Diego Garcia"
-	}, {
-		"alpha3": "DJI",
-		"currencies": ["DJF"],
-		"name": "Djibouti"
-	}, {
-		"alpha3": "DNK",
-		"currencies": ["DKK"],
-		"name": "Denmark"
-	}, {
-		"alpha3": "DMA",
-		"currencies": ["XCD"],
-		"name": "Dominica"
-	}, {
-		"alpha3": "DOM",
-		"currencies": ["DOP"],
-		"name": "Dominican Republic"
-	}, {
-		"alpha3": "DZA",
-		"currencies": ["DZD"],
-		"name": "Algeria"
-	}, {
-		"alpha3": "",
-		"currencies": ["EUR"],
-		"name": "Ceuta, Mulilla"
-	}, {
-		"alpha3": "ECU",
-		"currencies": ["USD"],
-		"name": "Ecuador"
-	}, {
-		"alpha3": "EST",
-		"currencies": ["EUR"],
-		"name": "Estonia"
-	}, {
-		"alpha3": "EGY",
-		"currencies": ["EGP"],
-		"name": "Egypt"
-	}, {
-		"alpha3": "ESH",
-		"currencies": ["MAD"],
-		"name": "Western Sahara"
-	}, {
-		"alpha3": "ERI",
-		"currencies": ["ERN"],
-		"name": "Eritrea"
-	}, {
-		"alpha3": "ESP",
-		"currencies": ["EUR"],
-		"name": "Spain"
-	}, {
-		"alpha3": "ETH",
-		"currencies": ["ETB"],
-		"name": "Ethiopia"
-	}, {
-		"alpha3": "",
-		"currencies": ["EUR"],
-		"name": "European Union"
-	}, {
-		"alpha3": "FIN",
-		"currencies": ["EUR"],
-		"name": "Finland"
-	}, {
-		"alpha3": "FJI",
-		"currencies": ["FJD"],
-		"name": "Fiji"
-	}, {
-		"alpha3": "FLK",
-		"currencies": ["FKP"],
-		"name": "Falkland Islands"
-	}, {
-		"alpha3": "FSM",
-		"currencies": ["USD"],
-		"name": "Micronesia, Federated States Of"
-	}, {
-		"alpha3": "FRO",
-		"currencies": ["DKK"],
-		"name": "Faroe Islands"
-	}, {
-		"alpha3": "FRA",
-		"currencies": ["EUR"],
-		"name": "France"
-	}, {
-		"alpha3": "",
-		"currencies": ["EUR"],
-		"name": "France, Metropolitan"
-	}, {
-		"alpha3": "GAB",
-		"currencies": ["XAF"],
-		"name": "Gabon"
-	}, {
-		"alpha3": "GRD",
-		"currencies": ["XCD"],
-		"name": "Grenada"
-	}, {
-		"alpha3": "GEO",
-		"currencies": ["GEL"],
-		"name": "Georgia"
-	}, {
-		"alpha3": "GUF",
-		"currencies": ["EUR"],
-		"name": "French Guiana"
-	}, {
-		"alpha3": "GGY",
-		"currencies": ["GBP"],
-		"name": "Guernsey"
-	}, {
-		"alpha3": "GHA",
-		"currencies": ["GHS"],
-		"name": "Ghana"
-	}, {
-		"alpha3": "GIB",
-		"currencies": ["GIP"],
-		"name": "Gibraltar"
-	}, {
-		"alpha3": "GRL",
-		"currencies": ["DKK"],
-		"name": "Greenland"
-	}, {
-		"alpha3": "GMB",
-		"currencies": ["GMD"],
-		"name": "Gambia"
-	}, {
-		"alpha3": "GIN",
-		"currencies": ["GNF"],
-		"name": "Guinea"
-	}, {
-		"alpha3": "GLP",
-		"currencies": ["EUR"],
-		"name": "Guadeloupe"
-	}, {
-		"alpha3": "GNQ",
-		"currencies": ["XAF"],
-		"name": "Equatorial Guinea"
-	}, {
-		"alpha3": "GRC",
-		"currencies": ["EUR"],
-		"name": "Greece"
-	}, {
-		"alpha3": "SGS",
-		"currencies": ["GBP"],
-		"name": "South Georgia And The South Sandwich Islands"
-	}, {
-		"alpha3": "GTM",
-		"currencies": ["GTQ"],
-		"name": "Guatemala"
-	}, {
-		"alpha3": "GUM",
-		"currencies": ["USD"],
-		"name": "Guam"
-	}, {
-		"alpha3": "GNB",
-		"currencies": ["XOF"],
-		"name": "Guinea-bissau"
-	}, {
-		"alpha3": "GUY",
-		"currencies": ["GYD"],
-		"name": "Guyana"
-	}, {
-		"alpha3": "HKG",
-		"currencies": ["HKD"],
-		"name": "Hong Kong"
-	}, {
-		"alpha3": "HMD",
-		"currencies": ["AUD"],
-		"name": "Heard Island And McDonald Islands"
-	}, {
-		"alpha3": "HND",
-		"currencies": ["HNL"],
-		"name": "Honduras"
-	}, {
-		"alpha3": "HRV",
-		"currencies": ["HRK"],
-		"name": "Croatia"
-	}, {
-		"alpha3": "HTI",
-		"currencies": ["HTG"],
-		"name": "Haiti"
-	}, {
-		"alpha3": "HUN",
-		"currencies": ["HUF"],
-		"name": "Hungary"
-	}, {
-		"alpha3": "",
-		"currencies": ["EUR"],
-		"name": "Canary Islands"
-	}, {
-		"alpha3": "IDN",
-		"currencies": ["IDR"],
-		"name": "Indonesia"
-	}, {
-		"alpha3": "IRL",
-		"currencies": ["EUR"],
-		"name": "Ireland"
-	}, {
-		"alpha3": "ISR",
-		"currencies": ["ILS"],
-		"name": "Israel"
-	}, {
-		"alpha3": "IMN",
-		"currencies": ["GBP"],
-		"name": "Isle Of Man"
-	}, {
-		"alpha3": "IND",
-		"currencies": ["INR"],
-		"name": "India"
-	}, {
-		"alpha3": "IOT",
-		"currencies": ["USD"],
-		"name": "British Indian Ocean Territory"
-	}, {
-		"alpha3": "IRQ",
-		"currencies": ["IQD"],
-		"name": "Iraq"
-	}, {
-		"alpha3": "IRN",
-		"currencies": ["IRR"],
-		"name": "Iran, Islamic Republic Of"
-	}, {
-		"alpha3": "ISL",
-		"currencies": ["ISK"],
-		"name": "Iceland"
-	}, {
-		"alpha3": "ITA",
-		"currencies": ["EUR"],
-		"name": "Italy"
-	}, {
-		"alpha3": "JEY",
-		"currencies": ["GBP"],
-		"name": "Jersey"
-	}, {
-		"alpha3": "JAM",
-		"currencies": ["JMD"],
-		"name": "Jamaica"
-	}, {
-		"alpha3": "JOR",
-		"currencies": ["JOD"],
-		"name": "Jordan"
-	}, {
-		"alpha3": "JPN",
-		"currencies": ["JPY"],
-		"name": "Japan"
-	}, {
-		"alpha3": "KEN",
-		"currencies": ["KES"],
-		"name": "Kenya"
-	}, {
-		"alpha3": "KGZ",
-		"currencies": ["KGS"],
-		"name": "Kyrgyzstan"
-	}, {
-		"alpha3": "KHM",
-		"currencies": ["KHR"],
-		"name": "Cambodia"
-	}, {
-		"alpha3": "KIR",
-		"currencies": ["AUD"],
-		"name": "Kiribati"
-	}, {
-		"alpha3": "COM",
-		"currencies": ["KMF"],
-		"name": "Comoros"
-	}, {
-		"alpha3": "KNA",
-		"currencies": ["XCD"],
-		"name": "Saint Kitts And Nevis"
-	}, {
-		"alpha3": "PRK",
-		"currencies": ["KPW"],
-		"name": "Korea, Democratic People's Republic Of"
-	}, {
-		"alpha3": "KOR",
-		"currencies": ["KRW"],
-		"name": "Korea, Republic Of"
-	}, {
-		"alpha3": "KWT",
-		"currencies": ["KWD"],
-		"name": "Kuwait"
-	}, {
-		"alpha3": "CYM",
-		"currencies": ["KYD"],
-		"name": "Cayman Islands"
-	}, {
-		"alpha3": "KAZ",
-		"currencies": ["KZT"],
-		"name": "Kazakhstan"
-	}, {
-		"alpha3": "LAO",
-		"currencies": ["LAK"],
-		"name": "Lao People's Democratic Republic"
-	}, {
-		"alpha3": "LBN",
-		"currencies": ["LBP"],
-		"name": "Lebanon"
-	}, {
-		"alpha3": "LCA",
-		"currencies": ["XCD"],
-		"name": "Saint Lucia"
-	}, {
-		"alpha3": "LIE",
-		"currencies": ["CHF"],
-		"name": "Liechtenstein"
-	}, {
-		"alpha3": "LKA",
-		"currencies": ["LKR"],
-		"name": "Sri Lanka"
-	}, {
-		"alpha3": "LBR",
-		"currencies": ["LRD"],
-		"name": "Liberia"
-	}, {
-		"alpha3": "LSO",
-		"currencies": ["LSL"],
-		"name": "Lesotho"
-	}, {
-		"alpha3": "LTU",
-		"currencies": ["LTL"],
-		"name": "Lithuania"
-	}, {
-		"alpha3": "LUX",
-		"currencies": ["EUR"],
-		"name": "Luxembourg"
-	}, {
-		"alpha3": "LVA",
-		"currencies": ["LVL"],
-		"name": "Latvia"
-	}, {
-		"alpha3": "LBY",
-		"currencies": ["LYD"],
-		"name": "Libya"
-	}, {
-		"alpha3": "MAR",
-		"currencies": ["MAD"],
-		"name": "Morocco"
-	}, {
-		"alpha3": "MCO",
-		"currencies": ["EUR"],
-		"name": "Monaco"
-	}, {
-		"alpha3": "MDA",
-		"currencies": ["MDL"],
-		"name": "Moldova"
-	}, {
-		"alpha3": "MNE",
-		"currencies": ["EUR"],
-		"name": "Montenegro"
-	}, {
-		"alpha3": "MAF",
-		"currencies": ["EUR"],
-		"name": "Saint Martin"
-	}, {
-		"alpha3": "MDG",
-		"currencies": ["MGA"],
-		"name": "Madagascar"
-	}, {
-		"alpha3": "MHL",
-		"currencies": ["USD"],
-		"name": "Marshall Islands"
-	}, {
-		"alpha3": "MKD",
-		"currencies": ["MKD"],
-		"name": "Macedonia, The Former Yugoslav Republic Of"
-	}, {
-		"alpha3": "MLI",
-		"currencies": ["XOF"],
-		"name": "Mali"
-	}, {
-		"alpha3": "MMR",
-		"currencies": ["MMK"],
-		"name": "Myanmar"
-	}, {
-		"alpha3": "MNG",
-		"currencies": ["MNT"],
-		"name": "Mongolia"
-	}, {
-		"alpha3": "MAC",
-		"currencies": ["MOP"],
-		"name": "Macao"
-	}, {
-		"alpha3": "MNP",
-		"currencies": ["USD"],
-		"name": "Northern Mariana Islands"
-	}, {
-		"alpha3": "MTQ",
-		"currencies": ["EUR"],
-		"name": "Martinique"
-	}, {
-		"alpha3": "MRT",
-		"currencies": ["MRO"],
-		"name": "Mauritania"
-	}, {
-		"alpha3": "MSR",
-		"currencies": ["XCD"],
-		"name": "Montserrat"
-	}, {
-		"alpha3": "MLT",
-		"currencies": ["EUR"],
-		"name": "Malta"
-	}, {
-		"alpha3": "MUS",
-		"currencies": ["MUR"],
-		"name": "Mauritius"
-	}, {
-		"alpha3": "MDV",
-		"currencies": ["MVR"],
-		"name": "Maldives"
-	}, {
-		"alpha3": "MWI",
-		"currencies": ["MWK"],
-		"name": "Malawi"
-	}, {
-		"alpha3": "MEX",
-		"currencies": ["MXN"],
-		"name": "Mexico"
-	}, {
-		"alpha3": "MYS",
-		"currencies": ["MYR"],
-		"name": "Malaysia"
-	}, {
-		"alpha3": "MOZ",
-		"currencies": ["MZN"],
-		"name": "Mozambique"
-	}, {
-		"alpha3": "NAM",
-		"currencies": ["NAD"],
-		"name": "Namibia"
-	}, {
-		"alpha3": "NCL",
-		"currencies": ["XPF"],
-		"name": "New Caledonia"
-	}, {
-		"alpha3": "NER",
-		"currencies": ["XOF"],
-		"name": "Niger"
-	}, {
-		"alpha3": "NFK",
-		"currencies": ["AUD"],
-		"name": "Norfolk Island"
-	}, {
-		"alpha3": "NGA",
-		"currencies": ["NGN"],
-		"name": "Nigeria"
-	}, {
-		"alpha3": "NIC",
-		"currencies": ["NIO"],
-		"name": "Nicaragua"
-	}, {
-		"alpha3": "NLD",
-		"currencies": ["EUR"],
-		"name": "Netherlands"
-	}, {
-		"alpha3": "NOR",
-		"currencies": ["NOK"],
-		"name": "Norway"
-	}, {
-		"alpha3": "NPL",
-		"currencies": ["NPR"],
-		"name": "Nepal"
-	}, {
-		"alpha3": "NRU",
-		"currencies": ["AUD"],
-		"name": "Nauru"
-	}, {
-		"alpha3": "NIU",
-		"currencies": ["NZD"],
-		"name": "Niue"
-	}, {
-		"alpha3": "NZL",
-		"currencies": ["NZD"],
-		"name": "New Zealand"
-	}, {
-		"alpha3": "OMN",
-		"currencies": ["OMR"],
-		"name": "Oman"
-	}, {
-		"alpha3": "PAN",
-		"currencies": ["PAB"],
-		"name": "Panama"
-	}, {
-		"alpha3": "PER",
-		"currencies": ["PEN"],
-		"name": "Peru"
-	}, {
-		"alpha3": "PYF",
-		"currencies": ["XPF"],
-		"name": "French Polynesia"
-	}, {
-		"alpha3": "PNG",
-		"currencies": ["PGK"],
-		"name": "Papua New Guinea"
-	}, {
-		"alpha3": "PHL",
-		"currencies": ["PHP"],
-		"name": "Philippines"
-	}, {
-		"alpha3": "PAK",
-		"currencies": ["PKR"],
-		"name": "Pakistan"
-	}, {
-		"alpha3": "POL",
-		"currencies": ["PLN"],
-		"name": "Poland"
-	}, {
-		"alpha3": "SPM",
-		"currencies": ["EUR"],
-		"name": "Saint Pierre And Miquelon"
-	}, {
-		"alpha3": "PCN",
-		"currencies": ["NZD"],
-		"name": "Pitcairn"
-	}, {
-		"alpha3": "PRI",
-		"currencies": ["USD"],
-		"name": "Puerto Rico"
-	}, {
-		"alpha3": "PSE",
-		"currencies": ["JOD"],
-		"name": "Palestinian Territory, Occupied"
-	}, {
-		"alpha3": "PRT",
-		"currencies": ["EUR"],
-		"name": "Portugal"
-	}, {
-		"alpha3": "PLW",
-		"currencies": ["USD"],
-		"name": "Palau"
-	}, {
-		"alpha3": "PRY",
-		"currencies": ["PYG"],
-		"name": "Paraguay"
-	}, {
-		"alpha3": "QAT",
-		"currencies": ["QAR"],
-		"name": "Qatar"
-	}, {
-		"alpha3": "REU",
-		"currencies": ["EUR"],
-		"name": "Reunion"
-	}, {
-		"alpha3": "ROU",
-		"currencies": ["RON"],
-		"name": "Romania"
-	}, {
-		"alpha3": "SRB",
-		"currencies": ["RSD"],
-		"name": "Serbia"
-	}, {
-		"alpha3": "RUS",
-		"currencies": ["RUB"],
-		"name": "Russian Federation"
-	}, {
-		"alpha3": "RWA",
-		"currencies": ["RWF"],
-		"name": "Rwanda"
-	}, {
-		"alpha3": "SAU",
-		"currencies": ["SAR"],
-		"name": "Saudi Arabia"
-	}, {
-		"alpha3": "SLB",
-		"currencies": ["SBD"],
-		"name": "Solomon Islands"
-	}, {
-		"alpha3": "SYC",
-		"currencies": ["SCR"],
-		"name": "Seychelles"
-	}, {
-		"alpha3": "SDN",
-		"currencies": ["SDG"],
-		"name": "Sudan"
-	}, {
-		"alpha3": "SWE",
-		"currencies": ["SEK"],
-		"name": "Sweden"
-	}, {
-		"alpha3": "SGP",
-		"currencies": ["SGD"],
-		"name": "Singapore"
-	}, {
-		"alpha3": "SHN",
-		"currencies": ["SHP"],
-		"name": "Saint Helena, Ascension And Tristan Da Cunha"
-	}, {
-		"alpha3": "SVN",
-		"currencies": ["EUR"],
-		"name": "Slovenia"
-	}, {
-		"alpha3": "SJM",
-		"currencies": ["NOK"],
-		"name": "Svalbard And Jan Mayen"
-	}, {
-		"alpha3": "SVK",
-		"currencies": ["EUR"],
-		"name": "Slovakia"
-	}, {
-		"alpha3": "SLE",
-		"currencies": ["SLL"],
-		"name": "Sierra Leone"
-	}, {
-		"alpha3": "SMR",
-		"currencies": ["EUR"],
-		"name": "San Marino"
-	}, {
-		"alpha3": "SEN",
-		"currencies": ["XOF"],
-		"name": "Senegal"
-	}, {
-		"alpha3": "SOM",
-		"currencies": ["SOS"],
-		"name": "Somalia"
-	}, {
-		"alpha3": "SUR",
-		"currencies": ["SRD"],
-		"name": "Suriname"
-	}, {
-		"alpha3": "SSD",
-		"currencies": ["SSP"],
-		"name": "South Sudan"
-	}, {
-		"alpha3": "STP",
-		"currencies": ["STD"],
-		"name": "São Tomé and Príncipe"
-	}, {
-		"alpha3": "",
-		"currencies": ["RUB"],
-		"name": "USSR"
-	}, {
-		"alpha3": "SLV",
-		"currencies": ["USD"],
-		"name": "El Salvador"
-	}, {
-		"alpha3": "SXM",
-		"currencies": ["ANG"],
-		"name": "Sint Maarten"
-	}, {
-		"alpha3": "SYR",
-		"currencies": ["SYP"],
-		"name": "Syrian Arab Republic"
-	}, {
-		"alpha3": "SWZ",
-		"currencies": ["SZL"],
-		"name": "Swaziland"
-	}, {
-		"alpha3": "",
-		"currencies": ["GBP"],
-		"name": "Tristan de Cunha"
-	}, {
-		"alpha3": "TCA",
-		"currencies": ["USD"],
-		"name": "Turks And Caicos Islands"
-	}, {
-		"alpha3": "TCD",
-		"currencies": ["XAF"],
-		"name": "Chad"
-	}, {
-		"alpha3": "ATF",
-		"currencies": ["EUR"],
-		"name": "French Southern Territories"
-	}, {
-		"alpha3": "TGO",
-		"currencies": ["XOF"],
-		"name": "Togo"
-	}, {
-		"alpha3": "THA",
-		"currencies": ["THB"],
-		"name": "Thailand"
-	}, {
-		"alpha3": "TJK",
-		"currencies": ["TJS"],
-		"name": "Tajikistan"
-	}, {
-		"alpha3": "TKL",
-		"currencies": ["NZD"],
-		"name": "Tokelau"
-	}, {
-		"alpha3": "TLS",
-		"currencies": ["USD"],
-		"name": "East Timor"
-	}, {
-		"alpha3": "TKM",
-		"currencies": ["TMT"],
-		"name": "Turkmenistan"
-	}, {
-		"alpha3": "TUN",
-		"currencies": ["TND"],
-		"name": "Tunisia"
-	}, {
-		"alpha3": "TON",
-		"currencies": ["TOP"],
-		"name": "Tonga"
-	}, {
-		"alpha3": "TUR",
-		"currencies": ["TRY"],
-		"name": "Turkey"
-	}, {
-		"alpha3": "TTO",
-		"currencies": ["TTD"],
-		"name": "Trinidad And Tobago"
-	}, {
-		"alpha3": "TUV",
-		"currencies": ["AUD"],
-		"name": "Tuvalu"
-	}, {
-		"alpha3": "TWN",
-		"currencies": ["TWD"],
-		"name": "Taiwan, Province Of China"
-	}, {
-		"alpha3": "TZA",
-		"currencies": ["TZS"],
-		"name": "Tanzania, United Republic Of"
-	}, {
-		"alpha3": "UKR",
-		"currencies": ["UAH"],
-		"name": "Ukraine"
-	}, {
-		"alpha3": "UGA",
-		"currencies": ["UGX"],
-		"name": "Uganda"
-	}, {
-		"alpha3": "",
-		"currencies": ["GBP"],
-		"name": "United Kingdom"
-	}, {
-		"alpha3": "UMI",
-		"currencies": ["USD"],
-		"name": "United States Minor Outlying Islands"
-	}, {
-		"alpha3": "URY",
-		"currencies": ["UYU"],
-		"name": "Uruguay"
-	}, {
-		"alpha3": "UZB",
-		"currencies": ["UZS"],
-		"name": "Uzbekistan"
-	}, {
-		"alpha3": "VAT",
-		"currencies": ["EUR"],
-		"name": "Vatican City State"
-	}, {
-		"alpha3": "VCT",
-		"currencies": ["XCD"],
-		"name": "Saint Vincent And The Grenadines"
-	}, {
-		"alpha3": "VEN",
-		"currencies": ["VEF"],
-		"name": "Venezuela, Bolivarian Republic Of"
-	}, {
-		"alpha3": "VGB",
-		"currencies": ["USD"],
-		"name": "Virgin Islands (British)"
-	}, {
-		"alpha3": "VIR",
-		"currencies": ["USD"],
-		"name": "Virgin Islands (US)"
-	}, {
-		"alpha3": "VNM",
-		"currencies": ["VND"],
-		"name": "Viet Nam"
-	}, {
-		"alpha3": "VUT",
-		"currencies": ["VUV"],
-		"name": "Vanuatu"
-	}, {
-		"alpha3": "WLF",
-		"currencies": ["XPF"],
-		"name": "Wallis And Futuna"
-	}, {
-		"alpha3": "WSM",
-		"currencies": ["WST"],
-		"name": "Samoa"
-	}, {
-		"alpha3": "YEM",
-		"currencies": ["YER"],
-		"name": "Yemen"
-	}, {
-		"alpha3": "MYT",
-		"currencies": ["EUR"],
-		"name": "Mayotte"
-	}, {
-		"alpha3": "ZAF",
-		"currencies": ["ZAR"],
-		"name": "South Africa"
-	}, {
-		"alpha3": "ZMB",
-		"currencies": ["ZMW"],
-		"name": "Zambia"
-	}, {
-		"alpha3": "ZWE",
-		"currencies": ["USD"],
-		"name": "Zimbabwe"
-	}
-]
+{"name":"United States","currencies":"USD","i18n":"en-us"},
+{"name":"Canada","currencies":"CAD","i18n":"en-ca"},
+{"name":"Germany","currencies":"EUR","i18n":"de-de"},
+{"name":"Austria","currencies":"EUR","i18n":"de-at"},
+{"name":"Switzerland","currencies":"CHE","i18n":"de-ch"},
+{"name":"United Kingdom","currencies":"GBP","i18n":"en-gb"},
+{"name":"Australia","currencies":"AUD","i18n":"en-au"},
+{"name":"____________________________________________","currencies":"USD","i18n":"en-us"},
+{"name":"Afghanistan","currencies":"AFN","i18n":"ps-af"},
+{"name":"Albania","currencies":"ALL","i18n":"sq-al"},
+{"name":"Algeria","currencies":"DZD","i18n":"ar-dz"},
+{"name":"American Samoa","currencies":"USD","i18n":"en-as"},
+{"name":"Andorra","currencies":"EUR","i18n":"ca-ad"},
+{"name":"Angola","currencies":"AOA","i18n":"pt-ao"},
+{"name":"Anguilla","currencies":"XCD","i18n":"en-ai"},
+{"name":"Antigua and Barbuda","currencies":"XCD","i18n":"en-ag"},
+{"name":"Argentina","currencies":"ARS","i18n":"es-ar"},
+{"name":"Armenia","currencies":"AMD","i18n":"hy-am"},
+{"name":"Aruba","currencies":"AWG","i18n":"nl-aw"},
+{"name":"Ascension Island","currencies":"SHP","i18n":"en-sh"},
+{"name":"Azerbaijan","currencies":"AZN","i18n":"az-az"},
+{"name":"Bahamas","currencies":"BSD","i18n":"en-bs"},
+{"name":"Bahrain","currencies":"BHD","i18n":"ar-bh"},
+{"name":"Bangladesh","currencies":"BDT","i18n":"bn-bd"},
+{"name":"Barbados","currencies":"BBD","i18n":"en-bb"},
+{"name":"Belarus","currencies":"BYR","i18n":"be-by"},
+{"name":"Belgium","currencies":"EUR","i18n":"nl-be"},
+{"name":"Belize","currencies":"BZD","i18n":"en-bz"},
+{"name":"Benin","currencies":"XOF","i18n":"fr-bj"},
+{"name":"Bermuda","currencies":"BMD","i18n":"en-bm"},
+{"name":"Bhutan","currencies":"BTN","i18n":"dz-bt"},
+{"name":"Bolivia","currencies":"BOB","i18n":"es-bo"},
+{"name":"Bonaire","currencies":"USD","i18n":"nl-bq"},
+{"name":"Bosnia and Herzegovina","currencies":"BAM","i18n":"bs-ba"},
+{"name":"Botswana","currencies":"BWP","i18n":"en-bw"},
+{"name":"Brazil","currencies":"BRL","i18n":"pt-br"},
+{"name":"British Indian Ocean Territory","currencies":"USD","i18n":"en-io"},
+{"name":"British Virgin Islands","currencies":"USD","i18n":"en-vg"},
+{"name":"Brunei","currencies":"BND","i18n":"ms-bn"},
+{"name":"Bulgaria","currencies":"BGN","i18n":"bg-bg"},
+{"name":"Burkina Faso","currencies":"XOF","i18n":"fr-bf"},
+{"name":"Burundi","currencies":"BIF","i18n":"fr-bi"},
+{"name":"Cambodia","currencies":"KHR","i18n":"km-kh"},
+{"name":"Cameroon","currencies":"XAF","i18n":"en-cm"},
+{"name":"Cape Verde","currencies":"CVE","i18n":"pt-cv"},
+{"name":"Cayman Islands","currencies":"KYD","i18n":"en-ky"},
+{"name":"Central African Republic","currencies":"XAF","i18n":"fr-cf"},
+{"name":"Chad","currencies":"XAF","i18n":"fr-td"},
+{"name":"Chile","currencies":"CLF","i18n":"es-cl"},
+{"name":"China","currencies":"CNY","i18n":"zh-cn"},
+{"name":"Christmas Island","currencies":"AUD","i18n":"en-cx"},
+{"name":"Cocos (Keeling) Islands","currencies":"AUD","i18n":"en-cc"},
+{"name":"Colombia","currencies":"COP","i18n":"es-co"},
+{"name":"Comoros","currencies":"KMF","i18n":"ar-km"},
+{"name":"Republic of the Congo","currencies":"XAF","i18n":"fr-cg"},
+{"name":"Democratic Republic of the Congo","currencies":"CDF","i18n":"fr-cd"},
+{"name":"Cook Islands","currencies":"NZD","i18n":"en-ck"},
+{"name":"Costa Rica","currencies":"CRC","i18n":"es-cr"},
+{"name":"Croatia","currencies":"HRK","i18n":"hr-hr"},
+{"name":"Cuba","currencies":"CUC","i18n":"es-cu"},
+{"name":"CuraÃ§ao","currencies":"ANG","i18n":"nl-cw"},
+{"name":"Cyprus","currencies":"EUR","i18n":"el-cy"},
+{"name":"Czech Republic","currencies":"CZK","i18n":"cs-cz"},
+{"name":"Denmark","currencies":"DKK","i18n":"da-dk"},
+{"name":"Djibouti","currencies":"DJF","i18n":"fr-dj"},
+{"name":"Dominica","currencies":"XCD","i18n":"en-dm"},
+{"name":"Dominican Republic","currencies":"DOP","i18n":"es-do"},
+{"name":"Ecuador","currencies":"USD","i18n":"es-ec"},
+{"name":"Egypt","currencies":"EGP","i18n":"ar-eg"},
+{"name":"El Salvador","currencies":"SVC","i18n":"es-sv"},
+{"name":"Equatorial Guinea","currencies":"XAF","i18n":"es-gq"},
+{"name":"Eritrea","currencies":"ERN","i18n":"ti-er"},
+{"name":"Estonia","currencies":"EUR","i18n":"et-ee"},
+{"name":"Ethiopia","currencies":"ETB","i18n":"am-et"},
+{"name":"Falkland Islands","currencies":"FKP","i18n":"en-fk"},
+{"name":"Faroe Islands","currencies":"DKK","i18n":"fo-fo"},
+{"name":"Fiji","currencies":"FJD","i18n":"en-fj"},
+{"name":"Finland","currencies":"EUR","i18n":"fi-fi"},
+{"name":"France","currencies":"EUR","i18n":"fr-fr"},
+{"name":"French Guiana","currencies":"EUR","i18n":"fr-gf"},
+{"name":"French Polynesia","currencies":"XPF","i18n":"fr-pf"},
+{"name":"French Southern and Antarctic Lands","currencies":"EUR","i18n":"fr-tf"},
+{"name":"Gabon","currencies":"XAF","i18n":"fr-ga"},
+{"name":"Gambia","currencies":"GMD","i18n":"en-gm"},
+{"name":"Georgia","currencies":"GEL","i18n":"ka-ge"},
+{"name":"Ghana","currencies":"GHS","i18n":"en-gh"},
+{"name":"Gibraltar","currencies":"GIP","i18n":"en-gi"},
+{"name":"Greece","currencies":"EUR","i18n":"el-gr"},
+{"name":"Greenland","currencies":"DKK","i18n":"kl-gl"},
+{"name":"Grenada","currencies":"XCD","i18n":"en-gd"},
+{"name":"Guadeloupe","currencies":"EUR","i18n":"fr-gp"},
+{"name":"Guam","currencies":"USD","i18n":"en-gu"},
+{"name":"Guatemala","currencies":"GTQ","i18n":"es-gt"},
+{"name":"Guernsey","currencies":"GBP","i18n":"en-gg"},
+{"name":"Guinea","currencies":"GNF","i18n":"fr-gn"},
+{"name":"Guinea-Bissau","currencies":"XOF","i18n":"pt-gw"},
+{"name":"Guyana","currencies":"GYD","i18n":"en-gy"},
+{"name":"Haiti","currencies":"HTG","i18n":"fr-ht"},
+{"name":"Heard Island and McDonald Islands","currencies":"AUD","i18n":"en-hm"},
+{"name":"Vatican City","currencies":"EUR","i18n":"it-va"},
+{"name":"Honduras","currencies":"HNL","i18n":"es-hn"},
+{"name":"Hong Kong","currencies":"HKD","i18n":"zh-hk"},
+{"name":"Hungary","currencies":"HUF","i18n":"hu-hu"},
+{"name":"Iceland","currencies":"ISK","i18n":"is-is"},
+{"name":"India","currencies":"INR","i18n":"hi-in"},
+{"name":"Indonesia","currencies":"IDR","i18n":"id-id"},
+{"name":"Ivory Coast","currencies":"XOF","i18n":"fr-ci"},
+{"name":"Iran","currencies":"IRR","i18n":"fa-ir"},
+{"name":"Iraq","currencies":"IQD","i18n":"ar-iq"},
+{"name":"Ireland","currencies":"EUR","i18n":"ga-ie"},
+{"name":"Isle of Man","currencies":"GBP","i18n":"en-im"},
+{"name":"Israel","currencies":"ILS","i18n":"he-il"},
+{"name":"Italy","currencies":"EUR","i18n":"it-it"},
+{"name":"Jamaica","currencies":"JMD","i18n":"en-jm"},
+{"name":"Japan","currencies":"JPY","i18n":"ja-jp"},
+{"name":"Jersey","currencies":"GBP","i18n":"en-je"},
+{"name":"Jordan","currencies":"JOD","i18n":"ar-jo"},
+{"name":"Kazakhstan","currencies":"KZT","i18n":"kk-kz"},
+{"name":"Kenya","currencies":"KES","i18n":"en-ke"},
+{"name":"Kiribati","currencies":"AUD","i18n":"en-ki"},
+{"name":"Kuwait","currencies":"KWD","i18n":"ar-kw"},
+{"name":"Kyrgyzstan","currencies":"KGS","i18n":"ky-kg"},
+{"name":"Laos","currencies":"LAK","i18n":"lo-la"},
+{"name":"Latvia","currencies":"EUR","i18n":"lv-lv"},
+{"name":"Lebanon","currencies":"LBP","i18n":"ar-lb"},
+{"name":"Lesotho","currencies":"LSL","i18n":"en-ls"},
+{"name":"Liberia","currencies":"LRD","i18n":"en-lr"},
+{"name":"Libya","currencies":"LYD","i18n":"ar-ly"},
+{"name":"Liechtenstein","currencies":"CHF","i18n":"de-li"},
+{"name":"Lithuania","currencies":"LTL","i18n":"lt-lt"},
+{"name":"Luxembourg","currencies":"EUR","i18n":"fr-lu"},
+{"name":"Macau","currencies":"MOP","i18n":"zh-mo"},
+{"name":"Macedonia","currencies":"MKD","i18n":"mk-mk"},
+{"name":"Madagascar","currencies":"MGA","i18n":"fr-mg"},
+{"name":"Malawi","currencies":"MWK","i18n":"en-mw"},
+{"name":"Malaysia","currencies":"MYR","i18n":"-my"},
+{"name":"Maldives","currencies":"MVR","i18n":"dv-mv"},
+{"name":"Mali","currencies":"XOF","i18n":"fr-ml"},
+{"name":"Malta","currencies":"EUR","i18n":"mt-mt"},
+{"name":"Marshall Islands","currencies":"USD","i18n":"en-mh"},
+{"name":"Martinique","currencies":"EUR","i18n":"fr-mq"},
+{"name":"Mauritania","currencies":"MRO","i18n":"ar-mr"},
+{"name":"Mauritius","currencies":"MUR","i18n":"en-mu"},
+{"name":"Mayotte","currencies":"EUR","i18n":"fr-yt"},
+{"name":"Mexico","currencies":"MXN","i18n":"es-mx"},
+{"name":"Micronesia","currencies":"USD","i18n":"en-fm"},
+{"name":"Moldova","currencies":"MDL","i18n":"ro-md"},
+{"name":"Monaco","currencies":"EUR","i18n":"fr-mc"},
+{"name":"Mongolia","currencies":"MNT","i18n":"mn-mn"},
+{"name":"Montenegro","currencies":"EUR","i18n":"sr-me"},
+{"name":"Montserrat","currencies":"XCD","i18n":"en-ms"},
+{"name":"Morocco","currencies":"MAD","i18n":"ar-ma"},
+{"name":"Mozambique","currencies":"MZN","i18n":"pt-mz"},
+{"name":"Myanmar","currencies":"MMK","i18n":"my-mm"},
+{"name":"Namibia","currencies":"NAD","i18n":"en-na"},
+{"name":"Nauru","currencies":"AUD","i18n":"en-nr"},
+{"name":"Nepal","currencies":"NPR","i18n":"ne-np"},
+{"name":"Netherlands","currencies":"EUR","i18n":"nl-nl"},
+{"name":"New Caledonia","currencies":"XPF","i18n":"fr-nc"},
+{"name":"New Zealand","currencies":"NZD","i18n":"en-nz"},
+{"name":"Nicaragua","currencies":"NIO","i18n":"es-ni"},
+{"name":"Niger","currencies":"XOF","i18n":"fr-ne"},
+{"name":"Nigeria","currencies":"NGN","i18n":"en-ng"},
+{"name":"Niue","currencies":"NZD","i18n":"en-nu"},
+{"name":"Norfolk Island","currencies":"AUD","i18n":"en-nf"},
+{"name":"North Korea","currencies":"KPW","i18n":"ko-kp"},
+{"name":"Northern Mariana Islands","currencies":"USD","i18n":"en-mp"},
+{"name":"Norway","currencies":"NOK","i18n":"no-no"},
+{"name":"Oman","currencies":"OMR","i18n":"ar-om"},
+{"name":"Pakistan","currencies":"PKR","i18n":"en-pk"},
+{"name":"Palau","currencies":"USD","i18n":"en-pw"},
+{"name":"Palestine","currencies":"ILS","i18n":"ar-ps"},
+{"name":"Panama","currencies":"PAB","i18n":"es-pa"},
+{"name":"Papua New Guinea","currencies":"PGK","i18n":"en-pg"},
+{"name":"Paraguay","currencies":"PYG","i18n":"es-py"},
+{"name":"Peru","currencies":"PEN","i18n":"es-pe"},
+{"name":"Philippines","currencies":"PHP","i18n":"en-ph"},
+{"name":"Pitcairn Islands","currencies":"NZD","i18n":"en-pn"},
+{"name":"Poland","currencies":"PLN","i18n":"pl-pl"},
+{"name":"Portugal","currencies":"EUR","i18n":"pt-pt"},
+{"name":"Puerto Rico","currencies":"USD","i18n":"es-pr"},
+{"name":"Qatar","currencies":"QAR","i18n":"ar-qa"},
+{"name":"Republic of Kosovo","currencies":"EUR","i18n":"sq-xk"},
+{"name":"RÃ©union","currencies":"EUR","i18n":"fr-re"},
+{"name":"Romania","currencies":"RON","i18n":"ro-ro"},
+{"name":"Russia","currencies":"RUB","i18n":"ru-ru"},
+{"name":"Rwanda","currencies":"RWF","i18n":"rw-rw"},
+{"name":"Saint BarthÃ©lemy","currencies":"EUR","i18n":"fr-bl"},
+{"name":"Saint Helena","currencies":"SHP","i18n":"en-sh"},
+{"name":"Saint Kitts and Nevis","currencies":"XCD","i18n":"en-kn"},
+{"name":"Saint Lucia","currencies":"XCD","i18n":"en-lc"},
+{"name":"Saint Martin","currencies":"EUR","i18n":"en-mf"},
+{"name":"Saint Pierre and Miquelon","currencies":"EUR","i18n":"fr-pm"},
+{"name":"Saint Vincent and the Grenadines","currencies":"XCD","i18n":"en-vc"},
+{"name":"Samoa","currencies":"WST","i18n":"sm-ws"},
+{"name":"San Marino","currencies":"EUR","i18n":"it-sm"},
+{"name":"SÃ£o TomÃ© and PrÃ­ncipe","currencies":"STD","i18n":"pt-st"},
+{"name":"Saudi Arabia","currencies":"SAR","i18n":"ar-sa"},
+{"name":"Senegal","currencies":"XOF","i18n":"fr-sn"},
+{"name":"Serbia","currencies":"RSD","i18n":"sr-rs"},
+{"name":"Seychelles","currencies":"SCR","i18n":"fr-sc"},
+{"name":"Sierra Leone","currencies":"SLL","i18n":"en-sl"},
+{"name":"Singapore","currencies":"SGD","i18n":"en-sg"},
+{"name":"Sint Maarten","currencies":"ANG","i18n":"nl-sx"},
+{"name":"Slovakia","currencies":"EUR","i18n":"sk-sk"},
+{"name":"Slovenia","currencies":"EUR","i18n":"sl-si"},
+{"name":"Solomon Islands","currencies":"SDB","i18n":"en-sb"},
+{"name":"Somalia","currencies":"SOS","i18n":"so-so"},
+{"name":"South Africa","currencies":"ZAR","i18n":"af-za"},
+{"name":"South Georgia","currencies":"GBP","i18n":"en-gs"},
+{"name":"South Korea","currencies":"KRW","i18n":"ko-kr"},
+{"name":"South Sudan","currencies":"SSP","i18n":"en-ss"},
+{"name":"Spain","currencies":"EUR","i18n":"es-es"},
+{"name":"Sri Lanka","currencies":"LKR","i18n":"si-lk"},
+{"name":"Sudan","currencies":"SDG","i18n":"ar-sd"},
+{"name":"Suriname","currencies":"SRD","i18n":"nl-sr"},
+{"name":"Svalbard and Jan Mayen","currencies":"NOK","i18n":"no-sj"},
+{"name":"Swaziland","currencies":"SZL","i18n":"en-sz"},
+{"name":"Sweden","currencies":"SEK","i18n":"sv-se"},
+{"name":"Syria","currencies":"SYP","i18n":"ar-sy"},
+{"name":"Taiwan","currencies":"TWD","i18n":"zh-tw"},
+{"name":"Tajikistan","currencies":"TJS","i18n":"tg-tj"},
+{"name":"Tanzania","currencies":"TZS","i18n":"sw-tz"},
+{"name":"Thailand","currencies":"THB","i18n":"th-th"},
+{"name":"Timor-Leste","currencies":"USD","i18n":"pt-tl"},
+{"name":"Togo","currencies":"XOF","i18n":"fr-tg"},
+{"name":"Tokelau","currencies":"NZD","i18n":"en-tk"},
+{"name":"Tonga","currencies":"TOP","i18n":"en-to"},
+{"name":"Trinidad and Tobago","currencies":"TTD","i18n":"en-tt"},
+{"name":"Tunisia","currencies":"TND","i18n":"ar-tn"},
+{"name":"Turkey","currencies":"TRY","i18n":"tr-tr"},
+{"name":"Turkmenistan","currencies":"TMT","i18n":"tk-tm"},
+{"name":"Turks and Caicos Islands","currencies":"USD","i18n":"en-tc"},
+{"name":"Tuvalu","currencies":"AUD","i18n":"en-tv"},
+{"name":"Uganda","currencies":"UGX","i18n":"en-ug"},
+{"name":"Ukraine","currencies":"UAH","i18n":"uk-ua"},
+{"name":"United Arab Emirates","currencies":"AED","i18n":"ar-ae"},
+{"name":"United States Minor Outlying Islands","currencies":"USD","i18n":"en-um"},
+{"name":"United States Virgin Islands","currencies":"USD","i18n":"en-vi"},
+{"name":"Uruguay","currencies":"UYI","i18n":"es-uy"},
+{"name":"Uzbekistan","currencies":"UZS","i18n":"uz-uz"},
+{"name":"Vanuatu","currencies":"VUV","i18n":"bi-vu"},
+{"name":"Venezuela","currencies":"VEF","i18n":"es-ve"},
+{"name":"Vietnam","currencies":"VND","i18n":"vi-vn"},
+{"name":"Wallis and Futuna","currencies":"XPF","i18n":"fr-wf"},
+{"name":"Western Sahara","currencies":"MAD","i18n":"es-eh"},
+{"name":"Yemen","currencies":"YER","i18n":"ar-ye"},
+{"name":"Zambia","currencies":"ZMK","i18n":"en-zm"},
+{"name":"Zimbabwe","currencies":"ZWL","i18n":"en-zw"}]

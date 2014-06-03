@@ -9,10 +9,10 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		<script data-require="angular.js@*" data-semver="1.2.10" src="http://code.angularjs.org/1.2.10/angular.js"></script>
+		<script data-require="angular.js@*" data-semver="1.2.10" src="https://code.angularjs.org/1.2.10/angular.js"></script>
 		<!--bootstrap ui-->
 		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
-		<script type="text/javascript" src="bower_components/angular-translate/angular-translate.min.js"></script>
+		<script type="text/javascript" src="js/libs/angular-translate.min.js"></script>
 		<script type="text/javascript" src="js/libs/loader-static-files.js"></script>
 		<script type="text/javascript" src="js/libs/jquery.autosize.min.js" ></script>
 
@@ -287,7 +287,7 @@
 											<td colspan="3" class="noline"></td>
 											<td class="footer-labels" colspan="{{taxOption}}">											<textarea type="text" class="table-inputs shipping-row" translate="inv.invoice_table.shipping" ></textarea></td>
 											<td >
-											<input class="table-inputs shipping-total" fraction="2" numeric-input = "" ng-model="radioShipping" coma-dot-converter="coma-dot-converter">
+											<input class="table-inputs shipping-total" ng-model="radioShipping" coma-dot-converter="coma-dot-converter">
 											</td>
 											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
 										</tr>
@@ -312,7 +312,7 @@
 											<td class="product-column">											<textarea ng:model="item.description" type="text"  class="table-textareas product" translate="inv.invoice_table.product" contentEditable="true"></textarea></td><td class="quantity-column">
 											<input  ng:model="item.qty" coma-dot-converter="coma-dot-converter" class="table-inputs quantity" value="1" size="4" ng:required ng:validate="integer" placeholder="qty">
 											</td><td class="netprice-column">
-											<input ng:model="item.cost" fraction="2" numeric-input = "" coma-dot-converter="coma-dot-converter"  class="table-inputs unitprice" autocomplete="off" value="0.00" >
+											<input ng:model="item.cost" coma-dot-converter="coma-dot-converter"  class="table-inputs unitprice" autocomplete="off" value="0.00" >
 											</td><td ng-hide="taxOption=='1'" class="tax1-column">
 											<input ng:model="item.taxOne" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax1-row taxes" autocomplete="off">
 											</td><td ng-hide="taxOption=='1' || taxOption=='2' " class="tax2-column">
