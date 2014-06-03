@@ -27,7 +27,10 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale)
       countries: []
     }
   };
-  // set default 
+  // set default shipping-button
+	$scope.radioShipping = '0';
+  
+  // set default Country
   $scope.data.locations.countries.$default = 'United States';
   $scope.data.locations.countries.$resolved = false;
   
@@ -37,6 +40,8 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale)
     Array.prototype.push.apply($scope.data.locations.countries, $filter('orderBy')(countries, ''));
     $scope.selectionCountry || ($scope.selectionCountry = $filter('filter')($scope.data.locations.countries, {name: $scope.data.locations.countries.$default})[0]);
     $scope.data.locations.countries.$resolved = true; 
+    
+    
   });
       
    // pre set currency select  
@@ -53,14 +58,11 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale)
       selCurrency[0].selected=true;
     };
   };
+  
+  var test = $scope.selectionCountry.alpha3;
+    console.log(test);
+  
 };
-
- 
-	// Set default shipping-button
-
-	$scope.radioShipping = '0';
-
-
 	
 	$scope.setLang = function(langKey) {
 		// You can change the language during runtime
