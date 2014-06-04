@@ -111,13 +111,10 @@ function fillInAddress() {
 	// and fill the corresponding field on the form.
 	for (var i = 0; i < place.address_components.length; i++) {
 		var addressType = place.address_components[i].types[0]; 
-		addressFormatted = place.formatted_address;
-		console.log(addressFormatted);
+		addressFormatted = place.formatted_address;		
 		if (componentForm[addressType]) {
-			var val = place.address_components[i][componentForm[addressType]];
-			
+		var val = place.address_components[i][componentForm[addressType]];		
 			document.getElementById(addressType).value = val;
-			console.log(val);
 		}
 	}
 }
