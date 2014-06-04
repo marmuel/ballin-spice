@@ -1,15 +1,18 @@
 // Register Angular Translate & Bootstrap UI
-var app = angular.module("lexoffice", ['pascalprecht.translate', 'ui.bootstrap', 'App.filters', ]);
+var app = angular.module("lexoffice", ['pascalprecht.translate', 'ui.bootstrap', 'App.filters', 'tmh.dynamicLocale']);
 
 //Translation
 app.config(['$translateProvider',
 function($translateProvider) {
+	
+
+   
 
 	// Register a loader for the static files
 	// So, the module will search missing translation tables under the specified urls.
 	// Those urls are [prefix][langKey][suffix].
 	$translateProvider.useStaticFilesLoader({
-		prefix : 'l10n/',
+		prefix : 'i18n/',
 		suffix : '.json'
 	});
 
@@ -18,8 +21,12 @@ function($translateProvider) {
 
 //START THE MAIN CONTROLLER
 }])
-.controller('NewInvoiceCtrl', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout', '$locale',
-function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale) {
+.controller('NewInvoiceCtrl', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout', '$locale', 'tmhDynamicLocale',
+function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale, tmhDynamicLocale) {  
+	// TODO Change dir i18n files , set locale
+	 tmhDynamicLocale.set('de');
+      console.log('durch');
+	
 	
 	// language setting	
 	$scope.setLang = function(langKey) {
@@ -40,7 +47,7 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale)
   $scope.data.locations.countries.$resolved = false;
   
   // Populate countries.json in Country Select
-  $http.get('l10n/countries.json').success(function(countries) {
+  $http.get('i18n/countries.json').success(function(countries) {
     $scope.data.locations.countries.length = 0;
     // actually filter is set to none. to activate choose for e.g. (countries, 'name')
     Array.prototype.push.apply($scope.data.locations.countries, $filter('orderBy')(countries, ''));
@@ -62,13 +69,16 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale)
     };
   };
   // TODO set i18n date, number and currency filters in angular
-   var selFormat=$scope.selectionCountry.i18n;
-   console.log(selFormat);
+   
    // start load locale script dynamically   
-   var imported = document.createElement('script');
-   var fileImport = 'angular-locale_' + selFormat + '.js';
-   imported.src = 'https://code.angularjs.org/1.2.10/i18n/' + fileImport;
-   document.head.appendChild(imported); 
+
+
+   
+   
+  // var imported = document.createElement('script');
+  // var fileImport = 'angular-locale_' + selFormat + '.js';
+ //  imported.src = 'i18n/angular-locale/' + fileImport;
+ //  document.head.appendChild(imported); 
    // end load locale script dynamically
 };
 

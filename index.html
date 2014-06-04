@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="js/libs/angular-translate.min.js"></script>
 		<script type="text/javascript" src="js/libs/loader-static-files.js"></script>
 		<script type="text/javascript" src="js/libs/jquery.autosize.min.js" ></script>
-
+        <script type="text/javascript" src="js/libs/tmhDynamicLocale.js" ></script>
 		<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="13ysuqq7fl50z0k"></script>
 		<script type="text/javascript" src="js/mylibs/main.js"></script>
 		<script defer src="js/mylibs/script.js"></script>
@@ -266,7 +266,7 @@
 											</button></td>
 											<td class="footer-labels" colspan="{{taxOption}}">											<textarea type="text" class="table-inputs" translate="inv.invoice_table.subtotal"></textarea></td>
 
-											<td class="total-rows" style="cursor: default;"> {{invoice_sub_total() | currency :""}} </td>
+											<td class="total-rows" style="cursor: default;"> {{invoice_sub_total() | currency}} </td>
 											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
 
 										</tr>
