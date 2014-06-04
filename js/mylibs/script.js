@@ -88,6 +88,8 @@ function initialize() {
 	});
 }
 
+var addressFormatted;
+
 function fillInAddress() {
 	var gaddressResult = $('#google-result');
 	var gaddress = $('#google-address');
@@ -108,10 +110,14 @@ function fillInAddress() {
 	// Get each component of the address from the place details
 	// and fill the corresponding field on the form.
 	for (var i = 0; i < place.address_components.length; i++) {
-		var addressType = place.address_components[i].types[0];
+		var addressType = place.address_components[i].types[0]; 
+		addressFormatted = place.formatted_address;
+		console.log(addressFormatted);
 		if (componentForm[addressType]) {
 			var val = place.address_components[i][componentForm[addressType]];
+			
 			document.getElementById(addressType).value = val;
+			console.log(val);
 		}
 	}
 }
@@ -144,20 +150,9 @@ $( "#dropboxupload" ).click(function() {
 		extensions : ['.jpeg', '.gif', '.jpg', '.png'],
 };
 
-// format Address Google Address Autofill and merge Inputs document-inputs-googlesearch of Google Search Result to one Textarea
+// Add formatted Address to textarea
 function Country() {
-	var gStreetNo = $('textarea#street_number').val();
-	var gStreet = $('textarea#route').val();
-	var gCity = $('textarea#locality').val();
-	var gArea1 = $('textarea#administrative_area_level_1').val();
-	var gZip = $('textarea#postal_code').val();
-	var gCountry = $( "#country-select option:selected" ).text();
-	// USA Format
-	if (gCountry == "Germany") {
-
-		$("#document-to").val(gStreet + " " + gStreetNo + "\n" + gZip + " " + gCity);
-	} else {
-		// others for e.g. Germany
-		$("#document-to").val(gStreetNo + " " + gStreet + "\n" + gCity + "\n" + gArea1 + " " + gZip + "\n" + gCountry);
-	}
-}
+	    var toAddress = addressFormatted;
+	    toAddress = toAddress.replace(/, /gi, "\n").replace(/^,/,"");
+		$("#document-to").val(toAddress );
+} 
