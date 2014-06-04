@@ -3,7 +3,7 @@
 angular.module('tmh.dynamicLocale', []).provider('tmhDynamicLocale', function() {
 
   var defaultLocale,
-    localeLocationPattern = 'angular/i18n/angular-locale_{{locale}}.js',
+    localeLocationPattern = 'i18n/angular-locale/angular-locale_{{locale}}.js',
     storageFactory = 'tmhDynamicLocaleStorageCache',
     storage,
     storeKey = 'tmhDynamicLocale.locale',

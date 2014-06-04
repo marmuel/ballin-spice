@@ -161,16 +161,3 @@ function Country() {
 		$("#document-to").val(gStreetNo + " " + gStreet + "\n" + gCity + "\n" + gArea1 + " " + gZip + "\n" + gCountry);
 	}
 }
-
-
-// replace comma with dot if user inputs comma
-
-$(".unitprice input").on("change", function() {
-	
-	$(".unitprice input").each(function() {
-    $(this).val($(this).val().replace(/,/g, "."));
-  });
-
-});
-
-

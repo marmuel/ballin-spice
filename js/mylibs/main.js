@@ -23,13 +23,7 @@ function($translateProvider) {
 }])
 .controller('NewInvoiceCtrl', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout', '$locale', 'tmhDynamicLocale',
 function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale, tmhDynamicLocale) {  
-	// Change locale on runtime
-	// https://github.com/lgalfaso/angular-dynamic-locale
-	// TODO Change dir i18n files , set locale
-	 tmhDynamicLocale.set('de');
-      console.log('durch');
-	
-	
+      
 	// language setting	
 	$scope.setLang = function(langKey) {
 		$translate.use(langKey);
@@ -41,12 +35,17 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
       countries: []
     }
   };
+    // SET DEFAULTS
   	// Set default shipping-button
 	$scope.radioShipping = '0';
   
-  // set default  Country
+  // set default Country
   $scope.data.locations.countries.$default = 'United States';
   $scope.data.locations.countries.$resolved = false;
+  
+  // set default locale to USA
+	// for more informations: https://github.com/lgalfaso/angular-dynamic-locale
+	 tmhDynamicLocale.set('en-us');
   
   // Populate countries.json in Country Select
   $http.get('i18n/countries.json').success(function(countries) {
@@ -70,22 +69,25 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
       selCurrency[0].selected=true;
     };
   };
-  // TODO set i18n date, number and currency filters in angular
-   
-   // start load locale script dynamically   
+ // get locale from the country select / countries.json
+ var selLocale = $scope.selectionCountry.i18n;  
+ // set locale
+ // for more informations: https://github.com/lgalfaso/angular-dynamic-locale
+ tmhDynamicLocale.set(selLocale);
+ console.log('changed locale to: ', selLocale); 
+ 
+ // TODO Format Inputs Shipping Costs and Unit Costs
+       // format unitcosts
+ 		//var unitCostItems = $scope.invoice.items;
 
+		//angular.forEach(unitCostItems, function(item) {
+		//	unitCost = $filter('currency')(item.cost, '');
+		//	item.cost += unitCost;
+		//	console.log(unitCost);
+    	//});
+ };
 
-   
-   
-  // var imported = document.createElement('script');
-  // var fileImport = 'angular-locale_' + selFormat + '.js';
- //  imported.src = 'i18n/angular-locale/' + fileImport;
- //  document.head.appendChild(imported); 
-   // end load locale script dynamically
-};
-
-
-	//Invoice Control
+ //Invoice Control
 
 	$scope.class = "glyphicon glyphicon-minus";
 	$scope.logoRemoved = false;
@@ -169,7 +171,6 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 	};
 
 
-
 	// Callculate Tax and dynamically add new rows for subtotals
 
 	$scope.grouppedByPercentage = function() {
@@ -228,7 +229,7 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 			shipPing = +$scope.radioShipping;
 			return $scope.invoice_sub_total() - $scope.invoice_discount() + shipPing + taxTotal;
 		};
-
+		
 	}, true);
 
 	function convertToArray(groups) {
@@ -375,6 +376,32 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
             scope[attrs.focusMe] = false;
           });
         }
+      });
+    }
+  };
+})
+
+// Format Inputs to Currency Format
+
+.directive('blurToCurrency', function($filter){
+  return {
+    scope: {
+      amount  : '='
+    },
+    link: function(scope, el, attrs){
+      el.val($filter('currency' )(scope.amount, ''));
+      
+      el.bind('focus', function(){
+        el.val(scope.amount);
+      });
+      
+      el.bind('input', function(){
+        scope.amount = el.val();
+        scope.$apply();
+      });
+      
+      el.bind('blur', function(){
+        el.val($filter('currency')(scope.amount, ''));
       });
     }
   };

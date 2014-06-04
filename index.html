@@ -266,7 +266,7 @@
 											</button></td>
 											<td class="footer-labels" colspan="{{taxOption}}">											<textarea type="text" class="table-inputs" translate="inv.invoice_table.subtotal"></textarea></td>
 
-											<td class="total-rows" style="cursor: default;"> {{invoice_sub_total() | currency}} </td>
+											<td class="total-rows" style="cursor: default;"> {{invoice_sub_total() | currency :""}} </td>
 											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
 
 										</tr>
@@ -287,7 +287,7 @@
 											<td colspan="3" class="noline"></td>
 											<td class="footer-labels" colspan="{{taxOption}}">											<textarea type="text" class="table-inputs shipping-row" translate="inv.invoice_table.shipping" ></textarea></td>
 											<td >
-											<input class="table-inputs shipping-total" ng-model="radioShipping" coma-dot-converter="coma-dot-converter">
+											<input class="table-inputs shipping-total" ng-model="radioShipping" blur-to-currency amount="stake"coma-dot-converter="coma-dot-converter">
 											</td>
 											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
 										</tr>
@@ -309,10 +309,10 @@
 													<span class="fa fa-trash-o"></span>
 												</button>
 											</div></td>
-											<td class="product-column">											<textarea ng:model="item.description" type="text"  class="table-textareas product" translate="inv.invoice_table.product" contentEditable="true"></textarea></td><td class="quantity-column">
+											<td class="product-column">	<textarea ng:model="item.description" type="text"  class="table-textareas product" translate="inv.invoice_table.product" contentEditable="true"></textarea></td><td class="quantity-column">
 											<input  ng:model="item.qty" coma-dot-converter="coma-dot-converter" class="table-inputs quantity" value="1" size="4" ng:required ng:validate="integer" placeholder="qty">
 											</td><td class="netprice-column">
-											<input ng:model="item.cost" coma-dot-converter="coma-dot-converter"  class="table-inputs unitprice" autocomplete="off" value="0.00" >
+											<input ng:model="item.cost" blur-to-currency amount="stake" coma-dot-converter="coma-dot-converter"  class="table-inputs unitprice" autocomplete="off">
 											</td><td ng-hide="taxOption=='1'" class="tax1-column">
 											<input ng:model="item.taxOne" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax1-row taxes" autocomplete="off">
 											</td><td ng-hide="taxOption=='1' || taxOption=='2' " class="tax2-column">
