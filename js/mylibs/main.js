@@ -23,6 +23,8 @@ function($translateProvider) {
 }])
 .controller('NewInvoiceCtrl', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout', '$locale', 'tmhDynamicLocale',
 function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale, tmhDynamicLocale) {  
+	// Change locale on runtime
+	// https://github.com/lgalfaso/angular-dynamic-locale
 	// TODO Change dir i18n files , set locale
 	 tmhDynamicLocale.set('de');
       console.log('durch');
