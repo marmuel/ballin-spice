@@ -78,13 +78,17 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
  
  // TODO Format Inputs Shipping Costs and Unit Costs
        // format unitcosts
- 		//var unitCostItems = $scope.invoice.items;
+        var unitCostItems = 0;
+ 		var unitCostItems = $scope.invoice.items;
 
-		//angular.forEach(unitCostItems, function(item) {
-		//	unitCost = $filter('currency')(item.cost, '');
-		//	item.cost += unitCost;
-		//	console.log(unitCost);
-    	//});
+		angular.forEach(unitCostItems, function(item) {
+
+			var costs = $filter('currency')(item.cost, '');
+			console.log('costs ', costs);
+			return costs;
+    	});
+    	
+	
  };
 
  //Invoice Control
