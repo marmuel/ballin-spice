@@ -17,7 +17,7 @@ $(document).ready(function() {
 });
 
 // trigger / change currency with timeout after updating the country
-$("#country").change(function() {
+$("#country-select").change(function() {
 	setTimeout(function() {
 		$("#currency").trigger('change');
 		}, 100);	
@@ -103,7 +103,7 @@ function fillInAddress() {
 	for (var component in componentForm) {
 		document.getElementById(component).value = '';
 		document.getElementById(component).disabled = false;
-	}
+     }
 
 	// Get each component of the address from the place details
 	// and fill the corresponding field on the form.
@@ -151,9 +151,9 @@ function Country() {
 	var gCity = $('textarea#locality').val();
 	var gArea1 = $('textarea#administrative_area_level_1').val();
 	var gZip = $('textarea#postal_code').val();
-	var gCountry = $('textarea#country').val();
+	var gCountry = $( "#country-select option:selected" ).text();
 	// USA Format
-	if (gCountry == "Deutschland") {
+	if (gCountry == "Germany") {
 
 		$("#document-to").val(gStreet + " " + gStreetNo + "\n" + gZip + " " + gCity);
 	} else {

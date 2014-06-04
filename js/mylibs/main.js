@@ -65,7 +65,7 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
     if(selCurrency[i].value.indexOf(selCountry)==0){
       selCurrency[i].selected=true;
     };
-    if(document.getElementById('country').value==''){
+    if(document.getElementById('country-select').value==''){
       selCurrency[0].selected=true;
     };
   };
