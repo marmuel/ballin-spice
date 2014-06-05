@@ -397,23 +397,18 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
       });
     }
   };
-});
-
-
+})
  // TODO Format Inputs Shipping Costs and Unit Costs
-       // format unitcosts
-        
- 		//var unitCostItems = $scope.invoice.items;
-		//angular.forEach(unitCostItems, function(item, cost) {
-		
-        //uCost = item.cost;
-		//console.log('uCost',uCost);
-		//costUnit =($filter('currency' )(uCost,''));		
-
-		//console.log('costUnit', costUnit);
-    	//});
-
-
+.directive('currencies', ['$filter', function ($filter) {
+    return {
+        require: 'ngModel',
+        link: function (elem, $scope, attrs, ngModel) {
+            ngModel.$formatters.push(function (val) {
+                return ($filter('currency' )(val,''));	
+            });
+        }
+    };
+}]);
 
 // ACHTUNG WENN EINE WEITERE DIREKTIVE HINZUKOMMT ; semicolon ENTFERNEN!!!!!
 
