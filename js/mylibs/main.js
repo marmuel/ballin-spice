@@ -58,6 +58,13 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
       
    // pre set currency select  
   $scope.updateCountry = function() {
+  	
+ // get locale from the country select / countries.json
+ var selLocale = $scope.selectionCountry.i18n;  
+ // set locale
+ // for more informations: https://github.com/lgalfaso/angular-dynamic-locale
+ tmhDynamicLocale.set(selLocale);
+ console.log('changed locale to: ', selLocale); 	
 
   var selCountry=$scope.selectionCountry.currencies;
   var selCurrency=document.getElementById('currency').options;
@@ -69,23 +76,16 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
       selCurrency[0].selected=true;
     };
   };
- // get locale from the country select / countries.json
- var selLocale = $scope.selectionCountry.i18n;  
- // set locale
- // for more informations: https://github.com/lgalfaso/angular-dynamic-locale
- tmhDynamicLocale.set(selLocale);
- console.log('changed locale to: ', selLocale); 
+
  
  // TODO Format Inputs Shipping Costs and Unit Costs
        // format unitcosts
         var unitCostItems = 0;
  		var unitCostItems = $scope.invoice.items;
-
 		angular.forEach(unitCostItems, function(item) {
-
-			var costs = $filter('currency')(item.cost, '');
-			console.log('costs ', costs);
-			return costs;
+			cost = $filter('currency')(item.cost, '');
+			console.log('cost ', cost);
+			return cost;
     	});
     	
 	
