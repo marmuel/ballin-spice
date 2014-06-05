@@ -77,7 +77,16 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
       selCurrency[0].selected=true;
     };
   };
- };
+  // TODO Update Currency Format Inputs Unit Price
+//  var priceControl = $scope.invoice.items;
+//  var uCost = $scope.invoice.items['cost'];
+//   for(var i=0;i<priceControl.length;i++) { 
+//   	var uCost = 0;	
+//   	var uCost = $scope.invoice.items[i].cost;
+//   	$scope.invoice.items[i].cost = ($filter('currency' )($scope.invoice.items[i].cost, ''));
+//    console.log(($filter('currency' )($scope.invoice.items[i].cost, '')));
+//    };
+};
 
  //Invoice Control
 
@@ -397,18 +406,8 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
       });
     }
   };
-})
- // TODO Format Inputs Shipping Costs and Unit Costs
-.directive('currencies', ['$filter', function ($filter) {
-    return {
-        require: 'ngModel',
-        link: function (elem, $scope, attrs, ngModel) {
-            ngModel.$formatters.push(function (val) {
-                return ($filter('currency' )(val,''));	
-            });
-        }
-    };
-}]);
+});
+
 
 // ACHTUNG WENN EINE WEITERE DIREKTIVE HINZUKOMMT ; semicolon ENTFERNEN!!!!!
 

@@ -313,7 +313,7 @@
 											<td class="product-column">	<textarea ng:model="item.description" type="text"  class="table-textareas product" translate="inv.invoice_table.product" contentEditable="true"></textarea></td><td class="quantity-column">
 											<input  ng:model="item.qty" coma-dot-converter="coma-dot-converter" class="table-inputs quantity" value="1" size="4" ng:required ng:validate="integer" placeholder="qty">
 											</td><td class="netprice-column">
-											<input ng:model="item.cost" currencies blur-to-currency amount="stake" coma-dot-converter="coma-dot-converter"  class="table-inputs unitprice" autocomplete="off">
+											<input ng:model="item.cost" blur-to-currency amount="stake" coma-dot-converter="coma-dot-converter"  class="table-inputs unitprice" autocomplete="off">
 											</td><td ng-hide="taxOption=='1'" class="tax1-column">
 											<input ng:model="item.taxOne" coma-dot-converter="coma-dot-converter" ng:validate="number" class="table-inputs tax1-row taxes" autocomplete="off">
 											</td><td ng-hide="taxOption=='1' || taxOption=='2' " class="tax2-column">
