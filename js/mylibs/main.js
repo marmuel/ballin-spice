@@ -54,10 +54,11 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
     Array.prototype.push.apply($scope.data.locations.countries, $filter('orderBy')(countries, ''));
     $scope.selectionCountry || ($scope.selectionCountry = $filter('filter')($scope.data.locations.countries, {name: $scope.data.locations.countries.$default})[0]);
     $scope.data.locations.countries.$resolved = true; 
+    //console.log($scope.data.locations.countries);
   });
       
    // pre set currency select  
-  $scope.updateCountry = function() {
+  $scope.updateCountry = function(item) {
   	
  // get locale from the country select / countries.json
  var selLocale = $scope.selectionCountry.i18n;  
@@ -76,19 +77,6 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
       selCurrency[0].selected=true;
     };
   };
-
- 
- // TODO Format Inputs Shipping Costs and Unit Costs
-       // format unitcosts
-        var unitCostItems = 0;
- 		var unitCostItems = $scope.invoice.items;
-		angular.forEach(unitCostItems, function(item) {
-			cost = $filter('currency')(item.cost, '');
-			console.log('cost ', cost);
-			return cost;
-    	});
-    	
-	
  };
 
  //Invoice Control
@@ -410,6 +398,22 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
     }
   };
 });
+
+
+ // TODO Format Inputs Shipping Costs and Unit Costs
+       // format unitcosts
+        
+ 		//var unitCostItems = $scope.invoice.items;
+		//angular.forEach(unitCostItems, function(item, cost) {
+		
+        //uCost = item.cost;
+		//console.log('uCost',uCost);
+		//costUnit =($filter('currency' )(uCost,''));		
+
+		//console.log('costUnit', costUnit);
+    	//});
+
+
 
 // ACHTUNG WENN EINE WEITERE DIREKTIVE HINZUKOMMT ; semicolon ENTFERNEN!!!!!
 
