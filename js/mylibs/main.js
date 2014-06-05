@@ -23,7 +23,8 @@ function($translateProvider) {
 }])
 .controller('NewInvoiceCtrl', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout', '$locale', 'tmhDynamicLocale',
 function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale, tmhDynamicLocale) {  
-      
+      // populate Language Dropdown
+
 	// language setting	
 	$scope.setLang = function(langKey) {
 		$translate.use(langKey);

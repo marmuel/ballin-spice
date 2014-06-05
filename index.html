@@ -42,7 +42,7 @@
 
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#" >{{ 'inv.nav.language' | translate }}<b class="caret"></b></a>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu" ng-model="languageSelect" ng-change="languageSelect()">
 									<li>
 										<a href="#" ng-click="setLang('en_US')">English</a>
 									</li>
