@@ -16,8 +16,18 @@ function($translateProvider) {
 		suffix : '.json'
 	});
 
-	// Tell the module what language to use by default
-	$translateProvider.preferredLanguage('en_US');
+	// Get stored default language or tell the module what language to use by default
+	
+	if (localStorage["language"] == "" || localStorage["language"] == null) {
+		var locale = 'en_US';
+		console.log('Default Language');
+		$translateProvider.preferredLanguage(locale);
+	} else {
+		console.log('Stored Language');
+		storedLocale = JSON.parse(localStorage["language"]);
+		$translateProvider.preferredLanguage(storedLocale);
+	}
+	
 
 //START THE MAIN CONTROLLER
 }])
@@ -27,6 +37,9 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 
 	// language setting	
 	$scope.setLang = function(langKey) {
+		// store language local
+		localStorage["language"] = JSON.stringify(langKey);
+		// set language
 		$translate.use(langKey);
 	};
 

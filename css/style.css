@@ -194,7 +194,7 @@ p, div {
 	height: 60px;
 }
 
-.document-inputs:hover, .document-inputs-googlesearch:hover {
+.document-inputs:hover, .document-inputs-googlesearch:hover, .document-to-company:hover {
 	background: #fcf8e3;
 	border: none;
 	box-shadow: none;
@@ -243,14 +243,26 @@ input[type=date] {
 	height: 80px;
 	width: 240px;
 }
+.to-company {
+	height: 25px;
+	margin-top: 20px;
+}
 .to-address {
-	width: 400px;
 	height: 80px;
-	margin: 2px 0px 10px 0px;
+	margin: -2px 0px 10px 0px;
 }
-#document-to-company {
-	padding-top: 5px;
+.document-to-company {
+padding: 0px 10px 0px 10px;
+width: 400px;
+border: none;
+overflow: hidden;
+word-wrap: break-word;
+resize: none;
+line-height: 1.0em;
+
 }
+
+
 /*
  * document table
  */
