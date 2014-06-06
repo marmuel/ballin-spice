@@ -13,7 +13,7 @@ $(document).ready(function() {
 	$('.document-to-company').trigger('autosize.destroy');
 	$('#document-type').trigger('autosize.destroy');
 	$('.currency-label').trigger('autosize.destroy');
-
+	$('.discount-row').trigger('autosize.destroy');
 });
 
 // trigger / change currency with timeout after updating the country
