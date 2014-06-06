@@ -117,7 +117,7 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 			taxOne : '',
 			taxTwo : '',
 			description : 'Tablet',
-			cost : 99.95
+			cost : 599.95
 		}],
 		type: '',
 		tocompany: '',
