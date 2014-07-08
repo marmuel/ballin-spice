@@ -374,6 +374,16 @@
 							</div>
 							<div class="checkbox">
 							<label>
+							<input type="checkbox">
+							Get paid online by Bank Payment</label>
+							</div>
+							<div class="checkbox">
+							<label>
+							<input type="checkbox">
+							Get paid online by Credit Card</label>
+							</div>
+							<div class="checkbox">
+							<label>	
 							<input type="checkbox"  ng-click="showPayPalMode = ! showPayPalMode">
 							{{ 'inv.invoice_email.getpaid' | translate }}</label>
 							</div>
@@ -384,7 +394,7 @@
 							</div>
 							<div class="modal-footer">
 							<button ng-click="ok()" type="button" class="btn btn-default"  translate="inv.invoice_email.close"></button>
-							<button ng-click="cancel()" type="button" class="btn btn-primary" translate="inv.invoice_email.send"></button>
+							<button onClick="location.href='mail-in.html' "ng-click="cancel()" type="button" class="btn btn-primary" translate="inv.invoice_email.send"></button>
 							</div>
 							</div><!-- /.modal-content -->
 						</script>

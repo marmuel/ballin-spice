@@ -430,4 +430,7 @@ div.brand a {
 	padding: 15px 0px;
 	pointer-events: none;
 }
-
+/*prototype payment*/
+.prototype{
+	margin: -60px 0px 0px -7px;
+}
