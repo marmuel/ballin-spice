@@ -154,27 +154,56 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 	};
 
 
- $scope.fonts = [{
+// font management
+
+ $scope.fonts = [{	
+ 	id: '0',
     value: 'Arial',
     label: 'Arial'
   }, {
+  	id: '1',
     value: 'Tahoma',
     label: 'Tahoma'
   }, {
+  	id: '2',
     value: 'Times New Roman',
     label: 'Times New Roman'
     }, {
+    id: '3',
     value: 'Verdana',
     label: 'Verdana'
     }, {
+    id: '4',
     value: 'Impact',
     label: 'Impact'
     }, {
+    id: '5',
     value: 'Comic Sans MS',
     label: 'Comic Sans MS'  
   }]; 
-  $scope.font = $scope.fonts[0]; // Arial hidden select
+  //$scope.font = $scope.fonts[0]; // Arial hidden select
+  $scope.OnItemClick = function (font) { // set hidden select
+        $scope.font = font;
+        // Save in localstorage
+        //console.log($scope.font);
+		localStorage["font"] = JSON.stringify(font);
+        localStorage.setItem('font', JSON.stringify(font));
+        
 
+
+    };
+
+// get font from localstorage
+
+
+if ((localStorage.getItem('font')) == '' || (localStorage.getItem('font')) == null) {	
+	    var storedFont = localStorage.getItem('font');	
+		$scope.font = $scope.fonts[0];
+	} else {	
+		var storedFont = localStorage.getItem('font');
+		var storedFontId = JSON.parse(storedFont).id;
+		$scope.font = $scope.fonts[storedFontId];
+	}
 
 
 	$scope.removeLogo = function(element) {
@@ -302,21 +331,6 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 	   };
 
 };
-   
-	// Modal Dialog Email
-
-	$scope.openModalEmail = function(size) {
-		var modalInstance = $modal.open({
-			templateUrl : 'EmailModalContent.html',
-			controller : ModalInstanceCtrl,
-			size : size,
-			resolve : {
-				items : function() {
-					return $scope.items;
-				}
-			}
-		});
-	};
 	// Modal Dialog Reset
 
 	$scope.openModalReset = function(size) {
