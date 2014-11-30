@@ -537,20 +537,13 @@ border-bottom: 2px solid #ddd !important;
 right: 0 !important;
 float: right !important;
 }
+a.dropdown-toggle.ng-binding {
+	color: #aaa;
+}
+.navbar-nav.navbar-right {
+margin: 10px 0px 0px 0px !important;
+}
 
-.modal-backdrop.am-fade {
-  opacity: .5;
-  transition: opacity .15s linear;
-  &.ng-enter {
-    opacity: 0;
-    &.ng-enter-active {
-      opacity: .5;
-    }
-  }
-  &.ng-leave {
-    opacity: .5;
-    &.ng-leave-active {
-      opacity: 0;
-    }
-  }
+.navbar-nav.navbar-right:last-child {
+margin-right: -15px;
 }
