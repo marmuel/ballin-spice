@@ -5,8 +5,8 @@ $(document).ready(function() {
 	$("#logoCompany").change(function() {
 		readURL(this);
 	});
-	
-	//autosize	
+
+	//autosize
 	// set all textareas to autosize
 	$('textarea').autosize();
 	// destroy autosize for particular inputs
@@ -20,10 +20,8 @@ $(document).ready(function() {
 $("#country-select").change(function() {
 	setTimeout(function() {
 		$("#currency").trigger('change');
-		}, 100);	
+	}, 100);
 });
- 
-
 
 // google address autocomplete feature
 // of the Google Places API to help users fill in the information.
@@ -35,7 +33,6 @@ var locationfield = $('#locationField');
 var gaddressResult = $('#google-result');
 var manaddress = $("#document-to");
 var gaddress = $('#google-address');
-
 
 // Search Again
 var $gSearchAgain = $('#search-again');
@@ -54,12 +51,12 @@ $gSearchAgain.on('click', function() {
 var $gSearchAccept = $('#search-accept');
 $gSearchAccept.on('click', function() {
 
-var gaddress = $('#google-address');
+	var gaddress = $('#google-address');
 	(manaddress).show();
 	(gbtnsearchagain).hide();
 	$('#autocomplete').val('');
 	(gaddressResult).hide();
-		(gaddress).fadeOut();
+	(gaddress).fadeOut();
 
 	Country();
 });
@@ -105,15 +102,15 @@ function fillInAddress() {
 	for (var component in componentForm) {
 		document.getElementById(component).value = '';
 		document.getElementById(component).disabled = false;
-     }
+	}
 
 	// Get each component of the address from the place details
 	// and fill the corresponding field on the form.
 	for (var i = 0; i < place.address_components.length; i++) {
-		var addressType = place.address_components[i].types[0]; 
-		addressFormatted = place.formatted_address;		
+		var addressType = place.address_components[i].types[0];
+		addressFormatted = place.formatted_address;
 		if (componentForm[addressType]) {
-		var val = place.address_components[i][componentForm[addressType]];		
+			var val = place.address_components[i][componentForm[addressType]];
 			document.getElementById(addressType).value = val;
 		}
 	}
@@ -130,26 +127,118 @@ function geolocate() {
 	}
 }
 
-
 // DROPBOX LOGO UPLOAD
 
-$( "#dropboxupload" ).click(function() {
+$("#dropboxupload").click(function() {
 	Dropbox.choose(options);
-    });
-	options = {
-		success : function(files) {
+});
+options = {
+	success : function(files) {
 		console.log(files);
-		$('#company_logo').attr('src',  files[0].link);	
-		localStorage["logo"] = files[0].link;					
-		},
-		multiselect : false, 
-		linkType: "direct",
-		extensions : ['.jpeg', '.gif', '.jpg', '.png'],
+		$('#company_logo').attr('src', files[0].link);
+		localStorage["logo"] = files[0].link;
+	},
+	multiselect : false,
+	linkType : "direct",
+	extensions : ['.jpeg', '.gif', '.jpg', '.png'],
 };
 
 // Add formatted Address to textarea
 function Country() {
-	    var toAddress = addressFormatted;
-	    toAddress = toAddress.replace(/, /gi, "\n").replace(/^,/,"");
-		$("#document-to").val(toAddress );
-} 
+	var toAddress = addressFormatted;
+	toAddress = toAddress.replace(/, /gi, "\n").replace(/^,/, "");
+	$("#document-to").val(toAddress);
+}
+
+// Add Class on hover and active cell
+$(function() {
+	var table = $('table').on('click', 'td', function() {
+		$('.table tr td').removeClass('active');
+		$(this).addClass('active');
+		$('.toolbar').css('display', 'block');
+	});
+});
+// Style the active cells
+$("#left_align_btn").click(function() {
+	$('td.active input, td.active textarea').css('text-align', 'left');
+});
+$("#right_align_btn").click(function() {
+	$('td.active input, td.active textarea').css('text-align', 'right');
+});
+$("#center_align_btn").click(function() {
+	$('td.active input, td.active textarea').css('text-align', 'center');
+});
+
+$("#bold_btn").click(function() {
+	if ($('td.active input, td.active textarea').css('font-weight') == 'bold') {
+		$('td.active input, td.active textarea').css('font-weight', 'normal');
+	} else {
+		$('td.active input, td.active textarea').css('font-weight', 'bold');
+	}
+});
+$("#italic_btn").click(function() {
+	if ($('td.active input, td.active textarea').css('font-style') == 'italic') {
+		$('td.active input, td.active textarea').css('font-style', 'normal');
+	} else {
+		$('td.active input, td.active textarea').css('font-style', 'italic');
+	}
+});
+// Theme Selector
+$(function() {
+	var theme = $(document).on('click', 'table.theme-template', function() {
+		$('.theme-template').removeClass('theme-selected');
+		$(this).addClass('theme-selected');
+		activeTheme = $(this).attr("id");
+	});
+});
+//border selector
+$(function() {
+	var border = $(document).on('click', 'table.border-template', function() {
+		$('.border-template').removeClass('border-selected');
+		$(this).addClass('border-selected');
+		activeBorder = $(this).attr("id");
+		console.log(activeBorder);
+	});
+});
+function changeTheme() {
+
+	console.log(activeTheme);
+	console.log(activeBorder);
+
+	if (activeTheme == 'theme-1') {
+		clearThemeClass();
+		$('#document-table').addClass('theme-1');
+	}
+	if (activeTheme == 'theme-2') {
+		clearThemeClass();
+		$('#document-table').addClass('theme-2');
+	}
+	if (activeTheme == 'theme-3') {
+		clearThemeClass();
+		$('#document-table').addClass('theme-3');
+	}
+
+	if (activeBorder == 'border-1') {
+		clearBorderClass();
+		$('#document-table').addClass('border-1');
+	}
+	if (activeBorder == 'border-2') {
+		clearBorderClass();
+		$('#document-table').addClass('border-2');
+	}
+	if (activeBorder == 'border-3') {
+		clearBorderClass();
+		$('#document-table').addClass('border-3');
+	}
+	function clearThemeClass() {
+		$("#document-table").removeClass(function(index, css) {
+			return (css.match(/\btheme-\S+/g) || []).join(' ');
+		});
+	}
+	function clearBorderClass() {
+		$("#document-table").removeClass(function(index, css) {
+			return (css.match(/\bborder-\S+/g) || []).join(' ');
+		});	
+	}
+
+}

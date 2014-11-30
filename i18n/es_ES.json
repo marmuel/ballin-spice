@@ -4,10 +4,9 @@
 			"language": "Lenguaje"
 		},
 		"headerbutton": {
-			"preview": " Vista previa",
+			"preview": " Vista previa & Imprimir",
 			"pdf": " PDF",
-			"email": " E-mail",
-			"print": " Imprimir"
+			"email": " E-mail"
 		},
 
 		"sidebarbutton": {
@@ -29,7 +28,8 @@
 			"dropbox": " Dropbox",
 			"googlesearch": " Dirección",
 			"searchno": "No",
-			"searchyes": "Si"
+			"searchyes": "Si",
+			"themebutton": " Diseño"
 		},
 		"googlesearch": {
 			"accept": " Aceptar",
@@ -86,6 +86,15 @@
 			"title": "Borrar formualrio de factura",
 			"message": "Está seguro que desea borrar el formuario de la factura?\nTodos los datos que ha accedido serán borrados!",
 			"yes": "Si",
+			"abort": "Cancelar"		
+		},
+			"theme":{
+			"title": "Cambio de Diseño",
+			"title-font": "Fuente",
+			"font": "Seleccione una fuente ",
+			"title-color": "Color",
+			"title-border": "Líneas de división",			
+			"yes": "Tomar",
 			"abort": "Cancelar"		
 		}
 	}

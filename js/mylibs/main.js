@@ -4,10 +4,6 @@ var app = angular.module("lexoffice", ['pascalprecht.translate', 'ui.bootstrap',
 //Translation
 app.config(['$translateProvider',
 function($translateProvider) {
-
-
-   
-
 	// Register a loader for the static files
 	// So, the module will search missing translation tables under the specified urls.
 	// Those urls are [prefix][langKey][suffix].
@@ -156,6 +152,28 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 			taxTwo : ''
 		});
 	};
+
+
+ $scope.fonts = [{
+    value: 'Arial',
+    label: 'Arial'
+  }, {
+    value: 'Tahoma',
+    label: 'Tahoma'
+  }, {
+    value: 'Times New Roman',
+    label: 'Times New Roman'
+    }, {
+    value: 'Verdana',
+    label: 'Verdana'
+    }, {
+    value: 'Impact',
+    label: 'Impact'
+    }, {
+    value: 'Comic Sans MS',
+    label: 'Comic Sans MS'  
+  }]; 
+  $scope.font = $scope.fonts[0]; // Arial hidden select
 
 
 
@@ -313,21 +331,35 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 			}
 		});
 	};
+	
+	// Modal Dialog Theme
+
+	$scope.openModalTheme = function(size) {
+		var modalInstance = $modal.open({
+			templateUrl : 'ThemeModalContent.html',
+			controller : ModalInstanceCtrl,
+			size : size,
+			resolve : {
+				items : function() {
+					return $scope.items;
+				}
+			}
+		});
+	};
 
 	// Please note that $modalInstance represents a modal window (instance) dependency.
 	// It is not the same as the $modal service used above.
 
 	var ModalInstanceCtrl = function($scope, $modalInstance, items) {
+		$scope.cancel = function() {
+			$modalInstance.dismiss('cancel');
+		};
 		// Email
 		$scope.ok = function() {
 			$modalInstance.dismiss('cancel');
 			//do some stuff and send email after o.k.
 		};
-
-		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
-		};
-
+        // Email
 		$scope.resetStorage = function() {
 			$modalInstance.dismiss('cancel');
 			localStorage["invoice"] = "";
@@ -335,7 +367,10 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 			console.log('localStorage cleared');
 			$scope.invoice = sample_invoice;
 			$window.location.reload();
-
+		};
+		$scope.selectTheme = function() {
+			changeTheme();
+			$modalInstance.dismiss('cancel');
 		};
 	};
 	$scope.printInfo = function() {

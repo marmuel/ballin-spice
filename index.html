@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="js/libs/angular-translate.min.js"></script>
 		<script type="text/javascript" src="js/libs/loader-static-files.js"></script>
 		<script type="text/javascript" src="js/libs/jquery.autosize.min.js" ></script>
-        <script type="text/javascript" src="js/libs/tmhDynamicLocale.js" ></script>
+		<script type="text/javascript" src="js/libs/tmhDynamicLocale.js" ></script>
 		<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="13ysuqq7fl50z0k"></script>
 		<script type="text/javascript" src="js/mylibs/main.js"></script>
 		<script defer src="js/mylibs/script.js"></script>
@@ -26,7 +26,7 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 
-	<body ng:controller="NewInvoiceCtrl" onload="initialize()">
+	<body ng:controller="NewInvoiceCtrl" onload="initialize()" ng-style="noPaddingStyle">
 		<div>
 			<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-hide="printMode"  >
 				<div class="container-fluid" >
@@ -54,9 +54,7 @@
 									</li>
 									<li>
 										<a href="#" ng-click="setLang('tr_TR')">Türkçe</a>
-									</li>									
-									
-									
+									</li>
 
 								</ul>
 							</li>
@@ -67,44 +65,81 @@
 				</div>
 
 			</div>
-			
-			<div class="col-md-12 header-buttons-line">
+
+			<div class="col-md-12 header-buttons-line" ng-style="headerHeight">
 				<div class="subheader" ng-hide="printMode">
 
-					<div class="btn-group noPrint" id="header-buttons">
-						<button type="button" class="btn btn-lg btn-default subheader-button" ng-hide="printMode" ng-click="printMode = true;">
-							<span class="fa fa-eye" translate="inv.headerbutton.preview" ></span>
-						</button>
-						<button  class="btn btn-lg btn-default subheader-button"  ng-click="printInfo()">
-							<span class="fa fa-print" translate="inv.headerbutton.print"></span>
-						</button>
-						<button  class="btn btn-lg btn-default subheader-button">
-							<span class="fa fa-file" translate="inv.headerbutton.pdf"></span>
-						</button>
-						<button  class="btn btn-lg btn-default subheader-button" data-toggle="modal" ng-click="openModalEmail()">
-							<span class="fa fa-envelope" translate="inv.headerbutton.email"></span>
+					<div class="btn-group noPrint" id="header-buttons" dropdown is-open="status4.isopen">
+						<button type="button" class="btn btn-lg btn-default subheader-button" ng-hide="printMode" ng-click="printMode = true; noMarginStyle={'margin':'0 auto'}; noPaddingStyle={'padding-top':'0px'}; headerHeight={'height':'0px'}">
+							<span class="fa fa-print" translate="inv.headerbutton.preview" ></span>
 						</button>
 						<button  type="button" class="btn btn-lg btn-default subheader-button"  ng-click="openModalReset()">
 							<span class="fa fa-trash-o" translate="inv.sidebarbutton.resetbutton" ></span>
+						</button>
+						<button type="button" id="theme_btn" class="btn btn-default btn-lg subheader-button" ng-hide="printMode" ng-click="openModalTheme()">
+							<span class="fa fa-table" translate="inv.sidebarbutton.themebutton"></span>
+						</button>
+                        <select ng-model="font" ng-options="font as font.label for font in fonts" id="font-family-select" >           
+    </select>
+                        
+						<button type="button" data-id="font-family-select" class="btn btn-lg btn-default dropdown-toggle subheader-button" data-toggle="dropdown"  ng-model="font" ng-disabled="disabled" ng-hide="printMode">
+							{{ 'inv.theme.font' | translate }}<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu dropdown-menu-right" role="menu">
+							<li ng-click="OnItemClick('Arial')">
+								<a href="#"><span style="font-family: Arial">Arial</span></a>
+							</li>
+							<li>
+								<a href="#"><span style="font-family: Tahoma">Tahoma</span></a>
+							</li>
+							<li>
+								<a href="#"><span style="font-family: Times New Roman">Times New Roman</span></a>
+							</li>
+							<li>
+								<a href="#"><span style="font-family: Verdana">Verdana</span></a>
+							</li>
+							<li>
+								<a href="#"><span style="font-family: Impact">Impact</span></a>
+							</li>
+							<li>
+								<a href="#"><span style="font-family: Comic Sans MS">Comic Sans MS</span></a>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+				<div class="col-md-3" ng-hide="printMode"></div>
+			</div>
+			<div class="col-md-12 header-buttons-line toolbar" style="display: none" ng-style="headerHeight">
+				<div class="subheader-toolbox" ng-hide="printMode">
+
+					<div class="btn-group noPrint" id="header-buttons">
+						<button type="button" id="left_align_btn" class="btn btn-default subheader-button-small" ng-hide="printMode">
+							<span class="fa fa-align-left"></span>
+						</button>
+						<button type="button" id="center_align_btn" class="btn btn-default subheader-button-small" ng-hide="printMode">
+							<span class="fa fa-align-center"></span>
+						</button>
+						<button type="button" id="right_align_btn" class="btn btn-default subheader-button-small" ng-hide="printMode">
+							<span class="fa fa-align-right"></span>
+						</button>
+						<button type="button" id="bold_btn" class="btn btn-default subheader-button-small" ng-hide="printMode">
+							<span class="fa fa-bold"></span>
+						</button>
+						<button type="button" id="italic_btn" class="btn btn-default subheader-button-small" ng-hide="printMode">
+							<span class="fa fa-italic"></span>
 						</button>
 
 					</div>
 				</div>
 				<div class="col-md-3" ng-hide="printMode"></div>
 			</div>
-
 			<div class="container-fluid" >
 				<div class="row">
-                   
+
 					<div class="col-sm-3 col-md-3 sidebar" ng-hide="printMode">
 
 						<ul class="nav nav-sidebar action-buttons" >
-
-							<li>
-								<button class="btn btn-lg btn-primary sidebar-button" ng-click="uploadHtmlFile()">
-									<span class="fa fa-dropbox" translate="inv.sidebarbutton.dropbox"></span>
-								</button>
-							</li>
 
 							<li>
 
@@ -147,19 +182,22 @@
 						</ul>
 					</div>
 
-					<div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-2 main" >
-						<div class="document-wrapper">
+					<div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-2 main" ng-style="noMarginStyle" >
+						<div id="doc-wrapper" >
+						<div class="document-wrapper" >
 
-							<div id="invoice-header" class="row" >
+							<div id="invoice-header" class="row" ng-style="noMarginStyle" style="font-family: {{font.label}}" ng-model="font">
 
 								<div class="noPrint print-actions">
 
 									<button type="button" class="btn btn-primary" ng-show="printMode" ng-click="printInfo()" >
 										<span class="fa fa-print" translate="inv.invoice_form.printbutton" ></span>
 									</button>
-									<button type="button" class="btn btn-primary" ng-show="printMode" ng-click="printMode = false;" >
+									<button type="button" class="btn btn-primary" ng-show="printMode" ng-click="printMode = false; noMarginStyle={'margin':'0 auto'}; noPaddingStyle={'padding-top':'50px'}; headerHeight={'height':'80px'}" >
 										<span class="fa fa-eye-slash" translate="inv.invoice_form.printmodeoffbutton" ></span>
 									</button>
+								</div>
+								<div class="noPrint logo-actions">
 									<div class="btn-group" ng-hide="printMode">
 										<button type="button" class="btn btn-default" ng-click="editLogo()" href="">
 											<span  class="fa fa-pencil" ></span>
@@ -175,7 +213,7 @@
 								</div>
 								<table class="table" >
 									<tbody>
-										<tr>
+										<tr class="trHead">
 											<td>											<textarea ng-model="invoice.type" id="document-type" class="document-inputs" placeholder="{{ 'inv.invoice_form.type' | translate }}"></textarea>											<textarea ng-model="invoice.fromaddress" id="document-from" class="document-inputs address" placeholder="{{ 'inv.invoice_form.fromaddress' | translate }}"></textarea></td>
 											<td align="right">
 											<input type='file' id="logoCompany" />
@@ -185,13 +223,13 @@
 								</table>
 							</div>
 
-							<div class="row" >
+							<div class="row" id="font-row" style="font-family: {{font.label}}" ng-model="font" >
 								<div id="locationField" class="right-inner-addon" ng-show="showGoogleAddress">
 									<input id="autocomplete" class="form-control" focus-me="focusInput" placeholder="{{ 'inv.invoice_form.enteraddress' | translate }}" onFocus="geolocate()" type="search">
 								</div>
 								<div id="google-address" style="display: none" >
 
-									<table id="google-result" style="display: none" >
+									<table id="google-result" class="trHead" style="display: none" >
 										<tr>
 											<td class="streetno">											<textarea class="document-inputs-googlesearch" id="street_number"
 											disabled="true" placeholder="{{ 'inv.invoice_form.streetno' | translate }}">
@@ -236,7 +274,7 @@
 
 								<table class="table">
 									<tbody>
-										<tr >
+										<tr class="trHead" >
 											<td>											<textarea ng-model="invoice.tocompany" class="document-to-company to-company" placeholder="{{ 'inv.invoice_form.tocompany' | translate }}"></textarea>											<textarea ng-model="invoice.toaddress" id="document-to" class="document-to-company to-address" placeholder="{{ 'inv.invoice_form.toaddress' | translate }}"></textarea></td>
 
 											<td align="right">											<textarea class="document-inputs document-date-label" translate="inv.invoice_form.nolabel"></textarea>											<textarea class="document-inputs document-data-label" translate="inv.invoice_form.datelabel"></textarea></td>
@@ -247,10 +285,10 @@
 									</tbody>
 								</table>
 
-								<table class="table" id="document-table">
+								<table class="table theme-1 border-2" id="document-table">
 									<thead >
 										<tr >
-											<th></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.description" >Description</textarea></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.quantity">Quantity</textarea></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.unitprice">Unit Price</textarea></th>
+											<th class="no-border"></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.description" >Description</textarea></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.quantity">Quantity</textarea></th><th>											<textarea type="text" class="header-inputs" translate="inv.invoice_table.unitprice">Unit Price</textarea></th>
 											<th ng-hide="taxOption=='1'">											<textarea type="text" class="header-inputs tax1-header" translate="inv.invoice_table.tax1"></textarea></th>
 											<th ng-hide="taxOption=='1' || taxOption=='2'">											<textarea type="text" class="header-inputs tax2-header" translate="inv.invoice_table.tax2"></textarea></th>
 
@@ -271,7 +309,7 @@
 											<td class="currency-column">											<textarea type="text" class="table-inputs currency-label" disabled="disabled" ng:model="selectionCurrency"></textarea></td>
 
 										</tr>
-										<tr  ng-show="invoice.discount">
+										<tr  ng-show="invoice.discount" class="trDiscount">
 											<td colspan="3" class="noline"></td><td class="footer-labels" colspan="{{taxOption}}">											<textarea type="text" class="table-inputs discount-row">{{'inv.invoice_table.discount' | translate}} {{invoice.discount}} %</textarea></td>
 											<td class="total-rows" > - {{invoice_discount() | currency :""}} </td>
 											<td >											<textarea type="text" class="table-inputs currency-label" disabled="disabled"ng:model="selectionCurrency"></textarea></td>
@@ -304,13 +342,13 @@
 
 									<tbody >
 										<tr ng:repeat="item in invoice.items" class="invoice-row" style="display: none" jq:animate="dropdown;250">
-											<td class="dragHandle">
+											<td class="dragHandle no-border">
 											<div class= "delete-action">
 												<button class="btn btn-danger remove-row noPrint" href="#" ng-hide="printMode" ng-click="removeItem(item)">
 													<span class="fa fa-trash-o"></span>
 												</button>
 											</div></td>
-											<td class="product-column">	<textarea ng:model="item.description" type="text"  class="table-textareas product" translate="inv.invoice_table.product" contentEditable="true"></textarea></td><td class="quantity-column">
+											<td class="product-column">											<textarea ng:model="item.description" type="text"  class="table-textareas product" translate="inv.invoice_table.product" contentEditable="true"></textarea></td><td class="quantity-column">
 											<input  ng:model="item.qty" coma-dot-converter="coma-dot-converter" class="table-inputs quantity" value="1" size="4" ng:required ng:validate="integer" placeholder="qty">
 											</td><td class="netprice-column">
 											<input ng:model="item.cost" blur-to-currency amount="stake" coma-dot-converter="coma-dot-converter"  class="table-inputs unitprice" autocomplete="off">
@@ -328,7 +366,7 @@
 								</table>
 								<table class="table">
 									<tbody>
-										<tr >
+										<tr class="trTerms" >
 											<td>											<textarea ng-model="invoice.terms" class="document-inputs terms" placeholder="{{ 'inv.invoice_form.termslabel' | translate }}"></textarea></td>
 											<td align="right">											<textarea ng-model="invoice.notes" class="document-inputs notes" placeholder="{{ 'inv.invoice_form.notes' | translate }}"></textarea></td>
 										</tr>
@@ -336,7 +374,7 @@
 								</table>
 								<table class="table">
 									<tbody>
-										<tr >
+										<tr class="trTerms">
 											<td>											<textarea ng-model="invoice.footer_left" class="document-inputs footer" placeholder="{{ 'inv.invoice_form.footer' | translate }}"></textarea></td>
 											<td align="center">											<textarea ng-model="invoice.footer_middle" class="document-inputs footer" placeholder="{{ 'inv.invoice_form.footer' | translate }}"></textarea></td>
 											<td align="right">											<textarea ng-model="invoice.footer_right" class="document-inputs footer" placeholder="{{ 'inv.invoice_form.footer' | translate }}"></textarea></td>
@@ -347,59 +385,16 @@
 							</div>
 
 						</div>
+						</div>
 						<div class="company-info noPrint" ng-hide="printMode">
-							<p>
+							<p >
 								made with <i class="fa fa-heart heart"></i> in Germany by <a href="http://www.lexware.de"><img src="img/lexware_logo.jpg" target="_blank" style="width: 120px; height: 20px"><img /></a>
+
 							</p>
 						</div>
+
 					</div>
 
-					<div>
-						<!-- modal -Email-->
-						<script type="text/ng-template" id="EmailModalContent.html">
-							<div class="modal-content">
-							<div class="modal-header">
-							<h4 class="modal-title" translate="inv.invoice_email.title"></h4>
-							</div>
-							<div class="modal-body">
-							<form role="form">
-							<div class="form-group">
-							<input type="email" class="form-control" placeholder="{{ 'inv.invoice_email.customer-email' | translate }}">
-							</div>
-							<div class="form-group">
-							<textarea class="form-control" placeholder="{{ 'inv.invoice_email.subject' | translate }}"></textarea>
-							</div>
-							<div class="form-group">
-							<textarea class="form-control" placeholder="{{ 'inv.invoice_email.customer-message' | translate }}"></textarea>
-							</div>
-							<div class="checkbox">
-							<label>
-							<input type="checkbox">
-							Get paid online by Bank Payment</label>
-							</div>
-							<div class="checkbox">
-							<label>
-							<input type="checkbox">
-							Get paid online by Credit Card</label>
-							</div>
-							<div class="checkbox">
-							<label>	
-							<input type="checkbox"  ng-click="showPayPalMode = ! showPayPalMode">
-							{{ 'inv.invoice_email.getpaid' | translate }}</label>
-							</div>
-							<div class="form-group" ng-show="showPayPalMode">
-							<input type="email" class="form-control" placeholder="{{ 'inv.invoice_email.paypal_merchantaccount' | translate }}">
-							</div>
-							</form>
-							</div>
-							<div class="modal-footer">
-							<button ng-click="ok()" type="button" class="btn btn-default"  translate="inv.invoice_email.close"></button>
-							<button onClick="location.href='mail-in.html' "ng-click="cancel()" type="button" class="btn btn-primary" translate="inv.invoice_email.send"></button>
-							</div>
-							</div><!-- /.modal-content -->
-						</script>
-
-					</div><!-- /.modal -Email-->
 					<div>
 						<!-- modal -Reset-->
 						<script type="text/ng-template" id="ResetModalContent.html">
@@ -420,6 +415,144 @@
 						</script>
 
 					</div><!-- /.modal -Reset-->
+					<div>
+						<!-- modal -Theme-->
+						<script type="text/ng-template" id="ThemeModalContent.html">
+							<div class="modal-content modal-theme">
+							<div class="modal-header">
+							<h4 class="modal-title" translate="inv.theme.title"></h4>
+							</div>
+							<div class="modal-body">
+							<accordion>
+							<accordion-group is-open="status.open">
+							<accordion-heading>
+							{{ 'inv.theme.title-color' | translate }}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+							</accordion-heading>
+
+							<table class="theme-template" id="theme-1">
+							<tbody>
+							<tr>
+							<td class="hide"></td><td class="hide"></td><td class="hide"></td><td class="hide"></td><td class="hide"></td>
+							</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>
+							</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>
+							</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>						</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>								</tr>
+							</tbody>
+							</table>
+
+							<table class="theme-template"  id="theme-2">
+							<tbody>
+							<tr>
+							<td class="hide"></td><td class="hide"></td><td class="hide"></td><td class="hide"></td><td class="hide"></td>
+							</tr>
+							<tr class="pseudo-header">
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>
+							</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>
+							</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>						</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>								</tr>
+							</tbody>
+							</table>
+
+							<table class="theme-template"  id="theme-3">
+							<tbody>
+							<tr>
+							<td class="hide"></td><td class="hide"></td><td class="hide"></td><td class="hide"></td><td class="hide"></td>
+							</tr>
+							<tr class="pseudo-header">
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>
+							</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>
+							</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>						</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>								</tr>
+							</tbody>
+							</table>
+
+							</accordion-group>
+							<accordion-group is-open="status1.open">
+							<accordion-heading>
+							{{ 'inv.theme.title-border' | translate }}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status1.open, 'glyphicon-chevron-right': !status1.open}"></i>
+							</accordion-heading>
+							<table class="border-template" id="border-1">
+							<tbody>
+							<tr>
+							<td class="hide"></td><td class="hide"></td><td class="hide"></td><td class="hide"></td><td class="hide"></td>
+							</tr>
+							<tr class="pseudo-header">
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>
+							</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>
+							</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>						</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>								</tr>
+							</tbody>
+							</table>
+							<table class="border-template" id="border-2">
+							<tbody>
+							<tr>
+							<td class="hide"></td><td class="hide"></td><td class="hide"></td><td class="hide"></td><td class="hide"></td>
+							</tr>
+							<tr class="pseudo-header">
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>
+							</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>
+							</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>						</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>								</tr>
+							</tbody>
+							</table>
+
+							<table class="border-template" id="border-3">
+							<tbody>
+							<tr>
+							<td class="hide"></td><td class="hide"></td><td class="hide"></td><td class="hide"></td><td class="hide"></td>
+							</tr>
+							<tr class="pseudo-header">
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>
+							</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>
+							</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>						</tr>
+							<tr>
+							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>								</tr>
+							</tbody>
+							</table>
+
+							</accordion-group>
+
+							</accordion>
+
+							<div class="modal-footer">
+							<button ng-click="cancel()" type="button" class="btn btn-default"  translate="inv.theme.abort"></button>
+							<button ng-click="selectTheme();" type="button" class="btn btn-primary" translate="inv.theme.yes"></button>
+							</div>
+							</div><!-- /.modal-content -->
+						</script>
+
+					</div><!-- /.modal -Theme-->
 
 				</div>
 

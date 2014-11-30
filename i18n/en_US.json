@@ -4,10 +4,9 @@
 			"language": "Language"
 		},
 		"headerbutton": {
-			"preview": " Preview",
+			"preview": " Preview & Print",
 			"pdf": " PDF",
-			"email": " Email",
-			"print": " Print"
+			"email": " Email"
 		},
 		"sidebarbutton": {
 
@@ -28,7 +27,8 @@
 			"dropbox": " Dropbox",
 			"googlesearch": " Address",
 			"searchno": "No",
-			"searchyes": "Yes"
+			"searchyes": "Yes",
+			"themebutton": " Design"
 		},
 		"googlesearch": {
 			"accept": " Accept",
@@ -85,6 +85,15 @@
 			"title": "Reset Invoice Form",
 			"message": "Are you sure you want to reset your invoice form?\nAll previously entered data will be lost!",
 			"yes": "Yes",
+			"abort": "Abort"		
+		},
+		"theme":{
+			"title": "Change Design",
+			"title-font": "Font",
+			"font": "Select Font ",
+			"title-color": "Color",
+			"title-border": "Border",		
+			"yes": "Assume",
 			"abort": "Abort"		
 		}
 	}

@@ -4,10 +4,9 @@
 			"language": "Sprache"
 		},
 		"headerbutton": {
-			"preview": " Vorschau",
+			"preview": " Vorschau & Druck",
 			"pdf": " PDF",
-			"email": " E-Mail",
-			"print": " Drucken"
+			"email": " E-Mail"
 		},
 
 		"sidebarbutton": {
@@ -29,7 +28,8 @@
 			"dropbox": " Dropbox",
 			"googlesearch": " Adresse",
 			"searchno": "Nein",
-			"searchyes": "Ja"
+			"searchyes": "Ja",
+			"themebutton": " Design"
 		},
 		"googlesearch": {
 			"accept": " Übernehmen",
@@ -87,6 +87,16 @@
 			"message": "Sind Sie sicher, dass Sie die das Rechnungsformular zurücksetzen möchten?\nAlle bereits eingegebenen Daten gehen hierbei verloren!",
 			"yes": "Ja",
 			"abort": "Abbrechen"		
+		},
+		"theme":{
+			"title": "Design verändern",
+			"title-font": "Schriftart",
+			"font": "Schriftart auswählen ",
+			"title-color": "Farben",
+			"title-border": "Gitternetzlinien",
+			"yes": "Übernehmen",
+			"abort": "Abbrechen"		
 		}
+		
 	}
 }
