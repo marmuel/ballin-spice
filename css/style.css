@@ -543,6 +543,12 @@ a.dropdown-toggle.ng-binding {
 .navbar-nav.navbar-right {
 margin: 10px 0px 0px 0px !important;
 }
+.btn-theme{
+	width: 91%;
+}
+.btn-theme-label {
+	width: 33.33%;
+}
 
 .navbar-nav.navbar-right:last-child {
 margin-right: -15px;

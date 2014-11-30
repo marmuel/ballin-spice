@@ -198,7 +198,7 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 
 if ((localStorage.getItem('font')) == '' || (localStorage.getItem('font')) == null) {	
 	    var storedFont = localStorage.getItem('font');	
-		$scope.font = $scope.fonts[0];
+		$scope.font = $scope.fonts[1];
 	} else {	
 		var storedFont = localStorage.getItem('font');
 		var storedFontId = JSON.parse(storedFont).id;
