@@ -13,7 +13,7 @@ function($translateProvider) {
 	});
 
 	// Get stored default language or tell the module what language to use by default
-	
+
 	if (localStorage["language"] == "" || localStorage["language"] == null) {
 		var locale = 'en_US';
 		console.log('Default Language');
@@ -23,15 +23,13 @@ function($translateProvider) {
 		storedLocale = JSON.parse(localStorage["language"]);
 		$translateProvider.preferredLanguage(storedLocale);
 	}
-	
 
-//START THE MAIN CONTROLLER
-}])
-.controller('NewInvoiceCtrl', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout', '$locale', 'tmhDynamicLocale',
-function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale, tmhDynamicLocale) {  
-      // populate Language Dropdown
+	//START THE MAIN CONTROLLER
+}]).controller('NewInvoiceCtrl', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout', '$locale', 'tmhDynamicLocale',
+function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale, tmhDynamicLocale) {
+	// populate Language Dropdown
 
-	// language setting	
+	// language setting
 	$scope.setLang = function(langKey) {
 		// store language local
 		localStorage["language"] = JSON.stringify(langKey);
@@ -39,66 +37,66 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 		$translate.use(langKey);
 	};
 
-   // load, populate and order Json in country select
-   $scope.data = {
-    locations: {
-      countries: []
-    }
-  };
-    // SET DEFAULTS
-  	// Set default shipping-button
+	// load, populate and order Json in country select
+	$scope.data = {
+		locations : {
+			countries : []
+		}
+	};
+	// SET DEFAULTS
+	// Set default shipping-button
 	$scope.radioShipping = '0';
-  
-  // set default Country
-  $scope.data.locations.countries.$default = 'United States';
-  $scope.data.locations.countries.$resolved = false;
-  
-  // set default locale to USA
+
+	// set default Country
+	$scope.data.locations.countries.$default = 'United States';
+	$scope.data.locations.countries.$resolved = false;
+
+	// set default locale to USA
 	// for more informations: https://github.com/lgalfaso/angular-dynamic-locale
-	 tmhDynamicLocale.set('en-us');
-  
-  // Populate countries.json in Country Select
-  $http.get('i18n/countries.json').success(function(countries) {
-    $scope.data.locations.countries.length = 0;
-    // actually filter is set to none. to activate choose for e.g. (countries, 'name')
-    Array.prototype.push.apply($scope.data.locations.countries, $filter('orderBy')(countries, ''));
-    $scope.selectionCountry || ($scope.selectionCountry = $filter('filter')($scope.data.locations.countries, {name: $scope.data.locations.countries.$default})[0]);
-    $scope.data.locations.countries.$resolved = true; 
-    //console.log($scope.data.locations.countries);
-  });
-      
-   // pre set currency select  
-  $scope.updateCountry = function(item) {
-  	
- // get locale from the country select / countries.json
- var selLocale = $scope.selectionCountry.i18n;  
- // set locale
- // for more informations: https://github.com/lgalfaso/angular-dynamic-locale
- tmhDynamicLocale.set(selLocale);
- console.log('changed locale to: ', selLocale); 	
+	tmhDynamicLocale.set('en-us');
 
-  var selCountry=$scope.selectionCountry.currencies;
-  var selCurrency=document.getElementById('currency').options;
-  for(var i=0;i<selCurrency.length;i++) {
-    if(selCurrency[i].value.indexOf(selCountry)==0){
-      selCurrency[i].selected=true;
-    };
-    if(document.getElementById('country-select').value==''){
-      selCurrency[0].selected=true;
-    };
-  };
-  // TODO Update Currency Format Inputs Unit Price
-//  var priceControl = $scope.invoice.items;
-//  var uCost = $scope.invoice.items['cost'];
-//   for(var i=0;i<priceControl.length;i++) { 
-//   	var uCost = 0;	
-//   	var uCost = $scope.invoice.items[i].cost;
-//   	$scope.invoice.items[i].cost = ($filter('currency' )($scope.invoice.items[i].cost, ''));
-//    console.log(($filter('currency' )($scope.invoice.items[i].cost, '')));
-//    };
-};
+	// Populate countries.json in Country Select
+	$http.get('i18n/countries.json').success(function(countries) {
+		$scope.data.locations.countries.length = 0;
+		// actually filter is set to none. to activate choose for e.g. (countries, 'name')
+		Array.prototype.push.apply($scope.data.locations.countries, $filter('orderBy')(countries, ''));
+		$scope.selectionCountry || ($scope.selectionCountry = $filter('filter')($scope.data.locations.countries, {name: $scope.data.locations.countries.$default})[0]);
+		$scope.data.locations.countries.$resolved = true;
+		//console.log($scope.data.locations.countries);
+	});
 
- //Invoice Control
+	// pre set currency select
+	$scope.updateCountry = function(item) {
+
+		// get locale from the country select / countries.json
+		var selLocale = $scope.selectionCountry.i18n;
+		// set locale
+		// for more informations: https://github.com/lgalfaso/angular-dynamic-locale
+		tmhDynamicLocale.set(selLocale);
+		console.log('changed locale to: ', selLocale);
+
+		var selCountry = $scope.selectionCountry.currencies;
+		var selCurrency = document.getElementById('currency').options;
+		for (var i = 0; i < selCurrency.length; i++) {
+			if (selCurrency[i].value.indexOf(selCountry) == 0) {
+				selCurrency[i].selected = true;
+			};
+			if (document.getElementById('country-select').value == '') {
+				selCurrency[0].selected = true;
+			};
+		};
+		// TODO Update Currency Format Inputs Unit Price
+		//  var priceControl = $scope.invoice.items;
+		//  var uCost = $scope.invoice.items['cost'];
+		//   for(var i=0;i<priceControl.length;i++) {
+		//   	var uCost = 0;
+		//   	var uCost = $scope.invoice.items[i].cost;
+		//   	$scope.invoice.items[i].cost = ($filter('currency' )($scope.invoice.items[i].cost, ''));
+		//    console.log(($filter('currency' )($scope.invoice.items[i].cost, '')));
+		//    };
+	};
+
+	//Invoice Control
 
 	$scope.class = "glyphicon glyphicon-minus";
 	$scope.logoRemoved = false;
@@ -115,18 +113,18 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 			description : 'Tablet',
 			cost : 599.95
 		}],
-		type: '',
-		tocompany: '',
-		toaddress: '',
-		fromaddress:'',
-		terms: '',
-		notes:'',
-		footer_left: '',
-		footer_middle: '',
-		footer_right: ''
+		type : '',
+		tocompany : '',
+		toaddress : '',
+		fromaddress : '',
+		terms : '',
+		notes : '',
+		footer_left : '',
+		footer_middle : '',
+		footer_right : ''
 	};
 
-    var default_logo = "img/logo.jpg";
+	var default_logo = "img/logo.jpg";
 
 	if (localStorage["invoice"] == "" || localStorage["invoice"] == null) {
 		console.log('Sample Invoice');
@@ -137,12 +135,11 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 	}
 
 	if (localStorage["logo"]) {
-     $scope.logo = localStorage["logo"];
-   } else {
-     $scope.logo = default_logo;
-   }
-   
-   
+		$scope.logo = localStorage["logo"];
+	} else {
+		$scope.logo = default_logo;
+	}
+
 	$scope.addItem = function() {
 		$scope.invoice.items.push({
 			description : "",
@@ -153,58 +150,53 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 		});
 	};
 
+	// font management
 
-// font management
-
- $scope.fonts = [{	
- 	id: '0',
-    value: 'Arial',
-    label: 'Arial'
-  }, {
-  	id: '1',
-    value: 'Tahoma',
-    label: 'Tahoma'
-  }, {
-  	id: '2',
-    value: 'Times New Roman',
-    label: 'Times New Roman'
-    }, {
-    id: '3',
-    value: 'Verdana',
-    label: 'Verdana'
-    }, {
-    id: '4',
-    value: 'Impact',
-    label: 'Impact'
-    }, {
-    id: '5',
-    value: 'Comic Sans MS',
-    label: 'Comic Sans MS'  
-  }]; 
-  //$scope.font = $scope.fonts[0]; // Arial hidden select
-  $scope.OnItemClick = function (font) { // set hidden select
-        $scope.font = font;
-        // Save in localstorage
-        //console.log($scope.font);
+	$scope.fonts = [{
+		id : '0',
+		value : 'Arial',
+		label : 'Arial'
+	}, {
+		id : '1',
+		value : 'Tahoma',
+		label : 'Tahoma'
+	}, {
+		id : '2',
+		value : 'Times New Roman',
+		label : 'Times New Roman'
+	}, {
+		id : '3',
+		value : 'Verdana',
+		label : 'Verdana'
+	}, {
+		id : '4',
+		value : 'Impact',
+		label : 'Impact'
+	}, {
+		id : '5',
+		value : 'Comic Sans MS',
+		label : 'Comic Sans MS'
+	}];
+	//$scope.font = $scope.fonts[0]; // Arial hidden select
+	$scope.OnItemClick = function(font) {// set hidden select
+		$scope.font = font;
+		// Save in localstorage
+		//console.log($scope.font);
 		localStorage["font"] = JSON.stringify(font);
-        localStorage.setItem('font', JSON.stringify(font));
-        
+		localStorage.setItem('font', JSON.stringify(font));
 
+	};
 
-    };
+	// get font from localstorage
 
-// get font from localstorage
-
-
-if ((localStorage.getItem('font')) == '' || (localStorage.getItem('font')) == null) {	
-	    var storedFont = localStorage.getItem('font');	
+	if ((localStorage.getItem('font')) == '' || (localStorage.getItem('font')) == null) {
+		var storedFont = localStorage.getItem('font');
 		$scope.font = $scope.fonts[1];
-	} else {	
+	} else {
 		var storedFont = localStorage.getItem('font');
 		var storedFontId = JSON.parse(storedFont).id;
 		$scope.font = $scope.fonts[storedFontId];
 	}
-
 
 	$scope.removeLogo = function(element) {
 
@@ -215,7 +207,7 @@ if ((localStorage.getItem('font')) == '' || (localStorage.getItem('font')) == nu
 			$scope.class = "glyphicon glyphicon-plus";
 			$scope.logoRemoved = true;
 		}
-           localStorage["logo"] = "";
+		localStorage["logo"] = "";
 	};
 
 	$scope.editLogo = function() {
@@ -226,12 +218,10 @@ if ((localStorage.getItem('font')) == '' || (localStorage.getItem('font')) == nu
 		$scope.logoRemoved = false;
 	};
 
-
 	// remove Row
 	$scope.removeItem = function(item) {
 		$scope.invoice.items.splice($scope.invoice.items.indexOf(item), 1);
 	};
-
 
 	// Callculate Tax and dynamically add new rows for subtotals
 
@@ -250,7 +240,7 @@ if ((localStorage.getItem('font')) == '' || (localStorage.getItem('font')) == nu
 				if (!groups[perc]) {
 					groups[perc] = 0;
 				}
-               
+
 				groups[perc] += ((invoice.cost * invoice.qty) * (100 - discount)) / 100;
 			});
 		});
@@ -305,32 +295,31 @@ if ((localStorage.getItem('font')) == '' || (localStorage.getItem('font')) == nu
 		return arr;
 	}
 
-
 	// Clear Taxes in Column depending on select #tax
 
 	$scope.resetTaxes = function() {
 
-	var taxSelect = $scope.taxOption;
+		var taxSelect = $scope.taxOption;
 
-	if (taxSelect === '2') {
-		var tItems = $scope.invoice.items;
-		angular.forEach(tItems, function(item) {
-			item.taxTwo = "";
-    	});		
+		if (taxSelect === '2') {
+			var tItems = $scope.invoice.items;
+			angular.forEach(tItems, function(item) {
+				item.taxTwo = "";
+			});
+		};
+		if (taxSelect === '1') {
+			var tItems = $scope.invoice.items;
+			angular.forEach(tItems, function(item) {
+				item.taxTwo = "";
+			});
+
+			var tItems = $scope.invoice.items;
+			angular.forEach(tItems, function(item) {
+				item.taxOne = "";
+			});
+		};
+
 	};
-    if (taxSelect === '1') {
-		var tItems = $scope.invoice.items;
-		angular.forEach(tItems, function(item) {
-			item.taxTwo = "";	
-			});
-
-		var tItems = $scope.invoice.items;
-		angular.forEach(tItems, function(item) {
-			item.taxOne = "";				
-			});
-	   };
-
-};
 	// Modal Dialog Reset
 
 	$scope.openModalReset = function(size) {
@@ -346,8 +335,20 @@ if ((localStorage.getItem('font')) == '' || (localStorage.getItem('font')) == nu
 		});
 	};
 	
-	// Modal Dialog Theme
+	// get Design from localstorage or default values
 
+	if ((localStorage.getItem('design')) == '' || (localStorage.getItem('design')) == null) {
+		var storedDesign = localStorage.getItem('design');
+		console.log('no storedDesign, set to theme-1 border-2');
+		$scope.selectedTheme = 'theme-1 border-2';
+	} else {
+		var storedDesign = localStorage.getItem("design");
+		console.log('yes storedDesign!' + storedDesign);
+		$scope.selectedTheme = eval(storedDesign);
+	}
+
+
+	// Modal Dialog Theme
 	$scope.openModalTheme = function(size) {
 		var modalInstance = $modal.open({
 			templateUrl : 'ThemeModalContent.html',
@@ -359,25 +360,53 @@ if ((localStorage.getItem('font')) == '' || (localStorage.getItem('font')) == nu
 				}
 			}
 		});
+		modalInstance.result.then(function(selectedItem) {
+			
+			$scope.selectedTheme = selectedItem;
+			$scope.selectedBorder = selectedItem;
+		});
 	};
 
 	// Please note that $modalInstance represents a modal window (instance) dependency.
 	// It is not the same as the $modal service used above.
 
 	var ModalInstanceCtrl = function($scope, $modalInstance, items) {
+		$scope.selectedTheme = {
+			theme : 'theme-1'
+		};
+		$scope.selectedBorder = {
+			border : 'border-1'
+		};
+		
+
+		$scope.selectDesign = function() {	
+				var t = $scope.selectedTheme.theme;
+				var b = $scope.selectedBorder.border;
+				d = t + ' ' + b;
+						
+		// Save in localstorage
+		var design = d;
+		console.log($scope.selectedTheme.theme);
+		localStorage["design"] = JSON.stringify(design);
+		localStorage.setItem('design', JSON.stringify(design));
+			
+			$modalInstance.close(
+				
+				$scope.selectedTheme.theme = d
+			);					
+		};
+
 		$scope.cancel = function() {
 			$modalInstance.dismiss('cancel');
 		};
+
 		// Email
-		$scope.ok = function() {
-			$modalInstance.dismiss('cancel');
-			//do some stuff and send email after o.k.
-		};
-        // Email
 		$scope.resetStorage = function() {
 			$modalInstance.dismiss('cancel');
 			localStorage["invoice"] = "";
 			localStorage["logo"] = "";
+			localStorage["font"] = "";
+			localStorage["design"] = "";
 			console.log('localStorage cleared');
 			$scope.invoice = sample_invoice;
 			$window.location.reload();
@@ -388,11 +417,10 @@ if ((localStorage.getItem('font')) == '' || (localStorage.getItem('font')) == nu
 		};
 	};
 	$scope.printInfo = function() {
-      window.print();
-    };
-        
-}])
+		window.print();
+	};
 
+}])
 
 //coma dot converter (custom directive)
 
@@ -427,50 +455,47 @@ if ((localStorage.getItem('font')) == '' || (localStorage.getItem('font')) == nu
 		}, 0);
 	};
 })
-
 // Set Focus on Inputs for e.g. Google Address Search
 
 .directive('focusMe', function($timeout) {
-  return {
-    link: function(scope, element, attrs) {
-      scope.$watch(attrs.focusMe, function(value) {
-        if(value === true) { 
-          $timeout(function() {
-            element[0].focus();
-            scope[attrs.focusMe] = false;
-          });
-        }
-      });
-    }
-  };
+	return {
+		link : function(scope, element, attrs) {
+			scope.$watch(attrs.focusMe, function(value) {
+				if (value === true) {
+					$timeout(function() {
+						element[0].focus();
+						scope[attrs.focusMe] = false;
+					});
+				}
+			});
+		}
+	};
 })
-
 // Format Inputs to Currency Format
 
-.directive('blurToCurrency', function($filter){
-  return {
-    scope: {
-      amount  : '='
-    },
-    link: function(scope, el, attrs){
-      el.val($filter('currency' )(scope.amount, ''));
-      
-      el.bind('focus', function(){
-        el.val(scope.amount);
-      });
-      
-      el.bind('input', function(){
-        scope.amount = el.val();
-        scope.$apply();
-      });
-      
-      el.bind('blur', function(){
-        el.val($filter('currency')(scope.amount, ''));
-      });
-    }
-  };
-});
+.directive('blurToCurrency', function($filter) {
+	return {
+		scope : {
+			amount : '='
+		},
+		link : function(scope, el, attrs) {
+			el.val($filter('currency' )(scope.amount, ''));
 
+			el.bind('focus', function() {
+				el.val(scope.amount);
+			});
+
+			el.bind('input', function() {
+				scope.amount = el.val();
+				scope.$apply();
+			});
+
+			el.bind('blur', function() {
+				el.val($filter('currency')(scope.amount, ''));
+			});
+		}
+	};
+});
 
 // ACHTUNG WENN EINE WEITERE DIREKTIVE HINZUKOMMT ; semicolon ENTFERNEN!!!!!
 
@@ -499,6 +524,4 @@ function readURL(input) {
 		reader.readAsDataURL(input.files[0]);
 	}
 }
-
-
 

@@ -183,62 +183,6 @@ $("#italic_btn").click(function() {
 		$('td.active input, td.active textarea').css('font-style', 'italic');
 	}
 });
-// Theme Selector
-$(function() {
-	var theme = $(document).on('click', 'table.theme-template', function() {
-		$('.theme-template').removeClass('theme-selected');
-		$(this).addClass('theme-selected');
-		activeTheme = $(this).attr("id");
-	});
-});
-//border selector
-$(function() {
-	var border = $(document).on('click', 'table.border-template', function() {
-		$('.border-template').removeClass('border-selected');
-		$(this).addClass('border-selected');
-		activeBorder = $(this).attr("id");
-		console.log(activeBorder);
-	});
-});
-function changeTheme() {
 
-	console.log(activeTheme);
-	console.log(activeBorder);
 
-	if (activeTheme == 'theme-1') {
-		clearThemeClass();
-		$('#document-table').addClass('theme-1');
-	}
-	if (activeTheme == 'theme-2') {
-		clearThemeClass();
-		$('#document-table').addClass('theme-2');
-	}
-	if (activeTheme == 'theme-3') {
-		clearThemeClass();
-		$('#document-table').addClass('theme-3');
-	}
 
-	if (activeBorder == 'border-1') {
-		clearBorderClass();
-		$('#document-table').addClass('border-1');
-	}
-	if (activeBorder == 'border-2') {
-		clearBorderClass();
-		$('#document-table').addClass('border-2');
-	}
-	if (activeBorder == 'border-3') {
-		clearBorderClass();
-		$('#document-table').addClass('border-3');
-	}
-	function clearThemeClass() {
-		$("#document-table").removeClass(function(index, css) {
-			return (css.match(/\btheme-\S+/g) || []).join(' ');
-		});
-	}
-	function clearBorderClass() {
-		$("#document-table").removeClass(function(index, css) {
-			return (css.match(/\bborder-\S+/g) || []).join(' ');
-		});	
-	}
-
-}

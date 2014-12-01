@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>lexoffice invoice - time to get paid. now.</title>
+		<title>lexoffice invoice</title>
 		<meta name="description" content="invoice - time to get paid. now.">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -32,7 +32,7 @@
 				<div class="container-fluid" >
 					<div class="navbar-header">
 						<div class="brand">
-							<a href="#"><img class="brand-logo" src="img/logo_lexoffice.png" width="135px" height="20px" alt="lexoffice - time to get paid. now"><span class="claim"> Time to get paid. now.</span></a>
+							<a href="#"><img class="brand-logo" src="img/logo_lexoffice.png" width="135px" height="20px" alt="lexoffice"><span class="claim"></span></a>
 						</div>
 
 					</div>
@@ -135,6 +135,7 @@
 								<button class="btn btn-lg btn-inverse sidebar-button" ng-click="showGoogleAddress = ! showGoogleAddress ; focusInput=true">
 									<span class="fa fa-google" translate="inv.sidebarbutton.googlesearch" ></span>
 								</button>
+
 
 							</li>
 							<li class="divider"></li>
@@ -273,8 +274,7 @@
 											</tr>
 										</tbody>
 									</table>
-
-									<table class="table theme-1 border-2" id="document-table">
+									<table class="table {{ selectedTheme }}" id="document-table">
 										<thead >
 											<tr >
 												<th class="no-border"></th><th>												<textarea type="text" class="header-inputs" translate="inv.invoice_table.description" >Description</textarea></th><th>												<textarea type="text" class="header-inputs" translate="inv.invoice_table.quantity">Quantity</textarea></th><th>												<textarea type="text" class="header-inputs" translate="inv.invoice_table.unitprice">Unit Price</textarea></th>
@@ -407,7 +407,7 @@
 					<div>
 						<!-- modal -Theme-->
 						<script type="text/ng-template" id="ThemeModalContent.html">
-							<div class="modal-content modal-theme">
+							<div class="modal-content modal-theme" >
 							<div class="modal-header">
 							<h4 class="modal-title" translate="inv.theme.title"></h4>
 							</div>
@@ -472,11 +472,15 @@
 							</tbody>
 							</table>
 							<div>
-    <div class="btn-group btn-theme">
-        <label class="btn btn-default btn-theme-label" ng-model="radioTheme" btn-radio="'Light'">Light</label>
-        <label class="btn btn-default btn-theme-label" ng-model="radioTheme" btn-radio="'Dark'">Dark</label>
-        <label class="btn btn-default btn-theme-label" ng-model="radioTheme" btn-radio="'Grey'">Grey</label>
-    </div>
+	
+         
+<div class="btn-group btn-theme" role="group" aria-label="...">
+  <button type="button" class="btn btn-default btn-theme-label" name="themeSelection" ng-click="selectedTheme.theme='theme-1'"><i class="fa fa-check"></i></button>
+  <button type="button" class="btn btn-default btn-theme-label" name="themeSelection" ng-click="selectedTheme.theme='theme-2'"><i class="fa fa-check"></i></button>
+  <button type="button" class="btn btn-default btn-theme-label" name="themeSelection" ng-click="selectedTheme.theme='theme-3'"><i class="fa fa-check"></i></button>
+</div>
+    
+    
 </div>
 
 							</accordion-group>
@@ -536,12 +540,11 @@
 							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>								</tr>
 							</tbody>
 							</table>
-    <div class="btn-group btn-theme">
-        <label class="btn btn-default btn-theme-label" ng-model="radioBorder" btn-radio="'Light'"><i class="fa fa-chevron-up"></i></label>
-        <label class="btn btn-default btn-theme-label" ng-model="radioBorder" btn-radio="'Dark'"><i class="fa fa-chevron-up"></i></label>
-        <label class="btn btn-default btn-theme-label" ng-model="radioBorder" btn-radio="'Grey'"><i class="fa fa-chevron-up"></i></label>
-    </div>
-
+ <div class="btn-group btn-theme" role="group" aria-label="...">
+  <button type="button" class="btn btn-default btn-theme-label" name="borderSelection" ng-click="selectedBorder.border='border-1'"><i class="fa fa-check"></i></button>
+  <button type="button" class="btn btn-default btn-theme-label" name="borderSelection" ng-click="selectedBorder.border='border-2'"><i class="fa fa-check"></i></button>
+  <button type="button" class="btn btn-default btn-theme-label" name="borderSelection" ng-click="selectedBorder.border='border-3'"><i class="fa fa-check"></i></button>
+</div>
 
 
 							</accordion-group>
@@ -550,7 +553,7 @@
 
 							<div class="modal-footer">
 							<button ng-click="cancel()" type="button" class="btn btn-default"  translate="inv.theme.abort"></button>
-							<button ng-click="selectTheme();" type="button" class="btn btn-primary" translate="inv.theme.yes"></button>
+							<button ng-click="selectDesign();" type="button" class="btn btn-primary" translate="inv.theme.yes"></button>
 							</div>
 							</div><!-- /.modal-content -->
 						</script>
