@@ -267,9 +267,14 @@
 											<tr class="trHead" >
 												<td>												<textarea ng-model="invoice.tocompany" class="document-to-company to-company" placeholder="{{ 'inv.invoice_form.tocompany' | translate }}"></textarea>												<textarea ng-model="invoice.toaddress" id="document-to" class="document-to-company to-address" placeholder="{{ 'inv.invoice_form.toaddress' | translate }}"></textarea></td>
 
-												<td align="right">												<textarea class="document-inputs document-date-label" translate="inv.invoice_form.nolabel"></textarea>												<textarea class="document-inputs document-data-label" translate="inv.invoice_form.datelabel"></textarea></td>
-												<td align="right">												<textarea ng-model="invoice.invoice_number" class="document-inputs" placeholder="12345678"></textarea>
-												<input class="document-inputs">
+												<td align="right">												<textarea  id="document-number-label" class="document-inputs document-date-label" translate="inv.invoice_form.nolabel"></textarea>												<textarea id="document-date" class="document-inputs document-data-label" translate="inv.invoice_form.datelabel"></textarea><textarea  id="document-due-label" class="document-inputs" translate="inv.invoice_form.duelabel"></textarea></td>
+												<td align="right">												<textarea  id="document-number" ng-model="invoice.invoice_number" class="document-inputs" placeholder="12345678"></textarea>
+												<div class="form-horizontal docdate">
+        											<input id="datepicker-date" class="document-inputs-date" type="text" ng-click="open()" datepicker-popup="dd.MM.yyyy" ng-model="dt" is-open="opened" min="minDate" max="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" />
+   												 </div>
+												<div class="form-horizontal duedate">
+        											<input id="datepicker-due" class="document-inputs-date" type="text" ng-click="opendue()" datepicker-popup="dd.MM.yyyy" ng-model="duedt" is-open="dueopened" min="minDate" max="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" />
+   												 </div>
 												</td>
 											</tr>
 										</tbody>

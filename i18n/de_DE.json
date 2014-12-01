@@ -43,6 +43,7 @@
 			"toaddress": "Rechnungsadresse Ihres Kunden",
 			"nolabel": "Rechnungsnummer",
 			"datelabel": "Rechnungsdatum",
+			"duelabel": "Fällig am",
 			"notes": "Bemerkungen (Sichtbar für Ihren Kunden)",
 			"termslabel": "Bedingungen (Sichtbar für Ihren Kunden). Zum Beispiel: Vielen Dank für Ihren Auftrag! Bitte überweisen Sie uns den Betrag innerhalb von 14 Tagen auf das Konto 123 456 78",
 			"footer": "Fussnote",

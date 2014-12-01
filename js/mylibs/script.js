@@ -14,6 +14,11 @@ $(document).ready(function() {
 	$('#document-type').trigger('autosize.destroy');
 	$('.currency-label').trigger('autosize.destroy');
 	$('.discount-row').trigger('autosize.destroy');
+	$('#document-number-label').trigger('autosize.destroy');
+	$('#document-number').trigger('autosize.destroy');
+	$('#document-date').trigger('autosize.destroy');
+	$('#document-due-label').trigger('autosize.destroy');
+	
 });
 
 // trigger / change currency with timeout after updating the country

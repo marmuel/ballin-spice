@@ -295,10 +295,15 @@ thead {
 	max-width: 100%;
 	margin-left: 0px;
 }
-.document-date-label {
-	width: 160px;
+#datepicker{
+	margin-top: 20px;
+}
+.document-inputs-date{
+	border: none;
 }
 
+.docdate{margin-top:16px}
+.duedate{margin-top:22px}
 .myDragClass {
 	background-color: #fcf8e3 !important;
 }
@@ -454,9 +459,7 @@ div.brand a {
 .header-buttons-line {
 	height: 80px;
 }
-.modal-theme {
-	cursor: pointer;
-}
+
 .theme-template, .border-template {
 	margin: 0 15px 15px 0;
 	box-shadow: 0 0 2px #aaa;

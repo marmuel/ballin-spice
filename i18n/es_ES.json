@@ -43,6 +43,7 @@
 			"toaddress": "Dirección del cliente",
 			"nolabel": "Número",
 			"datelabel": "Fecha",
+			"duelabel": "Fecha de vencimiento",
 			"notes": "Notas (Es visible para el cliente)",
 			"termslabel": "Condiciones de pago (Es visible para el cliente)",
 			"footer": "Pie de página",

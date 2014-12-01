@@ -320,6 +320,48 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 		};
 
 	};
+	
+	// Date Picker
+	
+	$scope.today = function() {
+    $scope.dt = new Date();
+    $scope.duedt = new Date();
+  };
+  $scope.today();
+
+  $scope.showWeeks = true;
+  $scope.toggleWeeks = function () {
+    $scope.showWeeks = ! $scope.showWeeks;
+  };
+
+  $scope.clear = function () {
+    $scope.dt = null;
+  };
+
+  $scope.toggleMin = function() {
+    $scope.minDate = ( $scope.minDate ) ? null : new Date();
+  };
+  $scope.toggleMin();
+
+  $scope.open = function() {
+    $timeout(function() {
+    alert('invdate');	
+      $scope.opened = true;
+    });
+  };
+    $scope.opendue = function() {
+    $timeout(function() {
+    alert('duedate');	
+      $scope.dueopened = true;
+    });
+  };
+
+  $scope.dateOptions = {
+    'year-format': "'yy'",
+    'starting-day': 1
+  };
+  
+	
 	// Modal Dialog Reset
 
 	$scope.openModalReset = function(size) {
