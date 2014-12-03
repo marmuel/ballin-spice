@@ -198,13 +198,13 @@
 								<div id="invoice-header" class="row" ng-style="noMarginStyle" style="font-family: {{font.label}}" ng-model="font">
 
 									<div class="noPrint print-actions">
-
+										<button type="button" class="btn btn-default" ng-show="printMode" ng-click="printMode = false; noMarginStyle={'margin':'0 auto'}; noPaddingStyle={'padding-top':'50px'}; headerHeight={'height':'80px'}" >
+											<span class="fa fa-eye-slash" translate="inv.invoice_form.printmodeoffbutton" ></span>
+										</button>
 										<button type="button" class="btn btn-primary" ng-show="printMode" ng-click="printInfo()" >
 											<span class="fa fa-print" translate="inv.invoice_form.printbutton" ></span>
 										</button>
-										<button type="button" class="btn btn-primary" ng-show="printMode" ng-click="printMode = false; noMarginStyle={'margin':'0 auto'}; noPaddingStyle={'padding-top':'50px'}; headerHeight={'height':'80px'}" >
-											<span class="fa fa-eye-slash" translate="inv.invoice_form.printmodeoffbutton" ></span>
-										</button>
+										
 									</div>
 									<div class="noPrint logo-actions">
 										<div class="btn-group" ng-hide="printMode">

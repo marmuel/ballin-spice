@@ -157,10 +157,16 @@ function Country() {
 
 // Add Class on hover and active cell
 $(function() {
-	var table = $('table').on('click', 'td', function() {
+	var table = $('table').on('focusin', 'td', function() {
 		$('.table tr td').removeClass('active');
 		$(this).addClass('active');
-		$('.toolbar').css('display', 'block');
+		$('.toolbar').show();
+	});
+});
+$(function() {
+	var table = $('table').on('focusout', 'td', function() {
+		$('.table tr td').removeClass('active');
+		$('.toolbar').hide();
 	});
 });
 // Style the active cells
