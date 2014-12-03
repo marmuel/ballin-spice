@@ -18,7 +18,7 @@ $(document).ready(function() {
 	$('#document-number').trigger('autosize.destroy');
 	$('#document-date').trigger('autosize.destroy');
 	$('#document-due-label').trigger('autosize.destroy');
-	
+
 });
 
 // trigger / change currency with timeout after updating the country
@@ -189,5 +189,96 @@ $("#italic_btn").click(function() {
 	}
 });
 
+/// google calendar api
 
+var clientId = '716638134843-3h53o486dcghf977r5hk259k723jdg9g.apps.googleusercontent.com';
+var apiKey = '0u40xship131D9pXAyPfByo2';
+var scopes = 'https://www.googleapis.com/auth/calendar';
+
+// boilerplate methods to check that the user is logged in and to handle authorization
+
+function handleClientLoad() {
+	gapi.client.setApiKey(apiKey);
+	window.setTimeout(checkAuth, 1);
+	checkAuth();
+}
+
+function checkAuth() {
+	gapi.auth.authorize({
+		client_id : clientId,
+		scope : scopes,
+		immediate : true
+	}, handleAuthResult);
+}
+
+function handleAuthResult(authResult) {
+	var authorizeButton = document.getElementById('authorize-button');
+	if (authResult) {
+		authorizeButton.style.visibility = 'hidden';
+		makeApiCall();
+	} else {
+		authorizeButton.style.visibility = '';
+		authorizeButton.onclick = handleAuthClick;
+	}
+}
+
+function handleAuthClick(event) {
+	gapi.auth.authorize({
+		client_id : clientId,
+		scope : scopes,
+		immediate : false
+	}, handleAuthResult);
+	return false;
+}
+// add event to primary calendar
+function makeApiCall() {
+	gapi.client.load('calendar', 'v3', function() {
+		var request = gapi.client.calendar.events.list({
+			'calendarId' : 'primary'
+		});
+
+        var docno =  $('#document-number').val();
+        var cus =  $('.to-company').val();       
+        var summary = 'Invoice ' + docno + ' for Customer: ' + cus + ' is overdue!';
+        var dueDate = $('#dateHelper').val();
+        
+        // get offset
+        
+function pad(number, length){
+    var str = "" + number;
+    while (str.length < length) {
+        str = '0'+str;
+    }
+    return str;
+}
+
+var offset = new Date().getTimezoneOffset();
+offset = ((offset<0? '+':'-')+ // Note the reversed sign!
+          pad(parseInt(Math.abs(offset/60)), 2)+
+          pad(Math.abs(offset%60), 2));
+
+        
+        
+        console.log(offset);
+		request.execute(function() {
+			var resource = {
+				"summary" : summary,
+				"start" : {
+					"dateTime" : dueDate + "T10:00:00" + offset
+				},
+				"end" : {
+					"dateTime" : dueDate + "T10:15:00" + offset
+				}
+			};
+			var request = gapi.client.calendar.events.insert({
+				'calendarId' : 'primary',
+				'resource' : resource
+			});
+			request.execute(function(resp) {
+				console.log(resp);
+			});
+
+		});
+	});
+}
 

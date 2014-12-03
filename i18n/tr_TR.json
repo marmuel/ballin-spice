@@ -1,7 +1,8 @@
 {
 	"inv": {
 		"nav": {
-			"language": "Lisan"
+			"language": "Lisan",
+			"country": "Ülke"
 		},
 		"headerbutton": {
 			"preview": " Önizleme & Baskı",
@@ -27,6 +28,7 @@
 			"tax2": "KDV Ile",
 			"dropbox": " Dropbox",
 			"googlesearch": " Adres",
+			"googlecalendar": " Takvim",
 			"searchno": "Hayır",
 			"searchyes": "Evet",
 			"themebutton": " Dizayn"

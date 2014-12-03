@@ -15,27 +15,53 @@ function($translateProvider) {
 	// Get stored default language or tell the module what language to use by default
 
 	if (localStorage["language"] == "" || localStorage["language"] == null) {
-		var locale = 'en_US';
-		console.log('Default Language');
-		$translateProvider.preferredLanguage(locale);
+		var loc = 'en_GB';
+		$translateProvider.preferredLanguage(loc);
+
 	} else {
-		console.log('Stored Language');
 		storedLocale = JSON.parse(localStorage["language"]);
 		$translateProvider.preferredLanguage(storedLocale);
 	}
 
-	//START THE MAIN CONTROLLER
-}]).controller('NewInvoiceCtrl', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout', '$locale', 'tmhDynamicLocale',
-function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale, tmhDynamicLocale) {
-	// populate Language Dropdown
 
+}]);
+
+
+app.config(['tmhDynamicLocaleProvider', function (tmhDynamicLocaleProvider) {
+    tmhDynamicLocaleProvider.localeLocationPattern('i18n/angular-locale/angular-locale_{{locale}}.js');
+}])
+//START THE MAIN CONTROLLER
+.controller('NewInvoiceCtrl', ['$scope', '$translate', '$modal', '$window', '$filter', '$http', '$timeout', '$locale', 'tmhDynamicLocale',
+function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale, tmhDynamicLocale) {
+   
 	// language setting
 	$scope.setLang = function(langKey) {
 		// store language local
-		localStorage["language"] = JSON.stringify(langKey);
+		localStorage["language"] = JSON.stringify(langKey);		
+			
 		// set language
 		$translate.use(langKey);
 	};
+	
+
+	//change Country
+	$scope.setCtry = function(countryKey) {
+		// Dynamically set i18n Angular locale depending on country select
+		console.log('Selected Country: ', countryKey);
+		tmhDynamicLocale.set(countryKey);		
+		localStorage["country"] = JSON.stringify(countryKey);		
+		var shortDates = $locale.DATETIME_FORMATS.shortDate;
+		var language = $locale.id;
+		console.log('shortDate for Datepicker: ' + shortDates);
+		console.log('shortDate for Datepicker: ' + shortDates);
+		
+	};
+	
+
+
+
+
+
 
 	// load, populate and order Json in country select
 	$scope.data = {
@@ -48,34 +74,44 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 	$scope.radioShipping = '0';
 
 	// set default Country
-	$scope.data.locations.countries.$default = 'United States';
+	$scope.data.locations.countries.$default = 'United Kingdom';
 	$scope.data.locations.countries.$resolved = false;
+	
+	
+	// Get stored default country or tell the module what language to use by default
+	// for more informations about tmhDynamicLocale: https://github.com/lgalfaso/angular-dynamic-locale
 
-	// set default locale to USA
-	// for more informations: https://github.com/lgalfaso/angular-dynamic-locale
-	tmhDynamicLocale.set('en-us');
+	if (localStorage["country"] == "" || localStorage["country"] == null) {
+		//set default to uk
+	    tmhDynamicLocale.set('en-gb');
+		console.log('war nicht da, set to en-gb');
+	} else {	
+		storedCtry = JSON.parse(localStorage["country"]);
+		console.log(storedCtry);
+		tmhDynamicLocale.set(storedCtry);
+		console.log('war da, Lokale ID: ', storedCtry);
+	}
+	
+	
+	
+	
+	
+	
+	
 
 	// Populate countries.json in Country Select
 	$http.get('i18n/countries.json').success(function(countries) {
 		$scope.data.locations.countries.length = 0;
 		// actually filter is set to none. to activate choose for e.g. (countries, 'name')
-		Array.prototype.push.apply($scope.data.locations.countries, $filter('orderBy')(countries, ''));
+		Array.prototype.push.apply($scope.data.locations.countries, $filter('orderBy')(countries, 'id'));
 		$scope.selectionCountry || ($scope.selectionCountry = $filter('filter')($scope.data.locations.countries, {name: $scope.data.locations.countries.$default})[0]);
 		$scope.data.locations.countries.$resolved = true;
-		//console.log($scope.data.locations.countries);
 	});
 
 	// pre set currency select
 	$scope.updateCountry = function(item) {
 
-		// get locale from the country select / countries.json
-		var selLocale = $scope.selectionCountry.i18n;
-		// set locale
-		// for more informations: https://github.com/lgalfaso/angular-dynamic-locale
-		tmhDynamicLocale.set(selLocale);
-		console.log('changed locale to: ', selLocale);
-
-		var selCountry = $scope.selectionCountry.currencies;
+		var selCountry = $scope.selectionCountry.currencies;	
 		var selCurrency = document.getElementById('currency').options;
 		for (var i = 0; i < selCurrency.length; i++) {
 			if (selCurrency[i].value.indexOf(selCountry) == 0) {
@@ -85,6 +121,8 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 				selCurrency[0].selected = true;
 			};
 		};
+				
+		
 		// TODO Update Currency Format Inputs Unit Price
 		//  var priceControl = $scope.invoice.items;
 		//  var uCost = $scope.invoice.items['cost'];
@@ -181,7 +219,6 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 	$scope.OnItemClick = function(font) {// set hidden select
 		$scope.font = font;
 		// Save in localstorage
-		//console.log($scope.font);
 		localStorage["font"] = JSON.stringify(font);
 		localStorage.setItem('font', JSON.stringify(font));
 
@@ -320,48 +357,39 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 		};
 
 	};
-	
+
 	// Date Picker
 	
-	$scope.today = function() {
-    $scope.dt = new Date();
-    $scope.duedt = new Date();
-  };
-  $scope.today();
-
-  $scope.showWeeks = true;
-  $scope.toggleWeeks = function () {
-    $scope.showWeeks = ! $scope.showWeeks;
-  };
-
-  $scope.clear = function () {
-    $scope.dt = null;
-  };
-
-  $scope.toggleMin = function() {
-    $scope.minDate = ( $scope.minDate ) ? null : new Date();
-  };
-  $scope.toggleMin();
-
-  $scope.open = function() {
-    $timeout(function() {
-    alert('invdate');	
-      $scope.opened = true;
-    });
-  };
-    $scope.opendue = function() {
-    $timeout(function() {
-    alert('duedate');	
-      $scope.dueopened = true;
-    });
-  };
-
-  $scope.dateOptions = {
-    'year-format': "'yy'",
-    'starting-day': 1
+    
+  $scope.today = function() {
+   		var today = new Date();
+		var todayplus = new Date();
+		var numberOfDaysToAdd = 14;
+		todayplus.setDate(todayplus.getDate() + numberOfDaysToAdd);
+		$scope.dateinv = today;
+		$scope.datedue = todayplus;
   };
   
-	
+   $scope.openDateInv = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.openedDateInv = true;
+  };
+     $scope.openDateDue = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.openedDateDue = true;
+  };
+  
+  $scope.today();
+ 
+  $scope.dateOptions = {
+    formatYear: 'yy',
+    startingDay: 1
+  };
+
+
+
 	// Modal Dialog Reset
 
 	$scope.openModalReset = function(size) {
@@ -376,19 +404,16 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 			}
 		});
 	};
-	
+
 	// get Design from localstorage or default values
 
 	if ((localStorage.getItem('design')) == '' || (localStorage.getItem('design')) == null) {
 		var storedDesign = localStorage.getItem('design');
-		console.log('no storedDesign, set to theme-1 border-2');
 		$scope.selectedTheme = 'theme-1 border-2';
 	} else {
 		var storedDesign = localStorage.getItem("design");
-		console.log('yes storedDesign!' + storedDesign);
 		$scope.selectedTheme = eval(storedDesign);
 	}
-
 
 	// Modal Dialog Theme
 	$scope.openModalTheme = function(size) {
@@ -403,7 +428,7 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 			}
 		});
 		modalInstance.result.then(function(selectedItem) {
-			
+
 			$scope.selectedTheme = selectedItem;
 			$scope.selectedBorder = selectedItem;
 		});
@@ -419,23 +444,18 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 		$scope.selectedBorder = {
 			border : 'border-1'
 		};
-		
 
-		$scope.selectDesign = function() {	
-				var t = $scope.selectedTheme.theme;
-				var b = $scope.selectedBorder.border;
-				d = t + ' ' + b;
-						
-		// Save in localstorage
-		var design = d;
-		console.log($scope.selectedTheme.theme);
-		localStorage["design"] = JSON.stringify(design);
-		localStorage.setItem('design', JSON.stringify(design));
-			
-			$modalInstance.close(
-				
-				$scope.selectedTheme.theme = d
-			);					
+		$scope.selectDesign = function() {
+			var t = $scope.selectedTheme.theme;
+			var b = $scope.selectedBorder.border;
+			d = t + ' ' + b;
+
+			// Save in localstorage
+			var design = d;
+			localStorage["design"] = JSON.stringify(design);
+			localStorage.setItem('design', JSON.stringify(design));
+
+			$modalInstance.close($scope.selectedTheme.theme = d);
 		};
 
 		$scope.cancel = function() {
@@ -449,7 +469,6 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 			localStorage["logo"] = "";
 			localStorage["font"] = "";
 			localStorage["design"] = "";
-			console.log('localStorage cleared');
 			$scope.invoice = sample_invoice;
 			$window.location.reload();
 		};
@@ -512,32 +531,32 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 			});
 		}
 	};
-})
+});
 // Format Inputs to Currency Format
 
-.directive('blurToCurrency', function($filter) {
-	return {
-		scope : {
-			amount : '='
-		},
-		link : function(scope, el, attrs) {
-			el.val($filter('currency' )(scope.amount, ''));
-
-			el.bind('focus', function() {
-				el.val(scope.amount);
-			});
-
-			el.bind('input', function() {
-				scope.amount = el.val();
-				scope.$apply();
-			});
-
-			el.bind('blur', function() {
-				el.val($filter('currency')(scope.amount, ''));
-			});
-		}
-	};
-});
+//.directive('blurToCurrency', function($filter) {
+//	return {
+//		scope : {
+//			amount : '='
+//		},
+//		link : function(scope, el, attrs) {
+//			el.val($filter('currency' )(scope.amount, ''));
+//
+//			el.bind('focus', function() {
+//				el.val(scope.amount);
+//			});
+//
+//			el.bind('input', function() {
+//				scope.amount = el.val();
+//				scope.$apply();
+//			});
+//
+//			el.bind('blur', function() {
+//				el.val($filter('currency')(scope.amount, ''));
+//			});
+//		}
+//	};
+//});
 
 // ACHTUNG WENN EINE WEITERE DIREKTIVE HINZUKOMMT ; semicolon ENTFERNEN!!!!!
 
@@ -556,7 +575,6 @@ function() {
 }]);
 
 function readURL(input) {
-	console.log(input);
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
 		reader.onload = function(e) {

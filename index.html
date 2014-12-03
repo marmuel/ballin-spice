@@ -8,7 +8,7 @@
 		<meta name="description" content="invoice - time to get paid. now.">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.js"></script>
 		<!--bootstrap ui-->
 		<script src="js/libs/ui-bootstrap-tpls-0.12.0.min.js"></script>
 		<script type="text/javascript" src="js/libs/angular-translate.min.js"></script>
@@ -18,10 +18,13 @@
 		<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="13ysuqq7fl50z0k"></script>
 		<script type="text/javascript" src="js/mylibs/main.js"></script>
 		<script defer src="js/mylibs/script.js"></script>
+		<script defer src="js/libs/angular-bootstrap-datepicker.min.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+		<script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/angular-bootstrap-datepicker.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 
@@ -37,15 +40,29 @@
 					</div>
 
 					<div class="navbar-collapse collapse">
-	<ul class="nav navbar-nav navbar-right">
-			
-    <span class="dropdown" dropdown on-toggle="toggled(open)">
-      <a href class="dropdown-toggle" dropdown-toggle>
-        {{ 'inv.nav.language' | translate }}<b class="caret">&nbsp;</b>
-      </a>
-      <ul class="dropdown-menu" ng-model="languageSelect" ng-change="languageSelect()">
-        <li>
-										<a href="#" ng-click="setLang('en_US')">English</a>
+						<ul class="nav navbar-nav navbar-right">
+							<span class="dropdown" dropdown on-toggle="toggled(open)"> <a href class="dropdown-toggle" dropdown-toggle> {{ 'inv.nav.country' | translate }}<b class="caret">&nbsp;</b> </a>
+								<ul class="dropdown-menu" ng-model="countrySelect" ng-change="countrySelect()">
+									<li>
+										<a href="#" ng-click="setCtry('en-gb')">United Kingdom</a>
+									</li>
+									<li>
+										<a href="#" ng-click="setCtry('en-us')">United States</a>
+									</li>
+									<li>
+										<a href="#" ng-click="setCtry('es-es')">España</a>
+									</li>
+									<li>
+										<a href="#" ng-click="setCtry('de-de')">Deutschland</a>
+									</li>
+									<li>
+										<a href="#" ng-click="setCtry('tr-tr')">Türkiye</a>
+									</li>
+								</ul> </span>
+							<span class="dropdown" dropdown on-toggle="toggled(open)"> <a href class="dropdown-toggle" dropdown-toggle> {{ 'inv.nav.language' | translate }}<b class="caret">&nbsp;</b> </a>
+								<ul class="dropdown-menu" ng-model="languageSelect" ng-change="languageSelect()">
+									<li>
+										<a href="#" ng-click="setLang('en_GB')">English</a>
 									</li>
 									<li>
 										<a href="#" ng-click="setLang('es_ES')">Español</a>
@@ -56,11 +73,9 @@
 									<li>
 										<a href="#" ng-click="setLang('tr_TR')">Türkçe</a>
 									</li>
-      </ul>
-    </span>
-	</ul>					
-	
+								</ul> </span>
 
+						</ul>
 
 					</div>
 
@@ -135,6 +150,12 @@
 									<span class="fa fa-google" translate="inv.sidebarbutton.googlesearch" ></span>
 								</button>
 
+							</li>
+							<li>
+
+								<button id='authorize-button' class="btn btn-lg btn-inverse sidebar-button" onclick="handleAuthClick();">
+									<span class="fa fa-google" translate="inv.sidebarbutton.googlecalendar" ></span>
+								</button>
 
 							</li>
 							<li class="divider"></li>
@@ -172,9 +193,8 @@
 					</div>
 
 					<div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-2 main" ng-style="noMarginStyle" >
-						<div id="doc-wrapper" >
+						<div id="doc-wrapper" >   
 							<div class="document-wrapper" >
-
 								<div id="invoice-header" class="row" ng-style="noMarginStyle" style="font-family: {{font.label}}" ng-model="font">
 
 									<div class="noPrint print-actions">
@@ -266,15 +286,28 @@
 											<tr class="trHead" >
 												<td>												<textarea ng-model="invoice.tocompany" class="document-to-company to-company" placeholder="{{ 'inv.invoice_form.tocompany' | translate }}"></textarea>												<textarea ng-model="invoice.toaddress" id="document-to" class="document-to-company to-address" placeholder="{{ 'inv.invoice_form.toaddress' | translate }}"></textarea></td>
 
-												<td align="right">												<textarea  id="document-number-label" class="document-inputs document-date-label" translate="inv.invoice_form.nolabel"></textarea>												<textarea id="document-date" class="document-inputs document-data-label" translate="inv.invoice_form.datelabel"></textarea><textarea  id="document-due-label" class="document-inputs" translate="inv.invoice_form.duelabel"></textarea></td>
+												<td align="right">												<textarea  id="document-number-label" class="document-inputs document-date-label" translate="inv.invoice_form.nolabel"></textarea>												<textarea id="document-date" class="document-inputs document-data-label" translate="inv.invoice_form.datelabel"></textarea>												<textarea  id="document-due-label" class="document-inputs" translate="inv.invoice_form.duelabel"></textarea></td>
 												<td align="right">												<textarea  id="document-number" ng-model="invoice.invoice_number" class="document-inputs" placeholder="12345678"></textarea>
 												<div class="form-horizontal docdate">
-        											<input id="datepicker-date" class="document-inputs-date" type="text" ng-click="open()" datepicker-popup="dd.MM.yyyy" ng-model="dt" is-open="opened" min="minDate" max="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" />
-   												 </div>
+													<p class="input-group">
+														<input id="dateInv" type="text" class="form-control" datepicker-popup="shortDate" ng-model="dateinv" is-open="openedDateInv" datepicker-options="dateOptions" show-button-bar="false" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+														<span class="input-group-btn">
+															<button type="button" class="btn btn-default" ng-click="openDateInv($event)">
+																<i class="glyphicon glyphicon-calendar"></i>
+															</button> </span>
+													</p>
+													<input style="display: none" id="dateHelper" value="{{datedue | date:'yyyy-MM-dd' }}" />
+													
+												</div>
 												<div class="form-horizontal duedate">
-        											<input id="datepicker-due" class="document-inputs-date" type="text" ng-click="opendue()" datepicker-popup="dd.MM.yyyy" ng-model="duedt" is-open="dueopened" min="minDate" max="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" />
-   												 </div>
-												</td>
+													<p class="input-group">
+														<input id="dateDue" type="text" class="form-control" datepicker-popup="shortDate" ng-model="datedue" is-open="openedDateDue" datepicker-options="dateOptions" show-button-bar="false" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+														<span class="input-group-btn">
+															<button type="button" class="btn btn-default" ng-click="openDateDue($event)">
+																<i class="glyphicon glyphicon-calendar"></i>
+															</button> </span>
+													</p>
+												</div></td>
 											</tr>
 										</tbody>
 									</table>
@@ -476,16 +509,14 @@
 							</tbody>
 							</table>
 							<div>
-	
-         
-<div class="btn-group btn-theme" role="group" aria-label="...">
-  <button type="button" class="btn btn-default btn-theme-label" name="themeSelection" ng-click="selectedTheme.theme='theme-1'"><i class="fa fa-check"></i></button>
-  <button type="button" class="btn btn-default btn-theme-label" name="themeSelection" ng-click="selectedTheme.theme='theme-2'"><i class="fa fa-check"></i></button>
-  <button type="button" class="btn btn-default btn-theme-label" name="themeSelection" ng-click="selectedTheme.theme='theme-3'"><i class="fa fa-check"></i></button>
-</div>
-    
-    
-</div>
+
+							<div class="btn-group btn-theme" role="group" aria-label="...">
+							<button type="button" class="btn btn-default btn-theme-label" name="themeSelection" ng-click="selectedTheme.theme='theme-1'"><i class="fa fa-check"></i></button>
+							<button type="button" class="btn btn-default btn-theme-label" name="themeSelection" ng-click="selectedTheme.theme='theme-2'"><i class="fa fa-check"></i></button>
+							<button type="button" class="btn btn-default btn-theme-label" name="themeSelection" ng-click="selectedTheme.theme='theme-3'"><i class="fa fa-check"></i></button>
+							</div>
+
+							</div>
 
 							</accordion-group>
 							<accordion-group is-open="status1.open">
@@ -544,12 +575,11 @@
 							<th ></th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th><th>&nbsp;-&nbsp;</th>								</tr>
 							</tbody>
 							</table>
- <div class="btn-group btn-theme" role="group" aria-label="...">
-  <button type="button" class="btn btn-default btn-theme-label" name="borderSelection" ng-click="selectedBorder.border='border-1'"><i class="fa fa-check"></i></button>
-  <button type="button" class="btn btn-default btn-theme-label" name="borderSelection" ng-click="selectedBorder.border='border-2'"><i class="fa fa-check"></i></button>
-  <button type="button" class="btn btn-default btn-theme-label" name="borderSelection" ng-click="selectedBorder.border='border-3'"><i class="fa fa-check"></i></button>
-</div>
-
+							<div class="btn-group btn-theme" role="group" aria-label="...">
+							<button type="button" class="btn btn-default btn-theme-label" name="borderSelection" ng-click="selectedBorder.border='border-1'"><i class="fa fa-check"></i></button>
+							<button type="button" class="btn btn-default btn-theme-label" name="borderSelection" ng-click="selectedBorder.border='border-2'"><i class="fa fa-check"></i></button>
+							<button type="button" class="btn btn-default btn-theme-label" name="borderSelection" ng-click="selectedBorder.border='border-3'"><i class="fa fa-check"></i></button>
+							</div>
 
 							</accordion-group>
 

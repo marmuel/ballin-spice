@@ -1,7 +1,8 @@
 {
 	"inv": {
 		"nav": {
-			"language": "Sprache"
+			"language": "Sprache",
+			"country": "Land"
 		},
 		"headerbutton": {
 			"preview": " Vorschau & Druck",
@@ -27,6 +28,7 @@
 			"tax2": "Mit MwSt.",
 			"dropbox": " Dropbox",
 			"googlesearch": " Adresse",
+			"googlecalendar": " Kalender",
 			"searchno": "Nein",
 			"searchyes": "Ja",
 			"themebutton": " Design"
