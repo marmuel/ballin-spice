@@ -239,7 +239,7 @@ function makeApiCall() {
 
         var docno =  $('#document-number').val();
         var cus =  $('.to-company').val();       
-        var summary = 'Invoice ' + docno + ' for Customer: ' + cus + ' is overdue!';
+        var summary = 'Invoice ' + docno + ' for Customer: ' + cus + ' is now overdue!';
         var dueDate = $('#dateHelper').val();
         
         // get offset

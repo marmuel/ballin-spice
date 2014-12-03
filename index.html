@@ -41,7 +41,7 @@
 
 					<div class="navbar-collapse collapse">
 						<ul class="nav navbar-nav navbar-right">
-							<span class="dropdown" dropdown on-toggle="toggled(open)"> <a href class="dropdown-toggle" dropdown-toggle> {{ 'inv.nav.country' | translate }}<b class="caret">&nbsp;</b> </a>
+							<span class="dropdown ctry" dropdown on-toggle="toggled(open)"><a href class="dropdown-toggle" dropdown-toggle><i class="fa fa-big fa-flag"></i></a>
 								<ul class="dropdown-menu" ng-model="countrySelect" ng-change="countrySelect()">
 									<li>
 										<a href="#" ng-click="setCtry('en-gb')">United Kingdom</a>
@@ -59,7 +59,7 @@
 										<a href="#" ng-click="setCtry('tr-tr')">Türkiye</a>
 									</li>
 								</ul> </span>
-							<span class="dropdown" dropdown on-toggle="toggled(open)"> <a href class="dropdown-toggle" dropdown-toggle> {{ 'inv.nav.language' | translate }}<b class="caret">&nbsp;</b> </a>
+							<span class="dropdown" dropdown on-toggle="toggled(open)"> <a href class="dropdown-toggle" dropdown-toggle> <i class="fa fa-big fa-language"></i></a>
 								<ul class="dropdown-menu" ng-model="languageSelect" ng-change="languageSelect()">
 									<li>
 										<a href="#" ng-click="setLang('en_GB')">English</a>
@@ -147,14 +147,14 @@
 							<li>
 
 								<button class="btn btn-lg btn-inverse sidebar-button" ng-click="showGoogleAddress = ! showGoogleAddress ; focusInput=true">
-									<span class="fa fa-google" translate="inv.sidebarbutton.googlesearch" ></span>
+									<span class="fa fa-map-marker" translate="inv.sidebarbutton.googlesearch" ></span>
 								</button>
 
 							</li>
 							<li>
 
 								<button id='authorize-button' class="btn btn-lg btn-inverse sidebar-button" onclick="handleAuthClick();">
-									<span class="fa fa-google" translate="inv.sidebarbutton.googlecalendar" ></span>
+									<span class="fa fa-calendar " translate="inv.sidebarbutton.googlecalendar" ></span>
 								</button>
 
 							</li>

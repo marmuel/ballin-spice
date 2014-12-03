@@ -449,7 +449,13 @@ div.brand a {
 .prototype {
 	margin: -60px 0px 0px -7px;
 }
-
+.fa-big{
+	font-size: 22px;
+	color: #aaa;
+}
+.ctry{
+	padding-right: 10px;
+}
 .header-buttons-line {
 	height: 80px;
 }
