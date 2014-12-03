@@ -108,6 +108,8 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 		$scope.data.locations.countries.$resolved = true;
 	});
 
+
+    
 	// pre set currency select
 	$scope.updateCountry = function(item) {
 
@@ -121,7 +123,7 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 				selCurrency[0].selected = true;
 			};
 		};
-				
+
 		
 		// TODO Update Currency Format Inputs Unit Price
 		//  var priceControl = $scope.invoice.items;

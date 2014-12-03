@@ -1,5 +1,9 @@
 $(document).ready(function() {
-	//set default currency
+	
+	//set default currency to GBP
+	
+	$("select#currency").val("GBP");
+	
 	$("#tax").trigger('change');
 	$("#currency").trigger('change');
 	$("#logoCompany").change(function() {
@@ -25,7 +29,7 @@ $(document).ready(function() {
 $("#country-select").change(function() {
 	setTimeout(function() {
 		$("#currency").trigger('change');
-	}, 100);
+	}, 200);
 });
 
 // google address autocomplete feature
