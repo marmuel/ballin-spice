@@ -272,9 +272,9 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 		$scope.invoice.items.forEach(function(invoice) {
 			['taxOne', 'taxTwo'].forEach(function(key) {
 				var perc = invoice[key];
-				if (perc === '0' || perc === "") {
+				if (perc === "") {
 					return;
-				}// ignore 0 percentage
+				}// ignore no percentage
 
 				if (!groups[perc]) {
 					groups[perc] = 0;
