@@ -295,9 +295,21 @@ thead {
 	border: none;
 }
 
-.docdate{margin-top:3px;width: 150px;}
-.duedate{margin-top:4px;width: 150px;}
+.docdate{margin-top:10px;width: 150px;}
+.duedate{margin-top:0px;width: 150px;}
+#dateInv, #dateDue{
+	border: none !important;
+	webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	-webkit-transition: none !important;
+	width: 110px;
+}
+#dateInv {
 
+}
+#dateDue{
+
+}
 .myDragClass {
 	background-color: #fcf8e3 !important;
 }

@@ -290,9 +290,9 @@
 												<td align="right">												<textarea  id="document-number" ng-model="invoice.invoice_number" class="document-inputs" placeholder="12345678"></textarea>
 												<div class="form-horizontal docdate">
 													<p class="input-group">
-														<input id="dateInv" type="text" class="form-control" datepicker-popup="shortDate" ng-model="dateinv" is-open="openedDateInv" datepicker-options="dateOptions" show-button-bar="false" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-														<span class="input-group-btn">
-															<button type="button" class="btn btn-default" ng-click="openDateInv($event)">
+														<input id="dateInv" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dateinv" is-open="openedDateInv" datepicker-options="dateOptions" show-button-bar="false" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+														<span class="btn-dateinv"  ng-hide="printMode">
+															<button type="button" class="btn btn-default" ng-click="openDateInv($event)" ng-hide="printMode">
 																<i class="glyphicon glyphicon-calendar"></i>
 															</button> </span>
 													</p>
@@ -301,9 +301,9 @@
 												</div>
 												<div class="form-horizontal duedate">
 													<p class="input-group">
-														<input id="dateDue" type="text" class="form-control" datepicker-popup="shortDate" ng-model="datedue" is-open="openedDateDue" datepicker-options="dateOptions" show-button-bar="false" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-														<span class="input-group-btn">
-															<button type="button" class="btn btn-default" ng-click="openDateDue($event)">
+														<input id="dateDue" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="datedue" is-open="openedDateDue" datepicker-options="dateOptions" show-button-bar="false" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+														<span class="btn-datedue"  ng-hide="printMode">
+															<button type="button" class="btn btn-default" ng-click="openDateDue($event)" ng-hide="printMode">
 																<i class="glyphicon glyphicon-calendar"></i>
 															</button> </span>
 													</p>

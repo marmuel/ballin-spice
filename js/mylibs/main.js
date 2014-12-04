@@ -1,5 +1,5 @@
 // Register Angular Translate & Bootstrap UI
-var app = angular.module("lexoffice", ['pascalprecht.translate', 'ui.bootstrap', 'App.filters', 'tmh.dynamicLocale']);
+var app = angular.module("lexoffice", ['pascalprecht.translate', 'ui.bootstrap', 'App.filters', 'tmh.dynamicLocale', 'ngLocale']);
 
 //Translation
 app.config(['$translateProvider',
@@ -46,15 +46,16 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 
 	//change Country
 	$scope.setCtry = function(countryKey) {
+		$scope.status.isopen = false;
 		// Dynamically set i18n Angular locale depending on country select
 		console.log('Selected Country: ', countryKey);
 		tmhDynamicLocale.set(countryKey);		
 		localStorage["country"] = JSON.stringify(countryKey);		
 		var shortDates = $locale.DATETIME_FORMATS.shortDate;
 		var language = $locale.id;
-		console.log('shortDate for Datepicker: ' + shortDates);
-		console.log('shortDate for Datepicker: ' + shortDates);
-		
+		// changes dateinv to apply the $locale changes
+    	$scope.dateinv=new Date($scope.dateinv.getTime());
+    	$scope.datedue=new Date($scope.datedue.getTime());
 	};
 	
 
@@ -124,16 +125,6 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 			};
 		};
 
-		
-		// TODO Update Currency Format Inputs Unit Price
-		//  var priceControl = $scope.invoice.items;
-		//  var uCost = $scope.invoice.items['cost'];
-		//   for(var i=0;i<priceControl.length;i++) {
-		//   	var uCost = 0;
-		//   	var uCost = $scope.invoice.items[i].cost;
-		//   	$scope.invoice.items[i].cost = ($filter('currency' )($scope.invoice.items[i].cost, ''));
-		//    console.log(($filter('currency' )($scope.invoice.items[i].cost, '')));
-		//    };
 	};
 
 	//Invoice Control
@@ -368,19 +359,23 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 		var todayplus = new Date();
 		var numberOfDaysToAdd = 14;
 		todayplus.setDate(todayplus.getDate() + numberOfDaysToAdd);
-		$scope.dateinv = today;
+		$scope.dateinv = today;		
 		$scope.datedue = todayplus;
   };
   
    $scope.openDateInv = function($event) {
+   	$timeout(function () {
     $event.preventDefault();
     $event.stopPropagation();
     $scope.openedDateInv = true;
+    });
   };
-     $scope.openDateDue = function($event) {
+  $scope.openDateDue = function($event) {
+  	$timeout(function () {
     $event.preventDefault();
     $event.stopPropagation();
     $scope.openedDateDue = true;
+    });
   };
   
   $scope.today();
@@ -389,6 +384,9 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
     formatYear: 'yy',
     startingDay: 1
   };
+  
+    $scope.format = 'shortDate';
+  
 
 
 
