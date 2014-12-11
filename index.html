@@ -286,7 +286,7 @@
 												<td>												<textarea ng-model="invoice.tocompany" class="document-to-company to-company" placeholder="{{ 'inv.invoice_form.tocompany' | translate }}"></textarea>												<textarea ng-model="invoice.toaddress" id="document-to" class="document-to-company to-address" placeholder="{{ 'inv.invoice_form.toaddress' | translate }}"></textarea></td>
 
 												<td align="right">												<textarea  id="document-number-label" class="document-inputs document-data-label" translate="inv.invoice_form.nolabel"></textarea>												<textarea id="document-date" class="document-inputs document-data-label" translate="inv.invoice_form.datelabel"></textarea>												<textarea  id="document-due-label" class="document-inputs document-data-label" translate="inv.invoice_form.duelabel"></textarea></td>
-												<td align="right">												<textarea  id="document-number" ng-model="invoice.invoice_number" class="document-inputs document-data-label" placeholder="12345678"></textarea>
+												<td align="right">												<textarea  id="document-number" ng-model="invoice.invoice_number" class="document-inputs" placeholder="12345678"></textarea>
 												<div class="form-horizontal docdate">
 													<p class="input-group">
 														<input id="dateInv" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dateinv" is-open="openedDateInv" datepicker-options="dateOptions" show-button-bar="false" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />

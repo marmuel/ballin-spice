@@ -162,20 +162,12 @@ function Country() {
 // Add Class on hover and active cell
 $(function() {
 	var table = $('table').on('focusin', 'td', function() {
-		$(this).find(':input').removeClass('active');
-		$(this).find('textarea').removeClass('active');
-		$(this).find(':input').addClass('active');
-		$(this).find('textarea').addClass('active');
+		$('.table tr td').removeClass('active');
+		$(this).addClass('active');
 		$('.toolbar').show();
 	});
 });
-$(function() {
-	var table = $('table').on('focusout', 'td', function() {
-		$(this).find(':input').removeClass('active');
-		$(this).find('textarea').removeClass('active');
-		$('.toolbar').hide();
-	});
-});
+
 // Style the active cells
 $("#left_align_btn").click(function() {
 	$('td.active input, td.active textarea').css('text-align', 'left');
