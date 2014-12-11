@@ -9,9 +9,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-p, div {
-	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+
 /*
  * Global
  */
@@ -186,9 +184,8 @@ margin-bottom: 20px;
 
 .print-actions {
 position: absolute;
-float: right;
 margin: -13px 0px 0px 0px;
-left: 165px;
+left: 25%;
 }
 .logo-actions {
 position: absolute;
@@ -295,8 +292,8 @@ thead {
 	border: none;
 }
 
-.docdate{margin-top:10px;width: 150px;}
-.duedate{margin-top:0px;width: 150px;}
+.docdate{margin-top:10px;width: 150px;text-align: right;}
+.duedate{margin-top:0px;width: 150px;text-align: right;}
 #dateInv, #dateDue{
 	border: none !important;
 	webkit-box-shadow: none !important;
@@ -612,4 +609,4 @@ border: 1px solid #cacaca;
 color: #666;
 }
 .document-data-label{width: 170px; height: 34px;}
-#document-number{width: 148px; height: 34px;}
+#document-number{width: 148px; height: 34px;text-align: left;}

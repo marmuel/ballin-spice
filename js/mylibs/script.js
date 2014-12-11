@@ -163,9 +163,10 @@ function Country() {
 $(function() {
 	var table = $('table').on('focusin', 'td', function() {
 		$('.table tr td').removeClass('active');
-		$(this).addClass('active');
+		 $(this).children().addClass('active');
 		$('.toolbar').show();
 	});
+	console.log(table);
 });
 
 // Style the active cells
