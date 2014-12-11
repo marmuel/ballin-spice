@@ -27,6 +27,7 @@ function($translateProvider) {
 }]);
 
 
+
 app.config(['tmhDynamicLocaleProvider', function (tmhDynamicLocaleProvider) {
     tmhDynamicLocaleProvider.localeLocationPattern('i18n/angular-locale/angular-locale_{{locale}}.js');
 }])
@@ -43,6 +44,7 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 		$translate.use(langKey);
 	};
 	
+
 
 	//change Country
 	$scope.setCtry = function(countryKey) {
@@ -86,11 +88,16 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 		//set default to uk
 	    tmhDynamicLocale.set('en-gb');
 		console.log('war nicht da, set to en-gb');
+		var shortDates = $locale.DATETIME_FORMATS.shortDate;
+		var language = $locale.id;
+
 	} else {	
 		storedCtry = JSON.parse(localStorage["country"]);
 		console.log(storedCtry);
 		tmhDynamicLocale.set(storedCtry);
 		console.log('war da, Lokale ID: ', storedCtry);
+		// changes dateinv to apply the $locale changes
+		   $scope.format = 'shortDate';
 	}
 	
 	
@@ -381,14 +388,12 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
   $scope.today();
  
   $scope.dateOptions = {
-    formatYear: 'yy',
+    formatYear: 'yyyy',
     startingDay: 1
   };
   
     $scope.format = 'shortDate';
   
-
-
 
 	// Modal Dialog Reset
 
@@ -531,7 +536,21 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 			});
 		}
 	};
+})
+// workaround datepicker change language / format on runtime. See further informations https://github.com/angular-ui/bootstrap/issues/2659#issuecomment-60750976
+.directive('datepickerPopup', function (){
+  return {
+    restrict: 'EAC',
+    require: 'ngModel',
+    link: function(scope, element, attr, controller) {
+      //remove the default formatter from the input directive to prevent conflict
+      controller.$formatters.shift();
+    }
+  };
 });
+
+// ACHTUNG WENN EINE WEITERE DIREKTIVE HINZUKOMMT ; semicolon ENTFERNEN!!!!!
+
 // Format Inputs to Currency Format
 
 //.directive('blurToCurrency', function($filter) {
@@ -558,7 +577,7 @@ function($scope, $translate, $modal, $window, $filter, $http, $timeout, $locale,
 //	};
 //});
 
-// ACHTUNG WENN EINE WEITERE DIREKTIVE HINZUKOMMT ; semicolon ENTFERNEN!!!!!
+
 
 // Tax Sum
 
